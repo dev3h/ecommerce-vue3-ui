@@ -1,0 +1,5 @@
+/* Main theme entry point - imports all theme components */
+@import './config.css';
+@import './light.css';
+@import './dark.css';
+@import './base.css';
