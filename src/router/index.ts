@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from './routes'
-import { authGuard, roleGuard, titleGuard } from './guards'
+import { authGuard, roleGuard, adminGuard, titleGuard } from './guards'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,6 +23,7 @@ const router = createRouter({
 // Global navigation guards
 router.beforeEach(authGuard)
 router.beforeEach(roleGuard)
+router.beforeEach(adminGuard)
 router.beforeEach(titleGuard)
 
 // Global error handling for navigation

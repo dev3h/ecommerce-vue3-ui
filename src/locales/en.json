@@ -146,5 +146,202 @@
     "cookies": "Cookie Policy",
     "paymentMethods": "Payment Methods",
     "secureCheckout": "Secure Checkout"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "panel": "Admin",
+    "search": "Search...",
+    "notifications": "Notifications",
+    "profile": "Profile",
+    "overview": "Overview",
+    "ecommerce": "E-commerce",
+    "categories": "Categories",
+    "inventory": "Inventory",
+    "reviews": "Reviews",
+    "customerList": "Customer List",
+    "support": "Support",
+    "loyalty": "Loyalty Program",
+    "marketing": "Marketing",
+    "promotions": "Promotions",
+    "coupons": "Coupons",
+    "newsletters": "Newsletters",
+    "seo": "SEO",
+    "content": "Content",
+    "pages": "Pages",
+    "blog": "Blog",
+    "media": "Media Library",
+    "appearance": "Appearance",
+    "themes": "Themes",
+    "menus": "Menus",
+    "widgets": "Widgets",
+    "system": "System",
+    "users": "Users",
+    "roles": "Roles",
+    "backup": "Backup",
+    "logs": "Logs",
+    "reports": "Reports",
+    "addProduct": "Add Product",
+    "viewSite": "View Site",
+    "dashboard": {
+      "title": "Dashboard",
+      "description": "Overview of your e-commerce platform performance and key metrics",
+      "totalRevenue": "Total Revenue",
+      "totalOrders": "Total Orders",
+      "totalCustomers": "Total Customers",
+      "totalProducts": "Total Products",
+      "recentActivity": "Recent Activity",
+      "quickActions": "Quick Actions",
+      "quickAction": "New Order"
+    },
+    "products": {
+      "title": "Products",
+      "description": "Manage your product catalog, inventory, and pricing"
+    },
+    "orders": {
+      "title": "Orders",
+      "description": "View and manage customer orders, track shipments"
+    },
+    "customers": {
+      "title": "Customers",
+      "description": "Manage customer accounts, profiles, and communication"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": "Detailed insights and reports for business intelligence"
+    },
+    "settings": {
+      "title": "Settings",
+      "description": "Configure your store settings and preferences"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "ecommerce": "E-commerce",
+      "products": "Products",
+      "orders": "Orders",
+      "customers": "Customers",
+      "analytics": "Analytics",
+      "settings": "Settings",
+      "management": "Management",
+      "reports": "Reports",
+      "quickActions": "Quick Actions",
+      "addProduct": "Add Product",
+      "viewOrders": "View Orders",
+      "customerSupport": "Support",
+      "overview": "Overview",
+      "categories": "Categories",
+      "inventory": "Inventory",
+      "reviews": "Reviews",
+      "customerList": "Customer List",
+      "support": "Support",
+      "loyalty": "Loyalty Program",
+      "marketing": "Marketing",
+      "promotions": "Promotions",
+      "coupons": "Coupons",
+      "newsletters": "Newsletters",
+      "seo": "SEO",
+      "content": "Content",
+      "pages": "Pages",
+      "blog": "Blog",
+      "media": "Media Library",
+      "appearance": "Appearance",
+      "themes": "Themes",
+      "menus": "Menus",
+      "widgets": "Widgets",
+      "system": "System",
+      "backups": "Backups",
+      "security": "Security",
+      "logs": "Logs",
+      "users": "Users",
+      "roles": "Roles",
+      "backup": "Backup"
+    }
+  },
+  "theme": {
+    "default": "Default",
+    "dark": "Dark",
+    "light": "Light",
+    "colorScheme": "Color Scheme",
+    "header": {
+      "backgroundColor": "Header Background Color",
+      "textColor": "Header Text Color",
+      "logo": "Logo",
+      "logoDark": "Logo (Dark Mode)",
+      "menu": "Menu",
+      "search": "Search",
+      "cart": "Cart",
+      "account": "Account"
+    },
+    "footer": {
+      "backgroundColor": "Footer Background Color",
+      "textColor": "Footer Text Color",
+      "links": "Footer Links",
+      "newsletter": "Newsletter",
+      "socialMedia": "Social Media"
+    },
+    "buttons": {
+      "default": "Default",
+      "primary": "Primary",
+      "secondary": "Secondary",
+      "success": "Success",
+      "danger": "Danger",
+      "warning": "Warning",
+      "info": "Info",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "forms": {
+      "input": "Input",
+      "textarea": "Textarea",
+      "select": "Select",
+      "checkbox": "Checkbox",
+      "radio": "Radio",
+      "switch": "Switch",
+      "range": "Range"
+    },
+    "tables": {
+      "default": "Default",
+      "striped": "Striped",
+      "bordered": "Bordered",
+      "hover": "Hover",
+      "responsive": "Responsive"
+    },
+    "alerts": {
+      "success": "Success",
+      "error": "Error",
+      "warning": "Warning",
+      "info": "Info"
+    },
+    "modals": {
+      "default": "Default",
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large",
+      "fullscreen": "Fullscreen"
+    },
+    "cards": {
+      "default": "Default",
+      "outlined": "Outlined",
+      "elevated": "Elevated"
+    },
+    "badges": {
+      "default": "Default",
+      "pill": "Pill",
+      "dot": "Dot"
+    },
+    "pagination": {
+      "default": "Default",
+      "small": "Small",
+      "large": "Large"
+    },
+    "tooltips": {
+      "default": "Default",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "popovers": {
+      "default": "Default",
+      "light": "Light",
+      "dark": "Dark"
+    }
   }
 }

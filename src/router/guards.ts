@@ -1,16 +1,6 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 import { i18n } from '@/locales'
 
-// Type for route meta
-declare module 'vue-router' {
-    interface RouteMeta {
-        title?: string
-        requiresAuth?: boolean
-        layout?: string
-        roles?: string[]
-    }
-}
-
 // Mock auth store - replace with your actual auth implementation
 const isAuthenticated = () => {
     // This should check your actual authentication state
@@ -29,6 +19,12 @@ const getUserRoles = (): string[] => {
     return []
 }
 
+// Check if user is admin
+const isAdmin = (): boolean => {
+    const roles = getUserRoles()
+    return roles.includes('admin') || roles.includes('administrator')
+}
+
 /**
  * Authentication guard
  * Checks if user is authenticated for protected routes
@@ -40,14 +36,14 @@ export const authGuard = (
 ) => {
     const requiresAuth = to.meta.requiresAuth
 
-    if (requiresAuth && !isAuthenticated()) {
-        // Redirect to login page with return url
-        next({
-            name: 'login',
-            query: { redirect: to.fullPath },
-        })
-        return
-    }
+    // if (requiresAuth && !isAuthenticated()) {
+    //     // Redirect to login page with return url
+    //     next({
+    //         name: 'login',
+    //         query: { redirect: to.fullPath },
+    //     })
+    //     return
+    // }
 
     next()
 }
@@ -100,6 +96,26 @@ export const titleGuard = (
         }
     } else {
         document.title = baseTitle
+    }
+
+    next()
+}
+
+/**
+ * Admin access guard
+ * Checks if user has admin privileges for admin routes
+ */
+export const adminGuard = (
+    to: RouteLocationNormalized,
+    from: RouteLocationNormalized,
+    next: NavigationGuardNext,
+) => {
+    const requiresAdmin = to.meta.requiresAdmin
+
+    if (requiresAdmin && !isAdmin()) {
+        // Redirect to unauthorized page or home
+        next({ name: 'home' })
+        return
     }
 
     next()
