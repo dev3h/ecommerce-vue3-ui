@@ -18,7 +18,10 @@
     "back": "Trở lại",
     "next": "Tiếp theo",
     "previous": "Trước đó",
-    "welcome": "Chào mừng"
+    "welcome": "Chào mừng",
+    "quickLinks": "Liên kết nhanh",
+    "apply": "Áp dụng",
+    "clearFilters": "Xóa bộ lọc"
   },
   "navigation": {
     "home": "Trang chủ",
@@ -57,6 +60,9 @@
     "allProducts": "Tất cả sản phẩm",
     "productDetails": "Chi tiết sản phẩm",
     "price": "Giá",
+    "priceRange": "Khoảng giá",
+    "minPrice": "Giá tối thiểu",
+    "maxPrice": "Giá tối đa",
     "addToCart": "Thêm vào giỏ hàng",
     "buyNow": "Mua ngay",
     "description": "Mô tả",
@@ -68,9 +74,11 @@
     "quantity": "Số lượng",
     "category": "Danh mục",
     "brand": "Thương hiệu",
+    "brands": "Thương hiệu",
     "sku": "Mã sản phẩm",
     "relatedProducts": "Sản phẩm liên quan",
-    "addedToCart": "Đã thêm vào giỏ hàng thành công"
+    "addedToCart": "Đã thêm vào giỏ hàng thành công",
+    "andUp": "trở lên"
   },
   "cart": {
     "title": "Giỏ hàng",
@@ -119,5 +127,24 @@
     "productsTitle": "Sản phẩm | Cửa hàng trực tuyến",
     "cartTitle": "Giỏ hàng | Cửa hàng trực tuyến",
     "accountTitle": "Tài khoản | Cửa hàng trực tuyến"
+  },
+  "footer": {
+    "description": "Điểm đến thương mại điện tử đáng tin cậy cho các sản phẩm chất lượng và dịch vụ xuất sắc.",
+    "quickLinks": "Liên kết nhanh",
+    "customerService": "Dịch vụ khách hàng",
+    "help": "Trung tâm trợ giúp",
+    "shipping": "Thông tin vận chuyển",
+    "returns": "Đổi trả hàng",
+    "faq": "Câu hỏi thường gặp",
+    "newsletter": "Bản tin",
+    "newsletterDescription": "Đăng ký để nhận thông tin cập nhật về sản phẩm mới và ưu đãi độc quyền.",
+    "subscribe": "Đăng ký",
+    "subscriptionSuccess": "Đăng ký bản tin thành công!",
+    "allRightsReserved": "Tất cả quyền được bảo lưu.",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản dịch vụ",
+    "cookies": "Chính sách Cookie",
+    "paymentMethods": "Phương thức thanh toán",
+    "secureCheckout": "Thanh toán an toàn"
   }
 }

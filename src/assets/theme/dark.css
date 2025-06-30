@@ -1,56 +1,56 @@
-/* Dark theme color variables */
+/* Dark theme color variables - Elegant & Soft Green Dark Mode */
 .dark {
-    /* Background and text colors */
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
+    /* Background and text colors - Softer dark with green tint */
+    --background: oklch(0.12 0.015 150); /* Dark with subtle green tint */
+    --foreground: oklch(0.9 0.02 120); /* Soft white with green hint */
 
-    /* Card colors */
-    --card: oklch(0.145 0 0);
-    --card-foreground: oklch(0.985 0 0);
+    /* Card colors - Slightly elevated from background */
+    --card: oklch(0.15 0.02 145);
+    --card-foreground: oklch(0.9 0.02 120);
 
     /* Popover colors */
-    --popover: oklch(0.145 0 0);
-    --popover-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.16 0.025 145);
+    --popover-foreground: oklch(0.9 0.02 120);
 
-    /* Primary colors */
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.205 0 0);
+    /* Primary colors - Elegant green */
+    --primary: oklch(0.6 0.12 140); /* Sophisticated green */
+    --primary-foreground: oklch(0.95 0.01 120);
 
-    /* Secondary colors */
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
+    /* Secondary colors - Soft gray-green */
+    --secondary: oklch(0.22 0.03 145);
+    --secondary-foreground: oklch(0.85 0.03 125);
 
-    /* Muted colors */
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
+    /* Muted colors - Gentle contrast */
+    --muted: oklch(0.2 0.025 148);
+    --muted-foreground: oklch(0.65 0.04 135);
 
-    /* Accent colors */
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
+    /* Accent colors - Vibrant but soft */
+    --accent: oklch(0.25 0.04 142);
+    --accent-foreground: oklch(0.88 0.03 128);
 
-    /* Destructive colors */
-    --destructive: oklch(0.396 0.141 25.723);
-    --destructive-foreground: oklch(0.637 0.237 25.331);
+    /* Destructive colors - Soft red that fits the theme */
+    --destructive: oklch(0.5 0.15 25);
+    --destructive-foreground: oklch(0.95 0.01 120);
 
-    /* Border and input colors */
-    --border: oklch(0.269 0 0);
-    --input: oklch(0.269 0 0);
-    --ring: oklch(0.439 0 0);
+    /* Border and input colors - Subtle definition */
+    --border: oklch(0.25 0.03 145);
+    --input: oklch(0.18 0.025 148);
+    --ring: oklch(0.55 0.1 138);
 
-    /* Chart colors */
-    --chart-1: oklch(0.488 0.243 264.376);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.769 0.188 70.08);
-    --chart-4: oklch(0.627 0.265 303.9);
-    --chart-5: oklch(0.645 0.246 16.439);
+    /* Chart colors - Harmonious green palette */
+    --chart-1: oklch(0.6 0.12 135); /* Forest green */
+    --chart-2: oklch(0.65 0.1 150); /* Sage green */
+    --chart-3: oklch(0.7 0.08 125); /* Mint green */
+    --chart-4: oklch(0.55 0.14 160); /* Teal green */
+    --chart-5: oklch(0.75 0.06 115); /* Light lime */
 
-    /* Sidebar colors */
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(0.269 0 0);
-    --sidebar-ring: oklch(0.439 0 0);
+    /* Sidebar colors - Enhanced for mobile/desktop */
+    --sidebar: oklch(0.18 0.03 145); /* Lighter than main background */
+    --sidebar-foreground: oklch(0.88 0.03 128); /* Soft green-tinted text */
+    --sidebar-primary: oklch(0.58 0.13 142); /* Elegant green accent */
+    --sidebar-primary-foreground: oklch(0.95 0.01 120);
+    --sidebar-accent: oklch(0.24 0.04 148); /* Soft hover states */
+    --sidebar-accent-foreground: oklch(0.9 0.02 125);
+    --sidebar-border: oklch(0.28 0.04 145); /* Subtle borders */
+    --sidebar-ring: oklch(0.6 0.1 140); /* Focus rings */
 }

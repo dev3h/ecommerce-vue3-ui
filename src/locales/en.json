@@ -18,7 +18,10 @@
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "quickLinks": "Quick Links",
+    "apply": "Apply",
+    "clearFilters": "Clear Filters"
   },
   "navigation": {
     "home": "Home",
@@ -57,6 +60,9 @@
     "allProducts": "All Products",
     "productDetails": "Product Details",
     "price": "Price",
+    "priceRange": "Price Range",
+    "minPrice": "Min Price",
+    "maxPrice": "Max Price",
     "addToCart": "Add to Cart",
     "buyNow": "Buy Now",
     "description": "Description",
@@ -68,9 +74,11 @@
     "quantity": "Quantity",
     "category": "Category",
     "brand": "Brand",
+    "brands": "Brands",
     "sku": "SKU",
     "relatedProducts": "Related Products",
-    "addedToCart": "Added to cart successfully"
+    "addedToCart": "Added to cart successfully",
+    "andUp": "& up"
   },
   "cart": {
     "title": "Shopping Cart",
@@ -119,5 +127,24 @@
     "productsTitle": "Products | E-Commerce Store",
     "cartTitle": "Shopping Cart | E-Commerce Store",
     "accountTitle": "My Account | E-Commerce Store"
+  },
+  "footer": {
+    "description": "Your trusted e-commerce destination for quality products and exceptional service.",
+    "quickLinks": "Quick Links",
+    "customerService": "Customer Service",
+    "help": "Help Center",
+    "shipping": "Shipping Info",
+    "returns": "Returns & Exchanges",
+    "faq": "FAQ",
+    "newsletter": "Newsletter",
+    "newsletterDescription": "Subscribe to get updates on new products and exclusive offers.",
+    "subscribe": "Subscribe",
+    "subscriptionSuccess": "Successfully subscribed to our newsletter!",
+    "allRightsReserved": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy",
+    "paymentMethods": "Payment Methods",
+    "secureCheckout": "Secure Checkout"
   }
 }
