@@ -1,0 +1,36 @@
+{
+  "dealsOfDay": [
+    {
+      "id": 11,
+      "name": "Seeds of Change Organic Quinoa, Brown",
+      "price": 32.99,
+      "originalPrice": 42.99,
+      "discount": 23,
+      "image": "https://picsum.photos/300/200"
+    },
+    {
+      "id": 12,
+      "name": "Premium Quality Premium Sunflower Oil",
+      "price": 24.99,
+      "originalPrice": 32.99,
+      "discount": 24,
+      "image": "https://picsum.photos/300/200"
+    },
+    {
+      "id": 13,
+      "name": "Sunrise Solid Fried Tomatoes",
+      "price": 16.99,
+      "originalPrice": 22.99,
+      "discount": 26,
+      "image": "https://picsum.photos/300/200"
+    },
+    {
+      "id": 14,
+      "name": "Simply Lemonade with Strawberry Juice",
+      "price": 10.99,
+      "originalPrice": 14.99,
+      "discount": 27,
+      "image": "https://picsum.photos/300/200"
+    }
+  ]
+}

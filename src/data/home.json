@@ -1,0 +1,32 @@
+{
+  "categories": [
+    { "name": "Milk and Dairies", "icon": "🥛", "color": "bg-orange-100" },
+    { "name": "Wines & Drinks", "icon": "🍷", "color": "bg-blue-100" },
+    { "name": "Clothing & beauty", "icon": "👕", "color": "bg-yellow-100" },
+    { "name": "Pet Foods", "icon": "🐕", "color": "bg-green-100" },
+    { "name": "Fast food", "icon": "🍔", "color": "bg-purple-100" },
+    { "name": "Baking material", "icon": "🧁", "color": "bg-blue-100" },
+    { "name": "Vegetables", "icon": "🥕", "color": "bg-green-100" },
+    { "name": "Fresh Seafood", "icon": "🐟", "color": "bg-blue-100" }
+  ],
+  "promoSections": [
+    {
+      "title": "Everyday Fresh & Clean with Our Products",
+      "image": "https://picsum.photos/400/300",
+      "buttonText": "Shop Now",
+      "bgColor": "bg-orange-50"
+    },
+    {
+      "title": "Make your Breakfast Healthy and Easy",
+      "image": "https://picsum.photos/400/300",
+      "buttonText": "Shop Now",
+      "bgColor": "bg-red-50"
+    },
+    {
+      "title": "The best Organic Products Online",
+      "image": "https://picsum.photos/400/300",
+      "buttonText": "Shop Now",
+      "bgColor": "bg-green-50"
+    }
+  ]
+}
