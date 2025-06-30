@@ -2,9 +2,53 @@
 @layer base {
     * {
         @apply border-border outline-ring/50;
+        /* Firefox scrollbar styling */
+        scrollbar-width: thin;
+        scrollbar-color: oklch(0.6 0.12 138) oklch(0.94 0.03 125);
     }
 
     body {
         @apply bg-background text-foreground;
+    }
+
+    /* Custom Scrollbar Styling - Green Theme */
+    /* Webkit browsers (Chrome, Safari, Edge) */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: oklch(0.94 0.03 125); /* Light sage green background */
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: oklch(0.6 0.12 138); /* Medium green thumb */
+        border-radius: 4px;
+        border: 1px solid oklch(0.88 0.04 130);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: oklch(0.5 0.15 140); /* Darker green on hover */
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+        background: oklch(0.45 0.17 142); /* Even darker when active */
+    }
+
+    /* Thin scrollbar for specific elements like sidebar */
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+        background: oklch(0.65 0.1 135);
+        border-radius: 3px;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+        background: oklch(0.55 0.13 138);
     }
 }
