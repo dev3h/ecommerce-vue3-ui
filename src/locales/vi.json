@@ -146,5 +146,206 @@
     "cookies": "Chính sách Cookie",
     "paymentMethods": "Phương thức thanh toán",
     "secureCheckout": "Thanh toán an toàn"
+  },
+  "admin": {
+    "title": "Bảng điều khiển quản trị",
+    "panel": "Quản trị",
+    "search": "Tìm kiếm...",
+    "notifications": "Thông báo",
+    "profile": "Hồ sơ",
+    "overview": "Tổng quan",
+    "ecommerce": "Thương mại điện tử",
+    "categories": "Danh mục",
+    "inventory": "Tồn kho",
+    "reviews": "Đánh giá",
+    "customerList": "Danh sách khách hàng",
+    "support": "Hỗ trợ",
+    "loyalty": "Chương trình khách hàng thân thiết",
+    "marketing": "Marketing",
+    "promotions": "Khuyến mãi",
+    "coupons": "Mã giảm giá",
+    "newsletters": "Bản tin",
+    "seo": "SEO",
+    "content": "Nội dung",
+    "pages": "Trang",
+    "blog": "Blog",
+    "media": "Thư viện Media",
+    "appearance": "Giao diện",
+    "themes": "Giao diện",
+    "menus": "Menu",
+    "widgets": "Widget",
+    "system": "Hệ thống",
+    "users": "Người dùng",
+    "roles": "Vai trò",
+    "backup": "Sao lưu",
+    "logs": "Nhật ký",
+    "reports": "Báo cáo",
+    "addProduct": "Thêm sản phẩm",
+    "viewSite": "Xem trang web",
+    "dashboard": {
+      "title": "Tổng quan",
+      "description": "Tổng quan về hiệu suất và các chỉ số quan trọng của nền tảng thương mại điện tử",
+      "totalRevenue": "Tổng doanh thu",
+      "totalOrders": "Tổng đơn hàng",
+      "totalCustomers": "Tổng khách hàng",
+      "totalProducts": "Tổng sản phẩm",
+      "recentActivity": "Hoạt động gần đây",
+      "quickActions": "Thao tác nhanh",
+      "quickAction": "Đơn hàng mới"
+    },
+    "products": {
+      "title": "Sản phẩm",
+      "description": "Quản lý danh mục sản phẩm, tồn kho và giá cả"
+    },
+    "orders": {
+      "title": "Đơn hàng",
+      "description": "Xem và quản lý đơn hàng khách hàng, theo dõi vận chuyển"
+    },
+    "customers": {
+      "title": "Khách hàng",
+      "description": "Quản lý tài khoản, hồ sơ khách hàng và giao tiếp"
+    },
+    "analytics": {
+      "title": "Phân tích",
+      "description": "Báo cáo chi tiết và thông tin chi tiết cho trí tuệ kinh doanh"
+    },
+    "settings": {
+      "title": "Cài đặt",
+      "description": "Cấu hình cài đặt cửa hàng và tùy chọn"
+    },
+    "sidebar": {
+      "dashboard": "Tổng quan",
+      "ecommerce": "Thương mại điện tử",
+      "products": "Sản phẩm",
+      "orders": "Đơn hàng",
+      "customers": "Khách hàng",
+      "analytics": "Phân tích",
+      "settings": "Cài đặt",
+      "management": "Quản lý",
+      "reports": "Báo cáo",
+      "quickActions": "Thao tác nhanh",
+      "addProduct": "Thêm sản phẩm",
+      "viewOrders": "Xem đơn hàng",
+      "customerSupport": "Hỗ trợ",
+      "overview": "Tổng quan",
+      "categories": "Danh mục",
+      "inventory": "Tồn kho",
+      "reviews": "Đánh giá",
+      "customerList": "Danh sách khách hàng",
+      "support": "Hỗ trợ",
+      "loyalty": "Chương trình khách hàng thân thiết",
+      "marketing": "Marketing",
+      "promotions": "Khuyến mãi",
+      "coupons": "Mã giảm giá",
+      "newsletters": "Bản tin",
+      "seo": "SEO",
+      "content": "Nội dung",
+      "pages": "Trang",
+      "blog": "Blog",
+      "media": "Thư viện Media",
+      "appearance": "Giao diện",
+      "themes": "Giao diện",
+      "menus": "Menu",
+      "widgets": "Widget",
+      "system": "Hệ thống",
+      "users": "Người dùng",
+      "roles": "Vai trò",
+      "backup": "Sao lưu",
+      "logs": "Nhật ký"
+    }
+  },
+  "theme": {
+    "default": "Mặc định",
+    "dark": "Tối",
+    "light": "Sáng",
+    "colorScheme": "Bảng màu",
+    "header": {
+      "backgroundColor": "Màu nền header",
+      "textColor": "Màu chữ header",
+      "logo": "Logo",
+      "logoDark": "Logo (Chế độ tối)",
+      "menu": "Menu",
+      "search": "Tìm kiếm",
+      "user": "Người dùng",
+      "language": "Ngôn ngữ",
+      "theme": "Chủ đề",
+      "cart": "Giỏ hàng",
+      "checkout": "Thanh toán",
+      "profile": "Hồ sơ",
+      "logout": "Đăng xuất",
+      "login": "Đăng nhập",
+      "register": "Đăng ký"
+    },
+    "sidebar": {
+      "backgroundColor": "Màu nền sidebar",
+      "textColor": "Màu chữ sidebar",
+      "activeColor": "Màu hoạt động",
+      "hoverColor": "Màu hover",
+      "iconColor": "Màu icon",
+      "borderColor": "Màu viền"
+    },
+    "footer": {
+      "backgroundColor": "Màu nền footer",
+      "textColor": "Màu chữ footer",
+      "linkColor": "Màu liên kết",
+      "borderColor": "Màu viền"
+    },
+    "button": {
+      "primaryColor": "Màu chính",
+      "secondaryColor": "Màu phụ",
+      "successColor": "Màu thành công",
+      "dangerColor": "Màu nguy hiểm",
+      "warningColor": "Màu cảnh báo",
+      "infoColor": "Màu thông tin",
+      "textColor": "Màu chữ",
+      "borderColor": "Màu viền",
+      "borderRadius": "Bo góc viền"
+    },
+    "input": {
+      "backgroundColor": "Màu nền input",
+      "textColor": "Màu chữ input",
+      "borderColor": "Màu viền input",
+      "focusColor": "Màu focus",
+      "placeholderColor": "Màu placeholder"
+    },
+    "card": {
+      "backgroundColor": "Màu nền card",
+      "textColor": "Màu chữ card",
+      "borderColor": "Màu viền card",
+      "shadowColor": "Màu đổ bóng"
+    },
+    "modal": {
+      "backgroundColor": "Màu nền modal",
+      "overlayColor": "Màu overlay",
+      "borderColor": "Màu viền modal"
+    },
+    "notification": {
+      "successColor": "Màu thành công",
+      "errorColor": "Màu lỗi",
+      "warningColor": "Màu cảnh báo",
+      "infoColor": "Màu thông tin"
+    },
+    "loading": {
+      "spinnerColor": "Màu spinner",
+      "backgroundColor": "Màu nền loading"
+    },
+    "text": {
+      "primaryColor": "Màu chữ chính",
+      "secondaryColor": "Màu chữ phụ",
+      "mutedColor": "Màu chữ mờ",
+      "linkColor": "Màu liên kết",
+      "headingColor": "Màu tiêu đề"
+    },
+    "background": {
+      "primaryColor": "Màu nền chính",
+      "secondaryColor": "Màu nền phụ",
+      "accentColor": "Màu nhấn",
+      "surfaceColor": "Màu bề mặt"
+    },
+    "border": {
+      "primaryColor": "Màu viền chính",
+      "secondaryColor": "Màu viền phụ",
+      "mutedColor": "Màu viền mờ"
+    }
   }
 }

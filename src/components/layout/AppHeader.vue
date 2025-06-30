@@ -129,6 +129,14 @@
                                         >
                                             {{ t('account.orders') }}
                                         </RouterLink>
+                                        <RouterLink
+                                            v-if="isAdmin"
+                                            to="/admin"
+                                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600"
+                                            @click="closeUserMenu"
+                                        >
+                                            {{ t('admin.title') }}
+                                        </RouterLink>
                                         <button
                                             @click="handleLogout"
                                             class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -241,6 +249,17 @@ const cartItemsCount = computed(() => {
 
 const isAuthenticated = computed(() => {
     // TODO: Get from auth store
+    return false
+})
+
+const isAdmin = computed(() => {
+    // TODO: Get from auth store - check if user has admin role
+    const userStr = localStorage.getItem('user')
+    if (userStr) {
+        const user = JSON.parse(userStr)
+        const roles = user.roles ?? []
+        return roles.includes('admin') || roles.includes('administrator')
+    }
     return false
 })
 
