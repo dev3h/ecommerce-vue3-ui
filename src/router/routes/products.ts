@@ -5,7 +5,7 @@ export const productRoutes: RouteRecordRaw[] = [
     {
         path: '/products',
         name: 'products',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/ProductsView.vue'),
         meta: {
             title: 'Products',
             requiresAuth: false,
@@ -14,7 +14,7 @@ export const productRoutes: RouteRecordRaw[] = [
     {
         path: '/products/:id',
         name: 'product-detail',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/HomeView.vue'), // TODO: Create ProductDetailView
         props: true,
         meta: {
             title: 'Product Details',
@@ -24,7 +24,7 @@ export const productRoutes: RouteRecordRaw[] = [
     {
         path: '/categories',
         name: 'categories',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/ProductsView.vue'),
         meta: {
             title: 'Categories',
             requiresAuth: false,
@@ -33,7 +33,7 @@ export const productRoutes: RouteRecordRaw[] = [
     {
         path: '/categories/:slug',
         name: 'category-products',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/ProductsView.vue'),
         props: true,
         meta: {
             title: 'Category Products',

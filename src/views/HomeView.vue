@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useAppI18n } from '@/composables/useI18n'
 import { useHomeData } from '@/composables/useHomeData'
 import type { Product, Category, PromoSection } from '@/types/home'
@@ -21,15 +21,15 @@ const { popularProducts, newProducts, dealsOfDay, categories, promoSections, loa
 const activeTab = ref('all')
 
 // Tab configuration
-const productTabs = [
-    { key: 'all', label: 'All' },
-    { key: 'milks', label: 'Milks & Dairies' },
-    { key: 'coffees', label: 'Coffees & Teas' },
-    { key: 'pet-foods', label: 'Pet Foods' },
-    { key: 'meats', label: 'Meats' },
-    { key: 'vegetables', label: 'Vegetables' },
-    { key: 'fruits', label: 'Fruits' },
-]
+const productTabs = computed(() => [
+    { key: 'all', label: t('home.categories.all') },
+    { key: 'milks', label: t('home.categories.milksAndDairies') },
+    { key: 'coffees', label: t('home.categories.coffeesAndTeas') },
+    { key: 'pet-foods', label: t('home.categories.petFoods') },
+    { key: 'meats', label: t('home.categories.meats') },
+    { key: 'vegetables', label: t('home.categories.vegetables') },
+    { key: 'fruits', label: t('home.categories.fruits') },
+])
 
 // Event handlers
 const handleSubscribe = (email: string) => {
@@ -62,11 +62,18 @@ const handlePromoClick = (promo: PromoSection) => {
     <div class="min-h-screen bg-background px-3 sm:px-4 md:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto py-3 sm:py-4 md:py-6 lg:py-8">
             <!-- Hero Banner -->
-            <HeroBanner @subscribe="handleSubscribe" />
+            <HeroBanner
+                :title="t('home.hero.title')"
+                :subtitle="t('home.hero.subtitle')"
+                :placeholder="t('home.hero.placeholder')"
+                :button-text="t('home.hero.buttonText')"
+                :alt-text="t('home.hero.altText')"
+                @subscribe="handleSubscribe"
+            />
 
             <!-- Popular Products -->
             <ProductSection
-                title="Popular Products"
+                :title="t('home.popularProducts')"
                 :products="popularProducts"
                 :loading="loading.products"
                 :show-tabs="true"
@@ -78,7 +85,7 @@ const handlePromoClick = (promo: PromoSection) => {
 
             <!-- New Products -->
             <ProductSection
-                title="New products"
+                :title="t('home.newProducts')"
                 :products="newProducts"
                 :loading="loading.products"
                 @add-to-cart="handleAddToCart"
@@ -89,12 +96,14 @@ const handlePromoClick = (promo: PromoSection) => {
                 <div
                     class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 mb-4 sm:mb-6"
                 >
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">Deals Of The Day</h2>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">
+                        {{ t('home.dealsOfTheDay') }}
+                    </h2>
                     <a
                         href="#"
                         class="text-green-600 hover:text-green-700 font-medium text-sm sm:text-base"
                     >
-                        All Deals →
+                        {{ t('home.allDeals') }} →
                     </a>
                 </div>
 
@@ -135,8 +144,12 @@ const handlePromoClick = (promo: PromoSection) => {
                 <div
                     class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 mb-4 sm:mb-6"
                 >
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">Shop by Categories</h2>
-                    <span class="text-gray-500 text-sm sm:text-base">All categories</span>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">
+                        {{ t('home.shopByCategories') }}
+                    </h2>
+                    <span class="text-gray-500 text-sm sm:text-base">{{
+                        t('home.allCategories')
+                    }}</span>
                 </div>
 
                 <div v-if="loading.home" class="flex justify-center items-center h-32">
@@ -165,30 +178,30 @@ const handlePromoClick = (promo: PromoSection) => {
                         <h2
                             class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2 sm:mb-3 md:mb-4"
                         >
-                            Stay home & get your daily needs from our shop
+                            {{ t('home.newsletter.title') }}
                         </h2>
                         <p class="text-gray-600 mb-3 sm:mb-4 md:mb-6 text-sm sm:text-base">
-                            Start You'r Daily Shopping with Nest Mart
+                            {{ t('home.newsletter.subtitle') }}
                         </p>
                         <div
                             class="flex flex-col sm:flex-row gap-2 sm:gap-3 max-w-full sm:max-w-md"
                         >
                             <input
                                 type="email"
-                                placeholder="Your email address"
+                                :placeholder="t('home.newsletter.emailPlaceholder')"
                                 class="flex-1 px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
                             />
                             <button
                                 class="px-4 sm:px-6 py-2 sm:py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium text-sm sm:text-base whitespace-nowrap"
                             >
-                                Subscribe
+                                {{ t('home.newsletter.subscribe') }}
                             </button>
                         </div>
                     </div>
                     <div class="hidden lg:block lg:ml-8">
                         <img
                             src="https://picsum.photos/400/300"
-                            alt="Delivery person"
+                            :alt="t('home.newsletter.deliveryPersonAlt')"
                             class="w-64 h-48 lg:w-80 lg:h-60 xl:w-96 xl:h-72 object-cover rounded-lg"
                         />
                     </div>

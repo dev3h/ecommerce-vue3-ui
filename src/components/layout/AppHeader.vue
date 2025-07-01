@@ -17,7 +17,7 @@
                         <path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9" />
                         <path d="M12 3v6" />
                     </svg>
-                    <span class="hidden font-bold sm:inline-block">
+                    <span class="hidden font-bold lg:inline-block">
                         {{ t('meta.defaultTitle') }}
                     </span>
                 </RouterLink>

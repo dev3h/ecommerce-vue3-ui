@@ -1,0 +1,100 @@
+{
+  "categories": [
+    {
+      "id": "1",
+      "name": "Milks & Dairies",
+      "slug": "milks-dairies",
+      "icon": "🥛",
+      "color": "bg-blue-100",
+      "count": 15
+    },
+    {
+      "id": "2",
+      "name": "Coffees & Teas",
+      "slug": "coffees-teas",
+      "icon": "☕",
+      "color": "bg-amber-100",
+      "count": 12
+    },
+    {
+      "id": "3",
+      "name": "Pet Foods",
+      "slug": "pet-foods",
+      "icon": "🐕",
+      "color": "bg-green-100",
+      "count": 8
+    },
+    {
+      "id": "4",
+      "name": "Meats",
+      "slug": "meats",
+      "icon": "🥩",
+      "color": "bg-red-100",
+      "count": 20
+    },
+    {
+      "id": "5",
+      "name": "Vegetables",
+      "slug": "vegetables",
+      "icon": "🥬",
+      "color": "bg-green-100",
+      "count": 25
+    },
+    {
+      "id": "6",
+      "name": "Fruits",
+      "slug": "fruits",
+      "icon": "🍎",
+      "color": "bg-orange-100",
+      "count": 18
+    },
+    {
+      "id": "7",
+      "name": "Cleaning & Tools",
+      "slug": "cleaning-tools",
+      "icon": "🧽",
+      "color": "bg-purple-100",
+      "count": 14
+    },
+    {
+      "id": "8",
+      "name": "Beauty & Health",
+      "slug": "beauty-health",
+      "icon": "💄",
+      "color": "bg-pink-100",
+      "count": 22
+    }
+  ],
+  "brands": [
+    {
+      "id": "1",
+      "name": "NestFresh",
+      "count": 45
+    },
+    {
+      "id": "2",
+      "name": "Organic Valley",
+      "count": 38
+    },
+    {
+      "id": "3",
+      "name": "Farm Fresh",
+      "count": 52
+    },
+    {
+      "id": "4",
+      "name": "Green Choice",
+      "count": 41
+    },
+    {
+      "id": "5",
+      "name": "Daily Harvest",
+      "count": 29
+    },
+    {
+      "id": "6",
+      "name": "Pure & Simple",
+      "count": 33
+    }
+  ]
+}
