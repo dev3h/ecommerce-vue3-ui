@@ -37,7 +37,7 @@
             />
             <button
                 @click.stop="handleAddToCart"
-                class="opacity-70 active:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 bg-green-500 text-white p-1.5 sm:p-2 rounded-lg hover:bg-green-600 active:bg-green-700 transition-all touch-manipulation"
+                class="opacity-70 active:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 bg-primary text-primary-foreground p-1.5 sm:p-2 rounded-lg hover:bg-primary/90 active:bg-primary/80 transition-all touch-manipulation shadow-sm"
                 :aria-label="t('productDetail.addToCart')"
             >
                 <svg
@@ -86,7 +86,7 @@ const getBadgeClasses = (tag?: string) => {
         case 'orange':
             return 'bg-orange-500'
         default:
-            return 'bg-gray-500'
+            return 'bg-muted'
     }
 }
 

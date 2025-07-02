@@ -56,9 +56,10 @@
                             >
                                 <!-- Left: Results count and filters -->
                                 <div class="flex items-center gap-3 flex-wrap">
-                                    <button
+                                    <Button
                                         @click="sidebarOpen = true"
-                                        class="lg:hidden flex items-center gap-2 px-3 py-2 bg-background border border-border rounded-lg hover:bg-accent text-sm"
+                                        variant="outline"
+                                        class="lg:hidden flex items-center gap-2"
                                     >
                                         <Filter class="w-4 h-4" />
                                         {{ t('products.filters') }}
@@ -68,7 +69,7 @@
                                         >
                                             {{ activeFiltersCount }}
                                         </span>
-                                    </button>
+                                    </Button>
 
                                     <div class="text-sm text-muted-foreground">
                                         <span v-if="loading.products">{{
@@ -88,66 +89,82 @@
                                         <span v-else>{{ t('products.noProductsFound') }}</span>
                                     </div>
 
-                                    <button
+                                    <Button
                                         v-if="activeFiltersCount > 0"
                                         @click="clearFilters"
-                                        class="text-sm text-primary hover:text-primary/80 font-medium"
+                                        variant="ghost"
+                                        size="sm"
+                                        class="text-primary hover:text-primary/80"
                                     >
                                         {{ t('products.clearAllFilters') }}
-                                    </button>
+                                    </Button>
                                 </div>
 
                                 <!-- Right: Sort and view options -->
                                 <div class="flex items-center gap-3">
                                     <!-- Sort -->
                                     <div class="flex items-center gap-2">
-                                        <label
+                                        <Label
                                             for="sort-select"
                                             class="text-sm text-muted-foreground hidden sm:block"
-                                            >{{ t('products.sortBy') }}:</label
                                         >
-                                        <select
-                                            id="sort-select"
-                                            v-model="sortBy"
-                                            @change="setSortBy(sortBy)"
-                                            class="px-3 py-1.5 border border-border rounded-md text-sm bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+                                            {{ t('products.sortBy') }}:
+                                        </Label>
+                                        <Select
+                                            :model-value="sortBy"
+                                            @update:model-value="handleSortChange"
                                         >
-                                            <option
-                                                v-for="option in sortOptions"
-                                                :key="option.value"
-                                                :value="option.value"
-                                            >
-                                                {{ option.label }}
-                                            </option>
-                                        </select>
+                                            <SelectTrigger class="w-[180px]">
+                                                <SelectValue :placeholder="t('products.sortBy')">
+                                                    {{
+                                                        sortOptions.find(
+                                                            (opt) => opt.value === sortBy,
+                                                        )?.label
+                                                    }}
+                                                </SelectValue>
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectItem
+                                                    v-for="option in sortOptions"
+                                                    :key="option.value"
+                                                    :value="option.value"
+                                                >
+                                                    {{ option.label }}
+                                                </SelectItem>
+                                            </SelectContent>
+                                        </Select>
                                     </div>
 
                                     <!-- View Toggle -->
                                     <div
                                         class="flex items-center border border-border rounded-md overflow-hidden"
                                     >
-                                        <button
+                                        <Button
                                             @click="setViewMode('grid')"
+                                            variant="ghost"
+                                            size="sm"
                                             :class="[
-                                                'p-2 text-sm transition-colors',
+                                                'rounded-none',
                                                 viewMode === 'grid'
-                                                    ? 'bg-primary text-primary-foreground'
-                                                    : 'bg-background hover:bg-accent',
+                                                    ? 'bg-primary text-primary-foreground hover:bg-primary'
+                                                    : 'hover:bg-accent',
                                             ]"
                                         >
                                             <Grid3X3 class="w-4 h-4" />
-                                        </button>
-                                        <button
+                                        </Button>
+                                        <Button
                                             @click="setViewMode('list')"
+                                            variant="ghost"
+                                            size="sm"
                                             :class="[
-                                                'p-2 text-sm transition-colors',
+                                                'rounded-none',
                                                 viewMode === 'list'
-                                                    ? 'bg-primary text-primary-foreground'
-                                                    : 'bg-background hover:bg-accent',
+                                                    ? 'bg-primary text-primary-foreground hover:bg-primary'
+                                                    : 'hover:bg-accent',
                                             ]"
                                         >
                                             <List class="w-4 h-4" />
-                                        </button>
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
@@ -171,12 +188,12 @@
                                     <AlertCircle class="w-12 h-12 mx-auto mb-2" />
                                     <p class="text-lg font-medium">{{ error }}</p>
                                 </div>
-                                <button
+                                <Button
                                     @click="loadProducts(currentPage)"
-                                    class="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90"
+                                    class="bg-primary text-primary-foreground hover:bg-primary/90"
                                 >
                                     {{ t('common.tryAgain') }}
-                                </button>
+                                </Button>
                             </div>
 
                             <!-- Empty State -->
@@ -190,13 +207,13 @@
                                         {{ t('products.tryAdjustingFilters') }}
                                     </p>
                                 </div>
-                                <button
+                                <Button
                                     v-if="activeFiltersCount > 0"
                                     @click="clearFilters"
-                                    class="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90"
+                                    class="bg-primary text-primary-foreground hover:bg-primary/90"
                                 >
                                     {{ t('products.clearAllFilters') }}
-                                </button>
+                                </Button>
                             </div>
 
                             <!-- Products Grid -->
@@ -258,6 +275,15 @@ import AppSidebar from '@/components/layout/AppSidebar.vue'
 import ProductGridCard from '@/components/products/ProductGridCard.vue'
 import ProductListCard from '@/components/products/ProductListCard.vue'
 import ProductPagination from '@/components/products/ProductPagination.vue'
+import { Button } from '@/components/ui/button'
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select'
+import { Label } from '@/components/ui/label'
 
 // Icons
 import { Filter, Grid3X3, List, AlertCircle, Package } from 'lucide-vue-next'
@@ -303,6 +329,13 @@ const handleAddToCart = (product: ProductListItem) => {
 const handleAddToWishlist = (product: ProductListItem) => {
     console.log('Add to wishlist:', product)
     // Implement add to wishlist functionality
+}
+
+const handleSortChange = (value: any) => {
+    console.log('Sort changing to:', value, 'type:', typeof value)
+    if (value && typeof value === 'string') {
+        setSortBy(value)
+    }
 }
 
 const getCategoryName = (slug: string) => {

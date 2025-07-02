@@ -11,6 +11,8 @@ import ProductSection from '@/components/home/ProductSection.vue'
 import DealCard from '@/components/home/DealCard.vue'
 import CategoryCard from '@/components/home/CategoryCard.vue'
 import PromoCard from '@/components/home/PromoCard.vue'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 const { t } = useAppI18n()
 
@@ -110,21 +112,19 @@ const handlePromoClick = (promo: PromoSection) => {
                 <div
                     class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 mb-4 sm:mb-6"
                 >
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">
+                    <h2 class="text-xl md:text-2xl font-bold text-foreground">
                         {{ t('home.dealsOfTheDay') }}
                     </h2>
                     <a
                         href="#"
-                        class="text-green-600 hover:text-green-700 font-medium text-sm sm:text-base"
+                        class="text-primary hover:text-primary/80 font-medium text-sm sm:text-base transition-colors"
                     >
                         {{ t('home.allDeals') }} →
                     </a>
                 </div>
 
                 <div v-if="loading.deals" class="flex justify-center items-center h-32">
-                    <div
-                        class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"
-                    ></div>
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
                 </div>
 
                 <div
@@ -138,9 +138,7 @@ const handlePromoClick = (promo: PromoSection) => {
             <!-- Promotional Banners -->
             <section class="mb-8 sm:mb-12">
                 <div v-if="loading.home" class="flex justify-center items-center h-32">
-                    <div
-                        class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"
-                    ></div>
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
                 </div>
 
                 <div v-else class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
@@ -158,18 +156,16 @@ const handlePromoClick = (promo: PromoSection) => {
                 <div
                     class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 mb-4 sm:mb-6"
                 >
-                    <h2 class="text-xl md:text-2xl font-bold text-gray-800">
+                    <h2 class="text-xl md:text-2xl font-bold text-foreground">
                         {{ t('home.shopByCategories') }}
                     </h2>
-                    <span class="text-gray-500 text-sm sm:text-base">{{
+                    <span class="text-muted-foreground text-sm sm:text-base">{{
                         t('home.allCategories')
                     }}</span>
                 </div>
 
                 <div v-if="loading.home" class="flex justify-center items-center h-32">
-                    <div
-                        class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"
-                    ></div>
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
                 </div>
 
                 <div
@@ -186,37 +182,39 @@ const handlePromoClick = (promo: PromoSection) => {
             </section>
 
             <!-- Newsletter Section -->
-            <section class="bg-green-50 rounded-lg p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12">
+            <section
+                class="bg-gradient-to-r from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10 border border-border rounded-xl p-3 sm:p-4 md:p-6 lg:p-8 xl:p-12"
+            >
                 <div class="flex flex-col lg:flex-row lg:items-center gap-4 sm:gap-6 lg:gap-8">
                     <div class="flex-1">
                         <h2
-                            class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-2 sm:mb-3 md:mb-4"
+                            class="text-xl sm:text-2xl md:text-3xl font-bold text-foreground mb-2 sm:mb-3 md:mb-4"
                         >
                             {{ t('home.newsletter.title') }}
                         </h2>
-                        <p class="text-gray-600 mb-3 sm:mb-4 md:mb-6 text-sm sm:text-base">
+                        <p
+                            class="text-muted-foreground mb-3 sm:mb-4 md:mb-6 text-sm sm:text-base font-medium"
+                        >
                             {{ t('home.newsletter.subtitle') }}
                         </p>
                         <div
                             class="flex flex-col sm:flex-row gap-2 sm:gap-3 max-w-full sm:max-w-md"
                         >
-                            <input
+                            <Input
                                 type="email"
                                 :placeholder="t('home.newsletter.emailPlaceholder')"
-                                class="flex-1 px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 text-sm sm:text-base"
+                                class="flex-1"
                             />
-                            <button
-                                class="px-4 sm:px-6 py-2 sm:py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors font-medium text-sm sm:text-base whitespace-nowrap"
-                            >
+                            <Button class="px-4 sm:px-6 whitespace-nowrap">
                                 {{ t('home.newsletter.subscribe') }}
-                            </button>
+                            </Button>
                         </div>
                     </div>
                     <div class="hidden lg:block lg:ml-8">
                         <img
                             src="https://picsum.photos/400/300"
                             :alt="t('home.newsletter.deliveryPersonAlt')"
-                            class="w-64 h-48 lg:w-80 lg:h-60 xl:w-96 xl:h-72 object-cover rounded-lg"
+                            class="w-64 h-48 lg:w-80 lg:h-60 xl:w-96 xl:h-72 object-cover rounded-xl border border-border shadow-lg dark:shadow-xl"
                         />
                     </div>
                 </div>

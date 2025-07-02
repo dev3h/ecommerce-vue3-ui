@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
+import { Button } from '@/components/ui/button'
 
 const { t } = useAppI18n()
 const router = useRouter()
@@ -20,10 +21,10 @@ const goToProducts = () => {
             <!-- Success Icon -->
             <div class="text-center mb-8">
                 <div
-                    class="inline-flex items-center justify-center w-20 h-20 bg-green-100 dark:bg-green-900/20 rounded-full mb-6"
+                    class="inline-flex items-center justify-center w-20 h-20 bg-accent/20 rounded-full mb-6"
                 >
                     <svg
-                        class="w-10 h-10 text-green-500"
+                        class="w-10 h-10 text-primary"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -139,18 +140,12 @@ const goToProducts = () => {
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
-                    @click="goToProducts"
-                    class="bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition-colors font-medium"
-                >
+                <Button @click="goToProducts" size="lg">
                     {{ t('common.continueShopping') }}
-                </button>
-                <button
-                    @click="goToHome"
-                    class="border border-border px-8 py-3 rounded-lg hover:bg-accent transition-colors font-medium"
-                >
+                </Button>
+                <Button @click="goToHome" variant="outline" size="lg">
                     {{ t('common.backToHome') }}
-                </button>
+                </Button>
             </div>
         </div>
     </div>

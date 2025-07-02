@@ -11,16 +11,13 @@
 
                 <!-- Error State -->
                 <div v-else-if="error" class="text-center py-16">
-                    <div class="text-red-500 mb-4">
+                    <div class="text-destructive mb-4">
                         <AlertCircle class="w-16 h-16 mx-auto mb-4" />
                         <p class="text-lg font-medium">{{ error }}</p>
                     </div>
-                    <button
-                        @click="initialize"
-                        class="px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90"
-                    >
+                    <Button @click="initialize" size="lg">
                         {{ t('common.tryAgain') }}
-                    </button>
+                    </Button>
                 </div>
 
                 <!-- Product Detail Content -->
@@ -42,12 +39,14 @@
 
                             <!-- Thumbnail Images -->
                             <div class="flex gap-2 overflow-x-auto">
-                                <button
+                                <Button
                                     v-for="(image, index) in product.images"
                                     :key="index"
                                     @click="selectImage(index)"
+                                    variant="ghost"
+                                    size="sm"
                                     :class="[
-                                        'flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-colors',
+                                        'flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden border-2 transition-colors p-0',
                                         selectedImageIndex === index
                                             ? 'border-primary'
                                             : 'border-border hover:border-primary/50',
@@ -58,7 +57,7 @@
                                         :alt="`${product.name} ${index + 1}`"
                                         class="w-full h-full object-cover"
                                     />
-                                </button>
+                                </Button>
                             </div>
                         </div>
 
@@ -112,9 +111,7 @@
                             <!-- Price -->
                             <div class="space-y-2">
                                 <div class="flex items-center gap-4">
-                                    <span
-                                        class="text-3xl font-bold text-green-600 dark:text-green-400"
-                                    >
+                                    <span class="text-3xl font-bold text-primary">
                                         ${{ product.price.toFixed(2) }}
                                     </span>
                                     <span
@@ -125,15 +122,12 @@
                                     </span>
                                     <span
                                         v-if="discountPercentage > 0"
-                                        class="px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 text-sm font-medium rounded"
+                                        class="px-2 py-1 bg-destructive/10 text-destructive text-sm font-medium rounded"
                                     >
                                         {{ discountPercentage }}% {{ t('productDetail.off') }}
                                     </span>
                                 </div>
-                                <p
-                                    v-if="discountAmount > 0"
-                                    class="text-sm text-green-600 dark:text-green-400"
-                                >
+                                <p v-if="discountAmount > 0" class="text-sm text-primary">
                                     {{ t('productDetail.youSave') }} ${{
                                         discountAmount.toFixed(2)
                                     }}
@@ -145,8 +139,8 @@
                                 <div
                                     :class="[
                                         isInStock
-                                            ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300'
-                                            : 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300',
+                                            ? 'bg-primary/10 text-primary'
+                                            : 'bg-destructive/10 text-destructive',
                                     ]"
                                     class="px-3 py-1 rounded-full text-sm font-medium"
                                 >
@@ -177,50 +171,59 @@
                                             {{ t('productDetail.quantity') }}:
                                         </span>
                                         <div
-                                            class="flex items-center border border-border rounded-lg"
+                                            class="flex items-center border border-border rounded-lg bg-background"
                                         >
-                                            <button
+                                            <Button
                                                 @click="updateQuantity(quantity - 1)"
                                                 :disabled="quantity <= 1"
-                                                class="p-2 hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed"
+                                                variant="ghost"
+                                                size="sm"
+                                                class="p-2"
                                             >
                                                 <Minus class="w-4 h-4" />
-                                            </button>
-                                            <input
+                                            </Button>
+                                            <Input
                                                 v-model.number="quantity"
                                                 type="number"
                                                 min="1"
                                                 :max="product.quantity"
                                                 class="w-16 text-center border-0 outline-none bg-transparent"
-                                                @change="updateQuantity(quantity)"
+                                                @update:model-value="
+                                                    (value) => updateQuantity(Number(value) || 1)
+                                                "
                                             />
-                                            <button
+                                            <Button
                                                 @click="updateQuantity(quantity + 1)"
                                                 :disabled="quantity >= (product.quantity ?? 0)"
-                                                class="p-2 hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed"
+                                                variant="ghost"
+                                                size="sm"
+                                                class="p-2"
                                             >
                                                 <Plus class="w-4 h-4" />
-                                            </button>
+                                            </Button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="flex gap-4">
-                                    <button
+                                    <Button
                                         @click="addToCart"
                                         :disabled="!canAddToCart"
-                                        class="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-green-500 dark:bg-green-600 text-white rounded-lg font-medium hover:bg-green-600 dark:hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                        class="flex-1 flex items-center justify-center gap-2"
+                                        size="lg"
                                     >
                                         <ShoppingCart class="w-5 h-5" />
                                         {{ t('productDetail.addToCart') }}
-                                    </button>
-                                    <button
+                                    </Button>
+                                    <Button
                                         @click="addToWishlist"
-                                        class="p-3 border border-border rounded-lg hover:bg-accent transition-colors"
+                                        variant="outline"
+                                        size="lg"
+                                        class="p-3"
                                         :title="t('productDetail.addToWishlist')"
                                     >
                                         <Heart class="w-5 h-5" />
-                                    </button>
+                                    </Button>
                                 </div>
                             </div>
 
@@ -268,10 +271,13 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { useRoute } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import { useProductDetail } from '@/composables/useProductDetail'
 import type { ProductListItem } from '@/types/products'
+
+// UI Components
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 // Components
 import ProductDetailTabs from '@/components/product/ProductDetailTabs.vue'
@@ -281,7 +287,6 @@ import RelatedProducts from '@/components/product/RelatedProducts.vue'
 import { Star, ShoppingCart, Heart, Plus, Minus, AlertCircle } from 'lucide-vue-next'
 
 const { t } = useAppI18n()
-const route = useRoute()
 
 const {
     // State

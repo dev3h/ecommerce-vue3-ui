@@ -1,158 +1,144 @@
 <template>
-    <div class="bg-card rounded-lg border border-border p-4 sm:p-6">
-        <h2 class="text-lg font-medium text-foreground mb-4">
-            {{ t('checkout.paymentMethod') }}
-        </h2>
+    <Card class="p-4 sm:p-6">
+        <CardHeader class="p-0 mb-4">
+            <CardTitle class="text-lg font-medium">
+                {{ t('checkout.paymentMethod') }}
+            </CardTitle>
+        </CardHeader>
 
-        <form @submit.prevent="handleSubmit" class="space-y-4">
-            <!-- Payment Method Selection -->
-            <div class="space-y-3">
-                <h3 class="text-sm font-medium text-foreground">
-                    {{ t('checkout.selectPaymentMethod') }}
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div
-                        @click="paymentData.type = 'card'"
-                        class="border border-border rounded-lg p-3 cursor-pointer transition-colors hover:bg-accent"
-                        :class="{ 'border-primary bg-primary/5': paymentData.type === 'card' }"
+        <CardContent class="p-0">
+            <form @submit.prevent="handleSubmit" class="space-y-4">
+                <!-- Payment Method Selection -->
+                <div class="space-y-3">
+                    <Label class="text-sm font-medium">
+                        {{ t('checkout.selectPaymentMethod') }}
+                    </Label>
+                    <RadioGroup
+                        v-model="paymentData.type"
+                        class="grid grid-cols-1 sm:grid-cols-2 gap-3"
                     >
-                        <div class="flex items-center gap-2">
-                            <input
-                                type="radio"
-                                v-model="paymentData.type"
-                                value="card"
-                                class="text-primary"
-                            />
-                            <span class="text-sm font-medium">{{ t('checkout.creditCard') }}</span>
-                        </div>
-                    </div>
-                    <div
-                        @click="paymentData.type = 'paypal'"
-                        class="border border-border rounded-lg p-3 cursor-pointer transition-colors hover:bg-accent"
-                        :class="{ 'border-primary bg-primary/5': paymentData.type === 'paypal' }"
-                    >
-                        <div class="flex items-center gap-2">
-                            <input
-                                type="radio"
-                                v-model="paymentData.type"
-                                value="paypal"
-                                class="text-primary"
-                            />
-                            <span class="text-sm font-medium">{{ t('checkout.paypal') }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Credit Card Form -->
-            <div v-if="paymentData.type === 'card'" class="space-y-4">
-                <div>
-                    <label for="cardNumber" class="block text-sm font-medium text-foreground mb-1">
-                        {{ t('checkout.cardNumber') }}<span class="text-red-500 ml-1">*</span>
-                    </label>
-                    <input
-                        id="cardNumber"
-                        v-model="paymentData.cardNumber"
-                        type="text"
-                        placeholder="1234 5678 9012 3456"
-                        required
-                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                        :class="{ 'border-red-500': errors.cardNumber }"
-                    />
-                    <div v-if="errors.cardNumber" class="mt-1 text-sm text-red-500">
-                        {{ errors.cardNumber }}
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label
-                            for="cardExpiry"
-                            class="block text-sm font-medium text-foreground mb-1"
+                        <Label
+                            for="card"
+                            class="flex items-center space-x-2 border border-border rounded-lg p-3 cursor-pointer transition-colors hover:bg-accent"
+                            :class="{ 'border-primary bg-primary/5': paymentData.type === 'card' }"
                         >
-                            {{ t('checkout.expiryDate') }}<span class="text-red-500 ml-1">*</span>
-                        </label>
-                        <input
-                            id="cardExpiry"
-                            v-model="paymentData.cardExpiry"
+                            <RadioGroupItem id="card" value="card" />
+                            <span class="text-sm font-medium">{{ t('checkout.creditCard') }}</span>
+                        </Label>
+                        <Label
+                            for="paypal"
+                            class="flex items-center space-x-2 border border-border rounded-lg p-3 cursor-pointer transition-colors hover:bg-accent"
+                            :class="{
+                                'border-primary bg-primary/5': paymentData.type === 'paypal',
+                            }"
+                        >
+                            <RadioGroupItem id="paypal" value="paypal" />
+                            <span class="text-sm font-medium">{{ t('checkout.paypal') }}</span>
+                        </Label>
+                    </RadioGroup>
+                </div>
+
+                <!-- Credit Card Form -->
+                <div v-if="paymentData.type === 'card'" class="space-y-4">
+                    <div class="space-y-2">
+                        <Label for="cardNumber">
+                            {{ t('checkout.cardNumber') }}<span class="text-red-500 ml-1">*</span>
+                        </Label>
+                        <Input
+                            id="cardNumber"
+                            v-model="paymentData.cardNumber"
                             type="text"
-                            placeholder="MM/YY"
+                            placeholder="1234 5678 9012 3456"
                             required
-                            class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                            :class="{ 'border-red-500': errors.cardExpiry }"
+                            :class="{ 'border-red-500': errors.cardNumber }"
                         />
-                        <div v-if="errors.cardExpiry" class="mt-1 text-sm text-red-500">
-                            {{ errors.cardExpiry }}
+                        <div v-if="errors.cardNumber" class="mt-1 text-sm text-red-500">
+                            {{ errors.cardNumber }}
                         </div>
                     </div>
-                    <div>
-                        <label for="cardCvc" class="block text-sm font-medium text-foreground mb-1">
-                            {{ t('checkout.cvc') }}<span class="text-red-500 ml-1">*</span>
-                        </label>
-                        <input
-                            id="cardCvc"
-                            v-model="paymentData.cardCvc"
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <Label for="cardExpiry">
+                                {{ t('checkout.expiryDate')
+                                }}<span class="text-red-500 ml-1">*</span>
+                            </Label>
+                            <Input
+                                id="cardExpiry"
+                                v-model="paymentData.cardExpiry"
+                                type="text"
+                                placeholder="MM/YY"
+                                required
+                                :class="{ 'border-red-500': errors.cardExpiry }"
+                            />
+                            <div v-if="errors.cardExpiry" class="mt-1 text-sm text-red-500">
+                                {{ errors.cardExpiry }}
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <Label for="cardCvc">
+                                {{ t('checkout.cvc') }}<span class="text-red-500 ml-1">*</span>
+                            </Label>
+                            <Input
+                                id="cardCvc"
+                                v-model="paymentData.cardCvc"
+                                type="text"
+                                placeholder="123"
+                                required
+                                :class="{ 'border-red-500': errors.cardCvc }"
+                            />
+                            <div v-if="errors.cardCvc" class="mt-1 text-sm text-red-500">
+                                {{ errors.cardCvc }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <Label for="cardName">
+                            {{ t('checkout.cardName') }}<span class="text-red-500 ml-1">*</span>
+                        </Label>
+                        <Input
+                            id="cardName"
+                            v-model="paymentData.cardName"
                             type="text"
-                            placeholder="123"
                             required
-                            class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                            :class="{ 'border-red-500': errors.cardCvc }"
+                            :class="{ 'border-red-500': errors.cardName }"
                         />
-                        <div v-if="errors.cardCvc" class="mt-1 text-sm text-red-500">
-                            {{ errors.cardCvc }}
+                        <div v-if="errors.cardName" class="mt-1 text-sm text-red-500">
+                            {{ errors.cardName }}
                         </div>
                     </div>
                 </div>
 
-                <div>
-                    <label for="cardName" class="block text-sm font-medium text-foreground mb-1">
-                        {{ t('checkout.cardName') }}<span class="text-red-500 ml-1">*</span>
-                    </label>
-                    <input
-                        id="cardName"
-                        v-model="paymentData.cardName"
-                        type="text"
-                        required
-                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                        :class="{ 'border-red-500': errors.cardName }"
-                    />
-                    <div v-if="errors.cardName" class="mt-1 text-sm text-red-500">
-                        {{ errors.cardName }}
-                    </div>
+                <!-- PayPal Info -->
+                <div v-else-if="paymentData.type === 'paypal'" class="p-4 bg-accent/50 rounded-lg">
+                    <p class="text-sm text-muted-foreground">
+                        {{ t('checkout.paypalDescription') }}
+                    </p>
                 </div>
-            </div>
 
-            <!-- PayPal Info -->
-            <div v-else-if="paymentData.type === 'paypal'" class="p-4 bg-accent/50 rounded-lg">
-                <p class="text-sm text-muted-foreground">
-                    {{ t('checkout.paypalDescription') }}
-                </p>
-            </div>
-
-            <div class="flex justify-between pt-4">
-                <button
-                    type="button"
-                    @click="$emit('prev-step')"
-                    class="border border-border px-6 py-2 rounded-lg hover:bg-accent transition-colors"
-                >
-                    {{ t('checkout.back') }}
-                </button>
-                <button
-                    type="submit"
-                    :disabled="!isValid"
-                    class="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                    {{ t('checkout.reviewOrder') }}
-                </button>
-            </div>
-        </form>
-    </div>
+                <div class="flex justify-between pt-4">
+                    <Button type="button" variant="outline" @click="$emit('prev-step')">
+                        {{ t('checkout.back') }}
+                    </Button>
+                    <Button type="submit" :disabled="!isValid" class="min-w-[200px]">
+                        {{ t('checkout.reviewOrder') }}
+                    </Button>
+                </div>
+            </form>
+        </CardContent>
+    </Card>
 </template>
 
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue'
 import { useAppI18n } from '@/composables/useI18n'
 import type { PaymentMethod } from '@/types/cart'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 
 interface Props {
     modelValue: PaymentMethod

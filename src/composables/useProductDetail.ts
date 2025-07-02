@@ -1,10 +1,12 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { useCart } from '@/composables/useCart'
 import { productDetailService } from '@/services/product-detail.service'
 import type { ProductDetail, ProductReview, RelatedProduct } from '@/types/product-detail'
 
 export function useProductDetail() {
     const route = useRoute()
+    const { addToCart: cartAddToCart } = useCart()
 
     // State
     const product = ref<ProductDetail | null>(null)
@@ -146,9 +148,22 @@ export function useProductDetail() {
         if (!canAddToCart.value || !product.value) return
 
         try {
-            // Here you would typically call a cart service
-            console.log('Adding to cart:', {
-                product: product.value,
+            // Add to cart using the cart service
+            cartAddToCart(
+                {
+                    id: product.value.id,
+                    name: product.value.name,
+                    price: product.value.price,
+                    originalPrice: product.value.originalPrice,
+                    image: product.value.images?.[0] || '',
+                    category: product.value.category,
+                    description: product.value.shortDescription,
+                },
+                quantity.value,
+            )
+
+            console.log('Added to cart successfully:', {
+                product: product.value.name,
                 quantity: quantity.value,
             })
 

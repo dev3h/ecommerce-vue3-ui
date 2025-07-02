@@ -1,17 +1,16 @@
 <template>
     <div
-        :class="`${promo.bgColor} rounded-lg p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4`"
+        :class="`${getAdaptiveBackgroundClass(promo.bgColor)} rounded-lg p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4`"
     >
         <div class="flex-1">
-            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3 leading-tight">
+            <h3
+                :class="`text-lg sm:text-xl font-bold mb-2 sm:mb-3 leading-tight ${getTextColorClass(promo.bgColor)}`"
+            >
                 {{ promo.title }}
             </h3>
-            <button
-                @click="$emit('promo-click', promo)"
-                class="bg-green-500 text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-green-600 transition-colors font-medium text-sm sm:text-base w-full sm:w-auto"
-            >
+            <Button @click="$emit('promo-click', promo)" class="w-full sm:w-auto" size="sm">
                 {{ promo.buttonText }}
-            </button>
+            </Button>
         </div>
         <div class="flex-shrink-0 self-center sm:ml-4">
             <img
@@ -24,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import { Button } from '@/components/ui/button'
 import type { PromoSection } from '@/types/home'
 
 interface Props {
@@ -32,7 +32,35 @@ interface Props {
 
 defineProps<Props>()
 
-const emit = defineEmits<{
+defineEmits<{
     'promo-click': [promo: PromoSection]
 }>()
+
+// Tạo màu nền thích ứng với dark mode
+const getAdaptiveBackgroundClass = (originalBgColor: string) => {
+    const colorMap: Record<string, string> = {
+        'bg-orange-50': 'bg-orange-50 dark:bg-orange-900/20',
+        'bg-red-50': 'bg-red-50 dark:bg-red-900/20',
+        'bg-green-50': 'bg-green-50 dark:bg-green-900/20',
+        'bg-blue-50': 'bg-blue-50 dark:bg-blue-900/20',
+        'bg-purple-50': 'bg-purple-50 dark:bg-purple-900/20',
+        'bg-yellow-50': 'bg-yellow-50 dark:bg-yellow-900/20',
+    }
+
+    return colorMap[originalBgColor] || 'bg-accent/50'
+}
+
+// Tạo màu chữ tương ứng
+const getTextColorClass = (originalBgColor: string) => {
+    const textColorMap: Record<string, string> = {
+        'bg-orange-50': 'text-orange-900 dark:text-orange-100',
+        'bg-red-50': 'text-red-900 dark:text-red-100',
+        'bg-green-50': 'text-green-900 dark:text-green-100',
+        'bg-blue-50': 'text-blue-900 dark:text-blue-100',
+        'bg-purple-50': 'text-purple-900 dark:text-purple-100',
+        'bg-yellow-50': 'text-yellow-900 dark:text-yellow-100',
+    }
+
+    return textColorMap[originalBgColor] || 'text-foreground'
+}
 </script>

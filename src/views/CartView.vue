@@ -1,18 +1,32 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import { useCart } from '@/composables/useCart'
 import PriceDisplay from '@/components/PriceDisplay.vue'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { ShoppingCart, Plus, Minus, Trash2, ArrowLeft } from 'lucide-vue-next'
 
 const { t } = useAppI18n()
 const router = useRouter()
 const { cartItems, totalItems, updateQuantity, removeFromCart, isEmpty } = useCart()
 
+// Debug computed
+const debugCartItems = computed(() => {
+    console.log('CartView: Current cart items:', cartItems.value)
+    return cartItems.value
+})
+
 // Methods
 const handleQuantityChange = (productId: string, quantity: number) => {
-    if (quantity < 1) return
+    console.log('CartView: Changing quantity for product', productId, 'to', quantity)
+    if (quantity < 1) {
+        console.log('CartView: Quantity too low, ignoring')
+        return
+    }
     updateQuantity(productId, quantity)
+    console.log('CartView: Updated cart items:', cartItems.value)
     // Không hiển thị toast cho quantity update
 }
 
@@ -67,13 +81,14 @@ const formatCurrency = (amount: number) => {
                             {{ t('cart.emptyCartDescription') }}
                         </p>
                     </div>
-                    <button
+                    <Button
                         @click="handleContinueShopping"
-                        class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 lg:px-8 py-3 lg:py-4 rounded-lg font-medium transition-colors"
+                        class="inline-flex items-center gap-2"
+                        size="lg"
                     >
                         <ArrowLeft class="w-4 h-4" />
                         {{ t('cart.continueShopping') }}
-                    </button>
+                    </Button>
                 </div>
 
                 <!-- Cart Content -->
@@ -88,7 +103,7 @@ const formatCurrency = (amount: number) => {
                     <!-- Cart Items List -->
                     <div class="space-y-4">
                         <div
-                            v-for="item in cartItems"
+                            v-for="item in debugCartItems"
                             :key="item.id"
                             class="bg-card border border-border rounded-lg p-4 lg:p-6"
                         >
@@ -142,7 +157,7 @@ const formatCurrency = (amount: number) => {
                                                 <div
                                                     class="flex items-center border border-border rounded-lg bg-background"
                                                 >
-                                                    <button
+                                                    <Button
                                                         @click="
                                                             handleQuantityChange(
                                                                 item.id,
@@ -150,51 +165,56 @@ const formatCurrency = (amount: number) => {
                                                             )
                                                         "
                                                         :disabled="item.quantity <= 1"
-                                                        class="p-2 hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                                        variant="ghost"
+                                                        size="sm"
+                                                        class="p-2"
                                                     >
                                                         <Minus class="w-4 h-4" />
-                                                    </button>
-                                                    <input
-                                                        :value="item.quantity"
-                                                        @change="
-                                                            handleQuantityChange(
-                                                                item.id,
-                                                                parseInt(
-                                                                    (
-                                                                        $event.target as HTMLInputElement
-                                                                    ).value,
-                                                                ) || 1,
-                                                            )
+                                                    </Button>
+                                                    <Input
+                                                        :model-value="item.quantity"
+                                                        @update:model-value="
+                                                            (value) =>
+                                                                handleQuantityChange(
+                                                                    item.id,
+                                                                    parseInt(
+                                                                        value?.toString() || '1',
+                                                                    ) || 1,
+                                                                )
                                                         "
                                                         type="number"
                                                         min="1"
                                                         class="w-16 text-center border-0 outline-none bg-transparent text-sm font-medium"
                                                     />
-                                                    <button
+                                                    <Button
                                                         @click="
                                                             handleQuantityChange(
                                                                 item.id,
                                                                 item.quantity + 1,
                                                             )
                                                         "
-                                                        class="p-2 hover:bg-accent transition-colors"
+                                                        variant="ghost"
+                                                        size="sm"
+                                                        class="p-2"
                                                     >
                                                         <Plus class="w-4 h-4" />
-                                                    </button>
+                                                    </Button>
                                                 </div>
                                             </div>
 
                                             <!-- Remove Button -->
-                                            <button
+                                            <Button
                                                 @click="handleRemoveItem(item.id)"
-                                                class="flex items-center gap-1 text-red-500 hover:text-red-600 text-sm font-medium transition-colors p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
+                                                variant="destructive"
+                                                size="sm"
+                                                class="flex items-center gap-1"
                                                 :title="t('cart.remove')"
                                             >
                                                 <Trash2 class="w-4 h-4" />
                                                 <span class="hidden sm:inline">{{
                                                     t('cart.remove')
                                                 }}</span>
-                                            </button>
+                                            </Button>
                                         </div>
                                     </div>
                                 </div>
@@ -205,20 +225,22 @@ const formatCurrency = (amount: number) => {
                     <!-- Bottom Actions -->
                     <div class="pt-6 border-t border-border">
                         <div class="flex flex-col sm:flex-row gap-4 justify-between">
-                            <button
+                            <Button
                                 @click="handleContinueShopping"
-                                class="inline-flex items-center justify-center gap-2 border border-border bg-background hover:bg-accent text-foreground px-6 py-3 rounded-lg font-medium transition-colors"
+                                variant="outline"
+                                class="inline-flex items-center justify-center gap-2"
                             >
                                 <ArrowLeft class="w-4 h-4" />
                                 {{ t('cart.continueShopping') }}
-                            </button>
-                            <button
+                            </Button>
+                            <Button
                                 @click="handleProceedToCheckout"
-                                class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-lg font-medium transition-colors"
+                                class="inline-flex items-center justify-center gap-2"
+                                size="lg"
                             >
                                 {{ t('cart.next') }}
                                 <ShoppingCart class="w-4 h-4" />
-                            </button>
+                            </Button>
                         </div>
                     </div>
                 </div>

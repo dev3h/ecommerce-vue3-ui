@@ -85,13 +85,8 @@
             <!-- Terms and Conditions -->
             <div class="space-y-3">
                 <div class="flex items-start gap-2">
-                    <input
-                        id="terms"
-                        v-model="agreedToTerms"
-                        type="checkbox"
-                        class="mt-1 text-primary"
-                    />
-                    <label for="terms" class="text-sm text-muted-foreground">
+                    <Checkbox id="terms" v-model="agreedToTerms" class="mt-1" />
+                    <Label for="terms" class="text-sm text-muted-foreground cursor-pointer">
                         {{ t('checkout.agreeToTerms') }}
                         <a href="#" class="text-primary hover:underline">
                             {{ t('checkout.termsAndConditions') }}
@@ -100,42 +95,34 @@
                         <a href="#" class="text-primary hover:underline">
                             {{ t('checkout.privacyPolicy') }}
                         </a>
-                    </label>
+                    </Label>
                 </div>
 
                 <div class="flex items-start gap-2">
-                    <input
-                        id="newsletter"
-                        v-model="subscribeNewsletter"
-                        type="checkbox"
-                        class="mt-1 text-primary"
-                    />
-                    <label for="newsletter" class="text-sm text-muted-foreground">
+                    <Checkbox id="newsletter" v-model:checked="subscribeNewsletter" class="mt-1" />
+                    <Label for="newsletter" class="text-sm text-muted-foreground cursor-pointer">
                         {{ t('checkout.subscribeNewsletter') }}
-                    </label>
+                    </Label>
                 </div>
             </div>
 
             <!-- Action Buttons -->
             <div class="flex justify-between pt-4">
-                <button
-                    type="button"
-                    @click="$emit('prev-step')"
-                    class="border border-border px-6 py-2 rounded-lg hover:bg-accent transition-colors"
-                >
+                <Button type="button" variant="outline" @click="$emit('prev-step')">
                     {{ t('checkout.back') }}
-                </button>
-                <button
+                </Button>
+                <Button
                     @click="handlePlaceOrder"
                     :disabled="isSubmitting || !agreedToTerms"
-                    class="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
+                    class="flex items-center gap-2"
+                    size="lg"
                 >
                     <span
                         v-if="isSubmitting"
                         class="w-4 h-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin"
                     ></span>
                     {{ isSubmitting ? t('checkout.placing') : t('checkout.placeOrder') }}
-                </button>
+                </Button>
             </div>
         </div>
     </div>
@@ -145,6 +132,9 @@
 import { ref } from 'vue'
 import { useAppI18n } from '@/composables/useI18n'
 import PriceDisplay from '@/components/PriceDisplay.vue'
+import { Button } from '@/components/ui/button'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Label } from '@/components/ui/label'
 import type { CartItem, ShippingAddress, PaymentMethod } from '@/types/cart'
 
 interface Props {
