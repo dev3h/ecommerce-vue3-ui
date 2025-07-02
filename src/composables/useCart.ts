@@ -1,15 +1,33 @@
 import { ref, computed } from 'vue'
+import { useToast } from '@/composables/useToast'
+import { useAppI18n } from '@/composables/useI18n'
 import type { CartItem, CartSummary } from '@/types/cart'
-import type { Product } from '@/types/products'
 
 // Global cart state
 const cartItems = ref<CartItem[]>([])
 
+// Interface for adding items to cart
+interface AddToCartItem {
+    id: string | number
+    name: string
+    price: number
+    originalPrice?: number
+    image: string
+    category?: string
+    description?: string
+}
+
 export function useCart() {
+    // Composables must be called at top level
+    const { success } = useToast()
+    const { t } = useAppI18n()
+
     // Computed properties
-    const totalItems = computed(() =>
+    const totalItems = computed(() => cartItems.value.length) // Số loại sản phẩm khác nhau
+
+    const totalQuantity = computed(() =>
         cartItems.value.reduce((total, item) => total + item.quantity, 0),
-    )
+    ) // Tổng số lượng tất cả sản phẩm
 
     const isEmpty = computed(() => cartItems.value.length === 0)
 
@@ -33,14 +51,15 @@ export function useCart() {
     })
 
     // Methods
-    const addToCart = (product: Product, quantity: number = 1) => {
-        const existingItem = cartItems.value.find((item) => item.id === product.id)
+    const addToCart = (product: AddToCartItem, quantity: number = 1) => {
+        const productId = product.id.toString() // Convert to string for consistency
+        const existingItem = cartItems.value.find((item) => item.id === productId)
 
         if (existingItem) {
             existingItem.quantity += quantity
         } else {
             const cartItem: CartItem = {
-                id: product.id,
+                id: productId,
                 name: product.name,
                 price: product.price,
                 originalPrice: product.originalPrice,
@@ -54,9 +73,12 @@ export function useCart() {
 
         // Save to localStorage
         saveCartToStorage()
+
+        // Show success notification
+        success(t('cart.addedToCartSuccess'))
     }
 
-    const removeFromCart = (productId: number) => {
+    const removeFromCart = (productId: string) => {
         const index = cartItems.value.findIndex((item) => item.id === productId)
         if (index > -1) {
             cartItems.value.splice(index, 1)
@@ -64,7 +86,7 @@ export function useCart() {
         }
     }
 
-    const updateQuantity = (productId: number, quantity: number) => {
+    const updateQuantity = (productId: string, quantity: number) => {
         const item = cartItems.value.find((item) => item.id === productId)
         if (item) {
             if (quantity <= 0) {
@@ -104,6 +126,7 @@ export function useCart() {
 
         // Computed
         totalItems,
+        totalQuantity,
         isEmpty,
         cartSummary,
 

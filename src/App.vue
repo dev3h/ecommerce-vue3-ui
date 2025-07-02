@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import BaseLayout from '@/components/layout/BaseLayout.vue'
 import AdminBaseLayout from '@/components/admin/AdminBaseLayout.vue'
+import Toast from '@/components/Toast.vue'
 
 const route = useRoute()
 const isLoading = ref(false)
@@ -21,4 +22,7 @@ const isAdminLayout = computed(() => {
     <AdminBaseLayout v-else>
         <RouterView />
     </AdminBaseLayout>
+
+    <!-- Global Toast Notifications -->
+    <Toast />
 </template>

@@ -78,15 +78,11 @@
                     <!-- Cart -->
                     <RouterLink
                         to="/cart"
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9 relative"
+                        class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9"
                     >
-                        <ShoppingCart class="h-4 w-4" />
-                        <span
-                            v-if="cartItemsCount > 0"
-                            class="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs font-bold flex items-center justify-center"
-                        >
-                            {{ cartItemsCount }}
-                        </span>
+                        <CartBadge :count="cartItemsCount">
+                            <ShoppingCart class="h-4 w-4" />
+                        </CartBadge>
                         <span class="sr-only">{{ t('navigation.cart') }}</span>
                     </RouterLink>
 
@@ -230,6 +226,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import { useCart } from '@/composables/useCart'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
+import CartBadge from '@/components/CartBadge.vue'
 import { Search, ShoppingCart, User, Menu, X, Sun, Moon } from 'lucide-vue-next'
 
 const route = useRoute()

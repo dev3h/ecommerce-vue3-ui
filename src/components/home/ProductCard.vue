@@ -38,7 +38,7 @@
             <button
                 @click.stop="handleAddToCart"
                 class="opacity-70 active:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 bg-green-500 text-white p-1.5 sm:p-2 rounded-lg hover:bg-green-600 active:bg-green-700 transition-all touch-manipulation"
-                :aria-label="t('addToCart')"
+                :aria-label="t('productDetail.addToCart')"
             >
                 <svg
                     class="w-3 h-3 sm:w-4 sm:h-4"
@@ -67,8 +67,6 @@ import type { Product } from '@/types/home'
 interface Props {
     product: Product
 }
-
-defineProps<Props>()
 
 const emit = defineEmits<{
     'add-to-cart': [product: Product]

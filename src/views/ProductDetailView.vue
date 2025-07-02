@@ -1,26 +1,5 @@
 <template>
     <div class="min-h-screen bg-background">
-        <!-- Breadcrumb -->
-        <div class="px-3 sm:px-4 md:px-6 lg:px-8 py-3 border-b border-border">
-            <div class="max-w-7xl mx-auto">
-                <nav class="flex items-center space-x-2 text-sm text-muted-foreground">
-                    <router-link to="/" class="hover:text-foreground">{{
-                        t('common.home')
-                    }}</router-link>
-                    <span>/</span>
-                    <router-link to="/products" class="hover:text-foreground">{{
-                        t('navigation.products')
-                    }}</router-link>
-                    <span>/</span>
-                    <span v-if="product?.category" class="hover:text-foreground">{{
-                        product.category
-                    }}</span>
-                    <span>/</span>
-                    <span class="text-foreground font-medium">{{ product?.name }}</span>
-                </nav>
-            </div>
-        </div>
-
         <div class="px-3 sm:px-4 md:px-6 lg:px-8 py-6">
             <div class="max-w-7xl mx-auto">
                 <!-- Loading State -->
