@@ -101,7 +101,12 @@
                             {{ product.brand }}
                         </h3>
                         <p class="text-muted-foreground mb-4">
-                            {{ t('productDetail.vendorDescription', { brand: product.brand }) }}
+                            {{
+                                t('productDetail.vendorDescription').replace(
+                                    '{brand}',
+                                    product.brand,
+                                )
+                            }}
                         </p>
                         <div class="grid grid-cols-2 gap-4 text-sm">
                             <div>
@@ -256,9 +261,9 @@ const averageRating = computed(() => {
 })
 
 const ratingDistribution = computed(() => {
-    const distribution = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 }
+    const distribution: Record<number, number> = { 5: 0, 4: 0, 3: 0, 2: 0, 1: 0 }
     props.reviews.forEach((review) => {
-        distribution[review.rating as keyof typeof distribution]++
+        distribution[review.rating]++
     })
     return distribution
 })

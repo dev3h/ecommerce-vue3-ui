@@ -45,7 +45,7 @@ export function useAppI18n() {
     // Get nested translation
     const getNestedTranslation = (keyPath: string) => {
         const keys = keyPath.split('.')
-        let current = messages.value[currentLocale.value]
+        let current: any = messages.value[currentLocale.value]
 
         for (const key of keys) {
             if (current && typeof current === 'object' && key in current) {

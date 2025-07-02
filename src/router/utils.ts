@@ -107,7 +107,7 @@ export const generateBreadcrumbs = (route: any) => {
 
     // Always start with home
     breadcrumbs.push({
-        name: 'Home',
+        name: 'breadcrumb.home',
         to: { name: 'home' },
     })
 
@@ -115,43 +115,50 @@ export const generateBreadcrumbs = (route: any) => {
     switch (route.name) {
         case 'products':
             breadcrumbs.push({
-                name: 'Products',
+                name: 'breadcrumb.products',
                 to: { name: 'products' },
             })
             break
         case 'product-detail':
             breadcrumbs.push(
                 {
-                    name: 'Products',
+                    name: 'breadcrumb.products',
                     to: { name: 'products' },
                 },
                 {
-                    name: 'Product Details',
+                    name: 'breadcrumb.productDetails',
                     to: route,
                 },
             )
             break
         case 'cart':
             breadcrumbs.push({
-                name: 'Shopping Cart',
+                name: 'breadcrumb.cart',
                 to: { name: 'cart' },
             })
             break
         case 'account-profile':
         case 'account-orders':
         case 'account-wishlist':
-        case 'account-addresses':
+        case 'account-addresses': {
+            const accountPageMap: Record<string, string> = {
+                'account-profile': 'breadcrumb.profile',
+                'account-orders': 'breadcrumb.orders',
+                'account-wishlist': 'breadcrumb.wishlist',
+                'account-addresses': 'breadcrumb.addresses',
+            }
             breadcrumbs.push(
                 {
-                    name: 'My Account',
+                    name: 'breadcrumb.account',
                     to: { name: 'account' },
                 },
                 {
-                    name: route.meta?.title ?? 'Account',
+                    name: accountPageMap[route.name] ?? 'breadcrumb.account',
                     to: route,
                 },
             )
             break
+        }
     }
 
     return breadcrumbs

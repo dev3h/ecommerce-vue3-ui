@@ -39,10 +39,10 @@
                                             :to="crumb.to"
                                             class="hover:text-foreground transition-colors"
                                         >
-                                            {{ crumb.name }}
+                                            {{ t(crumb.name) }}
                                         </RouterLink>
                                         <span v-else class="text-foreground font-medium">
-                                            {{ crumb.name }}
+                                            {{ t(crumb.name) }}
                                         </span>
                                         <ChevronRight
                                             v-if="index < breadcrumbs.length - 1"
