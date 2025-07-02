@@ -59,14 +59,19 @@
 
             <div>
                 <label for="phone" class="block text-sm font-medium text-foreground mb-1">
-                    {{ t('checkout.phone') }}
+                    {{ t('checkout.phone') }}<span class="text-red-500 ml-1">*</span>
                 </label>
                 <input
                     id="phone"
                     v-model="shippingData.phone"
                     type="tel"
+                    required
                     class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                    :class="{ 'border-red-500': errors.phone }"
                 />
+                <div v-if="errors.phone" class="mt-1 text-sm text-red-500">
+                    {{ errors.phone }}
+                </div>
             </div>
 
             <div>
@@ -199,6 +204,9 @@ const validateField = (field: string, value: string) => {
         case 'email':
             validateEmail(value)
             break
+        case 'phone':
+            validatePhone(value)
+            break
         case 'address':
             validateAddress(value)
             break
@@ -237,6 +245,16 @@ const validateEmail = (value: string) => {
         errors.value.email = t('validation.invalidEmail', 'Please enter a valid email address')
     } else {
         delete errors.value.email
+    }
+}
+
+const validatePhone = (value: string) => {
+    if (!value.trim()) {
+        errors.value.phone = t('validation.required', 'Phone number is required')
+    } else if (!/^[+]?\d{5,16}$/.test(value.replace(/[\s\-()]/g, ''))) {
+        errors.value.phone = t('validation.invalidPhone', 'Please enter a valid phone number')
+    } else {
+        delete errors.value.phone
     }
 }
 
@@ -286,6 +304,10 @@ watch(
     (value) => validateField('email', value),
 )
 watch(
+    () => shippingData.phone,
+    (value) => validateField('phone', value),
+)
+watch(
     () => shippingData.address,
     (value) => validateField('address', value),
 )
@@ -307,6 +329,7 @@ const isValid = computed(() => {
         shippingData.firstName &&
         shippingData.lastName &&
         shippingData.email &&
+        shippingData.phone &&
         shippingData.address &&
         shippingData.city &&
         shippingData.zipCode &&
@@ -320,6 +343,7 @@ const handleSubmit = () => {
     validateField('firstName', shippingData.firstName)
     validateField('lastName', shippingData.lastName)
     validateField('email', shippingData.email)
+    validateField('phone', shippingData.phone)
     validateField('address', shippingData.address)
     validateField('city', shippingData.city)
     validateField('zipCode', shippingData.zipCode)
