@@ -22,7 +22,12 @@
                 <h2 class="mb-2 px-4 text-lg font-semibold tracking-tight">
                     {{ t('navigation.categories') }}
                 </h2>
-                <div class="space-y-1">
+                <div v-if="loading" class="px-4">
+                    <div class="animate-pulse space-y-2">
+                        <div v-for="i in 6" :key="i" class="h-8 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+                <div v-else class="space-y-1">
                     <SidebarItem
                         v-for="category in categories"
                         :key="category.slug"
@@ -101,7 +106,12 @@
                 <h2 class="mb-2 px-4 text-lg font-semibold tracking-tight">
                     {{ t('products.brands') }}
                 </h2>
-                <div class="px-4 space-y-2">
+                <div v-if="loading" class="px-4">
+                    <div class="animate-pulse space-y-2">
+                        <div v-for="i in 5" :key="i" class="h-6 bg-gray-200 rounded"></div>
+                    </div>
+                </div>
+                <div v-else class="px-4 space-y-2">
                     <label
                         v-for="brand in brands"
                         :key="brand.id"
@@ -169,11 +179,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
+import { productsService } from '@/services/products.service'
 import SidebarItem from './SidebarItem.vue'
 import { Star } from 'lucide-vue-next'
+import type { ProductCategory, ProductBrand } from '@/types/products'
 
 interface Props {
     isOpen: boolean
@@ -222,23 +234,24 @@ const priceFilter = ref({
 const selectedBrands = ref<string[]>([])
 const selectedRating = ref<number | null>(null)
 
-// Mock data - replace with actual data from store
-const categories = ref<Category[]>([
-    { id: '1', slug: 'electronics', name: 'Electronics', icon: 'Smartphone', count: 156 },
-    { id: '2', slug: 'clothing', name: 'Clothing', icon: 'Shirt', count: 89 },
-    { id: '3', slug: 'home-garden', name: 'Home & Garden', icon: 'Home', count: 234 },
-    { id: '4', slug: 'sports', name: 'Sports', icon: 'Dumbbell', count: 67 },
-    { id: '5', slug: 'books', name: 'Books', icon: 'Book', count: 145 },
-    { id: '6', slug: 'toys', name: 'Toys', icon: 'Gamepad2', count: 78 },
-])
+// Data from API
+const categories = ref<ProductCategory[]>([])
+const brands = ref<ProductBrand[]>([])
+const loading = ref(false)
 
-const brands = ref<Brand[]>([
-    { id: '1', name: 'Apple', count: 45 },
-    { id: '2', name: 'Samsung', count: 38 },
-    { id: '3', name: 'Nike', count: 52 },
-    { id: '4', name: 'Adidas', count: 41 },
-    { id: '5', name: 'Sony', count: 29 },
-])
+// Load data from service
+const loadData = async () => {
+    loading.value = true
+    try {
+        const data = await productsService.getCategories()
+        categories.value = data.categories
+        brands.value = data.brands
+    } catch (error) {
+        console.error('Failed to load sidebar data:', error)
+    } finally {
+        loading.value = false
+    }
+}
 
 // Computed
 const cartItemsCount = computed(() => {
@@ -279,6 +292,11 @@ const clearFilters = () => {
     // Clear query parameters
     router.push({ query: {} })
 }
+
+// Initialize data
+onMounted(() => {
+    loadData()
+})
 </script>
 
 <style scoped>

@@ -21,7 +21,11 @@
     "welcome": "Chào mừng",
     "quickLinks": "Liên kết nhanh",
     "apply": "Áp dụng",
-    "clearFilters": "Xóa bộ lọc"
+    "clearFilters": "Xóa bộ lọc",
+    "tryAgain": "Thử lại",
+    "showing": "Hiển thị",
+    "of": "trong tổng số",
+    "found": "tìm thấy"
   },
   "navigation": {
     "home": "Trang chủ",
@@ -78,7 +82,31 @@
     "sku": "Mã sản phẩm",
     "relatedProducts": "Sản phẩm liên quan",
     "addedToCart": "Đã thêm vào giỏ hàng thành công",
-    "andUp": "trở lên"
+    "andUp": "trở lên",
+    "filters": "Bộ lọc",
+    "sortBy": "Sắp xếp theo",
+    "viewMode": "Chế độ xem",
+    "gridView": "Dạng lưới",
+    "listView": "Dạng danh sách",
+    "showingResults": "Hiển thị {start}-{end} trong tổng số {total} sản phẩm",
+    "productsFound": "Tìm thấy {count} sản phẩm",
+    "noProductsFound": "Không tìm thấy sản phẩm nào",
+    "tryAdjustingFilters": "Thử điều chỉnh bộ lọc hoặc từ khóa tìm kiếm",
+    "clearAllFilters": "Xóa tất cả bộ lọc",
+    "loading": "Đang tải...",
+    "featured": "Nổi bật",
+    "nameAsc": "Tên: A đến Z",
+    "nameDesc": "Tên: Z đến A",
+    "priceAsc": "Giá: Thấp đến cao",
+    "priceDesc": "Giá: Cao đến thấp",
+    "customerRating": "Đánh giá khách hàng",
+    "newestFirst": "Mới nhất trước",
+    "addToWishlist": "Thêm vào danh sách yêu thích",
+    "quickView": "Xem nhanh",
+    "available": "có sẵn",
+    "save": "Tiết kiệm",
+    "perPage": "Mỗi trang",
+    "discoverProducts": "Khám phá dòng sản phẩm chất lượng đa dạng của chúng tôi"
   },
   "cart": {
     "title": "Giỏ hàng",
@@ -346,6 +374,41 @@
       "primaryColor": "Màu viền chính",
       "secondaryColor": "Màu viền phụ",
       "mutedColor": "Màu viền mờ"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Đừng bỏ lỡ những ưu đãi tuyệt vời về thực phẩm",
+      "subtitle": "Đăng ký nhận bản tin hàng ngày",
+      "placeholder": "Địa chỉ email của bạn",
+      "buttonText": "Đăng ký",
+      "altText": "Sản phẩm tạp hóa"
+    },
+    "popularProducts": "Sản phẩm phổ biến",
+    "newProducts": "Sản phẩm mới",
+    "dealsOfTheDay": "Ưu đại trong ngày",
+    "allDeals": "Tất cả ưu đãi",
+    "deals": {
+      "off": "GIẢM",
+      "save": "Tiết kiệm"
+    },
+    "shopByCategories": "Mua sắm theo danh mục",
+    "allCategories": "Tất cả danh mục",
+    "categories": {
+      "all": "Tất cả",
+      "milksAndDairies": "Sữa & Sản phẩm từ sữa",
+      "coffeesAndTeas": "Cà phê & Trà",
+      "petFoods": "Thức ăn thú cưng",
+      "meats": "Thịt",
+      "vegetables": "Rau củ",
+      "fruits": "Trái cây"
+    },
+    "newsletter": {
+      "title": "Ở nhà & nhận nhu cầu hàng ngày từ cửa hàng của chúng tôi",
+      "subtitle": "Bắt đầu mua sắm hàng ngày với Nest Mart",
+      "emailPlaceholder": "Địa chỉ email của bạn",
+      "subscribe": "Đăng ký",
+      "deliveryPersonAlt": "Nhân viên giao hàng"
     }
   }
 }

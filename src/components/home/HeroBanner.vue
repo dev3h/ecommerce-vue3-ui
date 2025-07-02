@@ -34,7 +34,7 @@
         >
             <img
                 :src="heroImage"
-                alt="Grocery items"
+                :alt="altText"
                 class="w-64 h-48 lg:w-80 lg:h-60 xl:w-96 xl:h-72 object-cover rounded-lg opacity-90"
             />
         </div>
@@ -58,6 +58,7 @@ interface Props {
     placeholder?: string
     buttonText?: string
     heroImage?: string
+    altText?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -66,6 +67,7 @@ const props = withDefaults(defineProps<Props>(), {
     placeholder: 'Your email address',
     buttonText: 'Subscribe',
     heroImage: 'https://picsum.photos/400/300',
+    altText: 'Grocery items',
 })
 
 const emit = defineEmits<{

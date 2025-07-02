@@ -21,7 +21,11 @@
     "welcome": "Welcome",
     "quickLinks": "Quick Links",
     "apply": "Apply",
-    "clearFilters": "Clear Filters"
+    "clearFilters": "Clear Filters",
+    "tryAgain": "Try Again",
+    "showing": "Showing",
+    "of": "of",
+    "found": "found"
   },
   "navigation": {
     "home": "Home",
@@ -78,7 +82,31 @@
     "sku": "SKU",
     "relatedProducts": "Related Products",
     "addedToCart": "Added to cart successfully",
-    "andUp": "& up"
+    "andUp": "& up",
+    "filters": "Filters",
+    "sortBy": "Sort by",
+    "viewMode": "View Mode",
+    "gridView": "Grid View",
+    "listView": "List View",
+    "showingResults": "Showing {start}-{end} of {total} products",
+    "productsFound": "{count} products found",
+    "noProductsFound": "No products found",
+    "tryAdjustingFilters": "Try adjusting your filters or search terms",
+    "clearAllFilters": "Clear all filters",
+    "loading": "Loading...",
+    "featured": "Featured",
+    "nameAsc": "Name: A to Z",
+    "nameDesc": "Name: Z to A",
+    "priceAsc": "Price: Low to High",
+    "priceDesc": "Price: High to Low",
+    "customerRating": "Customer Rating",
+    "newestFirst": "Newest First",
+    "addToWishlist": "Add to wishlist",
+    "quickView": "Quick view",
+    "available": "available",
+    "save": "Save",
+    "perPage": "Per page",
+    "discoverProducts": "Discover our full range of quality products"
   },
   "cart": {
     "title": "Shopping Cart",
@@ -342,6 +370,41 @@
       "default": "Default",
       "light": "Light",
       "dark": "Dark"
+    }
+  },
+  "home": {
+    "hero": {
+      "title": "Don't miss amazing grocery deals",
+      "subtitle": "Sign up for the daily newsletter",
+      "placeholder": "Your email address",
+      "buttonText": "Subscribe",
+      "altText": "Grocery items"
+    },
+    "popularProducts": "Popular Products",
+    "newProducts": "New Products",
+    "dealsOfTheDay": "Deals Of The Day",
+    "allDeals": "All Deals",
+    "deals": {
+      "off": "OFF",
+      "save": "Save"
+    },
+    "shopByCategories": "Shop by Categories",
+    "allCategories": "All categories",
+    "categories": {
+      "all": "All",
+      "milksAndDairies": "Milks & Dairies",
+      "coffeesAndTeas": "Coffees & Teas",
+      "petFoods": "Pet Foods",
+      "meats": "Meats",
+      "vegetables": "Vegetables",
+      "fruits": "Fruits"
+    },
+    "newsletter": {
+      "title": "Stay home & get your daily needs from our shop",
+      "subtitle": "Start Your Daily Shopping with Nest Mart",
+      "emailPlaceholder": "Your email address",
+      "subscribe": "Subscribe",
+      "deliveryPersonAlt": "Delivery person"
     }
   }
 }

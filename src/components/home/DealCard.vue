@@ -11,7 +11,7 @@
             <span
                 class="absolute top-1 sm:top-2 right-1 sm:right-2 bg-red-500 text-white px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-medium rounded"
             >
-                {{ deal.discount }}% OFF
+                {{ deal.discount }}% {{ t('home.deals.off') }}
             </span>
         </div>
         <div class="p-2 sm:p-3 md:p-4">
@@ -30,7 +30,7 @@
                     </span>
                 </div>
                 <div class="text-xs sm:text-sm text-gray-500">
-                    Save ${{ (deal.originalPrice - deal.price).toFixed(2) }}
+                    {{ t('home.deals.save') }} ${{ (deal.originalPrice - deal.price).toFixed(2) }}
                 </div>
             </div>
         </div>
@@ -39,10 +39,13 @@
 
 <script setup lang="ts">
 import type { Deal } from '@/types/home'
+import { useAppI18n } from '@/composables/useI18n'
 
 interface Props {
     deal: Deal
 }
 
 defineProps<Props>()
+
+const { t } = useAppI18n()
 </script>
