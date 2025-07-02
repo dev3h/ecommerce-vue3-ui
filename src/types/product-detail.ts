@@ -72,6 +72,7 @@ export interface ProductReview {
 export interface RelatedProduct {
     id: string
     name: string
+    slug: string
     image: string
     price: number
     originalPrice?: number
@@ -79,4 +80,10 @@ export interface RelatedProduct {
     reviewCount: number
     badge?: string
     tag?: string
+    brand: string
+    category: string
+    description: string
+    inStock: boolean
+    quantity: number
+    sku: string
 }

@@ -59,9 +59,9 @@ export const roleGuard = (
 ) => {
     const requiredRoles = to.meta.roles
 
-    if (requiredRoles && requiredRoles.length > 0) {
+    if (requiredRoles && Array.isArray(requiredRoles) && requiredRoles.length > 0) {
         const userRoles = getUserRoles()
-        const hasRequiredRole = requiredRoles.some((role) => userRoles.includes(role))
+        const hasRequiredRole = requiredRoles.some((role: string) => userRoles.includes(role))
 
         if (!hasRequiredRole) {
             // Redirect to unauthorized page or home

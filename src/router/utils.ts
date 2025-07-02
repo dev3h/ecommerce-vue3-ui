@@ -76,7 +76,7 @@ export class RouteUtils {
      */
     getQuery(key: string): string | undefined {
         const query = this.router.currentRoute.value.query[key]
-        return Array.isArray(query) ? query[0] : query
+        return Array.isArray(query) ? (query[0] ?? undefined) : (query ?? undefined)
     }
 
     /**

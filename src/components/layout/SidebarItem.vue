@@ -10,7 +10,7 @@
         <component :is="iconComponent" class="h-4 w-4" />
         <span class="flex-1">{{ label }}</span>
         <span
-            v-if="badge && badge > 0"
+            v-if="badge && Number(badge) > 0"
             class="ml-auto rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-primary-foreground"
         >
             {{ badge }}
