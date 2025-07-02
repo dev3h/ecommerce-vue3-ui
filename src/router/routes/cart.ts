@@ -5,7 +5,7 @@ export const cartRoutes: RouteRecordRaw[] = [
     {
         path: '/cart',
         name: 'cart',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/CartView.vue'),
         meta: {
             title: 'Shopping Cart',
             requiresAuth: false,
@@ -14,7 +14,7 @@ export const cartRoutes: RouteRecordRaw[] = [
     {
         path: '/checkout',
         name: 'checkout',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/CheckoutView.vue'),
         meta: {
             title: 'Checkout',
             requiresAuth: true,
@@ -23,7 +23,7 @@ export const cartRoutes: RouteRecordRaw[] = [
     {
         path: '/checkout/success',
         name: 'checkout-success',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/CheckoutSuccessView.vue'),
         meta: {
             title: 'Order Confirmed',
             requiresAuth: true,

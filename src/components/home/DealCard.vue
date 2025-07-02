@@ -1,6 +1,7 @@
 <template>
     <div
-        class="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+        class="bg-card rounded-lg border border-border overflow-hidden hover:shadow-md transition-shadow cursor-pointer"
+        @click="goToProduct"
     >
         <div class="relative">
             <img
@@ -16,7 +17,7 @@
         </div>
         <div class="p-2 sm:p-3 md:p-4">
             <h3
-                class="font-medium text-gray-800 mb-1 sm:mb-2 line-clamp-2 text-sm sm:text-base min-h-[2.5rem] sm:min-h-[3rem]"
+                class="font-medium text-foreground mb-1 sm:mb-2 line-clamp-2 text-sm sm:text-base min-h-[2.5rem] sm:min-h-[3rem]"
             >
                 {{ deal.name }}
             </h3>
@@ -25,11 +26,11 @@
                     <span class="text-green-600 font-bold text-sm sm:text-base lg:text-lg">
                         ${{ deal.price }}
                     </span>
-                    <span class="text-gray-400 line-through text-xs sm:text-sm">
+                    <span class="text-muted-foreground line-through text-xs sm:text-sm">
                         ${{ deal.originalPrice }}
                     </span>
                 </div>
-                <div class="text-xs sm:text-sm text-gray-500">
+                <div class="text-xs sm:text-sm text-muted-foreground">
                     {{ t('home.deals.save') }} ${{ (deal.originalPrice - deal.price).toFixed(2) }}
                 </div>
             </div>
@@ -38,6 +39,7 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import type { Deal } from '@/types/home'
 import { useAppI18n } from '@/composables/useI18n'
 
@@ -45,7 +47,11 @@ interface Props {
     deal: Deal
 }
 
-defineProps<Props>()
-
+const props = defineProps<Props>()
 const { t } = useAppI18n()
+const router = useRouter()
+
+const goToProduct = () => {
+    router.push(`/products/${props.deal.id}`)
+}
 </script>

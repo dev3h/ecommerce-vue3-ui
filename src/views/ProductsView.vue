@@ -265,6 +265,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { useProducts } from '@/composables/useProducts'
+import { useCart } from '@/composables/useCart'
 import { useAppI18n } from '@/composables/useI18n'
 import type { ProductListItem } from '@/types/products'
 
@@ -304,14 +305,15 @@ const {
 } = useProducts()
 
 const { t } = useAppI18n()
+const { addToCart } = useCart()
 
 // Local state
 const sidebarOpen = ref(false)
 
 // Methods
 const handleAddToCart = (product: ProductListItem) => {
-    console.log('Add to cart:', product)
-    // Implement add to cart functionality
+    addToCart(product, 1)
+    console.log('Added to cart:', product)
 }
 
 const handleAddToWishlist = (product: ProductListItem) => {

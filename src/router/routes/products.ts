@@ -14,7 +14,7 @@ export const productRoutes: RouteRecordRaw[] = [
     {
         path: '/products/:id',
         name: 'product-detail',
-        component: () => import('@/views/HomeView.vue'), // TODO: Create ProductDetailView
+        component: () => import('@/views/ProductDetailView.vue'),
         props: true,
         meta: {
             title: 'Product Details',
