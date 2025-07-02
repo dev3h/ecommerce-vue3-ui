@@ -27,7 +27,19 @@
     "of": "of",
     "found": "found",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "orderDetails": "Order Details",
+    "orderNumber": "Order Number",
+    "orderDate": "Order Date",
+    "estimatedDelivery": "Estimated Delivery",
+    "status": "Status",
+    "confirmed": "Confirmed",
+    "whatNext": "What's Next?",
+    "emailConfirmation": "You'll receive an email confirmation shortly",
+    "preparingOrder": "We're preparing your order for shipment",
+    "shippingNotification": "You'll get a tracking number when it ships",
+    "continueShopping": "Continue Shopping",
+    "backToHome": "Back to Home"
   },
   "navigation": {
     "home": "Home",
@@ -243,11 +255,14 @@
       "freeShip": "Free shipping on orders over $75"
     },
     "proceedToPayment": "Proceed to Payment",
-    "orderPlaced": "Order placed successfully!"
+    "orderPlaced": "Order placed successfully!",
+    "orderSuccess": "Order Successful!",
+    "orderSuccessMessage": "Thank you for your purchase! Your order has been confirmed and you will receive an email confirmation shortly."
   },
   "validation": {
     "required": "This field is required",
     "invalidEmail": "Please enter a valid email address",
+    "invalidPhone": "Please enter a valid phone number",
     "invalidCard": "Please enter a valid card number",
     "invalidExpiry": "Please enter a valid expiry date (MM/YY)",
     "invalidCvc": "Please enter a valid CVC code"

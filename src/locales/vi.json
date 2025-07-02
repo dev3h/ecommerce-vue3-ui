@@ -27,7 +27,19 @@
     "of": "trong tổng số",
     "found": "tìm thấy",
     "yes": "Có",
-    "no": "Không"
+    "no": "Không",
+    "orderDetails": "Chi tiết đơn hàng",
+    "orderNumber": "Số đơn hàng",
+    "orderDate": "Ngày đặt hàng",
+    "estimatedDelivery": "Dự kiến giao hàng",
+    "status": "Trạng thái",
+    "confirmed": "Đã xác nhận",
+    "whatNext": "Tiếp theo sẽ như thế nào?",
+    "emailConfirmation": "Bạn sẽ nhận được email xác nhận trong thời gian sớm nhất",
+    "preparingOrder": "Chúng tôi đang chuẩn bị đơn hàng để giao cho bạn",
+    "shippingNotification": "Bạn sẽ nhận được mã tracking khi đơn hàng được giao",
+    "continueShopping": "Tiếp tục mua sắm",
+    "backToHome": "Về trang chủ"
   },
   "navigation": {
     "home": "Trang chủ",
@@ -243,11 +255,14 @@
       "freeShip": "Miễn phí vận chuyển cho đơn hàng trên $75"
     },
     "proceedToPayment": "Tiến hành thanh toán",
-    "orderPlaced": "Đặt hàng thành công!"
+    "orderPlaced": "Đặt hàng thành công!",
+    "orderSuccess": "Đặt hàng thành công!",
+    "orderSuccessMessage": "Cảm ơn bạn đã mua hàng! Đơn hàng của bạn đã được xác nhận và bạn sẽ nhận được email xác nhận trong thời gian sớm nhất."
   },
   "validation": {
     "required": "Trường này là bắt buộc",
     "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ",
+    "invalidPhone": "Vui lòng nhập số điện thoại hợp lệ",
     "invalidCard": "Vui lòng nhập số thẻ hợp lệ",
     "invalidExpiry": "Vui lòng nhập ngày hết hạn hợp lệ (MM/YY)",
     "invalidCvc": "Vui lòng nhập mã CVC hợp lệ"
