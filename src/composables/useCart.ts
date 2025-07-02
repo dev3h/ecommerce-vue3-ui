@@ -75,7 +75,9 @@ export function useCart() {
         saveCartToStorage()
 
         // Show success notification
+        console.log('useCart: Showing success toast for:', product.name)
         success(t('cart.addedToCartSuccess'))
+        console.log('useCart: Toast should be visible now')
     }
 
     const removeFromCart = (productId: string) => {
@@ -87,14 +89,21 @@ export function useCart() {
     }
 
     const updateQuantity = (productId: string, quantity: number) => {
+        console.log('useCart: Updating quantity for product', productId, 'to', quantity)
         const item = cartItems.value.find((item) => item.id === productId)
+        console.log('useCart: Found item:', item)
         if (item) {
             if (quantity <= 0) {
+                console.log('useCart: Quantity <= 0, removing from cart')
                 removeFromCart(productId)
             } else {
+                console.log('useCart: Setting quantity from', item.quantity, 'to', quantity)
                 item.quantity = quantity
                 saveCartToStorage()
+                console.log('useCart: Cart items after update:', cartItems.value)
             }
+        } else {
+            console.log('useCart: Item not found in cart')
         }
     }
 
@@ -110,8 +119,17 @@ export function useCart() {
 
     const loadCartFromStorage = () => {
         const savedCart = localStorage.getItem('cart')
+        console.log('useCart: Loading cart from storage:', savedCart)
         if (savedCart) {
-            cartItems.value = JSON.parse(savedCart)
+            try {
+                const parsedCart = JSON.parse(savedCart)
+                console.log('useCart: Parsed cart data:', parsedCart)
+                cartItems.value = parsedCart
+                console.log('useCart: Cart items after loading:', cartItems.value)
+            } catch (error) {
+                console.error('useCart: Error parsing cart from localStorage:', error)
+                cartItems.value = []
+            }
         }
     }
 

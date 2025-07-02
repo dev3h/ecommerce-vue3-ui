@@ -28,12 +28,14 @@
                 <div class="w-full flex-1 md:w-auto md:flex-none">
                     <!-- Search Bar -->
                     <div class="relative hidden md:block">
-                        <Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                        <input
+                        <Search
+                            class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground/70"
+                        />
+                        <Input
                             v-model="searchQuery"
                             type="search"
                             :placeholder="t('common.search')"
-                            class="h-9 w-[300px] rounded-md border border-input bg-background px-8 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            class="w-[300px] pl-8"
                             @keyup.enter="handleSearch"
                         />
                     </div>
@@ -66,35 +68,28 @@
                     <LanguageSwitcher />
 
                     <!-- Theme Toggle -->
-                    <button
-                        @click="toggleTheme"
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9"
-                    >
+                    <Button @click="toggleTheme" variant="ghost" size="sm" class="h-9 w-9">
                         <Sun v-if="isDark" class="h-4 w-4" />
                         <Moon v-else class="h-4 w-4" />
                         <span class="sr-only">Toggle theme</span>
-                    </button>
+                    </Button>
 
                     <!-- Cart -->
-                    <RouterLink
-                        to="/cart"
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9"
-                    >
-                        <CartBadge :count="cartItemsCount">
-                            <ShoppingCart class="h-4 w-4" />
-                        </CartBadge>
-                        <span class="sr-only">{{ t('navigation.cart') }}</span>
-                    </RouterLink>
+                    <Button asChild variant="ghost" size="sm" class="h-9 w-9">
+                        <RouterLink to="/cart">
+                            <CartBadge :count="cartItemsCount">
+                                <ShoppingCart class="h-4 w-4" />
+                            </CartBadge>
+                            <span class="sr-only">{{ t('navigation.cart') }}</span>
+                        </RouterLink>
+                    </Button>
 
                     <!-- User Menu -->
                     <div class="relative">
-                        <button
-                            @click="toggleUserMenu"
-                            class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9"
-                        >
+                        <Button @click="toggleUserMenu" variant="ghost" size="sm" class="h-9 w-9">
                             <User class="h-4 w-4" />
                             <span class="sr-only">User menu</span>
-                        </button>
+                        </Button>
 
                         <!-- User Dropdown -->
                         <Transition
@@ -107,20 +102,20 @@
                         >
                             <div
                                 v-show="showUserMenu"
-                                class="absolute right-0 z-50 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                class="absolute right-0 z-50 mt-2 w-48 origin-top-right rounded-md bg-popover shadow-lg ring-1 ring-border focus:outline-none"
                             >
                                 <div class="py-1">
                                     <template v-if="isAuthenticated">
                                         <RouterLink
                                             to="/account"
-                                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                            class="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground"
                                             @click="closeUserMenu"
                                         >
                                             {{ t('navigation.account') }}
                                         </RouterLink>
                                         <RouterLink
                                             to="/account/orders"
-                                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                            class="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground"
                                             @click="closeUserMenu"
                                         >
                                             {{ t('account.orders') }}
@@ -128,29 +123,31 @@
                                         <RouterLink
                                             v-if="isAdmin"
                                             to="/admin"
-                                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 border-t border-gray-200 dark:border-gray-600"
+                                            class="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground border-t border-border"
                                             @click="closeUserMenu"
                                         >
                                             {{ t('admin.title') }}
                                         </RouterLink>
-                                        <button
+                                        <Button
                                             @click="handleLogout"
-                                            class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                            variant="ghost"
+                                            size="sm"
+                                            class="w-full justify-start"
                                         >
                                             {{ t('navigation.logout') }}
-                                        </button>
+                                        </Button>
                                     </template>
                                     <template v-else>
                                         <RouterLink
                                             to="/login"
-                                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                            class="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground"
                                             @click="closeUserMenu"
                                         >
                                             {{ t('navigation.login') }}
                                         </RouterLink>
                                         <RouterLink
                                             to="/register"
-                                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                            class="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground"
                                             @click="closeUserMenu"
                                         >
                                             {{ t('navigation.register') }}
@@ -162,14 +159,16 @@
                     </div>
 
                     <!-- Mobile Menu Toggle -->
-                    <button
+                    <Button
                         @click="toggleMobileMenu"
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9 md:hidden"
+                        variant="ghost"
+                        size="sm"
+                        class="h-9 w-9 md:hidden"
                     >
                         <Menu v-if="!showMobileMenu" class="h-4 w-4" />
                         <X v-else class="h-4 w-4" />
                         <span class="sr-only">Toggle menu</span>
-                    </button>
+                    </Button>
                 </div>
             </div>
         </div>
@@ -187,12 +186,14 @@
                 <div class="container mx-auto py-4 space-y-4 px-4 sm:px-6 lg:px-8">
                     <!-- Mobile Search -->
                     <div class="relative">
-                        <Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                        <input
+                        <Search
+                            class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground/70"
+                        />
+                        <Input
                             v-model="searchQuery"
                             type="search"
                             :placeholder="t('common.search')"
-                            class="h-9 w-full rounded-md border border-input bg-background px-8 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                            class="pl-8"
                             @keyup.enter="handleSearch"
                         />
                     </div>
@@ -227,6 +228,8 @@ import { useAppI18n } from '@/composables/useI18n'
 import { useCart } from '@/composables/useCart'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import CartBadge from '@/components/CartBadge.vue'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { Search, ShoppingCart, User, Menu, X, Sun, Moon } from 'lucide-vue-next'
 
 const route = useRoute()

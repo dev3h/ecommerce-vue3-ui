@@ -23,7 +23,7 @@
             </h3>
             <div class="flex items-center justify-between">
                 <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-                    <span class="text-green-600 font-bold text-sm sm:text-base lg:text-lg">
+                    <span class="text-primary font-bold text-sm sm:text-base lg:text-lg">
                         ${{ deal.price }}
                     </span>
                     <span class="text-muted-foreground line-through text-xs sm:text-sm">

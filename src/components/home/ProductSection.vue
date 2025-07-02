@@ -4,7 +4,7 @@
         <div class="flex flex-col gap-4 mb-6">
             <!-- Title -->
             <div class="flex items-center justify-between">
-                <h2 class="text-xl md:text-2xl font-bold text-gray-800">{{ title }}</h2>
+                <h2 class="text-xl md:text-2xl font-bold text-foreground">{{ title }}</h2>
                 <!-- Desktop tabs - hidden on mobile -->
                 <div
                     v-if="showTabs && tabs && tabs.length > 0"
@@ -15,10 +15,10 @@
                         :key="tab.key"
                         @click="$emit('tab-change', tab.key)"
                         :class="[
-                            'px-3 xl:px-4 py-2 font-medium text-sm xl:text-base transition-all duration-200 relative',
+                            'px-3 xl:px-4 py-2 font-medium text-sm xl:text-base transition-all duration-200 relative rounded-lg',
                             activeTab === tab.key
-                                ? 'text-green-600 tab-active'
-                                : 'text-gray-500 hover:text-green-600 hover:bg-green-50 rounded-lg',
+                                ? 'text-primary bg-primary/10 border border-primary/20'
+                                : 'text-muted-foreground hover:text-foreground hover:bg-accent',
                         ]"
                     >
                         {{ tab.label }}
@@ -34,10 +34,10 @@
                         :key="tab.key"
                         @click="$emit('tab-change', tab.key)"
                         :class="[
-                            'flex-shrink-0 px-3 sm:px-4 py-2 font-medium text-sm transition-colors whitespace-nowrap rounded-full snap-start',
+                            'flex-shrink-0 px-3 sm:px-4 py-2 font-medium text-sm transition-colors whitespace-nowrap rounded-full snap-start border',
                             activeTab === tab.key
-                                ? 'bg-green-500 text-white shadow-md'
-                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-800',
+                                ? 'bg-primary text-primary-foreground shadow-md border-primary'
+                                : 'bg-background text-muted-foreground hover:bg-accent hover:text-foreground border-border',
                         ]"
                     >
                         {{ tab.label }}
@@ -48,7 +48,7 @@
 
         <!-- Loading State -->
         <div v-if="loading" class="flex justify-center items-center h-32">
-            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500"></div>
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
         </div>
 
         <!-- Products Grid -->

@@ -1,6 +1,6 @@
 <template>
     <div
-        class="text-center p-2 sm:p-3 md:p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-shadow cursor-pointer"
+        class="text-center p-2 sm:p-3 md:p-4 bg-card rounded-lg border border-border hover:shadow-md transition-shadow cursor-pointer"
         @click="$emit('category-click', category)"
     >
         <div
@@ -8,7 +8,7 @@
         >
             <span class="text-lg sm:text-xl md:text-2xl">{{ category.icon }}</span>
         </div>
-        <h3 class="text-xs sm:text-sm font-medium text-gray-800 leading-tight">
+        <h3 class="text-xs sm:text-sm font-medium text-foreground leading-tight">
             {{ category.name }}
         </h3>
     </div>
@@ -23,7 +23,7 @@ interface Props {
 
 defineProps<Props>()
 
-const emit = defineEmits<{
+defineEmits<{
     'category-click': [category: Category]
 }>()
 </script>

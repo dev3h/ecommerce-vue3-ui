@@ -1,180 +1,184 @@
 <template>
-    <div class="bg-card rounded-lg border border-border p-4 sm:p-6">
-        <h2 class="text-lg font-medium text-foreground mb-4">
-            {{ t('checkout.shippingAddress') }}
-        </h2>
+    <Card class="p-4 sm:p-6">
+        <CardHeader class="p-0 mb-4">
+            <CardTitle class="text-lg font-medium">
+                {{ t('checkout.shippingAddress') }}
+            </CardTitle>
+        </CardHeader>
 
-        <form @submit.prevent="handleSubmit" class="space-y-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                    <label for="firstName" class="block text-sm font-medium text-foreground mb-1">
-                        {{ t('checkout.firstName') }}<span class="text-red-500 ml-1">*</span>
-                    </label>
-                    <input
-                        id="firstName"
-                        v-model="shippingData.firstName"
-                        type="text"
-                        required
-                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                        :class="{ 'border-red-500': errors.firstName }"
-                    />
-                    <div v-if="errors.firstName" class="mt-1 text-sm text-red-500">
-                        {{ errors.firstName }}
+        <CardContent class="p-0">
+            <form @submit.prevent="handleSubmit" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <Label for="firstName">
+                            {{ t('checkout.firstName') }}<span class="text-red-500 ml-1">*</span>
+                        </Label>
+                        <Input
+                            id="firstName"
+                            v-model="shippingData.firstName"
+                            type="text"
+                            required
+                            :class="{ 'border-red-500': errors.firstName }"
+                        />
+                        <div v-if="errors.firstName" class="mt-1 text-sm text-red-500">
+                            {{ errors.firstName }}
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <Label for="lastName">
+                            {{ t('checkout.lastName') }}<span class="text-red-500 ml-1">*</span>
+                        </Label>
+                        <Input
+                            id="lastName"
+                            v-model="shippingData.lastName"
+                            type="text"
+                            required
+                            :class="{ 'border-red-500': errors.lastName }"
+                        />
+                        <div v-if="errors.lastName" class="mt-1 text-sm text-red-500">
+                            {{ errors.lastName }}
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <label for="lastName" class="block text-sm font-medium text-foreground mb-1">
-                        {{ t('checkout.lastName') }}<span class="text-red-500 ml-1">*</span>
-                    </label>
-                    <input
-                        id="lastName"
-                        v-model="shippingData.lastName"
-                        type="text"
+
+                <div class="space-y-2">
+                    <Label for="email">
+                        {{ t('checkout.email') }}<span class="text-red-500 ml-1">*</span>
+                    </Label>
+                    <Input
+                        id="email"
+                        v-model="shippingData.email"
+                        type="email"
                         required
-                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                        :class="{ 'border-red-500': errors.lastName }"
+                        :class="{ 'border-red-500': errors.email }"
                     />
-                    <div v-if="errors.lastName" class="mt-1 text-sm text-red-500">
-                        {{ errors.lastName }}
+                    <div v-if="errors.email" class="mt-1 text-sm text-red-500">
+                        {{ errors.email }}
                     </div>
                 </div>
-            </div>
 
-            <div>
-                <label for="email" class="block text-sm font-medium text-foreground mb-1">
-                    {{ t('checkout.email') }}<span class="text-red-500 ml-1">*</span>
-                </label>
-                <input
-                    id="email"
-                    v-model="shippingData.email"
-                    type="email"
-                    required
-                    class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                    :class="{ 'border-red-500': errors.email }"
-                />
-                <div v-if="errors.email" class="mt-1 text-sm text-red-500">
-                    {{ errors.email }}
-                </div>
-            </div>
-
-            <div>
-                <label for="phone" class="block text-sm font-medium text-foreground mb-1">
-                    {{ t('checkout.phone') }}<span class="text-red-500 ml-1">*</span>
-                </label>
-                <input
-                    id="phone"
-                    v-model="shippingData.phone"
-                    type="tel"
-                    required
-                    class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                    :class="{ 'border-red-500': errors.phone }"
-                />
-                <div v-if="errors.phone" class="mt-1 text-sm text-red-500">
-                    {{ errors.phone }}
-                </div>
-            </div>
-
-            <div>
-                <label for="address" class="block text-sm font-medium text-foreground mb-1">
-                    {{ t('checkout.address') }}<span class="text-red-500 ml-1">*</span>
-                </label>
-                <input
-                    id="address"
-                    v-model="shippingData.address"
-                    type="text"
-                    required
-                    class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                    :class="{ 'border-red-500': errors.address }"
-                />
-                <div v-if="errors.address" class="mt-1 text-sm text-red-500">
-                    {{ errors.address }}
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <div>
-                    <label for="city" class="block text-sm font-medium text-foreground mb-1">
-                        {{ t('checkout.city') }}<span class="text-red-500 ml-1">*</span>
-                    </label>
-                    <input
-                        id="city"
-                        v-model="shippingData.city"
-                        type="text"
+                <div class="space-y-2">
+                    <Label for="phone">
+                        {{ t('checkout.phone') }}<span class="text-red-500 ml-1">*</span>
+                    </Label>
+                    <Input
+                        id="phone"
+                        v-model="shippingData.phone"
+                        type="tel"
                         required
-                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                        :class="{ 'border-red-500': errors.city }"
+                        :class="{ 'border-red-500': errors.phone }"
                     />
-                    <div v-if="errors.city" class="mt-1 text-sm text-red-500">
-                        {{ errors.city }}
+                    <div v-if="errors.phone" class="mt-1 text-sm text-red-500">
+                        {{ errors.phone }}
                     </div>
                 </div>
-                <div>
-                    <label for="state" class="block text-sm font-medium text-foreground mb-1">
-                        {{ t('checkout.state') }}
-                    </label>
-                    <input
-                        id="state"
-                        v-model="shippingData.state"
-                        type="text"
-                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                    />
-                </div>
-                <div>
-                    <label for="zipCode" class="block text-sm font-medium text-foreground mb-1">
-                        {{ t('checkout.zipCode') }}<span class="text-red-500 ml-1">*</span>
-                    </label>
-                    <input
-                        id="zipCode"
-                        v-model="shippingData.zipCode"
+
+                <div class="space-y-2">
+                    <Label for="address">
+                        {{ t('checkout.address') }}<span class="text-red-500 ml-1">*</span>
+                    </Label>
+                    <Input
+                        id="address"
+                        v-model="shippingData.address"
                         type="text"
                         required
-                        class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                        :class="{ 'border-red-500': errors.zipCode }"
+                        :class="{ 'border-red-500': errors.address }"
                     />
-                    <div v-if="errors.zipCode" class="mt-1 text-sm text-red-500">
-                        {{ errors.zipCode }}
+                    <div v-if="errors.address" class="mt-1 text-sm text-red-500">
+                        {{ errors.address }}
                     </div>
                 </div>
-            </div>
 
-            <div>
-                <label for="country" class="block text-sm font-medium text-foreground mb-1">
-                    {{ t('checkout.country') }}<span class="text-red-500 ml-1">*</span>
-                </label>
-                <select
-                    id="country"
-                    v-model="shippingData.country"
-                    required
-                    class="w-full px-3 py-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                    :class="{ 'border-red-500': errors.country }"
-                >
-                    <option value="United States">{{ t('checkout.countries.us') }}</option>
-                    <option value="Vietnam">{{ t('checkout.countries.vn') }}</option>
-                    <option value="Canada">{{ t('checkout.countries.ca') }}</option>
-                    <option value="United Kingdom">{{ t('checkout.countries.uk') }}</option>
-                </select>
-                <div v-if="errors.country" class="mt-1 text-sm text-red-500">
-                    {{ errors.country }}
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="space-y-2">
+                        <Label for="city">
+                            {{ t('checkout.city') }}<span class="text-red-500 ml-1">*</span>
+                        </Label>
+                        <Input
+                            id="city"
+                            v-model="shippingData.city"
+                            type="text"
+                            required
+                            :class="{ 'border-red-500': errors.city }"
+                        />
+                        <div v-if="errors.city" class="mt-1 text-sm text-red-500">
+                            {{ errors.city }}
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <Label for="state">
+                            {{ t('checkout.state') }}
+                        </Label>
+                        <Input id="state" v-model="shippingData.state" type="text" />
+                    </div>
+                    <div class="space-y-2">
+                        <Label for="zipCode">
+                            {{ t('checkout.zipCode') }}<span class="text-red-500 ml-1">*</span>
+                        </Label>
+                        <Input
+                            id="zipCode"
+                            v-model="shippingData.zipCode"
+                            type="text"
+                            required
+                            :class="{ 'border-red-500': errors.zipCode }"
+                        />
+                        <div v-if="errors.zipCode" class="mt-1 text-sm text-red-500">
+                            {{ errors.zipCode }}
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="flex justify-end pt-4">
-                <button
-                    type="submit"
-                    :disabled="!isValid"
-                    class="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                >
-                    {{ t('checkout.continueToPayment') }}
-                </button>
-            </div>
-        </form>
-    </div>
+                <div class="space-y-2">
+                    <Label for="country">
+                        {{ t('checkout.country') }}<span class="text-red-500 ml-1">*</span>
+                    </Label>
+                    <Select v-model="shippingData.country" required>
+                        <SelectTrigger :class="{ 'border-red-500': errors.country }">
+                            <SelectValue placeholder="Select a country" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="United States">{{
+                                t('checkout.countries.us')
+                            }}</SelectItem>
+                            <SelectItem value="Vietnam">{{
+                                t('checkout.countries.vn')
+                            }}</SelectItem>
+                            <SelectItem value="Canada">{{ t('checkout.countries.ca') }}</SelectItem>
+                            <SelectItem value="United Kingdom">{{
+                                t('checkout.countries.uk')
+                            }}</SelectItem>
+                        </SelectContent>
+                    </Select>
+                    <div v-if="errors.country" class="mt-1 text-sm text-red-500">
+                        {{ errors.country }}
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-4">
+                    <Button type="submit" :disabled="!isValid" class="min-w-[200px]">
+                        {{ t('checkout.continueToPayment') }}
+                    </Button>
+                </div>
+            </form>
+        </CardContent>
+    </Card>
 </template>
 
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue'
 import { useAppI18n } from '@/composables/useI18n'
 import type { ShippingAddress } from '@/types/cart'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select'
 
 interface Props {
     modelValue: ShippingAddress

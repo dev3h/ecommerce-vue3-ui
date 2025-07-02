@@ -5,7 +5,7 @@
         </span>
         <span
             v-if="originalPrice && originalPrice !== price"
-            class="text-sm text-gray-500 line-through ml-2"
+            class="text-sm text-muted-foreground line-through ml-2"
         >
             {{ formatCurrency(originalPrice) }}
         </span>

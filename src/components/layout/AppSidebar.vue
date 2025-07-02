@@ -24,7 +24,7 @@
                 </h2>
                 <div v-if="loading" class="px-4">
                     <div class="animate-pulse space-y-2">
-                        <div v-for="i in 6" :key="i" class="h-8 bg-gray-200 rounded"></div>
+                        <div v-for="i in 6" :key="i" class="h-8 bg-muted rounded"></div>
                     </div>
                 </div>
                 <div v-else class="space-y-1">
@@ -69,35 +69,26 @@
                 </h2>
                 <div class="px-4 space-y-3">
                     <div class="space-y-2">
-                        <label for="min-price" class="text-sm font-medium">{{
-                            t('products.minPrice')
-                        }}</label>
-                        <input
+                        <Label for="min-price">{{ t('products.minPrice') }}</Label>
+                        <Input
                             id="min-price"
                             v-model.number="priceFilter.min"
                             type="number"
                             :placeholder="formatCurrency(0)"
-                            class="w-full h-8 rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         />
                     </div>
                     <div class="space-y-2">
-                        <label for="max-price" class="text-sm font-medium">{{
-                            t('products.maxPrice')
-                        }}</label>
-                        <input
+                        <Label for="max-price">{{ t('products.maxPrice') }}</Label>
+                        <Input
                             id="max-price"
                             v-model.number="priceFilter.max"
                             type="number"
                             :placeholder="formatCurrency(1000)"
-                            class="w-full h-8 rounded-md border border-input bg-background px-3 py-1 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                         />
                     </div>
-                    <button
-                        @click="applyPriceFilter"
-                        class="w-full h-8 px-4 py-1 bg-primary text-primary-foreground rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90"
-                    >
+                    <Button @click="applyPriceFilter" class="w-full">
                         {{ t('common.apply') }}
-                    </button>
+                    </Button>
                 </div>
             </div>
 
@@ -108,24 +99,34 @@
                 </h2>
                 <div v-if="loading" class="px-4">
                     <div class="animate-pulse space-y-2">
-                        <div v-for="i in 5" :key="i" class="h-6 bg-gray-200 rounded"></div>
+                        <div v-for="i in 5" :key="i" class="h-6 bg-muted rounded"></div>
                     </div>
                 </div>
                 <div v-else class="px-4 space-y-2">
-                    <label
+                    <div
                         v-for="brand in brands"
                         :key="brand.id"
-                        class="flex items-center space-x-2 text-sm cursor-pointer"
+                        class="flex items-center space-x-2"
                     >
-                        <input
-                            v-model="selectedBrands"
-                            :value="brand.id"
-                            type="checkbox"
-                            class="rounded border-border text-primary focus:ring-primary focus:ring-offset-0"
+                        <Checkbox
+                            :id="`brand-${brand.id}`"
+                            :checked="selectedBrands.includes(brand.id)"
+                            @update:checked="
+                                (checked: boolean) => {
+                                    if (checked) {
+                                        selectedBrands.push(brand.id)
+                                    } else {
+                                        const index = selectedBrands.indexOf(brand.id)
+                                        if (index > -1) selectedBrands.splice(index, 1)
+                                    }
+                                }
+                            "
                         />
-                        <span>{{ brand.name }}</span>
-                        <span class="text-muted-foreground">({{ brand.count }})</span>
-                    </label>
+                        <Label :for="`brand-${brand.id}`" class="text-sm cursor-pointer flex-1">
+                            {{ brand.name }}
+                            <span class="text-muted-foreground">({{ brand.count }})</span>
+                        </Label>
+                    </div>
                 </div>
             </div>
 
@@ -134,45 +135,48 @@
                 <h2 class="mb-2 px-4 text-lg font-semibold tracking-tight">
                     {{ t('products.rating') }}
                 </h2>
-                <div class="px-4 space-y-2">
-                    <label
-                        v-for="rating in [5, 4, 3, 2, 1]"
-                        :key="rating"
-                        class="flex items-center space-x-2 text-sm cursor-pointer"
+                <div class="px-4">
+                    <RadioGroup
+                        :model-value="selectedRating?.toString()"
+                        @update:model-value="
+                            (value: string | null) =>
+                                (selectedRating = value ? Number(value) : null)
+                        "
+                        class="space-y-2"
                     >
-                        <input
-                            v-model="selectedRating"
-                            :value="rating"
-                            type="radio"
-                            name="rating"
-                            class="text-primary focus:ring-primary focus:ring-offset-0"
-                        />
-                        <div class="flex items-center space-x-1">
-                            <div class="flex">
-                                <Star
-                                    v-for="i in 5"
-                                    :key="i"
-                                    class="w-3 h-3"
-                                    :class="{
-                                        'text-yellow-400 fill-yellow-400': i <= rating,
-                                        'text-gray-300': i > rating,
-                                    }"
-                                />
-                            </div>
-                            <span>{{ t('products.andUp') }}</span>
+                        <div
+                            v-for="rating in [5, 4, 3, 2, 1]"
+                            :key="rating"
+                            class="flex items-center space-x-2"
+                        >
+                            <RadioGroupItem :id="`rating-${rating}`" :value="rating.toString()" />
+                            <Label
+                                :for="`rating-${rating}`"
+                                class="text-sm cursor-pointer flex items-center space-x-1"
+                            >
+                                <div class="flex">
+                                    <Star
+                                        v-for="i in 5"
+                                        :key="i"
+                                        class="w-3 h-3"
+                                        :class="{
+                                            'text-yellow-400 fill-yellow-400': i <= rating,
+                                            'text-muted-foreground': i > rating,
+                                        }"
+                                    />
+                                </div>
+                                <span>{{ t('products.andUp') }}</span>
+                            </Label>
                         </div>
-                    </label>
+                    </RadioGroup>
                 </div>
             </div>
 
             <!-- Clear Filters -->
             <div class="px-4 mb-4">
-                <button
-                    @click="clearFilters"
-                    class="w-full h-8 px-4 py-1 border border-input bg-background rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground"
-                >
+                <Button @click="clearFilters" variant="outline" class="w-full">
                     {{ t('common.clearFilters') }}
-                </button>
+                </Button>
             </div>
         </div>
     </aside>
@@ -184,6 +188,11 @@ import { useRouter, useRoute } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import { productsService } from '@/services/products.service'
 import SidebarItem from './SidebarItem.vue'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Checkbox } from '@/components/ui/checkbox'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Star } from 'lucide-vue-next'
 import type { ProductCategory, ProductBrand } from '@/types/products'
 
@@ -227,8 +236,8 @@ const sidebarHeight = computed(() => {
 
 // State
 const priceFilter = ref({
-    min: null as number | null,
-    max: null as number | null,
+    min: undefined as number | undefined,
+    max: undefined as number | undefined,
 })
 
 const selectedBrands = ref<string[]>([])
@@ -284,8 +293,8 @@ const applyPriceFilter = () => {
 }
 
 const clearFilters = () => {
-    priceFilter.value.min = null
-    priceFilter.value.max = null
+    priceFilter.value.min = undefined
+    priceFilter.value.max = undefined
     selectedBrands.value = []
     selectedRating.value = null
 
