@@ -5,7 +5,7 @@
         <div class="flex flex-col sm:flex-row gap-4">
             <!-- Product Image -->
             <div class="relative w-full sm:w-48 md:w-56 flex-shrink-0">
-                <router-link :to="`/products/${product.slug}`" class="block">
+                <router-link :to="`/products/${product.id}`" class="block">
                     <img
                         :src="product.image"
                         :alt="product.name"
@@ -39,7 +39,7 @@
                     <p class="text-sm text-muted-foreground font-medium">{{ product.brand }}</p>
 
                     <!-- Product Name -->
-                    <router-link :to="`/products/${product.slug}`">
+                    <router-link :to="`/products/${product.id}`">
                         <h3
                             class="font-semibold text-foreground text-lg sm:text-xl hover:text-primary transition-colors line-clamp-2"
                         >

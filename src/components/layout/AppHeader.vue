@@ -228,12 +228,14 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
+import { useCart } from '@/composables/useCart'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import { Search, ShoppingCart, User, Menu, X, Sun, Moon } from 'lucide-vue-next'
 
 const route = useRoute()
 const router = useRouter()
 const { t } = useAppI18n()
+const { totalItems } = useCart()
 
 // State
 const searchQuery = ref('')
@@ -242,10 +244,7 @@ const showMobileMenu = ref(false)
 const isDark = ref(false)
 
 // Computed
-const cartItemsCount = computed(() => {
-    // TODO: Get from cart store
-    return 3
-})
+const cartItemsCount = computed(() => totalItems.value)
 
 const isAuthenticated = computed(() => {
     // TODO: Get from auth store

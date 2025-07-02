@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { useAppI18n } from '@/composables/useI18n'
 import { useHomeData } from '@/composables/useHomeData'
+import { useCart } from '@/composables/useCart'
 import type { Product, Category, PromoSection } from '@/types/home'
 
 // Components
@@ -16,6 +17,9 @@ const { t } = useAppI18n()
 // Use home data composable
 const { popularProducts, newProducts, dealsOfDay, categories, promoSections, loading, errors } =
     useHomeData()
+
+// Use cart composable
+const { addToCart } = useCart()
 
 // Local state
 const activeTab = ref('all')
@@ -38,8 +42,18 @@ const handleSubscribe = (email: string) => {
 }
 
 const handleAddToCart = (product: Product) => {
-    console.log('Add to cart:', product)
-    // Implement add to cart functionality here
+    // Convert Product from home type to products type
+    const productForCart = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        originalPrice: product.originalPrice,
+        image: product.image,
+        category: 'Home Products', // Default category for home products
+        description: '', // Could be added to Product interface if needed
+    }
+    addToCart(productForCart, 1)
+    console.log('Added to cart:', product)
 }
 
 const handleTabChange = (tabKey: string) => {

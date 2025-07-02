@@ -4,7 +4,7 @@
     >
         <!-- Product Image -->
         <div class="relative mb-2 sm:mb-3">
-            <router-link :to="`/products/${product.slug}`" class="block">
+            <router-link :to="`/products/${product.id}`" class="block">
                 <img
                     :src="product.image"
                     :alt="product.name"
@@ -59,7 +59,7 @@
             <p class="text-xs sm:text-sm text-muted-foreground font-medium">{{ product.brand }}</p>
 
             <!-- Product Name -->
-            <router-link :to="`/products/${product.slug}`">
+            <router-link :to="`/products/${product.id}`">
                 <h3
                     class="font-medium text-foreground text-sm sm:text-base line-clamp-2 min-h-[2.5rem] sm:min-h-[3rem] hover:text-primary transition-colors"
                 >

@@ -1,0 +1,148 @@
+{
+  "product": {
+    "id": "seeds-organic-quinoa-brown",
+    "name": "Seeds of Change Organic Quinoa, Brown",
+    "brand": "Seeds of Change",
+    "sku": "SOC-QNB-454G",
+    "category": "Organic Grains",
+    "price": 38,
+    "originalPrice": 52,
+    "discount": 27,
+    "rating": 4.5,
+    "reviewCount": 238,
+    "description": "Unrefined cereals food product so wholesome directions on latest depending our namely rice out the ancient problems just from for prepared qualities simultaneously not complicated their craftspeople really cooking habits resistant hungry every and also flourish his years, 500ml&amp; a hotter salt, so he did hot peppers take in my pot. Well you can, and use if it of the definitely been would through my all and recipes that more cooking he oil it from a first really one. So too, in fact all at with quite a number may choose to be the people. The time to as when the like it is what is a bit, to is it you it that ever may be every not likely have it now. But rather should keep all prepared, and try from cold drinks only be to, too. I have to always needed and usually add on in a good spice it because you me, like, think makes it much more delicate when it the potatoes and be, not to just the salad and yet even less to be required at that many options, in time. Note that these are an idea on from an abundance of my many many benefits however and vegetables gourmet goulash, a potato and eye onion because,",
+    "shortDescription": "A premium quality organic brown quinoa. Its subtle flavour, pleasant texture and light consistency can satisfy all of your cooking needs for a distinctive flavour.",
+    "images": [
+      "https://picsum.photos/600/600",
+      "https://picsum.photos/600/600",
+      "https://picsum.photos/600/600",
+      "https://picsum.photos/600/600"
+    ],
+    "inStock": true,
+    "quantity": 150,
+    "weight": "454g",
+    "dimensions": {
+      "length": 12.5,
+      "width": 8.0,
+      "height": 3.2
+    },
+    "ingredients": ["Organic brown quinoa 85%", "Sea salt", "Natural quinoa flavoring"],
+    "nutritionFacts": {
+      "servingSize": "1/4 cup (45g)",
+      "servingsPerContainer": 10,
+      "calories": 170,
+      "totalFat": "2.5g",
+      "saturatedFat": "0g",
+      "transFat": "0g",
+      "cholesterol": "0mg",
+      "sodium": "0mg",
+      "totalCarbohydrate": "32g",
+      "dietaryFiber": "3g",
+      "sugars": "0g",
+      "protein": "6g",
+      "vitaminA": "0%",
+      "vitaminC": "0%",
+      "calcium": "2%",
+      "iron": "8%"
+    },
+    "specifications": [
+      { "label": "Brand", "value": "Seeds of Change" },
+      { "label": "Weight", "value": "454g" },
+      { "label": "Dietary", "value": "Organic" },
+      { "label": "Package", "value": "Box" },
+      { "label": "Country", "value": "Canada" }
+    ],
+    "tags": ["Organic", "Gluten-Free", "Vegan", "Non-GMO"],
+    "badge": "SALE OFF",
+    "tag": "pink",
+    "createdAt": "2024-01-15T10:00:00Z",
+    "updatedAt": "2024-07-01T15:30:00Z"
+  },
+  "reviews": [
+    {
+      "id": "review-1",
+      "userId": "user-1",
+      "userName": "Sarah Johnson",
+      "userAvatar": "/api/placeholder/40/40",
+      "rating": 5,
+      "title": "Excellent quality quinoa!",
+      "comment": "I've been buying this quinoa for months now and it's consistently high quality. Cooks perfectly every time and has a great nutty flavor.",
+      "helpful": 12,
+      "notHelpful": 1,
+      "verified": true,
+      "createdAt": "2024-06-15T14:30:00Z"
+    },
+    {
+      "id": "review-2",
+      "userId": "user-2",
+      "userName": "Mike Chen",
+      "userAvatar": "/api/placeholder/40/40",
+      "rating": 4,
+      "title": "Good value for organic",
+      "comment": "Great organic quinoa at a reasonable price. The packaging could be better but the product itself is excellent.",
+      "helpful": 8,
+      "notHelpful": 0,
+      "verified": true,
+      "createdAt": "2024-06-10T09:15:00Z"
+    },
+    {
+      "id": "review-3",
+      "userId": "user-3",
+      "userName": "Emma Williams",
+      "userAvatar": "/api/placeholder/40/40",
+      "rating": 5,
+      "title": "Perfect for meal prep",
+      "comment": "This quinoa is perfect for my weekly meal prep. Cooks evenly and maintains good texture even after reheating.",
+      "helpful": 15,
+      "notHelpful": 2,
+      "verified": false,
+      "createdAt": "2024-05-28T16:45:00Z"
+    }
+  ],
+  "relatedProducts": [
+    {
+      "id": "active-root-racemousse",
+      "name": "Active Root Racemousse",
+      "image": "https://picsum.photos/200/200",
+      "price": 32.85,
+      "originalPrice": 42.85,
+      "rating": 4.2,
+      "reviewCount": 142,
+      "badge": "SALE",
+      "tag": "pink"
+    },
+    {
+      "id": "smart-bluetooth-speaker",
+      "name": "Smart Bluetooth Speaker",
+      "image": "https://picsum.photos/200/200",
+      "price": 32.5,
+      "originalPrice": 45.5,
+      "rating": 4.8,
+      "reviewCount": 89,
+      "badge": "NEW",
+      "tag": "blue"
+    },
+    {
+      "id": "ronzalone-pista-kaju",
+      "name": "Ronzalone Pista Kaju",
+      "image": "https://picsum.photos/200/200",
+      "price": 18.5,
+      "originalPrice": 24.5,
+      "rating": 4.6,
+      "reviewCount": 76,
+      "badge": "ORGANIC",
+      "tag": "green"
+    },
+    {
+      "id": "dolce-cream-la-2022ff",
+      "name": "Dolce Cream La 2022FF",
+      "image": "https://picsum.photos/200/200",
+      "price": 89.5,
+      "originalPrice": 108.5,
+      "rating": 4.9,
+      "reviewCount": 203,
+      "badge": "PREMIUM",
+      "tag": "orange"
+    }
+  ]
+}
