@@ -5,7 +5,7 @@ export const accountRoutes: RouteRecordRaw[] = [
     {
         path: '/account',
         name: 'account',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/account/AccountLayout.vue'),
         meta: {
             title: 'My Account',
             requiresAuth: true,
@@ -18,7 +18,7 @@ export const accountRoutes: RouteRecordRaw[] = [
             {
                 path: 'profile',
                 name: 'account-profile',
-                component: () => import('@/views/HomeView.vue'),
+                component: () => import('@/views/account/ProfileView.vue'),
                 meta: {
                     title: 'Profile',
                     requiresAuth: true,
@@ -27,7 +27,7 @@ export const accountRoutes: RouteRecordRaw[] = [
             {
                 path: 'orders',
                 name: 'account-orders',
-                component: () => import('@/views/HomeView.vue'),
+                component: () => import('@/views/account/OrderHistoryView.vue'),
                 meta: {
                     title: 'Order History',
                     requiresAuth: true,

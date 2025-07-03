@@ -225,7 +225,9 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
+import { useAuthStore } from '@/stores/auth'
 import { useCart } from '@/composables/useCart'
+import { useToast } from '@/composables/useToast'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import CartBadge from '@/components/CartBadge.vue'
 import { Button } from '@/components/ui/button'
@@ -235,7 +237,9 @@ import { Search, ShoppingCart, User, Menu, X, Sun, Moon } from 'lucide-vue-next'
 const route = useRoute()
 const router = useRouter()
 const { t } = useAppI18n()
+const authStore = useAuthStore()
 const { totalItems } = useCart()
+const { success: showSuccess, error: showError } = useToast()
 
 // State
 const searchQuery = ref('')
@@ -245,22 +249,9 @@ const isDark = ref(false)
 
 // Computed
 const cartItemsCount = computed(() => totalItems.value)
-
-const isAuthenticated = computed(() => {
-    // TODO: Get from auth store
-    return false
-})
-
-const isAdmin = computed(() => {
-    // TODO: Get from auth store - check if user has admin role
-    const userStr = localStorage.getItem('user')
-    if (userStr) {
-        const user = JSON.parse(userStr)
-        const roles = user.roles ?? []
-        return roles.includes('admin') || roles.includes('administrator')
-    }
-    return false
-})
+const isAuthenticated = computed(() => authStore.isAuthenticated)
+const isAdmin = computed(() => authStore.isAdmin)
+const user = computed(() => authStore.user)
 
 // Methods
 const isRouteActive = (path: string) => {
@@ -299,9 +290,18 @@ const toggleTheme = () => {
     localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
 }
 
-const handleLogout = () => {
-    // TODO: Implement logout
-    closeUserMenu()
+const handleLogout = async () => {
+    try {
+        authStore.logout()
+        closeUserMenu()
+
+        showSuccess(t('auth.signOut'), t('auth.logoutSuccess'))
+
+        // Redirect to home page
+        router.push('/')
+    } catch (error: any) {
+        showError(t('common.error'), error.message || t('auth.logoutError'))
+    }
 }
 
 const handleClickOutside = (event: Event) => {
