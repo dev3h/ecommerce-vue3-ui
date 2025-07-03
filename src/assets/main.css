@@ -1,6 +1,6 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "./theme/index.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import './theme/index.css';
 
 /* Prevent horizontal scroll on mobile */
 html,
@@ -23,5 +23,24 @@ body {
     .container {
         padding-left: 0.75rem;
         padding-right: 0.75rem;
+    }
+}
+
+/* Extra small breakpoint for very small screens */
+@media (min-width: 475px) {
+    .xs\:flex-row {
+        flex-direction: row;
+    }
+
+    .xs\:self-start {
+        align-self: flex-start;
+    }
+
+    .xs\:text-right {
+        text-align: right;
+    }
+
+    .xs\:items-center {
+        align-items: center;
     }
 }

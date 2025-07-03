@@ -36,7 +36,7 @@ export const accountRoutes: RouteRecordRaw[] = [
             {
                 path: 'orders/:id',
                 name: 'account-order-detail',
-                component: () => import('@/views/HomeView.vue'),
+                component: () => import('@/views/account/OrderDetailView.vue'),
                 props: true,
                 meta: {
                     title: 'Order Details',

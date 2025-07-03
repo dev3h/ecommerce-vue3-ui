@@ -153,11 +153,11 @@ const getStatusColor = (status: string) => {
 
 const getStatusText = (status: string) => {
     const statusMap = {
-        pending: t('order.pending'),
-        processing: t('order.processing'),
-        shipped: t('order.shipped'),
-        delivered: t('order.delivered'),
-        cancelled: t('order.cancelled'),
+        pending: t('order.status.pending'),
+        processing: t('order.status.processing'),
+        shipped: t('order.status.shipped'),
+        delivered: t('order.status.delivered'),
+        cancelled: t('order.status.cancelled'),
     }
     return statusMap[status as keyof typeof statusMap] || status
 }

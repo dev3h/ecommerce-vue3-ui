@@ -196,6 +196,154 @@ export const useOrderStore = defineStore('orders', () => {
     // Initialize orders when store is created
     const initializeOrders = () => {
         loadAllOrders()
+
+        // Add sample orders if no orders exist
+        if (orders.value.length === 0) {
+            createSampleOrders()
+        }
+    }
+
+    // Create sample orders for testing
+    const createSampleOrders = () => {
+        const sampleOrders: Order[] = [
+            {
+                id: 'order_sample_001',
+                userId: 'user_001',
+                number: 'ORD-20250101-ABCD',
+                date: '2024-12-15T08:00:00Z',
+                status: 'delivered',
+                items: [
+                    {
+                        id: 'item_001',
+                        productId: 'prod_001',
+                        name: 'Wireless Bluetooth Headphones',
+                        price: 79.99,
+                        quantity: 1,
+                        image: '/api/placeholder/150/150',
+                    },
+                    {
+                        id: 'item_002',
+                        productId: 'prod_002',
+                        name: 'USB-C Cable',
+                        price: 19.99,
+                        quantity: 2,
+                        image: '/api/placeholder/150/150',
+                    },
+                ],
+                itemCount: 3,
+                subtotal: 119.97,
+                shipping: 9.99,
+                tax: 10.4,
+                total: 140.36,
+                currency: 'USD',
+                shippingAddress: {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    email: 'john.doe@example.com',
+                    phone: '+1234567890',
+                    address: '123 Main Street, Apt 4B',
+                    city: 'New York',
+                    state: 'NY',
+                    zipCode: '10001',
+                    country: 'United States',
+                },
+                paymentMethod: {
+                    type: 'Credit Card',
+                    last4: '1234',
+                },
+                tracking: 'TRK123456789',
+                estimatedDelivery: '2024-12-22T18:00:00Z',
+            },
+            {
+                id: 'order_sample_002',
+                userId: 'user_001',
+                number: 'ORD-20250102-EFGH',
+                date: '2024-12-20T10:30:00Z',
+                status: 'shipped',
+                items: [
+                    {
+                        id: 'item_003',
+                        productId: 'prod_003',
+                        name: 'Smartphone Case',
+                        price: 29.99,
+                        quantity: 1,
+                        image: '/api/placeholder/150/150',
+                    },
+                ],
+                itemCount: 1,
+                subtotal: 29.99,
+                shipping: 5.99,
+                tax: 2.88,
+                total: 38.86,
+                currency: 'USD',
+                shippingAddress: {
+                    firstName: 'Jane',
+                    lastName: 'Smith',
+                    email: 'jane.smith@example.com',
+                    phone: '+1234567891',
+                    address: '456 Oak Avenue',
+                    city: 'Los Angeles',
+                    state: 'CA',
+                    zipCode: '90210',
+                    country: 'United States',
+                },
+                paymentMethod: {
+                    type: 'PayPal',
+                },
+                tracking: 'TRK987654321',
+                estimatedDelivery: '2024-12-25T18:00:00Z',
+            },
+            {
+                id: 'order_sample_003',
+                userId: 'user_001',
+                number: 'ORD-20250103-IJKL',
+                date: '2024-12-22T14:15:00Z',
+                status: 'processing',
+                items: [
+                    {
+                        id: 'item_004',
+                        productId: 'prod_004',
+                        name: 'Laptop Stand',
+                        price: 49.99,
+                        quantity: 1,
+                        image: '/api/placeholder/150/150',
+                    },
+                    {
+                        id: 'item_005',
+                        productId: 'prod_005',
+                        name: 'Wireless Mouse',
+                        price: 39.99,
+                        quantity: 1,
+                        image: '/api/placeholder/150/150',
+                    },
+                ],
+                itemCount: 2,
+                subtotal: 89.98,
+                shipping: 7.99,
+                tax: 7.84,
+                total: 105.81,
+                currency: 'USD',
+                shippingAddress: {
+                    firstName: 'Mike',
+                    lastName: 'Johnson',
+                    email: 'mike.johnson@example.com',
+                    phone: '+1234567892',
+                    address: '789 Pine Road',
+                    city: 'Chicago',
+                    state: 'IL',
+                    zipCode: '60601',
+                    country: 'United States',
+                },
+                paymentMethod: {
+                    type: 'Credit Card',
+                    last4: '5678',
+                },
+                estimatedDelivery: '2024-12-28T18:00:00Z',
+            },
+        ]
+
+        orders.value = sampleOrders
+        localStorage.setItem('orders', JSON.stringify(sampleOrders))
     }
 
     return {
@@ -214,6 +362,7 @@ export const useOrderStore = defineStore('orders', () => {
         loadAllOrders,
         clearUserOrders,
         initializeOrders,
+        createSampleOrders,
     }
 })
 
