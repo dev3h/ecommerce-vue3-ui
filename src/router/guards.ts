@@ -1,29 +1,5 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
-import { i18n } from '@/locales'
-
-// Mock auth store - replace with your actual auth implementation
-const isAuthenticated = () => {
-    // This should check your actual authentication state
-    // For example, check if user token exists in localStorage/cookies
-    return localStorage.getItem('auth-token') !== null
-}
-
-// Mock user roles - replace with your actual user role implementation
-const getUserRoles = (): string[] => {
-    // This should return the actual user roles
-    const userStr = localStorage.getItem('user')
-    if (userStr) {
-        const user = JSON.parse(userStr)
-        return user.roles ?? []
-    }
-    return []
-}
-
-// Check if user is admin
-const isAdmin = (): boolean => {
-    const roles = getUserRoles()
-    return roles.includes('admin') || roles.includes('administrator')
-}
+import { useAuthStore } from '@/stores/auth'
 
 /**
  * Authentication guard
@@ -34,16 +10,31 @@ export const authGuard = (
     from: RouteLocationNormalized,
     next: NavigationGuardNext,
 ) => {
+    const authStore = useAuthStore()
     const requiresAuth = to.meta.requiresAuth
+    const isGuest = to.meta.guest
 
-    // if (requiresAuth && !isAuthenticated()) {
-    //     // Redirect to login page with return url
-    //     next({
-    //         name: 'login',
-    //         query: { redirect: to.fullPath },
-    //     })
-    //     return
-    // }
+    // Initialize auth store if not already initialized
+    if (!authStore.user && !authStore.token) {
+        authStore.initializeAuth()
+    }
+
+    // If route requires authentication and user is not authenticated
+    if (requiresAuth && !authStore.isAuthenticated) {
+        next({
+            name: 'login',
+            query: { redirect: to.fullPath },
+        })
+        return
+    }
+
+    // If route is for guests only and user is authenticated
+    if (isGuest && authStore.isAuthenticated) {
+        // Redirect to intended page or home
+        const redirect = to.query.redirect as string
+        next(redirect || '/')
+        return
+    }
 
     next()
 }
@@ -57,15 +48,53 @@ export const roleGuard = (
     from: RouteLocationNormalized,
     next: NavigationGuardNext,
 ) => {
-    const requiredRoles = to.meta.roles
+    const authStore = useAuthStore()
+    const requiredRoles = to.meta.roles as string[]
 
-    if (requiredRoles && Array.isArray(requiredRoles) && requiredRoles.length > 0) {
-        const userRoles = getUserRoles()
-        const hasRequiredRole = requiredRoles.some((role: string) => userRoles.includes(role))
+    if (requiredRoles && requiredRoles.length > 0) {
+        if (!authStore.isAuthenticated) {
+            next({
+                name: 'login',
+                query: { redirect: to.fullPath },
+            })
+            return
+        }
 
-        if (!hasRequiredRole) {
-            // Redirect to unauthorized page or home
-            next({ name: 'not-found' })
+        const userRole = authStore.user?.role
+        if (!userRole || !requiredRoles.includes(userRole)) {
+            // User doesn't have required role
+            next({ name: 'errors-403' })
+            return
+        }
+    }
+
+    next()
+}
+
+/**
+ * Admin access guard
+ * Checks if user has admin privileges for admin routes
+ */
+export const adminGuard = (
+    to: RouteLocationNormalized,
+    from: RouteLocationNormalized,
+    next: NavigationGuardNext,
+) => {
+    const authStore = useAuthStore()
+    const isAdminRoute = to.path.startsWith('/admin')
+
+    if (isAdminRoute) {
+        if (!authStore.isAuthenticated) {
+            next({
+                name: 'login',
+                query: { redirect: to.fullPath },
+            })
+            return
+        }
+
+        if (!authStore.isAdmin) {
+            // User is not admin
+            next({ name: 'errors-403' })
             return
         }
     }
@@ -82,40 +111,11 @@ export const titleGuard = (
     from: RouteLocationNormalized,
     next: NavigationGuardNext,
 ) => {
-    const { t } = i18n.global
-    const baseTitle = t('meta.defaultTitle')
-    const routeTitle = to.meta.title
-
-    if (routeTitle) {
-        // Check if it's a translation key
-        if (typeof routeTitle === 'string' && routeTitle.includes('.')) {
-            const translatedTitle = t(routeTitle)
-            document.title = `${translatedTitle} | ${baseTitle}`
-        } else {
-            document.title = `${routeTitle} | ${baseTitle}`
-        }
+    const title = to.meta.title as string
+    if (title) {
+        document.title = `${title} - Nest Grocer`
     } else {
-        document.title = baseTitle
-    }
-
-    next()
-}
-
-/**
- * Admin access guard
- * Checks if user has admin privileges for admin routes
- */
-export const adminGuard = (
-    to: RouteLocationNormalized,
-    from: RouteLocationNormalized,
-    next: NavigationGuardNext,
-) => {
-    const requiresAdmin = to.meta.requiresAdmin
-
-    if (requiresAdmin && !isAdmin()) {
-        // Redirect to unauthorized page or home
-        next({ name: 'home' })
-        return
+        document.title = 'Nest Grocer'
     }
 
     next()
