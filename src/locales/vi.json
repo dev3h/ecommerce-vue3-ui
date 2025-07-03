@@ -359,7 +359,8 @@
     "orderStatus": "Trạng thái đơn hàng",
     "orderTotal": "Tổng tiền",
     "viewOrder": "Xem đơn hàng",
-    "noOrders": "Không tìm thấy đơn hàng"
+    "noOrders": "Không tìm thấy đơn hàng",
+    "backToOrders": "Quay lại đơn hàng"
   },
   "errors": {
     "pageNotFound": "Không tìm thấy trang",
@@ -631,15 +632,37 @@
     }
   },
   "order": {
-    "pending": "Chờ xử lý",
-    "processing": "Đang xử lý",
-    "shipped": "Đã giao hàng",
-    "delivered": "Đã giao",
-    "cancelled": "Đã hủy",
+    "orderNotFound": "Không tìm thấy đơn hàng",
+    "orderNotFoundDescription": "Đơn hàng bạn đang tìm không tồn tại hoặc đã bị xóa.",
+    "progress": "Tiến trình đơn hàng",
+    "trackOrder": "Theo dõi đơn hàng",
+    "cancelOrder": "Hủy đơn hàng",
     "orderReceived": "Đã nhận đơn hàng",
     "preparingOrder": "Đang chuẩn bị đơn hàng",
     "onTheWay": "Đang trên đường giao",
     "orderDelivered": "Đã giao hàng",
-    "orderCancelled": "Đã hủy đơn hàng"
+    "orderCancelled": "Đã hủy đơn hàng",
+    "status": {
+      "pending": "Chờ xử lý",
+      "processing": "Đang xử lý",
+      "shipped": "Đã giao hàng",
+      "delivered": "Đã giao",
+      "cancelled": "Đã hủy"
+    },
+    "details": {
+      "orderNumber": "Mã đơn hàng",
+      "orderDate": "Ngày đặt hàng",
+      "estimatedDelivery": "Dự kiến giao hàng",
+      "orderItems": "Sản phẩm trong đơn hàng",
+      "orderSummary": "Tóm tắt đơn hàng",
+      "subtotal": "Tạm tính",
+      "shipping": "Phí vận chuyển",
+      "tax": "Thuế",
+      "total": "Tổng cộng",
+      "quantity": "Số lượng",
+      "each": "mỗi cái",
+      "shippingAddress": "Địa chỉ giao hàng",
+      "paymentMethod": "Phương thức thanh toán"
+    }
   }
 }

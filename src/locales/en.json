@@ -365,7 +365,8 @@
     "orderStatus": "Order Status",
     "orderTotal": "Order Total",
     "viewOrder": "View Order",
-    "noOrders": "No orders found"
+    "noOrders": "No orders found",
+    "backToOrders": "Back to Orders"
   },
   "errors": {
     "pageNotFound": "Page Not Found",
@@ -633,15 +634,37 @@
     }
   },
   "order": {
-    "pending": "Pending",
-    "processing": "Processing",
-    "shipped": "Shipped",
-    "delivered": "Delivered",
-    "cancelled": "Cancelled",
+    "orderNotFound": "Order Not Found",
+    "orderNotFoundDescription": "The order you're looking for doesn't exist or has been removed.",
+    "progress": "Order Progress",
+    "trackOrder": "Track Order",
+    "cancelOrder": "Cancel Order",
     "orderReceived": "Order received",
     "preparingOrder": "Preparing your order",
     "onTheWay": "On the way",
     "orderDelivered": "Order delivered",
-    "orderCancelled": "Order cancelled"
+    "orderCancelled": "Order cancelled",
+    "status": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "details": {
+      "orderNumber": "Order Number",
+      "orderDate": "Order Date",
+      "estimatedDelivery": "Estimated Delivery",
+      "orderItems": "Order Items",
+      "orderSummary": "Order Summary",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "total": "Total",
+      "quantity": "Quantity",
+      "each": "each",
+      "shippingAddress": "Shipping Address",
+      "paymentMethod": "Payment Method"
+    }
   }
 }
