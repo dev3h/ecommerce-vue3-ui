@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import { useCart } from '@/composables/useCart'
+import { useOrderStore } from '@/stores/orders'
+import { useAuthStore } from '@/stores/auth'
 import type { ShippingAddress, PaymentMethod } from '@/types/cart'
 
 // Components
@@ -15,6 +17,8 @@ import OrderSummary from '@/components/checkout/OrderSummary.vue'
 const { t } = useAppI18n()
 const router = useRouter()
 const { cartItems, cartSummary, clearCart, isEmpty } = useCart()
+const orderStore = useOrderStore()
+const authStore = useAuthStore()
 
 // Form data
 const shippingAddress = ref<ShippingAddress>({
@@ -64,32 +68,51 @@ const handlePlaceOrder = async (options: {
         return
     }
 
+    if (!authStore.isAuthenticated) {
+        router.push('/login?redirect=/checkout')
+        return
+    }
+
     isSubmitting.value = true
     errors.value = {}
 
     try {
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 2000))
+        // Convert cart items to order items
+        const orderItems = cartItems.value.map((item) => ({
+            id: `item_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+            productId: item.id,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            image: item.image,
+        }))
 
-        // Here you would send the order data to your API
-        const orderData = {
-            shipping: shippingAddress.value,
-            payment: paymentMethod.value,
-            items: cartItems.value,
-            summary: cartSummary.value,
-            agreedToTerms: options.agreedToTerms,
-            subscribeNewsletter: options.subscribeNewsletter,
-        }
+        // Create order using order store
+        const newOrder = await orderStore.createOrder({
+            items: orderItems,
+            shippingAddress: shippingAddress.value,
+            paymentMethod: paymentMethod.value,
+            subtotal: cartSummary.value.subtotal,
+            shipping: cartSummary.value.shipping,
+            tax: cartSummary.value.tax,
+            total: cartSummary.value.total,
+        })
 
-        console.log('Order submitted:', orderData)
+        console.log('Order created successfully:', newOrder)
 
         // Clear cart
         clearCart()
 
-        // Redirect to success page
-        router.push('/checkout/success')
-    } catch (error) {
-        errors.value.submit = 'Failed to place order. Please try again.'
+        // Redirect to success page with order info
+        router.push({
+            path: '/checkout/success',
+            query: {
+                orderId: newOrder.id,
+                orderNumber: newOrder.number,
+            },
+        })
+    } catch (error: any) {
+        errors.value.submit = error.message || 'Failed to place order. Please try again.'
         console.error('Order submission failed:', error)
     } finally {
         isSubmitting.value = false

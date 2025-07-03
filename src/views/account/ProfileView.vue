@@ -1,15 +1,15 @@
 <template>
-    <Card>
+    <Card class="w-full max-w-full overflow-hidden">
         <CardHeader>
             <CardTitle>{{ t('account.personalInfo') }}</CardTitle>
             <CardDescription>
                 {{ t('account.personalInfoDescription') }}
             </CardDescription>
         </CardHeader>
-        <CardContent>
-            <form @submit.prevent="handleSubmit" class="space-y-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="space-y-2">
+        <CardContent class="p-3 sm:p-6">
+            <form @submit.prevent="handleSubmit" class="space-y-4 sm:space-y-6 w-full max-w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6 w-full">
+                    <div class="space-y-2 min-w-0">
                         <Label for="firstName">{{ t('auth.firstName') }}</Label>
                         <Input
                             id="firstName"
@@ -25,7 +25,7 @@
                         </p>
                     </div>
 
-                    <div class="space-y-2">
+                    <div class="space-y-2 min-w-0">
                         <Label for="lastName">{{ t('auth.lastName') }}</Label>
                         <Input
                             id="lastName"
@@ -108,11 +108,22 @@
                     <p class="text-sm text-destructive">{{ errors.submit }}</p>
                 </div>
 
-                <div class="flex justify-end space-x-4">
-                    <Button v-if="isEditing" type="button" variant="outline" @click="cancelEdit">
+                <div class="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4">
+                    <Button
+                        v-if="isEditing"
+                        type="button"
+                        variant="outline"
+                        @click="cancelEdit"
+                        class="w-full sm:w-auto"
+                    >
                         {{ t('common.cancel') }}
                     </Button>
-                    <Button v-if="!isEditing" type="button" @click="startEdit">
+                    <Button
+                        v-if="!isEditing"
+                        type="button"
+                        @click="startEdit"
+                        class="w-full sm:w-auto"
+                    >
                         {{ t('common.edit') }}
                     </Button>
                     <Button
@@ -120,6 +131,7 @@
                         type="submit"
                         :disabled="isLoading"
                         :loading="isLoading"
+                        class="w-full sm:w-auto"
                     >
                         {{ t('common.save') }}
                     </Button>

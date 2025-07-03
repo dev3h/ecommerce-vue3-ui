@@ -1,10 +1,26 @@
 <script setup lang="ts">
-import { useRouter } from 'vue-router'
+import { computed, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
+import { useOrderStore } from '@/stores/orders'
 import { Button } from '@/components/ui/button'
 
 const { t } = useAppI18n()
 const router = useRouter()
+const route = useRoute()
+const orderStore = useOrderStore()
+
+// Get order info from query params
+const orderId = route.query.orderId as string
+const orderNumber = route.query.orderNumber as string
+
+// Get order details
+const order = computed(() => {
+    if (orderId) {
+        return orderStore.getOrderById(orderId)
+    }
+    return null
+})
 
 const goToHome = () => {
     router.push('/')
@@ -13,6 +29,17 @@ const goToHome = () => {
 const goToProducts = () => {
     router.push('/products')
 }
+
+const goToOrderHistory = () => {
+    router.push('/account/orders')
+}
+
+onMounted(() => {
+    // If no order info in URL, redirect to home
+    if (!orderId && !orderNumber) {
+        router.push('/')
+    }
+})
 </script>
 
 <template>
@@ -43,12 +70,58 @@ const goToProducts = () => {
                 </h1>
 
                 <p class="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-                    {{ t('checkout.orderSuccessMessage') }}
+                    {{ order ? t('checkout.orderSuccessMessage') : t('checkout.orderProcessing') }}
                 </p>
             </div>
 
             <!-- Order Details Card -->
-            <div class="bg-card rounded-lg border border-border p-6 mb-8">
+            <div
+                v-if="order || orderNumber"
+                class="bg-card rounded-lg border border-border p-6 mb-8"
+            >
+                <h2 class="text-xl font-semibold text-foreground mb-4">
+                    {{ t('common.orderDetails') }}
+                </h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <div>
+                        <p class="text-sm text-muted-foreground">{{ t('account.orderNumber') }}</p>
+                        <p class="font-semibold text-foreground">
+                            {{ order?.number || orderNumber }}
+                        </p>
+                    </div>
+                    <div v-if="order">
+                        <p class="text-sm text-muted-foreground">{{ t('account.orderDate') }}</p>
+                        <p class="font-semibold text-foreground">
+                            {{ new Date(order.date).toLocaleDateString() }}
+                        </p>
+                    </div>
+                    <div v-if="order">
+                        <p class="text-sm text-muted-foreground">{{ t('account.orderStatus') }}</p>
+                        <span
+                            class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400"
+                        >
+                            {{ t(`order.${order.status}`) }}
+                        </span>
+                    </div>
+                    <div v-if="order">
+                        <p class="text-sm text-muted-foreground">{{ t('account.total') }}</p>
+                        <p class="font-semibold text-foreground">${{ order.total.toFixed(2) }}</p>
+                    </div>
+                </div>
+
+                <div v-if="order?.estimatedDelivery" class="p-4 bg-accent/30 rounded-lg">
+                    <p class="text-sm text-muted-foreground mb-1">
+                        {{ t('checkout.estimatedDelivery') }}
+                    </p>
+                    <p class="font-medium text-foreground">
+                        {{ new Date(order.estimatedDelivery).toLocaleDateString() }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Order Details Card (fallback) -->
+            <div v-else class="bg-card rounded-lg border border-border p-6 mb-8">
                 <h2 class="text-xl font-semibold text-foreground mb-4">
                     {{ t('common.orderDetails') }}
                 </h2>
@@ -140,7 +213,10 @@ const goToProducts = () => {
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button @click="goToProducts" size="lg">
+                <Button @click="goToOrderHistory" size="lg">
+                    {{ t('account.viewOrders') }}
+                </Button>
+                <Button @click="goToProducts" variant="outline" size="lg">
                     {{ t('common.continueShopping') }}
                 </Button>
                 <Button @click="goToHome" variant="outline" size="lg">

@@ -303,6 +303,10 @@
     "and": "and",
     "privacyPolicy": "Privacy Policy",
     "subscribeNewsletter": "Subscribe to our newsletter for updates and special offers",
+    "orderSuccess": "Order Placed Successfully!",
+    "orderSuccessMessage": "Thank you for your order. We'll send you a confirmation email shortly.",
+    "orderProcessing": "Your order is being processed.",
+    "estimatedDelivery": "Estimated Delivery",
     "coupon": {
       "title": "Coupon Code",
       "placeholder": "Enter coupon code",
@@ -318,8 +322,10 @@
     },
     "proceedToPayment": "Proceed to Payment",
     "orderPlaced": "Order placed successfully!",
-    "orderSuccess": "Order Successful!",
-    "orderSuccessMessage": "Thank you for your purchase! Your order has been confirmed and you will receive an email confirmation shortly."
+    "orderSuccess": "Order Placed Successfully!",
+    "orderSuccessMessage": "Thank you for your order. We'll send you a confirmation email shortly.",
+    "orderProcessing": "Your order is being processed.",
+    "estimatedDelivery": "Estimated Delivery"
   },
   "validation": {
     "required": "This field is required",
@@ -352,6 +358,7 @@
     "total": "Total",
     "shippingTo": "Shipping to",
     "viewDetails": "View Details",
+    "viewOrders": "View Orders",
     "reorder": "Reorder",
     "orderNumber": "Order Number",
     "orderDate": "Order Date",
@@ -472,7 +479,6 @@
       "reports": "Reports",
       "quickActions": "Quick Actions",
       "addProduct": "Add Product",
-      "viewOrders": "View Orders",
       "customerSupport": "Support",
       "overview": "Overview",
       "categories": "Categories",

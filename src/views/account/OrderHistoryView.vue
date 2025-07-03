@@ -1,13 +1,19 @@
 <template>
-    <Card>
+    <Card class="w-full max-w-full overflow-hidden">
         <CardHeader>
             <CardTitle>{{ t('account.orderHistory') }}</CardTitle>
             <CardDescription>
                 {{ t('account.orderHistoryDescription') }}
             </CardDescription>
         </CardHeader>
-        <CardContent>
-            <div v-if="orders.length === 0" class="text-center py-12">
+        <CardContent class="p-3 sm:p-6">
+            <div v-if="isLoading" class="flex justify-center py-12">
+                <div
+                    class="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"
+                ></div>
+            </div>
+
+            <div v-else-if="orders.length === 0" class="text-center py-12">
                 <ShoppingBag class="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                 <h3 class="text-lg font-medium text-foreground mb-2">
                     {{ t('account.noOrders') }}
@@ -22,22 +28,24 @@
                 </Button>
             </div>
 
-            <div v-else class="space-y-4">
+            <div v-else class="space-y-3 sm:space-y-4 w-full max-w-full">
                 <div
                     v-for="order in orders"
                     :key="order.id"
-                    class="border rounded-lg p-4 hover:bg-accent/50 transition-colors"
+                    class="border rounded-lg p-3 sm:p-6 hover:bg-accent/50 transition-colors w-full max-w-full overflow-hidden"
                 >
-                    <div class="flex items-center justify-between mb-3">
-                        <div>
-                            <p class="font-medium text-foreground">
+                    <div
+                        class="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4 gap-2 sm:gap-3 min-w-0"
+                    >
+                        <div class="flex-1 min-w-0">
+                            <p class="font-medium text-foreground truncate text-sm sm:text-base">
                                 {{ t('account.orderNumber') }}: {{ order.number }}
                             </p>
-                            <p class="text-sm text-muted-foreground">
+                            <p class="text-xs sm:text-sm text-muted-foreground">
                                 {{ formatDate(order.date) }}
                             </p>
                         </div>
-                        <div class="text-right">
+                        <div class="flex-shrink-0">
                             <div
                                 class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium"
                                 :class="getStatusColor(order.status)"
@@ -47,7 +55,7 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
                         <div>
                             <p class="text-sm font-medium text-foreground">
                                 {{ t('account.items') }}
@@ -64,26 +72,26 @@
                                 <PriceDisplay :price="order.total" />
                             </p>
                         </div>
-                        <div>
+                        <div class="sm:col-span-2 lg:col-span-1">
                             <p class="text-sm font-medium text-foreground">
                                 {{ t('account.shippingTo') }}
                             </p>
-                            <p class="text-sm text-muted-foreground">
+                            <p class="text-sm text-muted-foreground truncate">
                                 {{ order.shippingAddress.city }},
                                 {{ order.shippingAddress.country }}
                             </p>
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-between">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <div class="flex items-center space-x-2">
-                            <Package class="h-4 w-4 text-muted-foreground" />
+                            <Package class="h-4 w-4 text-muted-foreground flex-shrink-0" />
                             <span class="text-sm text-muted-foreground">
                                 {{ getDeliveryText(order.status) }}
                             </span>
                         </div>
-                        <div class="flex space-x-2">
-                            <Button variant="outline" size="sm" asChild>
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <Button variant="outline" size="sm" asChild class="w-full sm:w-auto">
                                 <RouterLink :to="`/account/orders/${order.id}`">
                                     {{ t('account.viewDetails') }}
                                 </RouterLink>
@@ -92,6 +100,7 @@
                                 v-if="order.status === 'delivered'"
                                 variant="outline"
                                 size="sm"
+                                class="w-full sm:w-auto"
                                 @click="reorderItems(order.id)"
                             >
                                 {{ t('account.reorder') }}
@@ -105,17 +114,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useAppI18n } from '@/composables/useI18n'
+import { useOrderStore } from '@/stores/orders'
+import { useAuthStore } from '@/stores/auth'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { ShoppingBag, Package } from 'lucide-vue-next'
 import PriceDisplay from '@/components/PriceDisplay.vue'
 
 const { t } = useAppI18n()
+const orderStore = useOrderStore()
+const authStore = useAuthStore()
 
-// Mock order data
-const orders = ref<any[]>([])
+// Get user orders from store
+const orders = computed(() => orderStore.userOrders)
+const isLoading = computed(() => orderStore.isLoading)
 
 // Methods
 const formatDate = (date: string) => {
@@ -166,12 +180,10 @@ const reorderItems = (orderId: string) => {
 }
 
 const loadOrders = async () => {
-    // Simulate loading orders
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    // For now, show empty state
-    // In a real app, you would fetch from an API
-    orders.value = []
+    // Load orders from store
+    if (authStore.isAuthenticated) {
+        orderStore.loadUserOrders()
+    }
 }
 
 onMounted(() => {
