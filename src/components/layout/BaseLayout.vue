@@ -66,7 +66,7 @@
         <!-- Sidebar Toggle Button (Mobile) -->
         <button
             @click="toggleSidebar"
-            class="fixed bottom-4 left-4 z-50 lg:hidden inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg h-12 w-12 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            class="fixed bottom-[50px] left-4 z-50 lg:hidden inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg h-12 w-12 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             :class="{
                 'translate-x-64': sidebarOpen,
             }"
@@ -143,7 +143,7 @@ const route = useRoute()
 const sidebarOpen = ref(false)
 const showBackToTop = ref(false)
 const footerHeight = ref(0)
-const footerRef = ref<HTMLElement | null>(null)
+const footerRef = ref<InstanceType<typeof AppFooter> | null>(null)
 
 // Computed
 const isLoading = computed(() => props.loading)
@@ -175,8 +175,8 @@ const handleScroll = () => {
 }
 
 const updateFooterHeight = () => {
-    if (footerRef.value) {
-        footerHeight.value = footerRef.value.offsetHeight
+    if (footerRef.value?.$el) {
+        footerHeight.value = (footerRef.value.$el as HTMLElement).offsetHeight
     }
 }
 
@@ -215,23 +215,41 @@ onMounted(() => {
     window.addEventListener('resize', handleResize)
 
     // Set up ResizeObserver for footer
-    const resizeObserver = new ResizeObserver(() => {
-        updateFooterHeight()
-    })
+    let resizeObserver: ResizeObserver | null = null
 
-    // Observe footer changes
-    nextTick(() => {
-        if (footerRef.value) {
-            resizeObserver.observe(footerRef.value)
-            updateFooterHeight()
+    const setupResizeObserver = () => {
+        if (resizeObserver) {
+            resizeObserver.disconnect()
         }
+
+        resizeObserver = new ResizeObserver(() => {
+            updateFooterHeight()
+        })
+
+        // Observe footer changes
+        nextTick(() => {
+            if (footerRef.value?.$el) {
+                const footerElement = footerRef.value.$el as HTMLElement
+                if (footerElement && footerElement instanceof Element) {
+                    resizeObserver?.observe(footerElement)
+                    updateFooterHeight()
+                }
+            }
+        })
+    }
+
+    // Setup observer after component mount
+    nextTick(() => {
+        setupResizeObserver()
     })
 
     // Cleanup function will be called in onUnmounted
     onUnmounted(() => {
         window.removeEventListener('scroll', handleScroll)
         window.removeEventListener('resize', handleResize)
-        resizeObserver.disconnect()
+        if (resizeObserver) {
+            resizeObserver.disconnect()
+        }
     })
 })
 </script>
