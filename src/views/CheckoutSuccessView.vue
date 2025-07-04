@@ -101,7 +101,7 @@ onMounted(() => {
                         <span
                             class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400"
                         >
-                            {{ t(`order.${order.status}`) }}
+                            {{ t(`order.status.${order.status}`) }}
                         </span>
                     </div>
                     <div v-if="order">
