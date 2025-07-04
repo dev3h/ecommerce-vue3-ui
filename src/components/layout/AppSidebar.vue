@@ -56,7 +56,7 @@
                         to="/account/wishlist"
                         icon="Heart"
                         :label="t('account.wishlist')"
-                        :badge="wishlistCount"
+                        :badge="wishlistItemsCount"
                     />
                     <SidebarItem to="/account/orders" icon="Package" :label="t('account.orders')" />
                 </div>
@@ -187,6 +187,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import { useCart } from '@/composables/useCart'
+import { useWishlist } from '@/composables/useWishlist'
 import { productsService } from '@/services/products.service'
 import SidebarItem from './SidebarItem.vue'
 import { Button } from '@/components/ui/button'
@@ -227,7 +228,8 @@ defineEmits<{
 const router = useRouter()
 const route = useRoute()
 const { t, formatCurrency } = useAppI18n()
-const { totalItems } = useCart()
+const { totalQuantity } = useCart()
+const { wishlistCount } = useWishlist()
 
 // Computed
 const sidebarHeight = computed(() => {
@@ -266,12 +268,11 @@ const loadData = async () => {
 
 // Computed
 const cartItemsCount = computed(() => {
-    return totalItems.value
+    return totalQuantity.value
 })
 
-const wishlistCount = computed(() => {
-    // Get from wishlist store when implemented
-    return 5
+const wishlistItemsCount = computed(() => {
+    return wishlistCount.value
 })
 
 // Methods

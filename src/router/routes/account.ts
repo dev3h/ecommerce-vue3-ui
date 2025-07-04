@@ -43,6 +43,15 @@ export const accountRoutes: RouteRecordRaw[] = [
                 },
             },
             {
+                path: 'wishlist',
+                name: 'account-wishlist',
+                component: () => import('@/views/WishlistView.vue'),
+                meta: {
+                    title: 'My Wishlist',
+                    requiresAuth: true,
+                },
+            },
+            {
                 path: 'orders/:id',
                 name: 'account-order-detail',
                 component: () => import('@/views/account/OrderDetailView.vue'),

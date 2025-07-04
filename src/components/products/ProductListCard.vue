@@ -114,11 +114,27 @@
                     <!-- Actions -->
                     <div class="flex items-center gap-3">
                         <button
-                            @click="$emit('add-to-wishlist', product)"
-                            class="p-2 border border-border rounded-lg hover:bg-accent transition-colors"
-                            title="Add to wishlist"
+                            @click.stop="handleToggleWishlist"
+                            :class="[
+                                'p-2 border rounded-lg hover:bg-accent transition-all',
+                                isProductInWishlist
+                                    ? 'border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20'
+                                    : 'border-border',
+                            ]"
+                            :title="
+                                isProductInWishlist
+                                    ? t('wishlist.removeFromWishlist')
+                                    : t('wishlist.addToWishlist')
+                            "
                         >
-                            <Heart class="w-5 h-5 text-foreground" />
+                            <Heart
+                                :class="[
+                                    'w-5 h-5 transition-colors',
+                                    isProductInWishlist
+                                        ? 'text-red-500 fill-current'
+                                        : 'text-foreground',
+                                ]"
+                            />
                         </button>
 
                         <button
@@ -140,20 +156,40 @@
 <script setup lang="ts">
 import type { ProductListItem } from '@/types/products'
 import { useAppI18n } from '@/composables/useI18n'
+import { useWishlist } from '@/composables/useWishlist'
+import { computed } from 'vue'
 import { Heart, Star, ShoppingCart } from 'lucide-vue-next'
 
 interface Props {
     product: ProductListItem
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const emit = defineEmits<{
     'add-to-cart': [product: ProductListItem]
-    'add-to-wishlist': [product: ProductListItem]
 }>()
 
 const { t } = useAppI18n()
+const { isInWishlist, toggleWishlist } = useWishlist()
+
+const isProductInWishlist = computed(() => isInWishlist.value(props.product.id))
+
+const handleToggleWishlist = () => {
+    const wishlistItem = {
+        productId: props.product.id,
+        name: props.product.name,
+        price: props.product.price,
+        originalPrice: props.product.originalPrice,
+        image: props.product.image,
+        category: props.product.category,
+        description: props.product.description,
+        rating: props.product.rating,
+        reviewCount: props.product.reviewCount,
+        inStock: props.product.inStock,
+    }
+    toggleWishlist(wishlistItem)
+}
 
 const getBadgeClasses = (tag?: string) => {
     switch (tag) {

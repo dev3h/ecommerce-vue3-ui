@@ -219,10 +219,26 @@
                                         @click="addToWishlist"
                                         variant="outline"
                                         size="lg"
-                                        class="p-3"
-                                        :title="t('productDetail.addToWishlist')"
+                                        :class="[
+                                            'p-3',
+                                            isProductInWishlist
+                                                ? 'border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/20'
+                                                : '',
+                                        ]"
+                                        :title="
+                                            isProductInWishlist
+                                                ? t('wishlist.removeFromWishlist')
+                                                : t('wishlist.addToWishlist')
+                                        "
                                     >
-                                        <Heart class="w-5 h-5" />
+                                        <Heart
+                                            :class="[
+                                                'w-5 h-5 transition-colors',
+                                                isProductInWishlist
+                                                    ? 'text-red-500 fill-current'
+                                                    : '',
+                                            ]"
+                                        />
                                     </Button>
                                 </div>
                             </div>
@@ -270,9 +286,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, computed } from 'vue'
 import { useAppI18n } from '@/composables/useI18n'
 import { useProductDetail } from '@/composables/useProductDetail'
+import { useWishlist } from '@/composables/useWishlist'
 import type { ProductListItem } from '@/types/products'
 
 // UI Components
@@ -287,6 +304,7 @@ import RelatedProducts from '@/components/product/RelatedProducts.vue'
 import { Star, ShoppingCart, Heart, Plus, Minus, AlertCircle } from 'lucide-vue-next'
 
 const { t } = useAppI18n()
+const { isInWishlist } = useWishlist()
 
 const {
     // State
@@ -318,6 +336,10 @@ const {
     loadMoreReviews,
     initialize,
 } = useProductDetail()
+
+const isProductInWishlist = computed(() => {
+    return product.value ? isInWishlist.value(product.value.id.toString()) : false
+})
 
 // Methods
 const getBadgeClasses = (tag?: string) => {

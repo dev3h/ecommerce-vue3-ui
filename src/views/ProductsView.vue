@@ -226,7 +226,6 @@
                                     :key="product.id"
                                     :product="product"
                                     @add-to-cart="handleAddToCart"
-                                    @add-to-wishlist="handleAddToWishlist"
                                 />
                             </div>
 
@@ -237,7 +236,6 @@
                                     :key="product.id"
                                     :product="product"
                                     @add-to-cart="handleAddToCart"
-                                    @add-to-wishlist="handleAddToWishlist"
                                 />
                             </div>
                         </div>
@@ -324,11 +322,6 @@ const sidebarOpen = ref(false)
 const handleAddToCart = (product: ProductListItem) => {
     addToCart(product, 1)
     console.log('Added to cart:', product)
-}
-
-const handleAddToWishlist = (product: ProductListItem) => {
-    console.log('Add to wishlist:', product)
-    // Implement add to wishlist functionality
 }
 
 const handleSortChange = (value: any) => {

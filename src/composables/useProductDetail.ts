@@ -1,12 +1,14 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCart } from '@/composables/useCart'
+import { useWishlist } from '@/composables/useWishlist'
 import { productDetailService } from '@/services/product-detail.service'
 import type { ProductDetail, ProductReview, RelatedProduct } from '@/types/product-detail'
 
 export function useProductDetail() {
     const route = useRoute()
     const { addToCart: cartAddToCart } = useCart()
+    const { toggleWishlist } = useWishlist()
 
     // State
     const product = ref<ProductDetail | null>(null)
@@ -189,11 +191,23 @@ export function useProductDetail() {
     }
 
     const addToWishlist = async () => {
-        if (!product.value) return
+        if (!product.value) return false
 
         try {
-            console.log('Adding to wishlist:', product.value)
-            return true
+            const wishlistItem = {
+                productId: product.value.id.toString(),
+                name: product.value.name,
+                price: product.value.price,
+                originalPrice: product.value.originalPrice,
+                image: product.value.images?.[0] || '',
+                category: product.value.category,
+                description: product.value.shortDescription,
+                rating: product.value.rating,
+                reviewCount: product.value.reviewCount,
+                inStock: product.value.inStock,
+            }
+
+            return toggleWishlist(wishlistItem)
         } catch (err) {
             console.error('Error adding to wishlist:', err)
             return false

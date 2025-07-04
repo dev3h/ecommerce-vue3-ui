@@ -35,25 +35,48 @@
                 :original-price="product.originalPrice"
                 class="text-sm sm:text-base"
             />
-            <button
-                @click.stop="handleAddToCart"
-                class="opacity-70 active:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 bg-primary text-primary-foreground p-1.5 sm:p-2 rounded-lg hover:bg-primary/90 active:bg-primary/80 transition-all touch-manipulation shadow-sm"
-                :aria-label="t('productDetail.addToCart')"
-            >
-                <svg
-                    class="w-3 h-3 sm:w-4 sm:h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+            <div class="flex items-center gap-1">
+                <button
+                    @click.stop="handleToggleWishlist"
+                    :class="[
+                        'opacity-70 active:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 p-1.5 sm:p-2 rounded-lg transition-all touch-manipulation shadow-sm border',
+                        isProductInWishlist
+                            ? 'bg-red-50 dark:bg-red-900/20 text-red-500 border-red-200 dark:border-red-800'
+                            : 'bg-background dark:bg-card text-foreground border-border hover:bg-accent',
+                    ]"
+                    :aria-label="
+                        isProductInWishlist
+                            ? t('wishlist.removeFromWishlist')
+                            : t('wishlist.addToWishlist')
+                    "
                 >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    <Heart
+                        :class="[
+                            'w-3 h-3 sm:w-4 sm:h-4 transition-colors',
+                            isProductInWishlist ? 'fill-current' : '',
+                        ]"
                     />
-                </svg>
-            </button>
+                </button>
+                <button
+                    @click.stop="handleAddToCart"
+                    class="opacity-70 active:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 bg-primary text-primary-foreground p-1.5 sm:p-2 rounded-lg hover:bg-primary/90 active:bg-primary/80 transition-all touch-manipulation shadow-sm"
+                    :aria-label="t('productDetail.addToCart')"
+                >
+                    <svg
+                        class="w-3 h-3 sm:w-4 sm:h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                        />
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -61,12 +84,17 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
+import { useWishlist } from '@/composables/useWishlist'
+import { computed } from 'vue'
 import PriceDisplay from '@/components/PriceDisplay.vue'
+import { Heart } from 'lucide-vue-next'
 import type { Product } from '@/types/home'
 
 interface Props {
     product: Product
 }
+
+const props = defineProps<Props>()
 
 const emit = defineEmits<{
     'add-to-cart': [product: Product]
@@ -74,6 +102,9 @@ const emit = defineEmits<{
 
 const { t } = useAppI18n()
 const router = useRouter()
+const { isInWishlist, toggleWishlist } = useWishlist()
+
+const isProductInWishlist = computed(() => isInWishlist.value(props.product.id.toString()))
 
 const getBadgeClasses = (tag?: string) => {
     switch (tag) {
@@ -98,5 +129,14 @@ const handleAddToCart = () => {
     emit('add-to-cart', props.product)
 }
 
-const props = defineProps<Props>()
+const handleToggleWishlist = () => {
+    const wishlistItem = {
+        productId: props.product.id.toString(),
+        name: props.product.name,
+        price: props.product.price,
+        originalPrice: props.product.originalPrice,
+        image: props.product.image,
+    }
+    toggleWishlist(wishlistItem)
+}
 </script>

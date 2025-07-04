@@ -36,11 +36,27 @@
             >
                 <div class="flex gap-2">
                     <button
-                        @click="$emit('add-to-wishlist', product)"
-                        class="w-8 h-8 sm:w-10 sm:h-10 bg-background/90 dark:bg-card/90 rounded-full flex items-center justify-center hover:bg-background dark:hover:bg-card transition-colors border border-border"
-                        :title="t('products.addToWishlist')"
+                        @click.stop="handleToggleWishlist"
+                        :class="[
+                            'w-8 h-8 sm:w-10 sm:h-10 bg-background/90 dark:bg-card/90 rounded-full flex items-center justify-center hover:bg-background dark:hover:bg-card transition-all border border-border',
+                            isProductInWishlist
+                                ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800'
+                                : '',
+                        ]"
+                        :title="
+                            isProductInWishlist
+                                ? t('wishlist.removeFromWishlist')
+                                : t('wishlist.addToWishlist')
+                        "
                     >
-                        <Heart class="w-4 h-4 sm:w-5 sm:h-5 text-foreground" />
+                        <Heart
+                            :class="[
+                                'w-4 h-4 sm:w-5 sm:h-5 transition-colors',
+                                isProductInWishlist
+                                    ? 'text-red-500 fill-current'
+                                    : 'text-foreground',
+                            ]"
+                        />
                     </button>
                     <button
                         @click="quickView"
@@ -111,20 +127,40 @@
 <script setup lang="ts">
 import type { ProductListItem } from '@/types/products'
 import { useAppI18n } from '@/composables/useI18n'
+import { useWishlist } from '@/composables/useWishlist'
+import { computed } from 'vue'
 import { Heart, Eye, Star } from 'lucide-vue-next'
 
 interface Props {
     product: ProductListItem
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const emit = defineEmits<{
     'add-to-cart': [product: ProductListItem]
-    'add-to-wishlist': [product: ProductListItem]
 }>()
 
 const { t } = useAppI18n()
+const { isInWishlist, toggleWishlist } = useWishlist()
+
+const isProductInWishlist = computed(() => isInWishlist.value(props.product.id))
+
+const handleToggleWishlist = () => {
+    const wishlistItem = {
+        productId: props.product.id,
+        name: props.product.name,
+        price: props.product.price,
+        originalPrice: props.product.originalPrice,
+        image: props.product.image,
+        category: props.product.category,
+        description: props.product.description,
+        rating: props.product.rating,
+        reviewCount: props.product.reviewCount,
+        inStock: props.product.inStock,
+    }
+    toggleWishlist(wishlistItem)
+}
 
 const getBadgeClasses = (tag?: string) => {
     switch (tag) {
