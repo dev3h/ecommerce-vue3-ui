@@ -261,9 +261,9 @@ export const useOrderStore = defineStore('orders', () => {
         loadAllOrders()
 
         // Add sample orders if no orders exist
-        if (orders.value.length === 0) {
-            createSampleOrders()
-        }
+        // if (orders.value.length === 0) {
+        //     createSampleOrders()
+        // }
     }
 
     // Create sample orders for testing
