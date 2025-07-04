@@ -100,10 +100,15 @@
                                 v-if="order.status === 'delivered'"
                                 variant="outline"
                                 size="sm"
+                                :disabled="isProcessing"
                                 class="w-full sm:w-auto"
                                 @click="reorderItems(order.id)"
                             >
-                                {{ t('account.reorder') }}
+                                <div
+                                    v-if="isProcessing"
+                                    class="w-3 h-3 border-2 border-current border-t-transparent rounded-full animate-spin mr-2"
+                                ></div>
+                                {{ isProcessing ? t('order.processing') : t('account.reorder') }}
                             </Button>
                         </div>
                     </div>
@@ -114,8 +119,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
+import { useCart } from '@/composables/useCart'
+import { useToast } from '@/composables/useToast'
 import { useOrderStore } from '@/stores/orders'
 import { useAuthStore } from '@/stores/auth'
 import { Button } from '@/components/ui/button'
@@ -124,8 +132,14 @@ import { ShoppingBag, Package } from 'lucide-vue-next'
 import PriceDisplay from '@/components/PriceDisplay.vue'
 
 const { t } = useAppI18n()
+const router = useRouter()
+const { addToCart } = useCart()
+const { success, error: showError } = useToast()
 const orderStore = useOrderStore()
 const authStore = useAuthStore()
+
+// Local state
+const isProcessing = ref(false)
 
 // Get user orders from store
 const orders = computed(() => orderStore.userOrders)
@@ -173,10 +187,43 @@ const getDeliveryText = (status: string) => {
     return deliveryMap[status as keyof typeof deliveryMap] || ''
 }
 
-const reorderItems = (orderId: string) => {
-    // Here you would implement reorder functionality
-    console.log('Reordering items from order:', orderId)
-    // In a real app, this would add the items to cart
+const reorderItems = async (orderId: string) => {
+    if (isProcessing.value) return
+
+    isProcessing.value = true
+    try {
+        const order = orderStore.getOrderById(orderId)
+        if (!order) {
+            showError(t('order.orderNotFound'))
+            return
+        }
+
+        // Add items to cart
+        for (const item of order.items) {
+            addToCart(
+                {
+                    id: item.productId,
+                    name: item.name,
+                    price: item.price,
+                    image: item.image || '',
+                    category: 'Reorder Item',
+                },
+                item.quantity,
+            )
+        }
+
+        success(t('order.reorderSuccess'))
+
+        // Navigate to cart after a short delay
+        setTimeout(() => {
+            router.push('/cart')
+        }, 1500)
+    } catch (err: any) {
+        console.error('Failed to reorder:', err)
+        showError(err.message || t('order.reorderError'))
+    } finally {
+        isProcessing.value = false
+    }
 }
 
 const loadOrders = async () => {
