@@ -25,6 +25,15 @@ export const accountRoutes: RouteRecordRaw[] = [
                 },
             },
             {
+                path: 'addresses',
+                name: 'account-addresses',
+                component: () => import('@/views/account/AddressesView.vue'),
+                meta: {
+                    title: 'My Addresses',
+                    requiresAuth: true,
+                },
+            },
+            {
                 path: 'orders',
                 name: 'account-orders',
                 component: () => import('@/views/account/OrderHistoryView.vue'),

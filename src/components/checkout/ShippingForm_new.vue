@@ -12,33 +12,29 @@
                 <h3 class="text-sm font-medium text-foreground mb-3">
                     {{ t('checkout.savedAddresses') }}
                 </h3>
-
-                <RadioGroup v-model="selectedAddressId" class="space-y-3">
+                <div class="space-y-3">
                     <div
                         v-for="address in addresses"
                         :key="address.id"
-                        class="border rounded-lg p-4 cursor-pointer transition-all duration-200 hover:bg-muted/50"
+                        class="border rounded-lg p-4 cursor-pointer transition-colors hover:bg-muted/50"
                         :class="{
-                            'border-primary bg-primary/5 ring-2 ring-primary/20':
-                                selectedAddressId === address.id,
+                            'border-primary bg-primary/5': selectedAddressId === address.id,
                             'border-border': selectedAddressId !== address.id,
                         }"
                         @click="selectAddress(address)"
                     >
-                        <div class="flex items-start gap-3">
-                            <RadioGroupItem
-                                :id="`address-${address.id}`"
-                                :value="address.id"
-                                class="mt-0.5"
-                            />
-                            <div class="flex-1 min-w-0">
+                        <div class="flex items-start justify-between">
+                            <div class="flex-1">
                                 <div class="flex items-center gap-2 mb-1">
-                                    <label
-                                        :for="`address-${address.id}`"
-                                        class="font-medium text-sm cursor-pointer"
-                                    >
+                                    <input
+                                        type="radio"
+                                        :value="address.id"
+                                        v-model="selectedAddressId"
+                                        class="text-primary focus:ring-primary"
+                                    />
+                                    <span class="font-medium text-sm">
                                         {{ address.firstName }} {{ address.lastName }}
-                                    </label>
+                                    </span>
                                     <span
                                         v-if="address.isDefault"
                                         class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary"
@@ -59,18 +55,46 @@
                             </div>
                         </div>
                     </div>
-                </RadioGroup>
+                </div>
 
                 <div class="mt-4">
-                    <Button variant="outline" @click="openNewAddressForm" class="w-full sm:w-auto">
+                    <Button
+                        variant="outline"
+                        @click="toggleNewAddressForm"
+                        class="w-full sm:w-auto"
+                    >
                         <Plus class="w-4 h-4 mr-2" />
                         {{ t('checkout.useNewAddress') }}
                     </Button>
                 </div>
             </div>
 
-            <!-- New Address Form (only when no addresses exist) -->
-            <div v-if="addresses.length === 0">
+            <!-- Email input for saved addresses -->
+            <div v-if="selectedAddressId && !showNewAddressForm" class="mb-6">
+                <div class="space-y-2">
+                    <Label for="email-saved">
+                        {{ t('checkout.email') }}<span class="text-red-500 ml-1">*</span>
+                    </Label>
+                    <Input
+                        id="email-saved"
+                        v-model="shippingData.email"
+                        type="email"
+                        required
+                        :class="{ 'border-red-500': errors.email }"
+                        :placeholder="t('checkout.email')"
+                    />
+                    <div v-if="errors.email" class="mt-1 text-sm text-red-500">
+                        {{ errors.email }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Address Form -->
+            <div v-if="addresses.length === 0 || showNewAddressForm">
+                <h3 v-if="addresses.length > 0" class="text-sm font-medium text-foreground mb-3">
+                    {{ t('checkout.newAddress') }}
+                </h3>
+
                 <div class="space-y-4">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div class="space-y-2">
@@ -229,14 +253,6 @@
                 </Button>
             </div>
         </CardContent>
-
-        <!-- Address Form Modal -->
-        <AddressForm
-            v-if="showAddressForm"
-            :is-open="showAddressForm"
-            @close="closeAddressForm"
-            @success="handleAddressCreated"
-        />
     </Card>
 </template>
 
@@ -245,14 +261,11 @@ import { computed, reactive, ref, watch, onMounted } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useAppI18n } from '@/composables/useI18n'
 import { useAddressStore, type Address } from '@/stores/addresses'
-import { useAuthStore } from '@/stores/auth'
-import { useToast } from '@/composables/useToast'
 import type { ShippingAddress } from '@/types/cart'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import {
     Select,
     SelectContent,
@@ -261,7 +274,6 @@ import {
     SelectValue,
 } from '@/components/ui/select'
 import { Plus } from 'lucide-vue-next'
-import AddressForm from '@/components/address/AddressForm.vue'
 
 interface Props {
     modelValue: ShippingAddress
@@ -277,56 +289,34 @@ const emit = defineEmits<Emits>()
 
 const { t } = useAppI18n()
 const addressStore = useAddressStore()
-const authStore = useAuthStore()
 const { addresses } = storeToRefs(addressStore)
-const { success } = useToast()
 
 const shippingData = reactive({ ...props.modelValue })
 const errors = ref<Record<string, string>>({})
 const selectedAddressId = ref<string | null>(null)
-const showAddressForm = ref(false)
+const showNewAddressForm = ref(false)
 
-// Load addresses on mount and when user changes
+// Load addresses on mount
 onMounted(async () => {
-    if (authStore.isAuthenticated) {
-        await addressStore.loadAddresses()
+    await addressStore.loadAddresses()
 
-        // If there are addresses and no shipping data, auto-select default address
-        if (addresses.value.length > 0 && !shippingData.firstName) {
-            const defaultAddress =
-                addresses.value.find((addr) => addr.isDefault) || addresses.value[0]
-            if (defaultAddress) {
-                selectAddress(defaultAddress)
-            }
+    // If there are addresses and no shipping data, auto-select default address
+    if (addresses.value.length > 0 && !shippingData.firstName) {
+        const defaultAddress = addresses.value.find((addr) => addr.isDefault) || addresses.value[0]
+        if (defaultAddress) {
+            selectAddress(defaultAddress)
         }
+    }
+
+    // If no addresses, show new address form
+    if (addresses.value.length === 0) {
+        showNewAddressForm.value = true
     }
 })
 
-// Watch for auth changes to reload addresses
-watch(
-    () => authStore.user?.id,
-    async (newUserId) => {
-        if (newUserId) {
-            await addressStore.loadAddresses()
-            selectedAddressId.value = null
-
-            // Auto-select default address if available
-            if (addresses.value.length > 0) {
-                const defaultAddress =
-                    addresses.value.find((addr) => addr.isDefault) || addresses.value[0]
-                if (defaultAddress) {
-                    selectAddress(defaultAddress)
-                }
-            }
-        } else {
-            // Clear addresses when logged out
-            selectedAddressId.value = null
-        }
-    },
-)
-
 const selectAddress = (address: Address) => {
     selectedAddressId.value = address.id
+    showNewAddressForm.value = false
 
     // Map address to shipping data format
     Object.assign(shippingData, {
@@ -345,26 +335,24 @@ const selectAddress = (address: Address) => {
     errors.value = {}
 }
 
-const openNewAddressForm = () => {
-    showAddressForm.value = true
-}
+const toggleNewAddressForm = () => {
+    showNewAddressForm.value = !showNewAddressForm.value
+    selectedAddressId.value = null
 
-const closeAddressForm = () => {
-    showAddressForm.value = false
-}
-
-const handleAddressCreated = async () => {
-    // Reload addresses after creating new one
-    await addressStore.loadAddresses()
-
-    // Auto-select the newly created address (should be the latest one)
-    if (addresses.value.length > 0) {
-        const latestAddress = addresses.value[addresses.value.length - 1]
-        selectAddress(latestAddress)
+    // Clear form when switching to new address
+    if (showNewAddressForm.value) {
+        Object.assign(shippingData, {
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            address: '',
+            city: '',
+            state: '',
+            zipCode: '',
+            country: 'United States',
+        })
     }
-
-    closeAddressForm()
-    success(t('checkout.addressCreated', 'Address created successfully'))
 }
 
 const validateField = (field: string, value: string) => {
@@ -468,13 +456,13 @@ const validateCountry = (value: string) => {
 watch(
     () => shippingData.firstName,
     (value) => {
-        if (addresses.value.length === 0) validateField('firstName', value)
+        if (showNewAddressForm.value) validateField('firstName', value)
     },
 )
 watch(
     () => shippingData.lastName,
     (value) => {
-        if (addresses.value.length === 0) validateField('lastName', value)
+        if (showNewAddressForm.value) validateField('lastName', value)
     },
 )
 watch(
@@ -484,46 +472,38 @@ watch(
 watch(
     () => shippingData.phone,
     (value) => {
-        if (addresses.value.length === 0) validateField('phone', value)
+        if (showNewAddressForm.value) validateField('phone', value)
     },
 )
 watch(
     () => shippingData.address,
     (value) => {
-        if (addresses.value.length === 0) validateField('address', value)
+        if (showNewAddressForm.value) validateField('address', value)
     },
 )
 watch(
     () => shippingData.city,
     (value) => {
-        if (addresses.value.length === 0) validateField('city', value)
+        if (showNewAddressForm.value) validateField('city', value)
     },
 )
 watch(
     () => shippingData.zipCode,
     (value) => {
-        if (addresses.value.length === 0) validateField('zipCode', value)
+        if (showNewAddressForm.value) validateField('zipCode', value)
     },
 )
 watch(
     () => shippingData.country,
     (value) => {
-        if (addresses.value.length === 0) validateField('country', value)
+        if (showNewAddressForm.value) validateField('country', value)
     },
 )
 
 const isValid = computed(() => {
-    // If a saved address is selected, form is valid if we have address data
-    if (selectedAddressId.value) {
-        return (
-            shippingData.firstName &&
-            shippingData.lastName &&
-            shippingData.phone &&
-            shippingData.address &&
-            shippingData.city &&
-            shippingData.zipCode &&
-            shippingData.country
-        )
+    // If a saved address is selected, only email is required
+    if (selectedAddressId.value && !showNewAddressForm.value) {
+        return shippingData.email?.trim() && !errors.value.email
     }
 
     // For new address form, all fields are required
@@ -542,7 +522,9 @@ const isValid = computed(() => {
 
 const handleSubmit = () => {
     // If using saved address, minimal validation
-    if (selectedAddressId.value) {
+    if (selectedAddressId.value && !showNewAddressForm.value) {
+        validateField('email', shippingData.email)
+
         if (isValid.value) {
             emit('update:modelValue', { ...shippingData })
             emit('next-step')

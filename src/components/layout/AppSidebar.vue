@@ -186,6 +186,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
+import { useCart } from '@/composables/useCart'
 import { productsService } from '@/services/products.service'
 import SidebarItem from './SidebarItem.vue'
 import { Button } from '@/components/ui/button'
@@ -226,6 +227,7 @@ defineEmits<{
 const router = useRouter()
 const route = useRoute()
 const { t, formatCurrency } = useAppI18n()
+const { totalItems } = useCart()
 
 // Computed
 const sidebarHeight = computed(() => {
@@ -264,8 +266,7 @@ const loadData = async () => {
 
 // Computed
 const cartItemsCount = computed(() => {
-    // Get from cart store when implemented
-    return 3
+    return totalItems.value
 })
 
 const wishlistCount = computed(() => {
