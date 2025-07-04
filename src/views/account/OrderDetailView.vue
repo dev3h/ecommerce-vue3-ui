@@ -86,7 +86,7 @@
             </Card>
 
             <!-- Order Progress -->
-            <Card class="w-full max-w-full overflow-hidden">
+            <Card class="w-full max-w-full overflow-hidden" v-if="order.status !== 'cancelled'">
                 <CardHeader>
                     <CardTitle class="text-lg">{{ t('order.progress') }}</CardTitle>
                 </CardHeader>
@@ -378,18 +378,25 @@
                         </CardContent>
                     </Card>
                     <!-- Action Buttons -->
-                    <Card class="w-full max-w-full overflow-hidden">
+                    <Card class="w-full max-w-full overflow-hidden"  v-if="order.status !== 'cancelled'">
                         <CardContent class="p-3 sm:p-6">
                             <div class="flex flex-col gap-3">
                                 <Button
                                     v-if="order.status === 'delivered'"
                                     variant="outline"
                                     @click="reorderItems"
+                                    :disabled="isProcessing"
                                     class="w-full justify-center"
                                     size="sm"
                                 >
-                                    <RefreshCw class="w-4 h-4 mr-2" />
-                                    {{ t('account.reorder') }}
+                                    <div
+                                        v-if="isProcessing"
+                                        class="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2"
+                                    ></div>
+                                    <RefreshCw v-else class="w-4 h-4 mr-2" />
+                                    {{
+                                        isProcessing ? t('order.processing') : t('account.reorder')
+                                    }}
                                 </Button>
 
                                 <Button
@@ -407,11 +414,20 @@
                                     v-if="canCancelOrder"
                                     variant="destructive"
                                     @click="cancelOrder"
+                                    :disabled="isProcessing"
                                     class="w-full justify-center"
                                     size="sm"
                                 >
-                                    <X class="w-4 h-4 mr-2" />
-                                    {{ t('order.cancelOrder') }}
+                                    <div
+                                        v-if="isProcessing"
+                                        class="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2"
+                                    ></div>
+                                    <X v-else class="w-4 h-4 mr-2" />
+                                    {{
+                                        isProcessing
+                                            ? t('order.processing')
+                                            : t('order.cancelOrder')
+                                    }}
                                 </Button>
                             </div>
                         </CardContent>
@@ -419,16 +435,32 @@
                 </div>
             </div>
         </div>
+
+        <!-- Cancel Confirmation Dialog -->
+        <ConfirmDialog
+            v-model:open="showCancelDialog"
+            :title="t('order.cancelOrder')"
+            :description="t('order.cancelConfirmation')"
+            :confirm-text="t('order.cancelOrder')"
+            :cancel-text="t('common.cancel')"
+            variant="destructive"
+            :loading="isProcessing"
+            @confirm="handleCancelConfirm"
+            @cancel="handleCancelCancel"
+        />
     </div>
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
+import { useCart } from '@/composables/useCart'
+import { useToast } from '@/composables/useToast'
 import { useOrderStore } from '@/stores/orders'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import ConfirmDialog from '@/components/ui/ConfirmDialog.vue'
 import {
     Package,
     CheckCircle,
@@ -450,7 +482,13 @@ const props = defineProps<Props>()
 const { t } = useAppI18n()
 const route = useRoute()
 const router = useRouter()
+const { addToCart } = useCart()
+const { success, error: showError } = useToast()
 const orderStore = useOrderStore()
+
+// Local state
+const isProcessing = ref(false)
+const showCancelDialog = ref(false)
 
 // Get order from store
 const order = computed(() => orderStore.getOrderById(props.id))
@@ -566,24 +604,83 @@ const getProgressWidth = () => {
     return statusProgress[order.value.status as keyof typeof statusProgress] || 0
 }
 
-const reorderItems = () => {
-    // Here you would implement reorder functionality
-    console.log('Reordering items from order:', props.id)
-    // In a real app, this would add the items to cart
+const reorderItems = async () => {
+    if (!order.value || isProcessing.value) return
+
+    isProcessing.value = true
+    try {
+        // Option 1: Add items directly to cart
+        for (const item of order.value.items) {
+            addToCart(
+                {
+                    id: item.productId,
+                    name: item.name,
+                    price: item.price,
+                    image: item.image || '',
+                    category: 'Reorder Item',
+                },
+                item.quantity,
+            )
+        }
+
+        success(t('order.reorderSuccess'))
+
+        // Navigate to cart
+        setTimeout(() => {
+            router.push('/cart')
+        }, 1500)
+
+        // Option 2: Create a new order (uncomment if you prefer this approach)
+        // const newOrder = await orderStore.createReorder(props.id)
+        // success(t('order.reorderSuccess'))
+        // router.push(`/account/orders/${newOrder.id}`)
+    } catch (err: any) {
+        console.error('Failed to reorder:', err)
+        showError(err.message || t('order.reorderError'))
+    } finally {
+        isProcessing.value = false
+    }
+}
+
+const cancelOrder = async () => {
+    if (!order.value || !canCancelOrder.value || isProcessing.value) return
+
+    // Show confirmation dialog instead of window.confirm
+    showCancelDialog.value = true
+}
+
+const handleCancelConfirm = async () => {
+    if (!order.value) return
+
+    isProcessing.value = true
+    showCancelDialog.value = false
+
+    try {
+        await orderStore.cancelOrder(props.id)
+        success(t('order.cancelSuccess'))
+
+        // Optionally refresh order data or navigate back
+        setTimeout(() => {
+            router.push('/account/orders')
+        }, 1500)
+    } catch (err: any) {
+        console.error('Failed to cancel order:', err)
+        showError(err.message || t('order.cancelError'))
+    } finally {
+        isProcessing.value = false
+    }
+}
+
+const handleCancelCancel = () => {
+    showCancelDialog.value = false
 }
 
 const trackOrder = () => {
     if (order.value?.tracking) {
         // Open tracking URL or show tracking info
         console.log('Tracking order:', order.value.tracking)
-    }
-}
-
-const cancelOrder = () => {
-    if (order.value && canCancelOrder.value) {
-        // Show confirmation dialog and cancel order
-        console.log('Cancelling order:', props.id)
-        // orderStore.cancelOrder(props.id)
+        // In a real app, this could open a tracking page or modal
+        window.open(`https://tracking.example.com/${order.value.tracking}`, '_blank')
     }
 }
 

@@ -33,7 +33,7 @@
         </div>
 
         <!-- Actions -->
-        <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-4 pt-4 border-t">
+        <div class="flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3 mt-4 pt-4 border-t">
             <Button
                 v-if="!address.isDefault"
                 variant="outline"

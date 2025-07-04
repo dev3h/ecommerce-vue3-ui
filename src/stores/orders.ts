@@ -134,6 +134,69 @@ export const useOrderStore = defineStore('orders', () => {
         }
     }
 
+    const cancelOrder = async (orderId: string) => {
+        isLoading.value = true
+        try {
+            const orderIndex = orders.value.findIndex((order) => order.id === orderId)
+            if (orderIndex !== -1) {
+                const order = orders.value[orderIndex]
+
+                // Only allow cancellation for pending and processing orders
+                if (['pending', 'processing'].includes(order.status)) {
+                    orders.value[orderIndex].status = 'cancelled'
+                    saveOrdersToStorage()
+                    return true
+                } else {
+                    throw new Error('Order cannot be cancelled at this stage')
+                }
+            } else {
+                throw new Error('Order not found')
+            }
+        } catch (error) {
+            console.error('Failed to cancel order:', error)
+            throw error
+        } finally {
+            isLoading.value = false
+        }
+    }
+
+    const createReorder = async (orderId: string) => {
+        const authStore = useAuthStore()
+        if (!authStore.user?.id) {
+            throw new Error('User must be authenticated to reorder')
+        }
+
+        isLoading.value = true
+        try {
+            const originalOrder = orders.value.find((order) => order.id === orderId)
+            if (!originalOrder) {
+                throw new Error('Original order not found')
+            }
+
+            // Create new order with same items
+            const newOrderData = {
+                items: originalOrder.items.map((item) => ({
+                    ...item,
+                    id: 'item_' + Math.random().toString(36).substring(2, 11) + '_' + Date.now(),
+                })),
+                shippingAddress: originalOrder.shippingAddress,
+                paymentMethod: originalOrder.paymentMethod,
+                subtotal: originalOrder.subtotal,
+                shipping: originalOrder.shipping,
+                tax: originalOrder.tax,
+                total: originalOrder.total,
+            }
+
+            const newOrder = await createOrder(newOrderData)
+            return newOrder
+        } catch (error) {
+            console.error('Failed to create reorder:', error)
+            throw error
+        } finally {
+            isLoading.value = false
+        }
+    }
+
     const loadUserOrders = () => {
         const authStore = useAuthStore()
         if (!authStore.user?.id) return
@@ -358,6 +421,8 @@ export const useOrderStore = defineStore('orders', () => {
         // Actions
         createOrder,
         updateOrderStatus,
+        cancelOrder,
+        createReorder,
         loadUserOrders,
         loadAllOrders,
         clearUserOrders,
