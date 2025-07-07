@@ -75,7 +75,7 @@ export function useProducts() {
             totalPages.value = response.totalPages
             totalProducts.value = response.total
         } catch (err) {
-            error.value = 'Failed to load products'
+            error.value = t('products.errorLoadingProducts')
             console.error('Error loading products:', err)
         } finally {
             loading.value.products = false
@@ -89,6 +89,7 @@ export function useProducts() {
             categories.value = await productsService.getCategories()
         } catch (err) {
             console.error('Error loading categories:', err)
+            // Optionally show toast or handle error display
         } finally {
             loading.value.categories = false
         }

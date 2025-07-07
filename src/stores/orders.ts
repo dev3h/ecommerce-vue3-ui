@@ -261,9 +261,9 @@ export const useOrderStore = defineStore('orders', () => {
         loadAllOrders()
 
         // Add sample orders if no orders exist
-        // if (orders.value.length === 0) {
-        //     createSampleOrders()
-        // }
+        if (orders.value.length === 0) {
+            createSampleOrders()
+        }
     }
 
     // Create sample orders for testing
@@ -278,16 +278,16 @@ export const useOrderStore = defineStore('orders', () => {
                 items: [
                     {
                         id: 'item_001',
-                        productId: 'prod_001',
-                        name: 'Wireless Bluetooth Headphones',
-                        price: 79.99,
+                        productId: '1',
+                        name: 'Seeds of Orange Organic Quinoa',
+                        price: 29.99,
                         quantity: 1,
                         image: 'https://picsum.photos/150/150',
                     },
                     {
                         id: 'item_002',
-                        productId: 'prod_002',
-                        name: 'USB-C Cable',
+                        productId: '2',
+                        name: 'All Natural Italian-Style Chicken Meatballs',
                         price: 19.99,
                         quantity: 2,
                         image: 'https://picsum.photos/150/150',
@@ -322,13 +322,13 @@ export const useOrderStore = defineStore('orders', () => {
                 userId: 'user_001',
                 number: 'ORD-20250102-EFGH',
                 date: '2024-12-20T10:30:00Z',
-                status: 'shipped',
+                status: 'delivered',
                 items: [
                     {
                         id: 'item_003',
-                        productId: 'prod_003',
-                        name: 'Smartphone Case',
-                        price: 29.99,
+                        productId: '3',
+                        name: "Angel's Beauty/Dehydration Super 6 Jelly",
+                        price: 49.99,
                         quantity: 1,
                         image: 'https://picsum.photos/150/150',
                     },

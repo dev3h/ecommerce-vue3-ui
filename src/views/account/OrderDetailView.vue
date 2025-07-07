@@ -235,58 +235,77 @@
                                 <div
                                     v-for="item in order.items"
                                     :key="item.id"
-                                    class="flex flex-col xs:flex-row gap-3 sm:gap-4 p-3 sm:p-4 border rounded-lg"
+                                    class="border rounded-lg"
                                 >
-                                    <!-- Product Image -->
-                                    <div class="flex-shrink-0 self-center xs:self-start">
-                                        <div
-                                            class="w-16 h-16 sm:w-20 sm:h-20 bg-muted rounded-lg flex items-center justify-center"
-                                        >
-                                            <img
-                                                v-if="item.image"
-                                                :src="item.image"
-                                                :alt="item.name"
-                                                class="w-full h-full object-cover rounded-lg"
-                                            />
-                                            <Package
-                                                v-else
-                                                class="w-6 h-6 sm:w-8 sm:h-8 text-muted-foreground"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <!-- Product Details & Price -->
+                                    <!-- Product Item -->
                                     <div
-                                        class="flex-1 min-w-0 flex flex-col xs:flex-row xs:items-center justify-between gap-2"
+                                        class="flex flex-col xs:flex-row gap-3 sm:gap-4 p-3 sm:p-4 hover:bg-accent/50 transition-colors cursor-pointer"
+                                        @click="goToProduct(item.productId)"
                                     >
-                                        <!-- Product Info -->
-                                        <div class="min-w-0 flex-1">
-                                            <h4
-                                                class="font-medium text-foreground text-sm sm:text-base mb-1 break-words"
+                                        <!-- Product Image -->
+                                        <div class="flex-shrink-0 self-center xs:self-start">
+                                            <div
+                                                class="w-16 h-16 sm:w-20 sm:h-20 bg-muted rounded-lg flex items-center justify-center"
                                             >
-                                                {{ item.name }}
-                                            </h4>
-                                            <p class="text-xs sm:text-sm text-muted-foreground">
-                                                {{ t('order.details.quantity') }}:
-                                                {{ item.quantity }}
-                                            </p>
+                                                <img
+                                                    v-if="item.image"
+                                                    :src="item.image"
+                                                    :alt="item.name"
+                                                    class="w-full h-full object-cover rounded-lg"
+                                                />
+                                                <Package
+                                                    v-else
+                                                    class="w-6 h-6 sm:w-8 sm:h-8 text-muted-foreground"
+                                                />
+                                            </div>
                                         </div>
 
-                                        <!-- Price -->
-                                        <div class="flex-shrink-0 text-left xs:text-right">
-                                            <PriceDisplay
-                                                :price="item.price * item.quantity"
-                                                class="font-medium text-sm sm:text-base"
-                                            />
-                                            <p
-                                                v-if="item.quantity > 1"
-                                                class="text-xs text-muted-foreground"
-                                            >
-                                                <PriceDisplay :price="item.price" />
-                                                {{ t('order.details.each') }}
-                                            </p>
+                                        <!-- Product Details & Price -->
+                                        <div
+                                            class="flex-1 min-w-0 flex flex-col xs:flex-row xs:items-center justify-between gap-2"
+                                        >
+                                            <!-- Product Info -->
+                                            <div class="min-w-0 flex-1">
+                                                <h4
+                                                    class="font-medium text-foreground text-sm sm:text-base mb-1 break-words hover:text-primary transition-colors"
+                                                >
+                                                    {{ item.name }}
+                                                </h4>
+                                                <p class="text-xs sm:text-sm text-muted-foreground">
+                                                    {{ t('order.details.quantity') }}:
+                                                    {{ item.quantity }}
+                                                </p>
+                                                <p class="text-xs text-muted-foreground mt-1">
+                                                    {{ t('order.details.clickToView') }}
+                                                </p>
+                                            </div>
+
+                                            <!-- Price -->
+                                            <div class="flex-shrink-0 text-left xs:text-right">
+                                                <PriceDisplay
+                                                    :price="item.price * item.quantity"
+                                                    class="font-medium text-sm sm:text-base"
+                                                />
+                                                <p
+                                                    v-if="item.quantity > 1"
+                                                    class="text-xs text-muted-foreground"
+                                                >
+                                                    <PriceDisplay :price="item.price" />
+                                                    {{ t('order.details.each') }}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
+
+                                    <!-- Review Section (only for delivered orders) -->
+                                    <OrderProductReview
+                                        v-if="order.status === 'delivered' && authStore.user"
+                                        :product-id="item.productId"
+                                        :order-id="order.id"
+                                        :user-id="authStore.user.id"
+                                        @review-updated="handleReviewUpdated"
+                                        class="p-3 sm:p-4"
+                                    />
                                 </div>
                             </div>
                         </CardContent>
@@ -378,7 +397,10 @@
                         </CardContent>
                     </Card>
                     <!-- Action Buttons -->
-                    <Card class="w-full max-w-full overflow-hidden"  v-if="order.status !== 'cancelled'">
+                    <Card
+                        class="w-full max-w-full overflow-hidden"
+                        v-if="order.status !== 'cancelled'"
+                    >
                         <CardContent class="p-3 sm:p-6">
                             <div class="flex flex-col gap-3">
                                 <Button
@@ -458,6 +480,7 @@ import { useAppI18n } from '@/composables/useI18n'
 import { useCart } from '@/composables/useCart'
 import { useToast } from '@/composables/useToast'
 import { useOrderStore } from '@/stores/orders'
+import { useAuthStore } from '@/stores/auth'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import ConfirmDialog from '@/components/ui/ConfirmDialog.vue'
@@ -473,6 +496,7 @@ import {
     X,
 } from 'lucide-vue-next'
 import PriceDisplay from '@/components/PriceDisplay.vue'
+import OrderProductReview from '@/components/reviews/OrderProductReview.vue'
 
 interface Props {
     id: string
@@ -485,6 +509,7 @@ const router = useRouter()
 const { addToCart } = useCart()
 const { success, error: showError } = useToast()
 const orderStore = useOrderStore()
+const authStore = useAuthStore()
 
 // Local state
 const isProcessing = ref(false)
@@ -682,6 +707,16 @@ const trackOrder = () => {
         // In a real app, this could open a tracking page or modal
         window.open(`https://tracking.example.com/${order.value.tracking}`, '_blank')
     }
+}
+
+const goToProduct = (productId: string) => {
+    // Navigate to product detail page
+    router.push(`/products/${productId}`)
+}
+
+const handleReviewUpdated = () => {
+    // Optional: Refresh order data or show success message
+    console.log('Review updated for order:', props.id)
 }
 
 // Load order data

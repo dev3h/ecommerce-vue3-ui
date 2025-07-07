@@ -1,5 +1,5 @@
 import type { ProductDetail, ProductReview, RelatedProduct } from '@/types/product-detail'
-import productDetailData from '@/data/product-detail.json'
+import productsData from '@/data/products-list.json'
 
 export interface ProductDetailResponse {
     product: ProductDetail
@@ -12,26 +12,108 @@ class ProductDetailService {
         return new Promise((resolve) => setTimeout(resolve, ms))
     }
 
-    async getProductDetail(slug: string): Promise<ProductDetailResponse> {
+    async getProductDetail(productId: string): Promise<ProductDetailResponse> {
         // Simulate API delay
         await this.delay(500)
 
-        // In a real app, this would be an API call
-        // For now, return the fake data regardless of slug
-        const data = productDetailData as ProductDetailResponse
+        // Find the product by ID in the products list
+        const product = productsData.products.find((p) => p.id === productId)
 
-        if (!data.product) {
+        if (!product) {
             throw new Error('Product not found')
         }
 
-        return data
+        // Convert the product to ProductDetail format
+        const productDetail: ProductDetail = {
+            id: product.id, // Use the original ID, not slug
+            name: product.name,
+            brand: product.brand,
+            sku: product.sku,
+            category: product.category,
+            price: product.price,
+            originalPrice: product.originalPrice,
+            discount: product.discount ?? 0,
+            rating: product.rating,
+            reviewCount: product.reviewCount,
+            description: product.description,
+            shortDescription: product.shortDescription ?? product.description,
+            images: product.images ?? [product.image],
+            inStock: product.inStock,
+            quantity: product.quantity,
+            weight: product.weight ?? '0g',
+            dimensions: product.dimensions,
+            ingredients: product.ingredients ?? [],
+            nutritionFacts: product.nutritionFacts,
+            specifications: product.specifications ?? [],
+            tags: product.tags ?? [],
+            badge: product.badge,
+            tag: product.tag,
+            createdAt: product.createdAt ?? new Date().toISOString(),
+            updatedAt: product.updatedAt ?? new Date().toISOString(),
+        }
+
+        // Get related products (other products from the same category)
+        const relatedProducts: RelatedProduct[] = productsData.products
+            .filter((p) => p.id !== productId && p.category === product.category)
+            .slice(0, 4)
+            .map((p) => ({
+                id: p.id, // Use original ID
+                slug: p.slug ?? p.id,
+                name: p.name,
+                image: p.image,
+                price: p.price,
+                originalPrice: p.originalPrice ?? p.price,
+                rating: p.rating,
+                reviewCount: p.reviewCount,
+                badge: p.badge ?? '',
+                tag: p.tag ?? '',
+                brand: p.brand,
+                category: p.category,
+                description: p.description,
+                inStock: p.inStock,
+                quantity: p.quantity,
+                sku: p.sku,
+            }))
+
+        // Return empty reviews array (reviews will be handled by the review service)
+        return {
+            product: productDetail,
+            reviews: [],
+            relatedProducts,
+        }
     }
 
     async getRelatedProducts(productId: string, limit: number = 4): Promise<RelatedProduct[]> {
         await this.delay(300)
 
-        const data = productDetailData as ProductDetailResponse
-        return data.relatedProducts.slice(0, limit)
+        // Find the product to get its category
+        const product = productsData.products.find((p) => p.id === productId)
+        if (!product) {
+            return []
+        }
+
+        // Get related products from the same category
+        return productsData.products
+            .filter((p) => p.id !== productId && p.category === product.category)
+            .slice(0, limit)
+            .map((p) => ({
+                id: p.id, // Use original ID
+                slug: p.slug ?? p.id,
+                name: p.name,
+                image: p.image,
+                price: p.price,
+                originalPrice: p.originalPrice ?? p.price,
+                rating: p.rating,
+                reviewCount: p.reviewCount,
+                badge: p.badge ?? '',
+                tag: p.tag ?? '',
+                brand: p.brand,
+                category: p.category,
+                description: p.description,
+                inStock: p.inStock,
+                quantity: p.quantity,
+                sku: p.sku,
+            }))
     }
 
     async getProductReviews(
@@ -45,18 +127,12 @@ class ProductDetailService {
     }> {
         await this.delay(400)
 
-        const data = productDetailData as ProductDetailResponse
-        const startIndex = (page - 1) * limit
-        const endIndex = startIndex + limit
-
-        const reviews = data.reviews.slice(startIndex, endIndex)
-        const total = data.reviews.length
-        const hasMore = endIndex < total
-
+        // This method is deprecated and should use the review service instead
+        // Return empty reviews as the review service handles this now
         return {
-            reviews,
-            total,
-            hasMore,
+            reviews: [],
+            total: 0,
+            hasMore: false,
         }
     }
 

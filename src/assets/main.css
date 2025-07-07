@@ -43,3 +43,28 @@ body {
         align-items: center;
     }
 }
+
+/* Collapsible animations */
+[data-slot='collapsible-content'] {
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+[data-slot='collapsible-content'][data-state='closed'] {
+    height: 0;
+    opacity: 0;
+}
+
+[data-slot='collapsible-content'][data-state='open'] {
+    height: auto;
+    opacity: 1;
+}
+
+[data-slot='collapsible-trigger'] {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+[data-slot='collapsible-trigger']:hover {
+    background-color: hsl(var(--accent) / 0.5);
+}

@@ -40,7 +40,12 @@
     "preparingOrder": "We're preparing your order for shipment",
     "shippingNotification": "You'll get a tracking number when it ships",
     "continueShopping": "Continue Shopping",
-    "backToHome": "Back to Home"
+    "backToHome": "Back to Home",
+    "optional": "Optional",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "daysAgo": "days ago",
+    "loadMore": "Load More"
   },
   "navigation": {
     "home": "Home",
@@ -194,7 +199,9 @@
     "available": "available",
     "save": "Save",
     "perPage": "Per page",
-    "discoverProducts": "Discover our full range of quality products"
+    "discoverProducts": "Discover our full range of quality products",
+    "errorLoadingProducts": "Failed to load products",
+    "errorLoadingCategories": "Failed to load categories"
   },
   "productDetail": {
     "by": "by",
@@ -430,7 +437,17 @@
     "underMaintenance": "Under Maintenance",
     "goHome": "Go to Home",
     "tryAgain": "Try Again",
-    "contactSupport": "Contact Support"
+    "contactSupport": "Contact Support",
+    "loadingProducts": "Failed to load products",
+    "loadingCategories": "Failed to load categories",
+    "loadingDeals": "Failed to load deals",
+    "loadingHomeData": "Failed to load home data",
+    "loadingProductDetail": "Failed to load product",
+    "loadingAddresses": "Failed to load addresses",
+    "loadingSidebarData": "Failed to load sidebar data",
+    "loadingOrders": "Failed to load orders",
+    "loadingReviews": "Failed to load reviews",
+    "generic": "Something went wrong. Please try again."
   },
   "meta": {
     "defaultTitle": "E-Commerce Store",
@@ -725,6 +742,7 @@
       "total": "Total",
       "quantity": "Quantity",
       "each": "each",
+      "clickToView": "Click to view product details",
       "shippingAddress": "Shipping Address",
       "paymentMethod": "Payment Method"
     }
@@ -775,5 +793,57 @@
     "clearError": "Failed to clear wishlist",
     "addToCartError": "Failed to add to cart",
     "addAllToCartError": "Failed to add items to cart"
+  },
+  "reviews": {
+    "writeReview": "Write a Review",
+    "editReview": "Edit Review",
+    "yourReview": "Your Review",
+    "reviewed": "Reviewed",
+    "canReview": "Can Review",
+    "edited": "Edited",
+    "verifiedPurchase": "Verified Purchase",
+    "helpful": "Helpful",
+    "wasHelpful": "Was this review helpful?",
+    "rating": "Rating",
+    "reviewTitle": "Review Title",
+    "reviewComment": "Your Review",
+    "addPhotos": "Add Photos",
+    "submitReview": "Submit Review",
+    "updateReview": "Update Review",
+    "cancelReview": "Cancel",
+    "deleteReview": "Delete Review",
+    "confirmDelete": "Are you sure you want to delete your review?",
+    "cannotReview": "You can only review products you have purchased and received",
+    "cannotEdit": "You can only edit your review once",
+    "hasBeenEdited": "This review has been edited",
+    "reviewCreated": "Your review has been submitted successfully",
+    "reviewUpdated": "Your review has been updated successfully",
+    "reviewDeleted": "Your review has been deleted",
+    "markedHelpful": "Thank you for your feedback",
+    "createError": "Failed to submit review. Please try again.",
+    "updateError": "Failed to update review. Please try again.",
+    "deleteError": "Failed to delete review. Please try again.",
+    "helpfulError": "Failed to mark as helpful. Please try again.",
+    "mustBuyToReview": "You must purchase this product to write a review",
+    "oneReviewOnly": "You can only write one review per product",
+    "alreadyReviewed": "You have already reviewed this product",
+    "stars": "{count} stars",
+    "outOf5": "out of 5",
+    "basedOnReviews": "Based on {count} reviews",
+    "noReviews": "No reviews yet",
+    "beFirstToReview": "Be the first to review this product",
+    "reviewInOrderOnly": "You can write reviews for products only after your order is delivered. Visit your order history to review products.",
+    "success": {
+      "created": "Your review has been submitted successfully",
+      "updated": "Your review has been updated successfully",
+      "deleted": "Your review has been deleted"
+    },
+    "error": {
+      "create": "Failed to submit review. Please try again.",
+      "update": "Failed to update review. Please try again.",
+      "delete": "Failed to delete review. Please try again.",
+      "loadPermissions": "Failed to load review permissions",
+      "unauthorized": "You are not authorized to perform this action"
+    }
   }
 }

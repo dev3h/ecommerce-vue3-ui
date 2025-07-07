@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useAuthStore } from './auth'
+import { useAppI18n } from '@/composables/useI18n'
 
 export interface Address {
     id: string
@@ -20,6 +21,8 @@ export interface Address {
 }
 
 export const useAddressStore = defineStore('addresses', () => {
+    const { t } = useAppI18n()
+
     // State
     const addresses = ref<Address[]>([])
     const isLoading = ref(false)
@@ -83,7 +86,7 @@ export const useAddressStore = defineStore('addresses', () => {
                 addresses.value.length,
             )
         } catch (err) {
-            error.value = 'Failed to load addresses'
+            error.value = t('errors.loadingAddresses')
             console.error('Error loading addresses:', err)
         } finally {
             isLoading.value = false

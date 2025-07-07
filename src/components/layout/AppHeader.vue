@@ -106,13 +106,12 @@
                             >
                                 <div class="py-1">
                                     <template v-if="isAuthenticated">
-                                        <RouterLink
-                                            to="/account"
-                                            class="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground"
-                                            @click="closeUserMenu"
+                                        <button
+                                            @click="goToAccount"
+                                            class="block w-full text-left px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground"
                                         >
                                             {{ t('navigation.account') }}
-                                        </RouterLink>
+                                        </button>
                                         <RouterLink
                                             to="/account/orders"
                                             class="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground"
@@ -302,6 +301,12 @@ const handleLogout = async () => {
     } catch (error: any) {
         showError(t('common.error'), error.message || t('auth.logoutError'))
     }
+}
+
+const goToAccount = () => {
+    closeUserMenu()
+    // Navigate to /account/profile directly to avoid redirect issues
+    router.push('/account/profile')
 }
 
 const handleClickOutside = (event: Event) => {
