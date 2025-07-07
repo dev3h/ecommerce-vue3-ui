@@ -67,9 +67,9 @@
             <div class="flex items-center gap-3">
                 <!-- Sort Select -->
                 <div class="flex items-center gap-2">
-                    <span class="text-sm font-medium hidden sm:block">{{
+                    <Label class="text-sm font-medium hidden sm:block">{{
                         t('products.sortBy')
-                    }}</span>
+                    }}</Label>
                     <Select :value="sortBy" @update:value="handleSortChange">
                         <SelectTrigger class="w-48">
                             <SelectValue :placeholder="t('products.sortBy')" />
@@ -187,7 +187,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProducts } from '@/composables/useProducts'
 import { useCart } from '@/composables/useCart'
@@ -206,6 +206,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
+import { Label } from '@/components/ui/label'
 
 // Icons
 import { Grid3X3, List, AlertCircle, Package } from 'lucide-vue-next'

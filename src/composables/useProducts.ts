@@ -110,6 +110,17 @@ export function useProducts() {
         loadProducts(1)
     }
 
+    const clearCategoryFilter = () => {
+        if (filters.value.category) {
+            const newFilters = { ...filters.value }
+            delete newFilters.category
+            filters.value = newFilters
+            currentPage.value = 1
+            updateUrlParams()
+            loadProducts(1)
+        }
+    }
+
     const setSortBy = (sort: string) => {
         sortBy.value = sort
         currentPage.value = 1
@@ -183,41 +194,41 @@ export function useProducts() {
         router.push({ query })
     }
 
-    const loadFromUrlParams = () => {
-        const query = route.query
+    const loadCategoryFromRoute = (params: any, query: any) => {
+        // Clear category filter first
+        filters.value.category = undefined
 
-        // Load filters from URL
+        // Load category from route params (for /categories/:slug routes)
+        if (params.slug) {
+            filters.value.category = params.slug as string
+        }
+
+        // Load filters from URL query (can override params.slug)
         if (query.category) {
             filters.value.category = query.category as string
         }
+    }
 
-        if (query.brand) {
-            filters.value.brand = (query.brand as string).split(',')
-        }
+    const loadFiltersFromQuery = (query: any) => {
+        filters.value.brand = query.brand ? (query.brand as string).split(',') : undefined
+        filters.value.priceMin = query.minPrice ? Number(query.minPrice) : undefined
+        filters.value.priceMax = query.maxPrice ? Number(query.maxPrice) : undefined
+        filters.value.rating = query.rating ? Number(query.rating) : undefined
+        filters.value.search = query.search ? (query.search as string) : undefined
+    }
 
-        if (query.minPrice) {
-            filters.value.priceMin = Number(query.minPrice)
-        }
+    const loadSortAndPageFromQuery = (query: any) => {
+        sortBy.value = query.sort ? (query.sort as string) : 'featured'
+        currentPage.value = query.page ? Number(query.page) || 1 : 1
+    }
 
-        if (query.maxPrice) {
-            filters.value.priceMax = Number(query.maxPrice)
-        }
+    const loadFromUrlParams = () => {
+        const query = route.query
+        const params = route.params
 
-        if (query.rating) {
-            filters.value.rating = Number(query.rating)
-        }
-
-        if (query.search) {
-            filters.value.search = query.search as string
-        }
-
-        if (query.sort) {
-            sortBy.value = query.sort as string
-        }
-
-        if (query.page) {
-            currentPage.value = Number(query.page) || 1
-        }
+        loadCategoryFromRoute(params, query)
+        loadFiltersFromQuery(query)
+        loadSortAndPageFromQuery(query)
     }
 
     const initializeViewMode = () => {
@@ -236,7 +247,7 @@ export function useProducts() {
 
     // Watch for route changes
     watch(
-        () => route.query,
+        () => [route.query, route.params],
         () => {
             loadFromUrlParams()
             loadProducts(currentPage.value)
@@ -273,6 +284,7 @@ export function useProducts() {
         loadCategories,
         applyFilters,
         clearFilters,
+        clearCategoryFilter,
         setSortBy,
         setViewMode,
         goToPage,

@@ -9,6 +9,7 @@
                 <div class="flex relative" style="min-height: calc(100vh - 3.5rem - 200px)">
                     <!-- Sidebar -->
                     <AppSidebar
+                        v-if="showSidebar"
                         :is-open="sidebarOpen"
                         :max-height="sidebarMaxHeight"
                         @close="closeSidebar"
@@ -16,14 +17,27 @@
 
                     <!-- Main Content -->
                     <main
-                        class="flex-1 transition-all duration-300 ease-in-out flex flex-col w-full min-w-0"
+                        class="flex-1 transition-all duration-300 ease-in-out flex flex-col w-full min-w-0 ml-0 lg:ml-64"
                         :class="{
-                            'lg:ml-64': sidebarOpen,
-                            'ml-0': !sidebarOpen,
+                            'lg:ml-64': showSidebar && sidebarOpen,
+                            'ml-0': !showSidebar || !sidebarOpen,
                         }"
                     >
                         <!-- Content Container -->
                         <div class="px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+                            <!-- Mobile Filter Button (only show on products pages) -->
+                            <div v-if="showSidebar" class="lg:hidden mb-4 flex justify-end">
+                                <Button
+                                    @click="toggleSidebar"
+                                    variant="outline"
+                                    size="sm"
+                                    class="flex items-center gap-2"
+                                >
+                                    <Filter class="w-4 h-4" />
+                                    {{ t('products.filters') }}
+                                </Button>
+                            </div>
+
                             <!-- Breadcrumbs -->
                             <nav v-if="breadcrumbs.length > 1" class="mb-6" aria-label="Breadcrumb">
                                 <ol
@@ -124,6 +138,7 @@ import { generateBreadcrumbs } from '@/router/utils'
 import AppHeader from './AppHeader.vue'
 import AppSidebar from './AppSidebar.vue'
 import AppFooter from './AppFooter.vue'
+import { Button } from '@/components/ui/button'
 import { ChevronRight, Filter, ArrowUp, Loader2 } from 'lucide-vue-next'
 
 interface Props {
