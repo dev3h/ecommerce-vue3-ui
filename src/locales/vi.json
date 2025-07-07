@@ -434,9 +434,12 @@
   },
   "errors": {
     "pageNotFound": "Không tìm thấy trang",
+    "pageNotFoundDescription": "Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã được di chuyển. Hãy để chúng tôi đưa bạn trở lại đúng hướng!",
+    "searchSuggestions": "Trang phổ biến",
+    "goHome": "Về trang chủ",
+    "goBack": "Quay lại",
     "serverError": "Lỗi máy chủ",
     "underMaintenance": "Đang bảo trì",
-    "goHome": "Về trang chủ",
     "tryAgain": "Thử lại",
     "contactSupport": "Liên hệ hỗ trợ",
     "loadingProducts": "Không thể tải sản phẩm",
