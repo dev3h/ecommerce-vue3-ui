@@ -489,9 +489,12 @@
   },
   "errors": {
     "pageNotFound": "Page Not Found",
+    "pageNotFoundDescription": "Sorry, the page you are looking for doesn't exist or has been moved. Let's get you back on track!",
+    "searchSuggestions": "Popular Pages",
+    "goHome": "Go to Home",
+    "goBack": "Go Back",
     "serverError": "Server Error",
     "underMaintenance": "Under Maintenance",
-    "goHome": "Go to Home",
     "tryAgain": "Try Again",
     "contactSupport": "Contact Support",
     "loadingProducts": "Failed to load products",
