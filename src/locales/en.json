@@ -431,6 +431,62 @@
     "noOrders": "No orders found",
     "backToOrders": "Back to Orders"
   },
+  "security": {
+    "title": "Security",
+    "description": "Manage your account security settings and preferences.",
+    "password": {
+      "title": "Password",
+      "description": "Update your password to keep your account secure.",
+      "changePassword": "Change Password",
+      "currentPassword": "Current Password",
+      "currentPasswordPlaceholder": "Enter your current password",
+      "newPassword": "New Password",
+      "newPasswordPlaceholder": "Enter your new password",
+      "confirmPassword": "Confirm New Password",
+      "confirmPasswordPlaceholder": "Confirm your new password",
+      "updatePassword": "Update Password",
+      "passwordChanged": "Password changed successfully",
+      "passwordChangeError": "Failed to change password. Please try again.",
+      "passwordMismatch": "New passwords do not match",
+      "passwordTooShort": "Password must be at least 8 characters long",
+      "currentPasswordRequired": "Current password is required",
+      "newPasswordRequired": "New password is required",
+      "confirmPasswordRequired": "Please confirm your new password"
+    },
+    "twoFactor": {
+      "title": "Two-Factor Authentication",
+      "description": "Add an extra layer of security to your account.",
+      "status": "Two-Factor Authentication",
+      "enabled": "Enabled",
+      "disabled": "Disabled",
+      "enable": "Enable 2FA",
+      "disable": "Disable 2FA",
+      "enabledSuccess": "Two-factor authentication enabled successfully",
+      "disabledSuccess": "Two-factor authentication disabled successfully",
+      "toggleError": "Failed to toggle two-factor authentication. Please try again."
+    },
+    "loginActivity": {
+      "title": "Login Activity",
+      "description": "Monitor recent login activity on your account.",
+      "viewActivity": "View Recent Activity",
+      "current": "Current Session",
+      "revoke": "Revoke",
+      "sessionRevoked": "Session revoked successfully",
+      "revokeError": "Failed to revoke session. Please try again."
+    },
+    "deleteAccount": {
+      "title": "Delete Account",
+      "description": "Permanently delete your account and all associated data. This action cannot be undone.",
+      "delete": "Delete Account",
+      "confirmTitle": "Delete Account",
+      "confirmDescription": "This action cannot be undone. All your data will be permanently deleted.",
+      "typeConfirm": "Type 'DELETE' to confirm",
+      "confirmPlaceholder": "DELETE",
+      "confirmDelete": "Delete Account",
+      "accountDeleted": "Account deleted successfully",
+      "deleteError": "Failed to delete account. Please try again."
+    }
+  },
   "errors": {
     "pageNotFound": "Page Not Found",
     "serverError": "Server Error",

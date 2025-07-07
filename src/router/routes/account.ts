@@ -61,6 +61,15 @@ export const accountRoutes: RouteRecordRaw[] = [
                     requiresAuth: true,
                 },
             },
+            {
+                path: 'security',
+                name: 'account-security',
+                component: () => import('@/views/account/SecurityView.vue'),
+                meta: {
+                    title: 'Security',
+                    requiresAuth: true,
+                },
+            },
         ],
     },
 ]

@@ -376,6 +376,62 @@
     "noOrders": "Không tìm thấy đơn hàng",
     "backToOrders": "Quay lại đơn hàng"
   },
+  "security": {
+    "title": "Bảo mật",
+    "description": "Quản lý cài đặt bảo mật và tùy chọn tài khoản của bạn.",
+    "password": {
+      "title": "Mật khẩu",
+      "description": "Cập nhật mật khẩu để giữ tài khoản của bạn an toàn.",
+      "changePassword": "Đổi mật khẩu",
+      "currentPassword": "Mật khẩu hiện tại",
+      "currentPasswordPlaceholder": "Nhập mật khẩu hiện tại",
+      "newPassword": "Mật khẩu mới",
+      "newPasswordPlaceholder": "Nhập mật khẩu mới",
+      "confirmPassword": "Xác nhận mật khẩu mới",
+      "confirmPasswordPlaceholder": "Xác nhận mật khẩu mới",
+      "updatePassword": "Cập nhật mật khẩu",
+      "passwordChanged": "Đổi mật khẩu thành công",
+      "passwordChangeError": "Không thể đổi mật khẩu. Vui lòng thử lại.",
+      "passwordMismatch": "Mật khẩu mới không khớp",
+      "passwordTooShort": "Mật khẩu phải có ít nhất 8 ký tự",
+      "currentPasswordRequired": "Vui lòng nhập mật khẩu hiện tại",
+      "newPasswordRequired": "Vui lòng nhập mật khẩu mới",
+      "confirmPasswordRequired": "Vui lòng xác nhận mật khẩu mới"
+    },
+    "twoFactor": {
+      "title": "Xác thực hai yếu tố",
+      "description": "Thêm một lớp bảo mật bổ sung cho tài khoản của bạn.",
+      "status": "Xác thực hai yếu tố",
+      "enabled": "Đã bật",
+      "disabled": "Đã tắt",
+      "enable": "Bật 2FA",
+      "disable": "Tắt 2FA",
+      "enabledSuccess": "Bật xác thực hai yếu tố thành công",
+      "disabledSuccess": "Tắt xác thực hai yếu tố thành công",
+      "toggleError": "Không thể thay đổi xác thực hai yếu tố. Vui lòng thử lại."
+    },
+    "loginActivity": {
+      "title": "Hoạt động đăng nhập",
+      "description": "Theo dõi hoạt động đăng nhập gần đây trên tài khoản của bạn.",
+      "viewActivity": "Xem hoạt động gần đây",
+      "current": "Phiên hiện tại",
+      "revoke": "Thu hồi",
+      "sessionRevoked": "Thu hồi phiên thành công",
+      "revokeError": "Không thể thu hồi phiên. Vui lòng thử lại."
+    },
+    "deleteAccount": {
+      "title": "Xóa tài khoản",
+      "description": "Xóa vĩnh viễn tài khoản và tất cả dữ liệu liên quan. Hành động này không thể hoàn tác.",
+      "delete": "Xóa tài khoản",
+      "confirmTitle": "Xóa tài khoản",
+      "confirmDescription": "Hành động này không thể hoàn tác. Tất cả dữ liệu của bạn sẽ bị xóa vĩnh viễn.",
+      "typeConfirm": "Nhập 'DELETE' để xác nhận",
+      "confirmPlaceholder": "DELETE",
+      "confirmDelete": "Xóa tài khoản",
+      "accountDeleted": "Xóa tài khoản thành công",
+      "deleteError": "Không thể xóa tài khoản. Vui lòng thử lại."
+    }
+  },
   "errors": {
     "pageNotFound": "Không tìm thấy trang",
     "serverError": "Lỗi máy chủ",
