@@ -62,9 +62,12 @@ class ProductsService {
         }
 
         if (filters.brand && filters.brand.length > 0) {
+            console.log('Filtering by brands:', filters.brand)
+            const beforeFilter = filteredProducts.length
             filteredProducts = filteredProducts.filter((product) =>
                 filters.brand!.includes(product.brand),
             )
+            console.log(`Filtered from ${beforeFilter} to ${filteredProducts.length} products`)
         }
 
         if (filters.priceMin !== undefined) {
@@ -159,6 +162,48 @@ class ProductsService {
     async getFilterOptions() {
         const data = await this.loadProductsData()
         return data.filters
+    }
+    async getCategoriesWithProductCount() {
+        const [categoriesData, productsData] = await Promise.all([
+            this.loadCategoriesData(),
+            this.loadProductsData(),
+        ])
+
+        // Count products for each category
+        const categoryCounts = new Map<string, number>()
+
+        productsData.products.forEach((product) => {
+            const currentCount = categoryCounts.get(product.category) ?? 0
+            categoryCounts.set(product.category, currentCount + 1)
+        })
+
+        // Count products for each brand
+        const brandCounts = new Map<string, number>()
+
+        productsData.products.forEach((product) => {
+            const currentCount = brandCounts.get(product.brand) ?? 0
+            brandCounts.set(product.brand, currentCount + 1)
+        })
+
+        // Create brands array from actual product data
+        const brandsWithCount = Array.from(brandCounts.entries())
+            .map(([brandName, count], index) => ({
+                id: (index + 1).toString(),
+                name: brandName,
+                count: count,
+            }))
+            .sort((a, b) => a.name.localeCompare(b.name)) // Sort alphabetically
+
+        // Update categories with actual product counts
+        const categoriesWithCount = categoriesData.categories.map((category) => ({
+            ...category,
+            count: categoryCounts.get(category.slug) ?? 0,
+        }))
+
+        return {
+            categories: categoriesWithCount,
+            brands: brandsWithCount,
+        }
     }
 }
 

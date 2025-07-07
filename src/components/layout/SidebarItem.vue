@@ -7,7 +7,10 @@
             'text-muted-foreground': !isActive,
         }"
     >
-        <component :is="iconComponent" class="h-4 w-4" />
+        <!-- Support both emoji and Lucide icons -->
+        <span v-if="isEmoji" class="text-lg">{{ icon }}</span>
+        <component v-else :is="iconComponent" class="h-4 w-4" />
+
         <span class="flex-1">{{ label }}</span>
         <span
             v-if="badge && Number(badge) > 0"
@@ -28,13 +31,25 @@ interface Props {
     icon: string
     label: string
     badge?: number | string
+    active?: boolean
 }
 
 const props = defineProps<Props>()
 const route = useRoute()
 
 const isActive = computed(() => {
+    // Use explicit active prop if provided
+    if (props.active !== undefined) {
+        return props.active
+    }
+    // Fallback to route-based detection
     return route.path === props.to || route.path.startsWith(props.to + '/')
+})
+
+const isEmoji = computed(() => {
+    // Simple emoji detection - if the icon is not a known Lucide icon name
+    // @ts-ignore
+    return !LucideIcons[props.icon] && props.icon.length <= 4
 })
 
 const iconComponent = computed(() => {

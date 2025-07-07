@@ -119,13 +119,10 @@ export function useCart() {
 
     const loadCartFromStorage = () => {
         const savedCart = localStorage.getItem('cart')
-        console.log('useCart: Loading cart from storage:', savedCart)
         if (savedCart) {
             try {
                 const parsedCart = JSON.parse(savedCart)
-                console.log('useCart: Parsed cart data:', parsedCart)
                 cartItems.value = parsedCart
-                console.log('useCart: Cart items after loading:', cartItems.value)
             } catch (error) {
                 console.error('useCart: Error parsing cart from localStorage:', error)
                 cartItems.value = []

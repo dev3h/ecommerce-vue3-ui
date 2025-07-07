@@ -28,6 +28,15 @@
                     </div>
                 </div>
                 <div v-else class="space-y-1">
+                    <!-- All Products Link -->
+                    <SidebarItem
+                        to="/products"
+                        icon="Package"
+                        :label="t('products.allProducts')"
+                        :active="route.name === 'products' && !route.params.slug"
+                    />
+
+                    <!-- Category Links -->
                     <SidebarItem
                         v-for="category in categories"
                         :key="category.slug"
@@ -35,6 +44,7 @@
                         :icon="category.icon"
                         :label="category.name"
                         :badge="category.count"
+                        :active="isCurrentCategory(category.slug)"
                     />
                 </div>
             </div>
@@ -67,28 +77,28 @@
                 <h2 class="mb-2 px-4 text-lg font-semibold tracking-tight">
                     {{ t('products.priceRange') }}
                 </h2>
-                <div class="px-4 space-y-3">
-                    <div class="space-y-2">
-                        <Label for="min-price">{{ t('products.minPrice') }}</Label>
-                        <Input
-                            id="min-price"
-                            v-model.number="priceFilter.min"
-                            type="number"
-                            :placeholder="formatCurrency(0)"
+                <div class="px-4 space-y-4">
+                    <!-- Price Range Display -->
+                    <div class="flex justify-between text-sm text-muted-foreground">
+                        <span>{{ formatCurrency(priceRange[0]) }}</span>
+                        <span>{{ formatCurrency(priceRange[1]) }}</span>
+                    </div>
+
+                    <!-- Price Slider -->
+                    <div class="py-2">
+                        <Slider
+                            v-model="priceRange"
+                            :min="0"
+                            :max="1000"
+                            :step="10"
+                            class="w-full"
+                            @update:model-value="onPriceRangeChange"
                         />
                     </div>
-                    <div class="space-y-2">
-                        <Label for="max-price">{{ t('products.maxPrice') }}</Label>
-                        <Input
-                            id="max-price"
-                            v-model.number="priceFilter.max"
-                            type="number"
-                            :placeholder="formatCurrency(1000)"
-                        />
+                    <!-- Current Selected Range -->
+                    <div class="text-center text-sm text-muted-foreground">
+                        {{ formatCurrency(priceRange[0]) }} - {{ formatCurrency(priceRange[1]) }}
                     </div>
-                    <Button @click="applyPriceFilter" class="w-full">
-                        {{ t('common.apply') }}
-                    </Button>
                 </div>
             </div>
 
@@ -110,15 +120,32 @@
                     >
                         <Checkbox
                             :id="`brand-${brand.id}`"
-                            :checked="selectedBrands.includes(brand.id)"
-                            @update:checked="
+                            :model-value="selectedBrands.includes(brand.name)"
+                            @update:model-value="
                                 (checked: boolean) => {
+                                    console.log(
+                                        'Checkbox clicked:',
+                                        checked,
+                                        'for brand:',
+                                        brand.name,
+                                    )
                                     if (checked) {
-                                        selectedBrands.push(brand.id)
+                                        selectedBrands.push(brand.name)
+                                        console.log(
+                                            'Added brand, current selectedBrands:',
+                                            selectedBrands,
+                                        )
                                     } else {
-                                        const index = selectedBrands.indexOf(brand.id)
-                                        if (index > -1) selectedBrands.splice(index, 1)
+                                        const index = selectedBrands.indexOf(brand.name)
+                                        if (index > -1) {
+                                            selectedBrands.splice(index, 1)
+                                            console.log(
+                                                'Removed brand, current selectedBrands:',
+                                                selectedBrands,
+                                            )
+                                        }
                                     }
+                                    handleBrandChange()
                                 }
                             "
                         />
@@ -139,8 +166,10 @@
                     <RadioGroup
                         :model-value="selectedRating?.toString()"
                         @update:model-value="
-                            (value: string | null) =>
-                                (selectedRating = value ? Number(value) : null)
+                            (value: string | null) => {
+                                selectedRating = value ? Number(value) : null
+                                handleRatingChange()
+                            }
                         "
                         class="space-y-2"
                     >
@@ -152,24 +181,36 @@
                             <RadioGroupItem :id="`rating-${rating}`" :value="rating.toString()" />
                             <Label
                                 :for="`rating-${rating}`"
-                                class="text-sm cursor-pointer flex items-center space-x-1"
+                                class="text-sm cursor-pointer flex items-center space-x-1 flex-1"
                             >
-                                <div class="flex">
-                                    <Star
-                                        v-for="i in 5"
-                                        :key="i"
-                                        class="w-3 h-3"
-                                        :class="{
-                                            'text-yellow-400 fill-yellow-400': i <= rating,
-                                            'text-muted-foreground': i > rating,
-                                        }"
-                                    />
+                                <div class="flex items-center space-x-1">
+                                    <div class="flex">
+                                        <Star
+                                            v-for="i in 5"
+                                            :key="i"
+                                            class="w-3 h-3"
+                                            :class="{
+                                                'text-yellow-400 fill-yellow-400': i <= rating,
+                                                'text-muted-foreground': i > rating,
+                                            }"
+                                        />
+                                    </div>
+                                    <span>{{ t('products.andUp') }}</span>
                                 </div>
-                                <span>{{ t('products.andUp') }}</span>
                             </Label>
                         </div>
                     </RadioGroup>
                 </div>
+            </div>
+
+            <!-- Apply Changes Button (shown when there are pending changes) -->
+            <div v-if="hasPendingChanges" class="px-4 mb-4">
+                <Button @click="applyAllFilters" class="w-full" variant="default">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></span>
+                        {{ t('common.applyChanges') }}
+                    </div>
+                </Button>
             </div>
 
             <!-- Clear Filters -->
@@ -191,10 +232,10 @@ import { useWishlist } from '@/composables/useWishlist'
 import { productsService } from '@/services/products.service'
 import SidebarItem from './SidebarItem.vue'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { Slider } from '@/components/ui/slider'
 import { Star } from 'lucide-vue-next'
 import type { ProductCategory, ProductBrand } from '@/types/products'
 
@@ -244,8 +285,15 @@ const priceFilter = ref({
     max: undefined as number | undefined,
 })
 
+// Price range for slider (default range 0-1000)
+const priceRange = ref<[number, number]>([0, 1000])
+
 const selectedBrands = ref<string[]>([])
 const selectedRating = ref<number | null>(null)
+
+// Track pending changes for better UX
+const hasPendingChanges = ref(false)
+let priceChangeTimeout: ReturnType<typeof setTimeout> | null = null
 
 // Data from API
 const categories = ref<ProductCategory[]>([])
@@ -256,7 +304,7 @@ const loading = ref(false)
 const loadData = async () => {
     loading.value = true
     try {
-        const data = await productsService.getCategories()
+        const data = await productsService.getCategoriesWithProductCount()
         categories.value = data.categories
         brands.value = data.brands
     } catch (error) {
@@ -275,39 +323,134 @@ const wishlistItemsCount = computed(() => {
     return wishlistCount.value
 })
 
-// Methods
-const applyPriceFilter = () => {
+// Methods for improved UX
+const debounceApplyFilters = () => {
+    hasPendingChanges.value = true
+
+    // Clear existing timeout
+    if (priceChangeTimeout) {
+        clearTimeout(priceChangeTimeout)
+    }
+
+    // Set new timeout for debounced apply
+    priceChangeTimeout = setTimeout(() => {
+        applyAllFilters()
+        hasPendingChanges.value = false
+    }, 800) // 800ms delay
+}
+
+const applyAllFilters = () => {
     const query = { ...route.query }
 
-    if (priceFilter.value.min) {
-        query.minPrice = priceFilter.value.min.toString()
+    // Apply price filter
+    if (priceRange.value[0] > 0) {
+        query.minPrice = priceRange.value[0].toString()
     } else {
         delete query.minPrice
     }
 
-    if (priceFilter.value.max) {
-        query.maxPrice = priceFilter.value.max.toString()
+    if (priceRange.value[1] < 1000) {
+        query.maxPrice = priceRange.value[1].toString()
     } else {
         delete query.maxPrice
     }
 
+    // Apply brand filter
+    if (selectedBrands.value.length > 0) {
+        query.brand = selectedBrands.value.join(',')
+        console.log('Applying brand filter:', query.brand)
+    } else {
+        delete query.brand
+    }
+
+    // Apply rating filter
+    if (selectedRating.value) {
+        query.rating = selectedRating.value.toString()
+    } else {
+        delete query.rating
+    }
+
+    // Clear pending state
+    hasPendingChanges.value = false
+    if (priceChangeTimeout) {
+        clearTimeout(priceChangeTimeout)
+    }
+
+    console.log('Final query before router push:', query)
     router.push({ query })
+}
+
+const onPriceRangeChange = (newRange: number[] | undefined) => {
+    if (!newRange || newRange.length < 2) return
+
+    // Update priceFilter based on slider values
+    priceFilter.value.min = newRange[0] > 0 ? newRange[0] : undefined
+    priceFilter.value.max = newRange[1] < 1000 ? newRange[1] : undefined
+
+    // Auto-apply with debounce for better UX
+    debounceApplyFilters()
+}
+
+const handleBrandChange = () => {
+    // Auto-apply immediately for checkbox changes
+    setTimeout(() => {
+        applyAllFilters()
+    }, 100) // Small delay to ensure state is updated
+}
+
+const handleRatingChange = () => {
+    // Auto-apply immediately for radio changes with no delay
+    applyAllFilters()
 }
 
 const clearFilters = () => {
     priceFilter.value.min = undefined
     priceFilter.value.max = undefined
+    priceRange.value = [0, 1000]
     selectedBrands.value = []
     selectedRating.value = null
+    hasPendingChanges.value = false
+
+    // Clear any pending timeouts
+    if (priceChangeTimeout) {
+        clearTimeout(priceChangeTimeout)
+    }
 
     // Clear query parameters
     router.push({ query: {} })
 }
 
+const isCurrentCategory = (categorySlug: string) => {
+    // Check if current route is a category route with this slug
+    return route.name === 'category-products' && route.params.slug === categorySlug
+}
+
 // Initialize data
 onMounted(() => {
     loadData()
+    initializeFiltersFromQuery()
 })
+
+// Initialize filters from URL query parameters
+const initializeFiltersFromQuery = () => {
+    // Price range
+    const minPrice = route.query.minPrice ? Number(route.query.minPrice) : 0
+    const maxPrice = route.query.maxPrice ? Number(route.query.maxPrice) : 1000
+
+    priceRange.value = [minPrice, maxPrice]
+    priceFilter.value.min = minPrice > 0 ? minPrice : undefined
+    priceFilter.value.max = maxPrice < 1000 ? maxPrice : undefined
+
+    // Rating
+    if (route.query.rating) {
+        selectedRating.value = Number(route.query.rating)
+    }
+
+    // Brands
+    if (route.query.brand) {
+        selectedBrands.value = (route.query.brand as string).split(',')
+    }
+}
 </script>
 
 <style scoped>
