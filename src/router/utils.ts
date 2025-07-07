@@ -150,7 +150,7 @@ export const generateBreadcrumbs = (route: any) => {
             breadcrumbs.push(
                 {
                     name: 'breadcrumb.account',
-                    to: { name: 'account' },
+                    to: '/account/profile',
                 },
                 {
                     name: accountPageMap[route.name] ?? 'breadcrumb.account',

@@ -83,12 +83,12 @@
                             </RouterLink>
                         </li>
                         <li>
-                            <RouterLink
-                                to="/account"
+                            <button
+                                @click="goToAccount"
                                 class="text-muted-foreground hover:text-foreground transition-colors"
                             >
                                 {{ t('navigation.account') }}
-                            </RouterLink>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -262,6 +262,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -276,6 +277,7 @@ import {
 } from 'lucide-vue-next'
 
 const { t } = useAppI18n()
+const router = useRouter()
 
 // State
 const email = ref('')
@@ -308,5 +310,10 @@ const handleSubscribe = async () => {
     } finally {
         isSubscribing.value = false
     }
+}
+
+const goToAccount = () => {
+    // Navigate to /account/profile directly to avoid redirect issues
+    router.push('/account/profile')
 }
 </script>

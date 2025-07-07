@@ -5,6 +5,12 @@
       "name": "Seeds of Change Organic Quinoa, Brown",
       "slug": "seeds-change-organic-quinoa-brown",
       "image": "https://picsum.photos/300/300?random=1",
+      "images": [
+        "https://picsum.photos/600/600?random=1",
+        "https://picsum.photos/600/600?random=11",
+        "https://picsum.photos/600/600?random=12",
+        "https://picsum.photos/600/600?random=13"
+      ],
       "price": 28.85,
       "originalPrice": 32.8,
       "rating": 4.0,
@@ -14,16 +20,58 @@
       "discount": 14,
       "brand": "Seeds of Change",
       "category": "vegetables",
-      "description": "Organic quinoa, brown rice blend perfect for healthy meals",
+      "description": "Organic quinoa, brown rice blend perfect for healthy meals. This premium quality organic brown quinoa features a subtle flavour, pleasant texture and light consistency that can satisfy all of your cooking needs for a distinctive flavour.",
+      "shortDescription": "A premium quality organic brown quinoa. Its subtle flavour, pleasant texture and light consistency can satisfy all of your cooking needs for a distinctive flavour.",
       "inStock": true,
       "quantity": 50,
-      "sku": "SOC-QUI-001"
+      "sku": "SOC-QUI-001",
+      "weight": "454g",
+      "dimensions": {
+        "length": 12.5,
+        "width": 8.0,
+        "height": 3.2
+      },
+      "ingredients": ["Organic brown quinoa 85%", "Sea salt", "Natural quinoa flavoring"],
+      "nutritionFacts": {
+        "servingSize": "1/4 cup (45g)",
+        "servingsPerContainer": 10,
+        "calories": 170,
+        "totalFat": "2.5g",
+        "saturatedFat": "0g",
+        "transFat": "0g",
+        "cholesterol": "0mg",
+        "sodium": "0mg",
+        "totalCarbohydrate": "32g",
+        "dietaryFiber": "3g",
+        "sugars": "0g",
+        "protein": "6g",
+        "vitaminA": "0%",
+        "vitaminC": "0%",
+        "calcium": "2%",
+        "iron": "8%"
+      },
+      "specifications": [
+        { "label": "Brand", "value": "Seeds of Change" },
+        { "label": "Weight", "value": "454g" },
+        { "label": "Dietary", "value": "Organic" },
+        { "label": "Package", "value": "Box" },
+        { "label": "Country", "value": "Canada" }
+      ],
+      "tags": ["Organic", "Gluten-Free", "Vegan", "Non-GMO"],
+      "createdAt": "2024-01-15T10:00:00Z",
+      "updatedAt": "2024-07-01T15:30:00Z"
     },
     {
       "id": "2",
       "name": "All Natural Italian-Style Chicken Meatballs",
       "slug": "italian-style-chicken-meatballs",
       "image": "https://picsum.photos/300/300?random=2",
+      "images": [
+        "https://picsum.photos/600/600?random=2",
+        "https://picsum.photos/600/600?random=21",
+        "https://picsum.photos/600/600?random=22",
+        "https://picsum.photos/600/600?random=23"
+      ],
       "price": 52.85,
       "originalPrice": 55.8,
       "rating": 4.5,
@@ -33,16 +81,66 @@
       "discount": 5,
       "brand": "Farm Fresh",
       "category": "meats",
-      "description": "Premium Italian-style chicken meatballs made with natural ingredients",
+      "description": "Premium Italian-style chicken meatballs made with natural ingredients. Seasoned with authentic Italian herbs and spices, these meatballs are perfect for pasta dishes, sandwiches, or as a protein-rich snack.",
+      "shortDescription": "Premium Italian-style chicken meatballs made with natural ingredients and authentic seasonings.",
       "inStock": true,
       "quantity": 30,
-      "sku": "FF-CHI-002"
+      "sku": "FF-CHI-002",
+      "weight": "680g",
+      "dimensions": {
+        "length": 15.0,
+        "width": 10.0,
+        "height": 4.5
+      },
+      "ingredients": [
+        "Chicken 75%",
+        "Breadcrumbs",
+        "Italian herbs",
+        "Garlic",
+        "Onion",
+        "Sea salt",
+        "Black pepper"
+      ],
+      "nutritionFacts": {
+        "servingSize": "4 meatballs (85g)",
+        "servingsPerContainer": 8,
+        "calories": 180,
+        "totalFat": "8g",
+        "saturatedFat": "2.5g",
+        "transFat": "0g",
+        "cholesterol": "45mg",
+        "sodium": "380mg",
+        "totalCarbohydrate": "6g",
+        "dietaryFiber": "1g",
+        "sugars": "1g",
+        "protein": "22g",
+        "vitaminA": "2%",
+        "vitaminC": "4%",
+        "calcium": "4%",
+        "iron": "10%"
+      },
+      "specifications": [
+        { "label": "Brand", "value": "Farm Fresh" },
+        { "label": "Weight", "value": "680g" },
+        { "label": "Type", "value": "Frozen" },
+        { "label": "Package", "value": "Tray" },
+        { "label": "Country", "value": "USA" }
+      ],
+      "tags": ["All Natural", "High Protein", "Italian Style"],
+      "createdAt": "2024-02-10T12:00:00Z",
+      "updatedAt": "2024-06-15T14:20:00Z"
     },
     {
       "id": "3",
       "name": "Angie's Boomchickapop Sweet & Salty",
       "slug": "angies-boomchickapop-sweet-salty",
       "image": "https://picsum.photos/300/300?random=3",
+      "images": [
+        "https://picsum.photos/600/600?random=3",
+        "https://picsum.photos/600/600?random=31",
+        "https://picsum.photos/600/600?random=32",
+        "https://picsum.photos/600/600?random=33"
+      ],
       "price": 48.85,
       "originalPrice": 52.8,
       "rating": 3.5,
@@ -52,10 +150,46 @@
       "discount": 7,
       "brand": "Angie's",
       "category": "snacks",
-      "description": "Delicious sweet and salty popcorn snack",
+      "description": "Delicious sweet and salty popcorn snack made with simple ingredients. Perfect balance of sweet caramel and sea salt creates an irresistible flavor combination that satisfies all your snacking cravings.",
+      "shortDescription": "Delicious sweet and salty popcorn snack with perfect flavor balance.",
       "inStock": true,
       "quantity": 75,
-      "sku": "ANG-POP-003"
+      "sku": "ANG-POP-003",
+      "weight": "142g",
+      "dimensions": {
+        "length": 20.0,
+        "width": 15.0,
+        "height": 5.0
+      },
+      "ingredients": ["Popcorn", "Cane sugar", "Sea salt", "Sunflower oil", "Natural flavor"],
+      "nutritionFacts": {
+        "servingSize": "1 cup (28g)",
+        "servingsPerContainer": 5,
+        "calories": 140,
+        "totalFat": "5g",
+        "saturatedFat": "0.5g",
+        "transFat": "0g",
+        "cholesterol": "0mg",
+        "sodium": "170mg",
+        "totalCarbohydrate": "24g",
+        "dietaryFiber": "3g",
+        "sugars": "8g",
+        "protein": "2g",
+        "vitaminA": "0%",
+        "vitaminC": "0%",
+        "calcium": "0%",
+        "iron": "2%"
+      },
+      "specifications": [
+        { "label": "Brand", "value": "Angie's" },
+        { "label": "Weight", "value": "142g" },
+        { "label": "Type", "value": "Sweet & Salty" },
+        { "label": "Package", "value": "Bag" },
+        { "label": "Country", "value": "USA" }
+      ],
+      "tags": ["Non-GMO", "Gluten-Free", "Whole Grain"],
+      "createdAt": "2024-03-05T09:30:00Z",
+      "updatedAt": "2024-05-20T11:45:00Z"
     },
     {
       "id": "4",

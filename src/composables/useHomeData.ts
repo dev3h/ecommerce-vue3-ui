@@ -1,8 +1,11 @@
 import { ref, onMounted } from 'vue'
 import { HomeService } from '@/services/home.service'
+import { useAppI18n } from '@/composables/useI18n'
 import type { Product, Deal, Category, PromoSection } from '@/types/home'
 
 export function useHomeData() {
+    const { t } = useAppI18n()
+
     // State
     const popularProducts = ref<Product[]>([])
     const newProducts = ref<Product[]>([])
@@ -34,7 +37,7 @@ export function useHomeData() {
             popularProducts.value = data.popularProducts
             newProducts.value = data.newProducts
         } catch (error) {
-            errors.value.products = 'Failed to load products'
+            errors.value.products = t('errors.loadingProducts')
             console.error('Error loading products:', error)
         } finally {
             loading.value.products = false
@@ -49,7 +52,7 @@ export function useHomeData() {
             const data = await HomeService.getDeals()
             dealsOfDay.value = data.dealsOfDay
         } catch (error) {
-            errors.value.deals = 'Failed to load deals'
+            errors.value.deals = t('errors.loadingDeals')
             console.error('Error loading deals:', error)
         } finally {
             loading.value.deals = false
@@ -65,7 +68,7 @@ export function useHomeData() {
             categories.value = data.categories
             promoSections.value = data.promoSections
         } catch (error) {
-            errors.value.home = 'Failed to load home data'
+            errors.value.home = t('errors.loadingHomeData')
             console.error('Error loading home data:', error)
         } finally {
             loading.value.home = false

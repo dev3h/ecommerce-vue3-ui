@@ -40,7 +40,12 @@
     "preparingOrder": "Chúng tôi đang chuẩn bị đơn hàng để giao cho bạn",
     "shippingNotification": "Bạn sẽ nhận được mã tracking khi đơn hàng được giao",
     "continueShopping": "Tiếp tục mua sắm",
-    "backToHome": "Về trang chủ"
+    "backToHome": "Về trang chủ",
+    "optional": "Tùy chọn",
+    "today": "Hôm nay",
+    "yesterday": "Hôm qua",
+    "daysAgo": "ngày trước",
+    "loadMore": "Tải thêm"
   },
   "navigation": {
     "home": "Trang chủ",
@@ -194,7 +199,9 @@
     "available": "có sẵn",
     "save": "Tiết kiệm",
     "perPage": "Mỗi trang",
-    "discoverProducts": "Khám phá dòng sản phẩm chất lượng đa dạng của chúng tôi"
+    "discoverProducts": "Khám phá dòng sản phẩm chất lượng đa dạng của chúng tôi",
+    "errorLoadingProducts": "Không thể tải sản phẩm",
+    "errorLoadingCategories": "Không thể tải danh mục"
   },
   "productDetail": {
     "by": "bởi",
@@ -375,7 +382,17 @@
     "underMaintenance": "Đang bảo trì",
     "goHome": "Về trang chủ",
     "tryAgain": "Thử lại",
-    "contactSupport": "Liên hệ hỗ trợ"
+    "contactSupport": "Liên hệ hỗ trợ",
+    "loadingProducts": "Không thể tải sản phẩm",
+    "loadingCategories": "Không thể tải danh mục",
+    "loadingDeals": "Không thể tải ưu đãi",
+    "loadingHomeData": "Không thể tải dữ liệu trang chủ",
+    "loadingProductDetail": "Không thể tải chi tiết sản phẩm",
+    "loadingAddresses": "Không thể tải địa chỉ",
+    "loadingSidebarData": "Không thể tải dữ liệu thanh bên",
+    "loadingOrders": "Không thể tải đơn hàng",
+    "loadingReviews": "Không thể tải đánh giá",
+    "generic": "Đã có lỗi xảy ra. Vui lòng thử lại."
   },
   "meta": {
     "defaultTitle": "Cửa hàng trực tuyến",
@@ -674,6 +691,7 @@
       "total": "Tổng cộng",
       "quantity": "Số lượng",
       "each": "mỗi cái",
+      "clickToView": "Nhấp để xem chi tiết sản phẩm",
       "shippingAddress": "Địa chỉ giao hàng",
       "paymentMethod": "Phương thức thanh toán"
     }
@@ -779,5 +797,57 @@
     "clearError": "Không thể xóa danh sách yêu thích",
     "addToCartError": "Không thể thêm vào giỏ hàng",
     "addAllToCartError": "Không thể thêm sản phẩm vào giỏ hàng"
+  },
+  "reviews": {
+    "writeReview": "Viết đánh giá",
+    "editReview": "Chỉnh sửa đánh giá",
+    "yourReview": "Đánh giá của bạn",
+    "reviewed": "Đã đánh giá",
+    "canReview": "Có thể đánh giá",
+    "edited": "Đã chỉnh sửa",
+    "verifiedPurchase": "Đã mua hàng",
+    "helpful": "Hữu ích",
+    "wasHelpful": "Đánh giá này có hữu ích không?",
+    "rating": "Đánh giá",
+    "reviewTitle": "Tiêu đề đánh giá",
+    "reviewComment": "Nội dung đánh giá",
+    "addPhotos": "Thêm ảnh",
+    "submitReview": "Gửi đánh giá",
+    "updateReview": "Cập nhật đánh giá",
+    "cancelReview": "Hủy",
+    "deleteReview": "Xóa đánh giá",
+    "confirmDelete": "Bạn có chắc chắn muốn xóa đánh giá này?",
+    "cannotReview": "Bạn chỉ có thể đánh giá sản phẩm đã mua và nhận được",
+    "cannotEdit": "Bạn chỉ có thể chỉnh sửa đánh giá một lần",
+    "hasBeenEdited": "Đánh giá này đã được chỉnh sửa",
+    "reviewCreated": "Đánh giá của bạn đã được gửi thành công",
+    "reviewUpdated": "Đánh giá của bạn đã được cập nhật thành công",
+    "reviewDeleted": "Đánh giá của bạn đã được xóa",
+    "markedHelpful": "Cảm ơn phản hồi của bạn",
+    "createError": "Không thể gửi đánh giá. Vui lòng thử lại.",
+    "updateError": "Không thể cập nhật đánh giá. Vui lòng thử lại.",
+    "deleteError": "Không thể xóa đánh giá. Vui lòng thử lại.",
+    "helpfulError": "Không thể đánh dấu hữu ích. Vui lòng thử lại.",
+    "mustBuyToReview": "Bạn phải mua sản phẩm này để viết đánh giá",
+    "oneReviewOnly": "Bạn chỉ có thể viết một đánh giá cho mỗi sản phẩm",
+    "alreadyReviewed": "Bạn đã đánh giá sản phẩm này rồi",
+    "stars": "{count} sao",
+    "outOf5": "trên 5",
+    "basedOnReviews": "Dựa trên {count} đánh giá",
+    "noReviews": "Chưa có đánh giá",
+    "beFirstToReview": "Hãy là người đầu tiên đánh giá sản phẩm này",
+    "reviewInOrderOnly": "Bạn chỉ có thể viết đánh giá cho sản phẩm sau khi đơn hàng đã được giao. Vui lòng truy cập lịch sử đơn hàng để đánh giá sản phẩm.",
+    "success": {
+      "created": "Đánh giá của bạn đã được gửi thành công",
+      "updated": "Đánh giá của bạn đã được cập nhật thành công",
+      "deleted": "Đánh giá của bạn đã được xóa"
+    },
+    "error": {
+      "create": "Không thể gửi đánh giá. Vui lòng thử lại.",
+      "update": "Không thể cập nhật đánh giá. Vui lòng thử lại.",
+      "delete": "Không thể xóa đánh giá. Vui lòng thử lại.",
+      "loadPermissions": "Không thể tải quyền đánh giá",
+      "unauthorized": "Bạn không có quyền thực hiện hành động này"
+    }
   }
 }

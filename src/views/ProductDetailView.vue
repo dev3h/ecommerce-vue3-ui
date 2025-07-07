@@ -264,13 +264,8 @@
                     <!-- Product Details Tabs -->
                     <ProductDetailTabs
                         :product="product"
-                        :reviews="reviews"
-                        :reviews-total="reviewsTotal"
-                        :has-more-reviews="hasMoreReviews"
-                        :loading-reviews="loading.reviews"
                         :active-tab="activeTab"
                         @tab-change="setActiveTab"
-                        @load-more-reviews="loadMoreReviews"
                     />
 
                     <!-- Related Products -->

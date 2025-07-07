@@ -2,6 +2,7 @@ import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCart } from '@/composables/useCart'
 import { useWishlist } from '@/composables/useWishlist'
+import { useAppI18n } from '@/composables/useI18n'
 import { productDetailService } from '@/services/product-detail.service'
 import type { ProductDetail, ProductReview, RelatedProduct } from '@/types/product-detail'
 
@@ -9,6 +10,7 @@ export function useProductDetail() {
     const route = useRoute()
     const { addToCart: cartAddToCart } = useCart()
     const { toggleWishlist } = useWishlist()
+    const { t } = useAppI18n()
 
     // State
     const product = ref<ProductDetail | null>(null)
@@ -91,7 +93,7 @@ export function useProductDetail() {
             reviews.value = data.reviews
             reviewsTotal.value = data.reviews.length
         } catch (err) {
-            error.value = err instanceof Error ? err.message : 'Failed to load product'
+            error.value = err instanceof Error ? err.message : t('errors.loadingProductDetail')
             console.error('Error loading product detail:', err)
         } finally {
             loading.value.product = false
