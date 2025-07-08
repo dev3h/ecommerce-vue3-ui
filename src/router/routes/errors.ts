@@ -3,6 +3,15 @@ import type { RouteRecordRaw } from 'vue-router'
 // Error and utility routes
 export const errorRoutes: RouteRecordRaw[] = [
     {
+        path: '/403',
+        name: 'errors-403',
+        component: () => import('@/views/errors/ForbiddenView.vue'),
+        meta: {
+            title: 'Access Forbidden',
+            requiresAuth: false,
+        },
+    },
+    {
         path: '/404',
         name: 'not-found',
         component: () => import('@/views/errors/NotFoundView.vue'),

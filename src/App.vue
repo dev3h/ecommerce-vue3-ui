@@ -17,6 +17,10 @@ const isAdminLayout = computed(() => {
     return route.meta?.layout === 'admin'
 })
 
+const isAuthLayout = computed(() => {
+    return route.meta?.layout === 'auth'
+})
+
 // Determine if sidebar should be shown
 const shouldShowSidebar = computed(() => {
     // Only show sidebar on products/categories pages
@@ -35,14 +39,21 @@ onMounted(() => {
 </script>
 
 <template>
-    <BaseLayout v-if="!isAdminLayout" :loading="isLoading" :show-sidebar="shouldShowSidebar">
+    <!-- Auth Layout (no header/footer) -->
+    <div v-if="isAuthLayout" class="min-h-screen bg-background">
         <RouterView />
-    </BaseLayout>
+        <Toast />
+    </div>
 
-    <AdminBaseLayout v-else>
+    <!-- Admin Layout -->
+    <AdminBaseLayout v-else-if="isAdminLayout">
         <RouterView />
+        <Toast />
     </AdminBaseLayout>
 
-    <!-- Global Toast Notifications -->
-    <Toast />
+    <!-- Default Layout -->
+    <BaseLayout v-else :loading="isLoading" :show-sidebar="shouldShowSidebar">
+        <RouterView />
+        <Toast />
+    </BaseLayout>
 </template>
