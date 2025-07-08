@@ -82,11 +82,13 @@ export const adminGuard = (
 ) => {
     const authStore = useAuthStore()
     const isAdminRoute = to.path.startsWith('/admin')
+    const isAdminLogin = to.path === '/admin/login'
+    const isAdminForgotPassword = to.path === '/admin/forgot-password'
 
-    if (isAdminRoute) {
+    if (isAdminRoute && !isAdminLogin && !isAdminForgotPassword) {
         if (!authStore.isAuthenticated) {
             next({
-                name: 'login',
+                name: 'AdminLogin',
                 query: { redirect: to.fullPath },
             })
             return
