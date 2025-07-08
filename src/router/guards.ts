@@ -21,10 +21,22 @@ export const authGuard = (
 
     // If route requires authentication and user is not authenticated
     if (requiresAuth && !authStore.isAuthenticated) {
-        next({
-            name: 'login',
-            query: { redirect: to.fullPath },
-        })
+        // Check if this is an admin route
+        const isAdminRoute = to.path.startsWith('/admin')
+
+        if (isAdminRoute) {
+            // Redirect to admin login for admin routes
+            next({
+                name: 'AdminLogin',
+                query: { redirect: to.fullPath },
+            })
+        } else {
+            // Redirect to regular login for regular routes
+            next({
+                name: 'login',
+                query: { redirect: to.fullPath },
+            })
+        }
         return
     }
 
@@ -53,10 +65,22 @@ export const roleGuard = (
 
     if (requiredRoles && requiredRoles.length > 0) {
         if (!authStore.isAuthenticated) {
-            next({
-                name: 'login',
-                query: { redirect: to.fullPath },
-            })
+            // Check if this is an admin route
+            const isAdminRoute = to.path.startsWith('/admin')
+
+            if (isAdminRoute) {
+                // Redirect to admin login for admin routes
+                next({
+                    name: 'AdminLogin',
+                    query: { redirect: to.fullPath },
+                })
+            } else {
+                // Redirect to regular login for regular routes
+                next({
+                    name: 'login',
+                    query: { redirect: to.fullPath },
+                })
+            }
             return
         }
 
@@ -84,8 +108,28 @@ export const adminGuard = (
     const isAdminRoute = to.path.startsWith('/admin')
     const isAdminLogin = to.path === '/admin/login'
     const isAdminForgotPassword = to.path === '/admin/forgot-password'
+    const requiresAdmin = to.meta.requiresAdmin
 
-    if (isAdminRoute && !isAdminLogin && !isAdminForgotPassword) {
+    // Skip guard for non-admin routes
+    if (!isAdminRoute && !requiresAdmin) {
+        next()
+        return
+    }
+
+    // Allow access to admin login and forgot password pages
+    if (isAdminLogin || isAdminForgotPassword) {
+        // If already authenticated and is admin, redirect to dashboard
+        if (authStore.isAuthenticated && authStore.isAdmin) {
+            next({ name: 'AdminDashboard' })
+            return
+        }
+        next()
+        return
+    }
+
+    // For all other admin routes, check authentication and admin role
+    if (isAdminRoute || requiresAdmin) {
+        // Check if user is authenticated
         if (!authStore.isAuthenticated) {
             next({
                 name: 'AdminLogin',
@@ -94,8 +138,9 @@ export const adminGuard = (
             return
         }
 
+        // Check if user has admin role
         if (!authStore.isAdmin) {
-            // User is not admin
+            // User is authenticated but not admin
             next({ name: 'errors-403' })
             return
         }

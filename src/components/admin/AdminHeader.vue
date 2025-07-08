@@ -160,6 +160,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
+import { useAuthStore } from '@/stores/auth'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import {
     Menu,
@@ -180,17 +181,28 @@ const emit = defineEmits<{
 
 const router = useRouter()
 const { t } = useAppI18n()
+const authStore = useAuthStore()
 
 // State
 const searchQuery = ref('')
 const showProfileMenu = ref(false)
 const isDark = ref(false)
 
-// Mock admin user data
-const adminUser = ref({
-    name: 'Admin User',
-    email: 'admin@example.com',
-    role: 'Super Admin',
+// Admin user data from auth store
+const adminUser = computed(() => {
+    const user = authStore.user
+    if (!user) {
+        return {
+            name: 'Admin',
+            email: 'admin@example.com',
+            role: 'Admin',
+        }
+    }
+    return {
+        name: `${user.firstName} ${user.lastName}`,
+        email: user.email,
+        role: user.role === 'admin' ? 'Admin' : 'User',
+    }
 })
 
 // Computed
@@ -228,13 +240,18 @@ const toggleTheme = () => {
     localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
 }
 
-const handleLogout = () => {
-    // Clear admin session/token
-    localStorage.removeItem('admin_token')
-    sessionStorage.removeItem('admin_session')
-
-    closeProfileMenu()
-    router.push('/admin/login')
+const handleLogout = async () => {
+    try {
+        // Use auth store logout
+        await authStore.logout()
+        closeProfileMenu()
+        // Redirect to admin login
+        router.push('/admin/login')
+    } catch (error) {
+        console.error('Logout failed:', error)
+        // Force redirect even if logout fails
+        router.push('/admin/login')
+    }
 }
 
 const handleClickOutside = (event: Event) => {

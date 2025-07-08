@@ -180,7 +180,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useAppI18n } from '@/composables/useI18n'
 import { useToast } from '@/composables/useToast'
@@ -206,6 +206,7 @@ import {
 } from 'lucide-vue-next'
 
 const router = useRouter()
+const route = useRoute()
 const authStore = useAuthStore()
 const { t } = useAppI18n()
 const { success, error } = useToast()
@@ -293,8 +294,9 @@ const handleLogin = async () => {
 
         success(t('admin.login.successMessage'))
 
-        // Redirect to admin dashboard
-        router.push('/admin/dashboard')
+        // Redirect to intended page or admin dashboard
+        const redirectTo = route.query.redirect as string
+        router.push(redirectTo || '/admin/dashboard')
     } catch (err: any) {
         console.error('Admin login error:', err)
         errorMessage.value = err.message || t('admin.login.errorMessage')

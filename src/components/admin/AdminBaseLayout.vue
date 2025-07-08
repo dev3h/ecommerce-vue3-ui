@@ -1,5 +1,5 @@
 <template>
-    <div class="admin-layout" :class="{ 'sidebar-collapsed': sidebarCollapsed }">
+    <div v-if="hasAccess" class="admin-layout" :class="{ 'sidebar-collapsed': sidebarCollapsed }">
         <!-- Left Sidebar - Fixed Position -->
         <AdminSidebar
             :isOpen="sidebarOpen"
@@ -28,12 +28,22 @@
             @click="closeSidebar"
         />
     </div>
+    <div v-else class="min-h-screen flex items-center justify-center">
+        <div class="text-center">
+            <h2 class="text-2xl font-bold text-foreground mb-4">Access Denied</h2>
+            <p class="text-muted-foreground">Checking your credentials...</p>
+        </div>
+    </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import AdminHeader from './AdminHeader.vue'
 import AdminSidebar from './AdminSidebar.vue'
+import { useAuthGuard } from '@/composables/useAuthGuard'
+
+// Auth protection
+const { hasAccess } = useAuthGuard()
 
 const sidebarOpen = ref(true)
 const sidebarCollapsed = ref(false)
