@@ -1,0 +1,219 @@
+{
+  "revenueOverview": [
+    { "name": "Jan", "revenue": 285000, "profit": 85000 },
+    { "name": "Feb", "revenue": 298000, "profit": 92000 },
+    { "name": "Mar", "revenue": 315000, "profit": 105000 },
+    { "name": "Apr", "revenue": 328000, "profit": 115000 },
+    { "name": "May", "revenue": 342000, "profit": 125000 },
+    { "name": "Jun", "revenue": 358000, "profit": 135000 },
+    { "name": "Jul", "revenue": 375000, "profit": 145000 },
+    { "name": "Aug", "revenue": 388000, "profit": 155000 },
+    { "name": "Sep", "revenue": 395000, "profit": 165000 },
+    { "name": "Oct", "revenue": 408000, "profit": 175000 },
+    { "name": "Nov", "revenue": 420000, "profit": 185000 },
+    { "name": "Dec", "revenue": 435000, "profit": 195000 }
+  ],
+  "ordersStatistics": [
+    { "name": "Jan", "orders": 1250, "completed": 1180 },
+    { "name": "Feb", "orders": 1320, "completed": 1268 },
+    { "name": "Mar", "orders": 1450, "completed": 1392 },
+    { "name": "Apr", "orders": 1520, "completed": 1468 },
+    { "name": "May", "orders": 1680, "completed": 1612 },
+    { "name": "Jun", "orders": 1780, "completed": 1724 },
+    { "name": "Jul", "orders": 1850, "completed": 1795 },
+    { "name": "Aug", "orders": 1920, "completed": 1862 },
+    { "name": "Sep", "orders": 1980, "completed": 1921 },
+    { "name": "Oct", "orders": 2050, "completed": 1989 },
+    { "name": "Nov", "orders": 2120, "completed": 2058 },
+    { "name": "Dec", "orders": 2200, "completed": 2134 }
+  ],
+  "customerActivity": [
+    { "name": "Jan", "active": 12500 },
+    { "name": "Feb", "active": 13200 },
+    { "name": "Mar", "active": 14800 },
+    { "name": "Apr", "active": 15600 },
+    { "name": "May", "active": 16200 },
+    { "name": "Jun", "active": 17800 },
+    { "name": "Jul", "active": 18500 },
+    { "name": "Aug", "active": 19200 },
+    { "name": "Sep", "active": 19800 },
+    { "name": "Oct", "active": 20500 },
+    { "name": "Nov", "active": 21200 },
+    { "name": "Dec", "active": 22000 }
+  ],
+  "yearlyComparison": [
+    { "name": "2023", "revenue": 3850000 },
+    { "name": "2024", "revenue": 4560000 },
+    { "name": "2025", "revenue": 5230000 }
+  ],
+  "quickStats": {
+    "totalRevenue": "5.23M",
+    "totalOrders": "21,875",
+    "activeCustomers": "22,000",
+    "conversionRate": "3.2%",
+    "revenueGrowth": "+14.7%",
+    "ordersGrowth": "+12.3%",
+    "customersGrowth": "+8.9%",
+    "conversionGrowth": "+0.5%"
+  },
+  "productCategories": [
+    { "name": "Meats", "value": 35 },
+    { "name": "Beverages", "value": 25 },
+    { "name": "Fruits & Nuts", "value": 20 },
+    { "name": "Milks & Dairies", "value": 15 },
+    { "name": "Vegetables", "value": 10 },
+    { "name": "Seafood", "value": 8 },
+    { "name": "Coffees & Teas", "value": 7 },
+    { "name": "Frozen", "value": 5 }
+  ],
+  "topProducts": [
+    { "product": "Haagen-Dazs Caramel Cone...", "sales": 850 },
+    { "product": "Italian-Style Chicken Meatballs", "sales": 720 },
+    { "product": "Blue Diamond Almonds Light...", "sales": 680 },
+    { "product": "Chobani Complete Vanilla...", "sales": 550 },
+    { "product": "Seeds of Change Quinoa...", "sales": 420 },
+    { "product": "Canada Dry Ginger Ale 2L", "sales": 380 },
+    { "product": "Foster Farms Crispy Classic...", "sales": 350 },
+    { "product": "Angie's Sweet & Salty Pop...", "sales": 320 }
+  ],
+  "recentOrders": [
+    {
+      "id": "ORD-2025-001",
+      "customer": "John Doe",
+      "amount": 1250.0,
+      "status": "Completed",
+      "date": "2025-01-08",
+      "paymentMethod": "Mastercard"
+    },
+    {
+      "id": "ORD-2025-002",
+      "customer": "Jane Smith",
+      "amount": 890.5,
+      "status": "Processing",
+      "date": "2025-01-08",
+      "paymentMethod": "Visa"
+    },
+    {
+      "id": "ORD-2025-003",
+      "customer": "Mike Johnson",
+      "amount": 2100.0,
+      "status": "Completed",
+      "date": "2025-01-07",
+      "paymentMethod": "Paypal"
+    },
+    {
+      "id": "ORD-2025-004",
+      "customer": "Sarah Wilson",
+      "amount": 750.25,
+      "status": "Shipped",
+      "date": "2025-01-07",
+      "paymentMethod": "Visa"
+    },
+    {
+      "id": "ORD-2025-005",
+      "customer": "David Brown",
+      "amount": 1680.0,
+      "status": "Completed",
+      "date": "2025-01-06",
+      "paymentMethod": "Mastercard"
+    },
+    {
+      "id": "ORD-2025-006",
+      "customer": "Emily Davis",
+      "amount": 980.75,
+      "status": "Pending",
+      "date": "2025-01-06",
+      "paymentMethod": "Paypal"
+    },
+    {
+      "id": "ORD-2025-007",
+      "customer": "Tom Wilson",
+      "amount": 1350.0,
+      "status": "Completed",
+      "date": "2025-01-05",
+      "paymentMethod": "Mastercard"
+    },
+    {
+      "id": "ORD-2025-008",
+      "customer": "Lisa Anderson",
+      "amount": 680.25,
+      "status": "Shipped",
+      "date": "2025-01-05",
+      "paymentMethod": "Visa"
+    },
+    {
+      "id": "ORD-2025-009",
+      "customer": "Robert Taylor",
+      "amount": 2250.0,
+      "status": "Processing",
+      "date": "2025-01-04",
+      "paymentMethod": "Paypal"
+    },
+    {
+      "id": "ORD-2025-010",
+      "customer": "Anna Martinez",
+      "amount": 450.75,
+      "status": "Completed",
+      "date": "2025-01-04",
+      "paymentMethod": "Mastercard"
+    }
+  ],
+  "newMembers": [
+    {
+      "name": "Alice Cooper",
+      "email": "alice@example.com",
+      "joinDate": "2025-01-08",
+      "orders": 0
+    },
+    {
+      "name": "Bob Martin",
+      "email": "bob@example.com",
+      "joinDate": "2025-01-08",
+      "orders": 1
+    },
+    {
+      "name": "Carol Davis",
+      "email": "carol@example.com",
+      "joinDate": "2025-01-07",
+      "orders": 2
+    },
+    {
+      "name": "Daniel Lee",
+      "email": "daniel@example.com",
+      "joinDate": "2025-01-07",
+      "orders": 0
+    }
+  ],
+  "recentActivities": [
+    {
+      "type": "order",
+      "message": "New order #ORD-2025-001 from John Doe",
+      "time": "2 minutes ago",
+      "status": "success"
+    },
+    {
+      "type": "payment",
+      "message": "Payment received for order #ORD-2025-002",
+      "time": "5 minutes ago",
+      "status": "success"
+    },
+    {
+      "type": "user",
+      "message": "New user Alice Cooper registered",
+      "time": "10 minutes ago",
+      "status": "info"
+    },
+    {
+      "type": "product",
+      "message": "Product iPhone 15 stock is low",
+      "time": "15 minutes ago",
+      "status": "warning"
+    },
+    {
+      "type": "order",
+      "message": "Order #ORD-2024-999 has been shipped",
+      "time": "20 minutes ago",
+      "status": "success"
+    }
+  ]
+}

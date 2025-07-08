@@ -1,0 +1,5 @@
+export { default as DashboardStats } from './DashboardStats.vue'
+export { default as RevenueCharts } from './RevenueCharts.vue'
+export { default as AnalyticsCharts } from './AnalyticsCharts.vue'
+export { default as RecentOrdersTable } from './RecentOrdersTable.vue'
+export { default as ActivitySections } from './ActivitySections.vue'

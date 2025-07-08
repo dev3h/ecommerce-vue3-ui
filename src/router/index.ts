@@ -21,9 +21,9 @@ const router = createRouter({
 })
 
 // Global navigation guards
+router.beforeEach(adminGuard)
 router.beforeEach(authGuard)
 router.beforeEach(roleGuard)
-router.beforeEach(adminGuard)
 router.beforeEach(titleGuard)
 
 // Global error handling for navigation

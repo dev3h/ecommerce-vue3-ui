@@ -22,6 +22,9 @@ const authStore = useAuthStore()
 const wishlistStore = useWishlistStore()
 const orderStore = useOrderStore()
 
+// Initialize auth state from localStorage
+authStore.initializeAuth()
+
 // Initialize orders
 orderStore.initializeOrders()
 
