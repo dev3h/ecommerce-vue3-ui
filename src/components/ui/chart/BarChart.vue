@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -38,16 +38,41 @@ const props = withDefaults(defineProps<Props>(), {
     title: '',
 })
 
-// Get computed colors based on theme
-const getThemeColors = () => {
-    const isDark = document.documentElement.classList.contains('dark')
-    return {
-        foreground: isDark ? '#ffffff' : '#000000',
-        mutedForeground: isDark ? '#a1a1aa' : '#71717a',
-        background: isDark ? '#000000' : '#ffffff',
-        border: isDark ? '#27272a' : '#e4e4e7',
-    }
+// Reactive theme detection
+const isDark = ref(false)
+
+const updateTheme = () => {
+    isDark.value = document.documentElement.classList.contains('dark')
 }
+
+// Watch for theme changes
+let observer: MutationObserver | null = null
+
+onMounted(() => {
+    updateTheme()
+    // Watch for class changes on document element
+    observer = new MutationObserver(updateTheme)
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+    })
+})
+
+onUnmounted(() => {
+    if (observer) {
+        observer.disconnect()
+    }
+})
+
+// Get computed colors based on theme
+const getThemeColors = computed(() => {
+    return {
+        foreground: isDark.value ? '#ffffff' : '#000000',
+        mutedForeground: isDark.value ? '#a1a1aa' : '#71717a',
+        background: isDark.value ? '#000000' : '#ffffff',
+        border: isDark.value ? '#27272a' : '#e4e4e7',
+    }
+})
 
 const chartData = computed(() => {
     // Function to truncate text to 2 words + "..."
@@ -98,7 +123,7 @@ const chartData = computed(() => {
 })
 
 const chartOptions = computed(() => {
-    const themeColors = getThemeColors()
+    const themeColors = getThemeColors.value
     const keysToUse = props.dataKeys.length > 0 ? props.dataKeys : [props.dataKey]
 
     return {

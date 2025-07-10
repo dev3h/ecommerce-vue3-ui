@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -40,26 +40,45 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     nameKey: 'name',
     height: 350,
-    colors: () => [
-        '#3b82f6', 
-        '#22c55e', 
-        '#a855f7', 
-        '#f59e0b',
-        '#ef4444'
-    ],
+    colors: () => ['#3b82f6', '#22c55e', '#a855f7', '#f59e0b', '#ef4444'],
     title: '',
 })
 
-// Get computed colors based on theme
-const getThemeColors = () => {
-    const isDark = document.documentElement.classList.contains('dark')
-    return {
-        foreground: isDark ? '#ffffff' : '#000000',
-        mutedForeground: isDark ? '#a1a1aa' : '#71717a',
-        background: isDark ? '#000000' : '#ffffff',
-        border: isDark ? '#27272a' : '#e4e4e7',
-    }
+// Reactive theme detection
+const isDark = ref(false)
+
+const updateTheme = () => {
+    isDark.value = document.documentElement.classList.contains('dark')
 }
+
+// Watch for theme changes
+let observer: MutationObserver | null = null
+
+onMounted(() => {
+    updateTheme()
+    // Watch for class changes on document element
+    observer = new MutationObserver(updateTheme)
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+    })
+})
+
+onUnmounted(() => {
+    if (observer) {
+        observer.disconnect()
+    }
+})
+
+// Get computed colors based on theme
+const getThemeColors = computed(() => {
+    return {
+        foreground: isDark.value ? '#ffffff' : '#000000',
+        mutedForeground: isDark.value ? '#a1a1aa' : '#71717a',
+        background: isDark.value ? '#000000' : '#ffffff',
+        border: isDark.value ? '#27272a' : '#e4e4e7',
+    }
+})
 
 const chartData = computed(() => ({
     labels: props.data.map((item) => item[props.nameKey]),
@@ -68,14 +87,14 @@ const chartData = computed(() => ({
         backgroundColor: props.colors[index % props.colors.length] + '80',
         data: props.data.map((item) => item[key]),
         fill: true,
-        pointBackgroundColor: getThemeColors().background,
+        pointBackgroundColor: getThemeColors.value.background,
         pointBorderColor: props.colors[index % props.colors.length],
         pointBorderWidth: 2,
     })),
 }))
 
 const chartOptions = computed(() => {
-    const themeColors = getThemeColors()
+    const themeColors = getThemeColors.value
     return {
         responsive: true,
         maintainAspectRatio: false,

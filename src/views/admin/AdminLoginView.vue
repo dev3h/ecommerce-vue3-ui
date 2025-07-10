@@ -179,9 +179,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { useAuthStore } from '@/stores/auth'
+import { useAdminAuthStore } from '@/stores/adminAuth'
 import { useAppI18n } from '@/composables/useI18n'
 import { useToast } from '@/composables/useToast'
 
@@ -207,7 +207,7 @@ import {
 
 const router = useRouter()
 const route = useRoute()
-const authStore = useAuthStore()
+const authStore = useAdminAuthStore()
 const { t } = useAppI18n()
 const { success, error } = useToast()
 
@@ -227,11 +227,6 @@ const errorMessage = ref('')
 const errors = reactive({
     email: '',
     password: '',
-})
-
-// Computed
-const isFormValid = computed(() => {
-    return form.email && form.password && !errors.email && !errors.password
 })
 
 // Methods

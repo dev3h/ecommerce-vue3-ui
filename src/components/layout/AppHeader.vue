@@ -250,7 +250,6 @@ const isDark = ref(false)
 const cartItemsCount = computed(() => totalItems.value)
 const isAuthenticated = computed(() => authStore.isAuthenticated)
 const isAdmin = computed(() => authStore.isAdmin)
-const user = computed(() => authStore.user)
 
 // Methods
 const isRouteActive = (path: string) => {

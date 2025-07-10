@@ -1,11 +1,13 @@
 import { computed, onMounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useAdminAuthStore } from '@/stores/adminAuth'
 
 export function useAuthGuard() {
     const router = useRouter()
     const route = useRoute()
     const authStore = useAuthStore()
+    const adminAuthStore = useAdminAuthStore()
 
     // Check if current route requires admin access
     const requiresAdmin = computed(() => {
@@ -19,12 +21,12 @@ export function useAuthGuard() {
     // Check if user has proper access
     const hasAccess = computed(() => {
         if (!requiresAdmin.value) return true
-        return authStore.isAuthenticated && authStore.isAdmin
+        return adminAuthStore.isAuthenticated && adminAuthStore.isAdmin
     })
 
     // Redirect to appropriate login page if needed
     const checkAccess = () => {
-        if (requiresAdmin.value && !authStore.isAuthenticated) {
+        if (requiresAdmin.value && !adminAuthStore.isAuthenticated) {
             router.push({
                 name: 'AdminLogin',
                 query: { redirect: route.fullPath },
@@ -32,7 +34,7 @@ export function useAuthGuard() {
             return false
         }
 
-        if (requiresAdmin.value && authStore.isAuthenticated && !authStore.isAdmin) {
+        if (requiresAdmin.value && adminAuthStore.isAuthenticated && !adminAuthStore.isAdmin) {
             router.push({ name: 'errors-403' })
             return false
         }

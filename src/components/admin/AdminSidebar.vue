@@ -331,10 +331,6 @@ const { t } = useAppI18n()
 // Computed
 const currentRoute = computed(() => route.path)
 
-const sidebarHeight = computed(() => {
-    return 'calc(100vh - 3.5rem)'
-})
-
 // Mock data - in real app these would come from stores/API
 const productsCount = computed(() => 1247)
 const categoriesCount = computed(() => 23)
@@ -347,17 +343,6 @@ const activeCouponsCount = computed(() => 5)
 // Methods
 const handleClose = () => {
     emit('close')
-}
-
-const handleQuickAction = (action: string) => {
-    switch (action) {
-        case 'add-product':
-            router.push('/admin/products/new')
-            break
-        case 'view-site':
-            window.open('/', '_blank')
-            break
-    }
 }
 
 const handleResize = () => {

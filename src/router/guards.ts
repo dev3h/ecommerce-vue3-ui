@@ -1,5 +1,6 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useAdminAuthStore } from '@/stores/adminAuth'
 
 /**
  * Authentication guard
@@ -10,9 +11,19 @@ export const authGuard = (
     from: RouteLocationNormalized,
     next: NavigationGuardNext,
 ) => {
-    const authStore = useAuthStore()
     const requiresAuth = to.meta.requiresAuth
     const isGuest = to.meta.guest
+    const isAdminRoute = to.path.startsWith('/admin')
+
+    let authStore: any
+
+    if (isAdminRoute) {
+        // Use admin auth store for admin routes
+        authStore = useAdminAuthStore()
+    } else {
+        // Use regular auth store for user routes
+        authStore = useAuthStore()
+    }
 
     // Initialize auth store if not already initialized
     if (!authStore.user && !authStore.token) {
@@ -21,9 +32,6 @@ export const authGuard = (
 
     // If route requires authentication and user is not authenticated
     if (requiresAuth && !authStore.isAuthenticated) {
-        // Check if this is an admin route
-        const isAdminRoute = to.path.startsWith('/admin')
-
         if (isAdminRoute) {
             // Redirect to admin login for admin routes
             next({
@@ -44,7 +52,11 @@ export const authGuard = (
     if (isGuest && authStore.isAuthenticated) {
         // Redirect to intended page or home
         const redirect = to.query.redirect as string
-        next(redirect || '/')
+        if (isAdminRoute) {
+            next(redirect || '/admin/dashboard')
+        } else {
+            next(redirect || '/')
+        }
         return
     }
 
@@ -60,14 +72,21 @@ export const roleGuard = (
     from: RouteLocationNormalized,
     next: NavigationGuardNext,
 ) => {
-    const authStore = useAuthStore()
     const requiredRoles = to.meta.roles as string[]
+    const isAdminRoute = to.path.startsWith('/admin')
+
+    let authStore: any
+
+    if (isAdminRoute) {
+        // Use admin auth store for admin routes
+        authStore = useAdminAuthStore()
+    } else {
+        // Use regular auth store for user routes
+        authStore = useAuthStore()
+    }
 
     if (requiredRoles && requiredRoles.length > 0) {
         if (!authStore.isAuthenticated) {
-            // Check if this is an admin route
-            const isAdminRoute = to.path.startsWith('/admin')
-
             if (isAdminRoute) {
                 // Redirect to admin login for admin routes
                 next({
@@ -104,7 +123,7 @@ export const adminGuard = (
     from: RouteLocationNormalized,
     next: NavigationGuardNext,
 ) => {
-    const authStore = useAuthStore()
+    const adminAuthStore = useAdminAuthStore()
     const isAdminRoute = to.path.startsWith('/admin')
     const isAdminLogin = to.path === '/admin/login'
     const isAdminForgotPassword = to.path === '/admin/forgot-password'
@@ -116,10 +135,15 @@ export const adminGuard = (
         return
     }
 
+    // Initialize admin auth store if not already initialized
+    if (!adminAuthStore.user && !adminAuthStore.token) {
+        adminAuthStore.initializeAuth()
+    }
+
     // Allow access to admin login and forgot password pages
     if (isAdminLogin || isAdminForgotPassword) {
         // If already authenticated and is admin, redirect to dashboard
-        if (authStore.isAuthenticated && authStore.isAdmin) {
+        if (adminAuthStore.isAuthenticated && adminAuthStore.isAdmin) {
             next({ name: 'AdminDashboard' })
             return
         }
@@ -130,7 +154,7 @@ export const adminGuard = (
     // For all other admin routes, check authentication and admin role
     if (isAdminRoute || requiresAdmin) {
         // Check if user is authenticated
-        if (!authStore.isAuthenticated) {
+        if (!adminAuthStore.isAuthenticated) {
             next({
                 name: 'AdminLogin',
                 query: { redirect: to.fullPath },
@@ -139,7 +163,7 @@ export const adminGuard = (
         }
 
         // Check if user has admin role
-        if (!authStore.isAdmin) {
+        if (!adminAuthStore.isAdmin) {
             // User is authenticated but not admin
             next({ name: 'errors-403' })
             return

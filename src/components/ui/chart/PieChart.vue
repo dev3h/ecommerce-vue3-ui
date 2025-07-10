@@ -39,29 +39,34 @@ const updateTheme = () => {
     isDarkMode.value = document.documentElement.classList.contains('dark')
 }
 
+// Watch for theme changes
+let observer: MutationObserver | null = null
+
 onMounted(() => {
     updateTheme()
     // Listen for theme changes
-    const observer = new MutationObserver(updateTheme)
+    observer = new MutationObserver(updateTheme)
     observer.observe(document.documentElement, {
         attributes: true,
         attributeFilter: ['class'],
     })
+})
 
-    onUnmounted(() => {
+onUnmounted(() => {
+    if (observer) {
         observer.disconnect()
-    })
+    }
 })
 
 // Get computed colors based on theme
-const getThemeColors = () => {
+const getThemeColors = computed(() => {
     return {
         foreground: isDarkMode.value ? '#ffffff' : '#0f172a',
         mutedForeground: isDarkMode.value ? '#94a3b8' : '#64748b',
         background: isDarkMode.value ? '#020817' : '#ffffff',
         border: isDarkMode.value ? '#334155' : '#e2e8f0',
     }
-}
+})
 
 const chartData = computed(() => ({
     labels: props.data.map((item) => item.name),
@@ -76,7 +81,7 @@ const chartData = computed(() => ({
 }))
 
 const chartOptions = computed(() => {
-    const themeColors = getThemeColors()
+    const themeColors = getThemeColors.value
     return {
         responsive: true,
         maintainAspectRatio: false,

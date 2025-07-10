@@ -129,7 +129,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
-import { useAuthStore } from '@/stores/auth'
+import { useAdminAuthStore } from '@/stores/adminAuth'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -160,7 +160,7 @@ const emit = defineEmits<{
 
 const router = useRouter()
 const { t } = useAppI18n()
-const authStore = useAuthStore()
+const authStore = useAdminAuthStore()
 
 // State
 const searchQuery = ref('')
