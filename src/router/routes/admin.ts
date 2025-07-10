@@ -70,6 +70,17 @@ export const adminRoutes: RouteRecordRaw[] = [
         },
     },
     {
+        path: '/admin/categories',
+        name: 'AdminCategories',
+        component: () => import('@/views/admin/AdminCategoriesView.vue'),
+        meta: {
+            title: 'Categories Management',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
         path: '/admin/orders',
         name: 'AdminOrders',
         component: () => import('@/views/HomeView.vue'),

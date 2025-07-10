@@ -6,14 +6,16 @@
             <!-- Sidebar Toggle -->
             <div class="flex items-center">
                 <!-- Mobile & Desktop Sidebar Toggle - Always Visible -->
-                <button
+                <Button
+                    variant="outline"
+                    size="icon"
                     @click="handleToggleSidebar"
-                    class="mr-3 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9 border border-border"
+                    class="mr-3"
                     :title="t('common.menu')"
                 >
                     <Menu class="h-5 w-5" />
                     <span class="sr-only">Toggle sidebar</span>
-                </button>
+                </Button>
             </div>
 
             <!-- Admin Navigation & Actions -->
@@ -21,11 +23,11 @@
                 <!-- Search -->
                 <div class="relative hidden md:block">
                     <Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <input
+                    <Input
                         v-model="searchQuery"
                         type="search"
                         :placeholder="t('admin.search')"
-                        class="h-9 w-[300px] rounded-md border border-input bg-background px-8 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        class="w-[300px] pl-8"
                         @keyup.enter="handleSearch"
                     />
                 </div>
@@ -33,9 +35,7 @@
                 <!-- Quick Actions -->
                 <div class="flex items-center space-x-2">
                     <!-- Notifications -->
-                    <button
-                        class="relative inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9"
-                    >
+                    <Button variant="ghost" size="icon" class="relative">
                         <Bell class="h-4 w-4" />
                         <span
                             v-if="notificationCount > 0"
@@ -44,96 +44,65 @@
                             {{ notificationCount }}
                         </span>
                         <span class="sr-only">{{ t('admin.notifications') }}</span>
-                    </button>
+                    </Button>
 
                     <!-- Theme Toggle -->
-                    <button
-                        @click="toggleTheme"
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9"
-                    >
+                    <Button variant="ghost" size="icon" @click="toggleTheme">
                         <Sun v-if="isDark" class="h-4 w-4" />
                         <Moon v-else class="h-4 w-4" />
                         <span class="sr-only">Toggle theme</span>
-                    </button>
+                    </Button>
 
                     <!-- Language Switcher -->
                     <LanguageSwitcher />
 
                     <!-- Admin Profile Menu -->
-                    <div class="relative">
-                        <button
-                            @click="toggleProfileMenu"
-                            class="flex items-center space-x-2 rounded-lg border border-border bg-background px-3 py-2 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-                        >
-                            <div
-                                class="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center"
-                            >
-                                <User class="w-4 h-4 text-primary" />
-                            </div>
-                            <div class="hidden sm:flex flex-col items-start">
-                                <span class="text-sm font-medium">{{ adminUser.name }}</span>
-                                <span class="text-xs text-muted-foreground">{{
-                                    adminUser.role
-                                }}</span>
-                            </div>
-                            <ChevronDown class="w-4 h-4" />
-                        </button>
-
-                        <!-- Profile Dropdown -->
-                        <Transition
-                            enter-active-class="transition ease-out duration-100"
-                            enter-from-class="transform opacity-0 scale-95"
-                            enter-to-class="transform opacity-100 scale-100"
-                            leave-active-class="transition ease-in duration-75"
-                            leave-from-class="transform opacity-100 scale-100"
-                            leave-to-class="transform opacity-0 scale-95"
-                        >
-                            <div
-                                v-show="showProfileMenu"
-                                class="absolute right-0 z-50 mt-2 w-56 origin-top-right rounded-md bg-background border border-border shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                            >
-                                <div class="py-1">
-                                    <div class="px-4 py-2 border-b border-border">
-                                        <p class="text-sm font-medium">{{ adminUser.name }}</p>
-                                        <p class="text-xs text-muted-foreground">
-                                            {{ adminUser.email }}
-                                        </p>
-                                    </div>
-                                    <RouterLink
-                                        to="/admin/profile"
-                                        class="block px-4 py-2 text-sm hover:bg-accent hover:text-accent-foreground"
-                                        @click="closeProfileMenu"
-                                    >
-                                        <div class="flex items-center space-x-2">
-                                            <Settings class="w-4 h-4" />
-                                            <span>{{ t('admin.profile') }}</span>
-                                        </div>
-                                    </RouterLink>
-                                    <RouterLink
-                                        to="/admin/settings"
-                                        class="block px-4 py-2 text-sm hover:bg-accent hover:text-accent-foreground"
-                                        @click="closeProfileMenu"
-                                    >
-                                        <div class="flex items-center space-x-2">
-                                            <Cog class="w-4 h-4" />
-                                            <span>{{ t('admin.settings') }}</span>
-                                        </div>
-                                    </RouterLink>
-                                    <div class="border-t border-border">
-                                        <button
-                                            @click="handleLogout"
-                                            class="block w-full text-left px-4 py-2 text-sm hover:bg-accent hover:text-accent-foreground"
-                                        >
-                                            <div class="flex items-center space-x-2">
-                                                <LogOut class="w-4 h-4" />
-                                                <span>{{ t('navigation.logout') }}</span>
-                                            </div>
-                                        </button>
-                                    </div>
+                    <DropdownMenu>
+                        <template #trigger>
+                            <div class="flex items-center px-5 gap-5">
+                                <Avatar class="w-7 h-7">
+                                    <AvatarFallback class="bg-primary/10">
+                                        <User class="w-4 h-4 text-primary" />
+                                    </AvatarFallback>
+                                </Avatar>
+                                <div class="hidden sm:flex flex-col items-start">
+                                    <span class="text-sm font-medium">{{ adminUser.name }}</span>
+                                    <span class="text-xs text-muted-foreground">{{
+                                        adminUser.role
+                                    }}</span>
                                 </div>
+                                <ChevronDown class="w-4 h-4" />
                             </div>
-                        </Transition>
-                    </div>
+                        </template>
+
+                        <DropdownMenuLabel>
+                            <div class="flex flex-col space-y-1">
+                                <p class="text-sm font-medium leading-none">{{ adminUser.name }}</p>
+                                <p class="text-xs leading-none text-muted-foreground">
+                                    {{ adminUser.email }}
+                                </p>
+                            </div>
+                        </DropdownMenuLabel>
+
+                        <DropdownMenuSeparator />
+
+                        <DropdownMenuItem @click="navigateToProfile">
+                            <Settings class="w-4 h-4 mr-2" />
+                            {{ t('admin.profile') }}
+                        </DropdownMenuItem>
+
+                        <DropdownMenuItem @click="navigateToSettings">
+                            <Cog class="w-4 h-4 mr-2" />
+                            {{ t('admin.sidebar.settings') }}
+                        </DropdownMenuItem>
+
+                        <DropdownMenuSeparator />
+
+                        <DropdownMenuItem @click="handleLogout" class="text-destructive">
+                            <LogOut class="w-4 h-4 mr-2" />
+                            {{ t('navigation.logout') }}
+                        </DropdownMenuItem>
+                    </DropdownMenu>
                 </div>
             </div>
         </div>
@@ -143,11 +112,11 @@
             <div class="container mx-auto py-3 px-4">
                 <div class="relative">
                     <Search class="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <input
+                    <Input
                         v-model="searchQuery"
                         type="search"
                         :placeholder="t('admin.search')"
-                        class="h-9 w-full rounded-md border border-input bg-background px-8 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                        class="pl-8"
                         @keyup.enter="handleSearch"
                     />
                 </div>
@@ -157,11 +126,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import { useAuthStore } from '@/stores/auth'
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import Avatar from '@/components/ui/avatar/Avatar.vue'
+import AvatarFallback from '@/components/ui/avatar/AvatarFallback.vue'
+import {
+    DropdownMenu,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu'
 import {
     Menu,
     Search,
@@ -185,7 +164,6 @@ const authStore = useAuthStore()
 
 // State
 const searchQuery = ref('')
-const showProfileMenu = ref(false)
 const isDark = ref(false)
 
 // Admin user data from auth store
@@ -226,12 +204,12 @@ const handleSearch = () => {
     }
 }
 
-const toggleProfileMenu = () => {
-    showProfileMenu.value = !showProfileMenu.value
+const navigateToProfile = () => {
+    router.push('/admin/profile')
 }
 
-const closeProfileMenu = () => {
-    showProfileMenu.value = false
+const navigateToSettings = () => {
+    router.push('/admin/settings')
 }
 
 const toggleTheme = () => {
@@ -244,20 +222,12 @@ const handleLogout = async () => {
     try {
         // Use auth store logout
         await authStore.logout()
-        closeProfileMenu()
         // Redirect to admin login
         router.push('/admin/login')
     } catch (error) {
         console.error('Logout failed:', error)
         // Force redirect even if logout fails
         router.push('/admin/login')
-    }
-}
-
-const handleClickOutside = (event: Event) => {
-    const target = event.target as HTMLElement
-    if (!target.closest('.relative')) {
-        showProfileMenu.value = false
     }
 }
 
@@ -268,12 +238,5 @@ onMounted(() => {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     isDark.value = savedTheme === 'dark' || (!savedTheme && prefersDark)
     document.documentElement.classList.toggle('dark', isDark.value)
-
-    // Add click outside listener
-    document.addEventListener('click', handleClickOutside)
-})
-
-onUnmounted(() => {
-    document.removeEventListener('click', handleClickOutside)
 })
 </script>

@@ -8,9 +8,9 @@
         >
             <div class="flex items-center gap-4">
                 <div
-                    class="w-12 h-12 sm:w-16 sm:h-16 bg-background dark:bg-card rounded-lg flex items-center justify-center text-2xl sm:text-3xl shadow-sm border border-border"
+                    class="w-12 h-12 sm:w-16 sm:h-16 bg-background dark:bg-card rounded-lg flex items-center justify-center shadow-sm border border-border"
                 >
-                    {{ getCategoryIcon(filters.category) }}
+                    <IconRenderer :icon-name="getCategoryIcon(filters.category)" size="lg" />
                 </div>
                 <div>
                     <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
@@ -198,6 +198,7 @@ import type { ProductListItem } from '@/types/products'
 import ProductGridCard from '@/components/products/ProductGridCard.vue'
 import ProductListCard from '@/components/products/ProductListCard.vue'
 import ProductPagination from '@/components/products/ProductPagination.vue'
+import IconRenderer from '@/components/admin/categories/IconRenderer.vue'
 import { Button } from '@/components/ui/button'
 import {
     Select,
@@ -269,7 +270,7 @@ const getCategoryName = (slug: string) => {
 
 const getCategoryIcon = (slug: string) => {
     const category = categories.value.categories.find((cat) => cat.slug === slug)
-    return category?.icon || '📦'
+    return category?.icon || 'Package'
 }
 
 // Watch for route changes to handle category filtering

@@ -27,6 +27,9 @@
             class="admin-mobile-overlay md:hidden"
             @click="closeSidebar"
         />
+
+        <!-- Toast Notifications -->
+        <Toast />
     </div>
     <div v-else class="min-h-screen flex items-center justify-center">
         <div class="text-center">
@@ -40,6 +43,7 @@
 import { ref, onMounted } from 'vue'
 import AdminHeader from './AdminHeader.vue'
 import AdminSidebar from './AdminSidebar.vue'
+import Toast from '@/components/Toast.vue'
 import { useAuthGuard } from '@/composables/useAuthGuard'
 
 // Auth protection

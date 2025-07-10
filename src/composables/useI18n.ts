@@ -8,8 +8,8 @@ import { localeUtils, type SupportedLocale } from '@/locales'
 export function useAppI18n() {
     const { t, locale, availableLocales, messages } = useI18n()
 
-    // Current locale info
-    const currentLocale = computed(() => localeUtils.getCurrentLocale())
+    // Current locale info - use reactive locale from vue-i18n
+    const currentLocale = computed(() => locale.value)
     const isVietnamese = computed(() => currentLocale.value === 'vi')
     const isEnglish = computed(() => currentLocale.value === 'en')
 
@@ -81,8 +81,8 @@ export function useAppI18n() {
     })
 
     return {
-        // Core i18n
-        t: translate,
+        // Core i18n - use reactive t function from vue-i18n
+        t,
         locale,
         availableLocales,
         messages,
