@@ -75,9 +75,7 @@ export function useCart() {
         saveCartToStorage()
 
         // Show success notification
-        console.log('useCart: Showing success toast for:', product.name)
         success(t('cart.addedToCartSuccess'))
-        console.log('useCart: Toast should be visible now')
     }
 
     const removeFromCart = (productId: string) => {

@@ -48,7 +48,6 @@ onMounted(() => {
     <!-- Admin Layout -->
     <AdminBaseLayout v-else-if="isAdminLayout">
         <RouterView />
-        <Toast />
     </AdminBaseLayout>
 
     <!-- Default Layout -->

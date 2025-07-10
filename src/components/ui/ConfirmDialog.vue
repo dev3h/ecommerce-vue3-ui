@@ -54,10 +54,20 @@ const displayTitle = computed(() => props.title || t('common.confirm'))
 const displayDescription = computed(() => props.description || t('common.confirmMessage'))
 const displayConfirmText = computed(() => props.confirmText || t('common.confirm'))
 const displayCancelText = computed(() => props.cancelText || t('common.cancel'))
+
+const dialogOpen = computed({
+    get: () => props.open,
+    set: (value: boolean) => {
+        emits('update:open', value)
+        if (!value) {
+            emits('cancel')
+        }
+    },
+})
 </script>
 
 <template>
-    <Dialog :open="open" @update:open="emits('update:open', $event)">
+    <Dialog v-model:open="dialogOpen">
         <DialogContent class="sm:max-w-md">
             <DialogHeader>
                 <DialogTitle class="flex items-center gap-2">

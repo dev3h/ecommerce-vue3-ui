@@ -4,65 +4,118 @@
       "id": "1",
       "name": "Milks & Dairies",
       "slug": "milks-dairies",
-      "icon": "🥛",
+      "description": "Fresh milk and dairy products",
+      "icon": "Milk",
       "color": "bg-blue-100",
-      "count": 15
+      "count": 15,
+      "parent_id": null,
+      "order": 1,
+      "created_at": "2024-01-15T08:30:00Z",
+      "updated_at": "2024-01-15T08:30:00Z"
+    },
+    {
+      "id": "21",
+      "name": "Cake & Milk",
+      "slug": "cake-milk",
+      "description": "Cakes and milk products",
+      "icon": "Cake",
+      "color": "bg-blue-50",
+      "count": 8,
+      "parent_id": "1",
+      "order": 1,
+      "created_at": "2024-01-16T09:15:00Z",
+      "updated_at": "2024-01-16T09:15:00Z"
     },
     {
       "id": "2",
       "name": "Coffees & Teas",
       "slug": "coffees-teas",
-      "icon": "☕",
+      "description": "Premium coffee and tea selection",
+      "icon": "Coffee",
       "color": "bg-amber-100",
-      "count": 12
+      "count": 12,
+      "parent_id": null,
+      "order": 2,
+      "created_at": "2024-01-15T08:35:00Z",
+      "updated_at": "2024-01-15T08:35:00Z"
     },
     {
       "id": "3",
       "name": "Pet Foods",
       "slug": "pet-foods",
-      "icon": "🐕",
+      "description": "Nutritious food for your pets",
+      "icon": "Heart",
       "color": "bg-green-100",
-      "count": 8
+      "count": 8,
+      "parent_id": null,
+      "order": 3,
+      "created_at": "2024-01-15T08:40:00Z",
+      "updated_at": "2024-01-15T08:40:00Z"
     },
     {
       "id": "4",
       "name": "Meats",
       "slug": "meats",
-      "icon": "🥩",
+      "description": "Fresh and processed meat products",
+      "icon": "Beef",
       "color": "bg-red-100",
-      "count": 20
+      "count": 20,
+      "parent_id": null,
+      "order": 4,
+      "created_at": "2024-01-15T08:45:00Z",
+      "updated_at": "2024-01-15T08:45:00Z"
     },
     {
       "id": "5",
       "name": "Vegetables",
       "slug": "vegetables",
-      "icon": "🥬",
+      "description": "Fresh organic vegetables",
+      "icon": "Carrot",
       "color": "bg-green-100",
-      "count": 25
+      "count": 25,
+      "parent_id": null,
+      "order": 5,
+      "created_at": "2024-01-15T08:50:00Z",
+      "updated_at": "2024-01-15T08:50:00Z"
     },
     {
       "id": "6",
       "name": "Fruits",
       "slug": "fruits",
-      "icon": "🍎",
+      "description": "Fresh seasonal fruits",
+      "icon": "Apple",
       "color": "bg-orange-100",
-      "count": 18
+      "count": 18,
+      "parent_id": null,
+      "order": 6,
+      "created_at": "2024-01-15T08:55:00Z",
+      "updated_at": "2024-01-15T08:55:00Z"
     },
     {
       "id": "7",
       "name": "Cleaning & Tools",
       "slug": "cleaning-tools",
-      "icon": "🧽",
+      "description": "Household cleaning supplies and tools",
+      "icon": "Wrench",
       "color": "bg-purple-100",
-      "count": 14
+      "count": 14,
+      "parent_id": null,
+      "order": 7,
+      "created_at": "2024-01-15T09:00:00Z",
+      "updated_at": "2024-01-15T09:00:00Z"
     },
     {
       "id": "8",
       "name": "Beauty & Health",
       "slug": "beauty-health",
-      "icon": "💄",
+      "description": "Beauty and health care products",
+      "icon": "Sparkles",
       "color": "bg-pink-100",
-      "count": 22
+      "count": 22,
+      "parent_id": null,
+      "order": 8,
+      "created_at": "2024-01-15T09:05:00Z",
+      "updated_at": "2024-01-15T09:05:00Z"
     }
   ],
   "brands": [

@@ -37,8 +37,6 @@ const currentLocaleInfo = computed(() => LOCALE_INFO[selectedLocale.value as Sup
 const availableLocales = computed(() => localeUtils.getAvailableLocales())
 
 const changeLocale = (newLocale: any) => {
-    console.log('LanguageSwitcher: Attempting to change locale to:', newLocale)
-
     if (!newLocale || typeof newLocale !== 'string') {
         console.error('LanguageSwitcher: Invalid locale value:', newLocale)
         return
@@ -58,9 +56,6 @@ const changeLocale = (newLocale: any) => {
 
         // Update locale utils (for localStorage and meta tags)
         localeUtils.setLocale(newLocale as SupportedLocale)
-
-        console.log('LanguageSwitcher: Successfully changed locale to:', newLocale)
-        console.log('LanguageSwitcher: Current i18n locale:', locale.value)
     } catch (error) {
         console.error('LanguageSwitcher: Error changing locale:', error)
     }
