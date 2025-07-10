@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -59,16 +59,41 @@ const props = withDefaults(defineProps<Props>(), {
     showTrendArea: false,
 })
 
-// Get computed colors based on theme
-const getThemeColors = () => {
-    const isDark = document.documentElement.classList.contains('dark')
-    return {
-        foreground: isDark ? '#ffffff' : '#000000',
-        mutedForeground: isDark ? '#a1a1aa' : '#71717a',
-        background: isDark ? '#000000' : '#ffffff',
-        border: isDark ? '#27272a' : '#e4e4e7',
-    }
+// Reactive theme detection
+const isDark = ref(false)
+
+const updateTheme = () => {
+    isDark.value = document.documentElement.classList.contains('dark')
 }
+
+// Watch for theme changes
+let observer: MutationObserver | null = null
+
+onMounted(() => {
+    updateTheme()
+    // Watch for class changes on document element
+    observer = new MutationObserver(updateTheme)
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class'],
+    })
+})
+
+onUnmounted(() => {
+    if (observer) {
+        observer.disconnect()
+    }
+})
+
+// Get computed colors based on theme
+const getThemeColors = computed(() => {
+    return {
+        foreground: isDark.value ? '#ffffff' : '#000000',
+        mutedForeground: isDark.value ? '#a1a1aa' : '#71717a',
+        background: isDark.value ? '#000000' : '#ffffff',
+        border: isDark.value ? '#27272a' : '#e4e4e7',
+    }
+})
 
 const chartData = computed(() => ({
     labels: props.data.map((item) => item[props.nameKey]),
@@ -81,7 +106,7 @@ const chartData = computed(() => ({
             data: props.data.map((item) => item[year]),
             borderColor: color,
             backgroundColor: props.showTrendArea ? color + '20' : 'transparent',
-            pointBackgroundColor: isCurrentYear ? color : getThemeColors().background,
+            pointBackgroundColor: isCurrentYear ? color : getThemeColors.value.background,
             pointBorderColor: color,
             pointBorderWidth: isCurrentYear ? 3 : 2,
             pointRadius: isCurrentYear ? 6 : 4,
@@ -95,7 +120,7 @@ const chartData = computed(() => ({
 }))
 
 const chartOptions = computed(() => {
-    const themeColors = getThemeColors()
+    const themeColors = getThemeColors.value
     return {
         responsive: true,
         maintainAspectRatio: false,
@@ -179,7 +204,7 @@ const chartOptions = computed(() => {
         },
         elements: {
             point: {
-                hoverBackgroundColor: getThemeColors().background,
+                hoverBackgroundColor: getThemeColors.value.background,
             },
         },
     }

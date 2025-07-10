@@ -129,7 +129,7 @@
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
-import { useAuthStore } from '@/stores/auth'
+import { useAdminAuthStore } from '@/stores/adminAuth'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -144,7 +144,7 @@ import {
 
 const { t } = useAppI18n()
 const router = useRouter()
-const authStore = useAuthStore()
+const authStore = useAdminAuthStore()
 
 // Form state
 const form = reactive({
