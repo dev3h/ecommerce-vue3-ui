@@ -61,9 +61,42 @@ export const adminRoutes: RouteRecordRaw[] = [
     {
         path: '/admin/products',
         name: 'AdminProducts',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/admin/AdminProductsView.vue'),
         meta: {
             title: 'Products Management',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
+        path: '/admin/products/new',
+        name: 'AdminProductNew',
+        component: () => import('@/views/admin/ProductFormView.vue'),
+        meta: {
+            title: 'Add New Product',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
+        path: '/admin/products/:id/edit',
+        name: 'AdminProductEdit',
+        component: () => import('@/views/admin/ProductFormView.vue'),
+        meta: {
+            title: 'Edit Product',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
+        path: '/admin/products/:id',
+        name: 'AdminProductDetail',
+        component: () => import('@/views/admin/ProductDetailView.vue'),
+        meta: {
+            title: 'Product Details',
             requiresAuth: true,
             requiresAdmin: true,
             layout: 'admin',
