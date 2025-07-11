@@ -4,7 +4,7 @@
             <img :src="brand.logo" :alt="brand.name" class="max-h-full max-w-full" />
         </div>
         <h3 class="font-semibold">{{ brand.name }}</h3>
-        <p class="text-sm text-gray-500 mb-4">
+        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
             {{ brand.items }} {{ t('admin.brandsManagement.pagination.items') }}
         </p>
 

@@ -101,7 +101,6 @@
                         to="/admin/products"
                         icon="Package"
                         :label="t('admin.sidebar.products')"
-                        :badge="productsCount"
                         :active="currentRoute.startsWith('/admin/products')"
                         :isCollapsed="props.isCollapsed"
                     />
@@ -109,7 +108,6 @@
                         to="/admin/categories"
                         icon="FolderOpen"
                         :label="t('admin.sidebar.categories')"
-                        :badge="categoriesCount"
                         :active="currentRoute.startsWith('/admin/categories')"
                         :isCollapsed="props.isCollapsed"
                     />

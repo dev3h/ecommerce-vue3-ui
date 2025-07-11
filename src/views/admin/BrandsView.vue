@@ -3,7 +3,9 @@
         <div class="flex justify-between items-center mb-6">
             <div>
                 <h1 class="text-2xl font-bold">{{ t('admin.brandsManagement.title') }}</h1>
-                <p class="text-gray-500">{{ t('admin.brandsManagement.subtitle') }}</p>
+                <p class="text-gray-500 dark:text-gray-400">
+                    {{ t('admin.brandsManagement.subtitle') }}
+                </p>
             </div>
             <Button @click="showAddDialog = true">
                 <Plus class="w-4 h-4 mr-2" />
@@ -33,7 +35,7 @@
         <div v-else-if="error" class="text-center text-red-500">{{ error }}</div>
         <div v-else>
             <!-- Showing results info -->
-            <div class="mb-4 text-sm text-gray-600">
+            <div class="mb-4 text-sm text-gray-600 dark:text-gray-300">
                 {{ t('admin.brandsManagement.pagination.showing') }} {{ startItem }}
                 {{ t('admin.brandsManagement.pagination.to') }} {{ endItem }}
                 {{ t('admin.brandsManagement.pagination.of') }} {{ totalItems }}
@@ -96,7 +98,7 @@
                     </Button>
                 </div>
 
-                <div class="text-sm text-gray-600">
+                <div class="text-sm text-gray-600 dark:text-gray-300">
                     {{ t('admin.brandsManagement.pagination.page') }} {{ currentPage }}
                     {{ t('admin.brandsManagement.pagination.of') }} {{ totalPages }}
                 </div>

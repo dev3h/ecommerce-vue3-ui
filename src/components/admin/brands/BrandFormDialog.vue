@@ -42,10 +42,16 @@
                                 :alt="form.name + ' logo'"
                                 class="h-24 w-24 object-contain mb-2"
                             />
-                            <p v-if="brand && !form.image" class="text-xs text-gray-500">
+                            <p
+                                v-if="brand && !form.image"
+                                class="text-xs text-gray-500 dark:text-gray-400"
+                            >
                                 {{ t('admin.brandsManagement.form.currentLogo') }}
                             </p>
-                            <p v-else-if="form.image" class="text-xs text-gray-500">
+                            <p
+                                v-else-if="form.image"
+                                class="text-xs text-gray-500 dark:text-gray-400"
+                            >
                                 {{ t('admin.brandsManagement.form.newLogoSelected') }}
                             </p>
                             <Button
@@ -60,14 +66,17 @@
                         </div>
 
                         <!-- Show upload placeholder if no image -->
-                        <div v-else class="flex flex-col items-center justify-center text-gray-500">
+                        <div
+                            v-else
+                            class="flex flex-col items-center justify-center text-gray-500 dark:text-gray-400"
+                        >
                             <div
                                 class="w-12 h-12 border-2 border-gray-300 rounded-lg flex items-center justify-center mb-2"
                             >
                                 <Plus class="h-6 w-6" />
                             </div>
                             <p class="text-sm">{{ t('admin.brandsManagement.form.uploadLogo') }}</p>
-                            <p class="text-xs text-gray-400 mt-1">
+                            <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">
                                 {{ t('admin.brandsManagement.form.logoDescription') }}
                             </p>
                         </div>
