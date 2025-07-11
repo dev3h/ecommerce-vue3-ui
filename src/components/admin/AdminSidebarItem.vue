@@ -22,13 +22,6 @@
             <span v-if="!props.isCollapsed" class="flex-1 transition-opacity duration-300">
                 {{ label }}
             </span>
-            <span
-                v-if="badgeCount > 0 && !props.isCollapsed"
-                class="ml-auto rounded-full px-2 py-0.5 text-xs font-medium"
-                :class="badgeClasses"
-            >
-                {{ badgeCount > 99 ? '99+' : badgeCount }}
-            </span>
         </RouterLink>
 
         <!-- Tooltip with dynamic positioning -->

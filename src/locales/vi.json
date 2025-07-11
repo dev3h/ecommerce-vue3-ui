@@ -495,75 +495,17 @@
       "deleteError": "Không thể xóa tài khoản. Vui lòng thử lại."
     }
   },
-  "errors": {
-    "forbidden": {
-      "title": "Truy cập bị cấm",
-      "message": "Bạn không có quyền truy cập trang này. Vui lòng liên hệ với quản trị viên nếu bạn cho rằng đây là lỗi."
-    },
-    "pageNotFound": "Không tìm thấy trang",
-    "pageNotFoundDescription": "Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển. Hãy quay lại đúng hướng!",
-    "searchSuggestions": "Các trang phổ biến",
-    "goHome": "Về trang chủ",
-    "goBack": "Quay lại",
-    "serverError": "Lỗi máy chủ",
-    "underMaintenance": "Đang bảo trì",
-    "tryAgain": "Thử lại",
-    "contactSupport": "Liên hệ hỗ trợ",
-    "loadingProducts": "Không thể tải sản phẩm",
-    "loadingCategories": "Không thể tải danh mục",
-    "loadingDeals": "Không thể tải ưu đãi",
-    "loadingHomeData": "Không thể tải dữ liệu trang chủ",
-    "loadingProductDetail": "Không thể tải thông tin sản phẩm",
-    "loadingAddresses": "Không thể tải địa chỉ",
-    "loadingSidebarData": "Không thể tải dữ liệu thanh bên",
-    "loadingOrders": "Không thể tải đơn hàng",
-    "loadingReviews": "Không thể tải đánh giá",
-    "generic": "Đã xảy ra lỗi. Vui lòng thử lại."
-  },
-  "meta": {
-    "defaultTitle": "Cửa hàng Thương mại Điện tử",
-    "homeTitle": "Trang chủ | Cửa hàng Thương mại Điện tử",
-    "productsTitle": "Sản phẩm | Cửa hàng Thương mại Điện tử",
-    "cartTitle": "Giỏ hàng | Cửa hàng Thương mại Điện tử",
-    "accountTitle": "Tài khoản của tôi | Cửa hàng Thương mại Điện tử"
-  },
-  "footer": {
-    "description": "Điểm đến thương mại điện tử đáng tin cậy của bạn với các sản phẩm chất lượng và dịch vụ xuất sắc.",
-    "quickLinks": "Liên kết nhanh",
-    "customerService": "Dịch vụ khách hàng",
-    "help": "Trung tâm trợ giúp",
-    "shipping": "Thông tin vận chuyển",
-    "returns": "Đổi & Trả hàng",
-    "faq": "Câu hỏi thường gặp",
-    "newsletter": "Bản tin",
-    "newsletterDescription": "Đăng ký để nhận cập nhật về sản phẩm mới và ưu đãi độc quyền.",
-    "subscribe": "Đăng ký",
-    "subscriptionSuccess": "Đã đăng ký bản tin thành công!",
-    "allRightsReserved": "Mọi quyền được bảo lưu.",
-    "privacy": "Chính sách bảo mật",
-    "terms": "Điều khoản dịch vụ",
-    "cookies": "Chính sách cookie",
-    "paymentMethods": "Phương thức thanh toán",
-    "secureCheckout": "Thanh toán an toàn"
-  },
   "admin": {
-    "title": "Bảng điều khiển quản trị",
-    "panel": "Quản trị",
-    "login": {
-      "title": "Đăng nhập quản trị",
-      "subtitle": "Đăng nhập để truy cập bảng điều khiển quản trị",
-      "emailPlaceholder": "Nhập email quản trị của bạn",
-      "passwordPlaceholder": "Nhập mật khẩu của bạn",
-      "signIn": "Đăng nhập",
-      "backToMainSite": "Quay lại trang chính",
-      "secureLogin": "Đăng nhập quản trị an toàn",
-      "successMessage": "Chào mừng trở lại, quản trị viên!",
-      "errorMessage": "Đăng nhập thất bại. Vui lòng thử lại.",
-      "invalidCredentials": "Email hoặc mật khẩu không hợp lệ",
-      "notAdminAccount": "Tài khoản này không có quyền quản trị",
-      "demoCredentials": "Thông tin đăng nhập thử nghiệm",
-      "adminAccount": "Tài khoản quản trị",
-      "clickToFill": "Nhấn nút phía trên để tự động điền biểu mẫu"
+    "sidebar": {
+      "dashboard": "Bảng điều khiển",
+      "products": "Sản phẩm",
+      "categories": "Danh mục",
+      "brands": "Thương hiệu",
+      "orders": "Đơn hàng",
+      "customers": "Khách hàng",
+      "reviews": "Đánh giá",
+      "settings": "Cài đặt",
+      "logout": "Đăng xuất"
     },
     "dashboard": {
       "title": "Bảng điều khiển",
@@ -760,91 +702,487 @@
         "tryDifferentSearch": "Hãy thử điều chỉnh tìm kiếm hoặc bộ lọc để tìm nội dung bạn đang tìm kiếm."
       }
     },
-    "reviews": "Đánh giá",
-    "customerList": "Danh sách khách hàng",
-    "support": "Hỗ trợ",
-    "loyalty": "Chương trình khách hàng thân thiết",
-    "marketing": "Tiếp thị",
-    "promotions": "Khuyến mãi",
-    "coupons": "Phiếu giảm giá",
-    "newsletters": "Bản tin",
-    "seo": "SEO",
-    "content": "Nội dung",
-    "pages": "Trang",
-    "blog": "Blog",
-    "media": "Thư viện phương tiện",
-    "appearance": "Giao diện",
-    "themes": "Chủ đề",
-    "menus": "Menu",
-    "widgets": "Tiện ích",
-    "system": "Hệ thống",
-    "users": "Người dùng",
-    "roles": "Vai trò",
-    "backup": "Sao lưu",
-    "logs": "Nhật ký",
-    "reports": "Báo cáo",
-    "addProduct": "Thêm sản phẩm",
-    "viewSite": "Xem trang web",
-    "products": {
-      "title": "Sản phẩm",
-      "description": "Quản lý danh mục sản phẩm, kho hàng và giá cả"
+    "brandsManagement": {
+      "title": "Quản lý thương hiệu",
+      "subtitle": "Quản lý thương hiệu sản phẩm của bạn",
+      "addBrand": "Thêm thương hiệu",
+      "editBrand": "Sửa thương hiệu",
+      "deleteBrand": "Xóa thương hiệu",
+      "searchBrands": "Tìm kiếm thương hiệu...",
+      "noBrands": "Không tìm thấy thương hiệu",
+      "noBrandsDescription": "Bắt đầu bằng cách tạo thương hiệu đầu tiên của bạn",
+      "createFirstBrand": "Tạo thương hiệu đầu tiên của bạn",
+      "table": {
+        "name": "Tên",
+        "slug": "Slug",
+        "description": "Mô tả",
+        "logo": "Logo",
+        "items": "Sản phẩm",
+        "createdAt": "Đã tạo",
+        "actions": "Hành động"
+      },
+      "form": {
+        "title": "Biểu mẫu thương hiệu",
+        "addTitle": "Thêm thương hiệu mới",
+        "editTitle": "Sửa thương hiệu",
+        "addDescription": "Điền thông tin để tạo thương hiệu mới.",
+        "editDescription": "Cập nhật thông tin thương hiệu dưới đây.",
+        "name": "Tên thương hiệu",
+        "namePlaceholder": "Nhập tên thương hiệu",
+        "nameDescription": "Tên hiển thị cho thương hiệu này",
+        "slug": "Slug",
+        "slugPlaceholder": "thuong-hieu-slug",
+        "slugDescription": "Phiên bản thân thiện với URL của tên",
+        "description": "Mô tả",
+        "descriptionPlaceholder": "Nhập mô tả thương hiệu",
+        "descriptionDescription": "Mô tả ngắn gọn về thương hiệu này",
+        "logo": "Logo thương hiệu",
+        "uploadLogo": "Tải logo lên",
+        "changeLogo": "Thay đổi logo",
+        "removeLogo": "Xóa logo",
+        "logoDescription": "Tải lên logo thương hiệu (PNG, JPG hoặc SVG)",
+        "currentLogo": "Logo hiện tại (tải lên logo mới để thay thế)",
+        "newLogoSelected": "Đã chọn logo mới",
+        "creating": "Đang tạo...",
+        "updating": "Đang cập nhật...",
+        "create": "Tạo thương hiệu",
+        "update": "Cập nhật thương hiệu",
+        "cancel": "Hủy"
+      },
+      "actions": {
+        "edit": "Sửa",
+        "delete": "Xóa"
+      },
+      "messages": {
+        "createSuccess": "Đã tạo thương hiệu thành công!",
+        "updateSuccess": "Đã cập nhật thương hiệu thành công!",
+        "deleteSuccess": "Đã xóa thương hiệu thành công!",
+        "createError": "Không thể tạo thương hiệu",
+        "updateError": "Không thể cập nhật thương hiệu",
+        "deleteError": "Không thể xóa thương hiệu",
+        "loadError": "Không thể tải thương hiệu",
+        "deleteConfirmTitle": "Xóa thương hiệu",
+        "deleteConfirmMessage": "Bạn có chắc chắn muốn xóa thương hiệu này? Hành động này không thể hoàn tác.",
+        "deleteConfirmYes": "Có, xóa",
+        "deleteConfirmNo": "Hủy",
+        "deleting": "Đang xóa...",
+        "unexpectedError": "Đã xảy ra lỗi không mong muốn"
+      },
+      "validation": {
+        "nameRequired": "Tên thương hiệu là bắt buộc",
+        "nameMinLength": "Tên thương hiệu phải có ít nhất 2 ký tự",
+        "nameMaxLength": "Tên thương hiệu không được vượt quá 100 ký tự",
+        "slugRequired": "Slug là bắt buộc",
+        "slugInvalid": "Slug chỉ được chứa chữ cái thường, số và dấu gạch ngang",
+        "slugMinLength": "Slug phải có ít nhất 2 ký tự",
+        "slugMaxLength": "Slug không được vượt quá 100 ký tự",
+        "descriptionMaxLength": "Mô tả không được vượt quá 500 ký tự",
+        "logoRequired": "Logo thương hiệu là bắt buộc"
+      },
+      "pagination": {
+        "showing": "Hiển thị",
+        "to": "đến",
+        "of": "của",
+        "entries": "mục",
+        "items": "sản phẩm",
+        "from": "từ",
+        "previous": "Trước",
+        "next": "Tiếp",
+        "first": "Đầu",
+        "last": "Cuối",
+        "page": "Trang",
+        "rowsPerPage": "Số hàng mỗi trang"
+      }
     },
-    "orders": {
-      "title": "Đơn hàng",
-      "description": "Xem và quản lý đơn hàng của khách hàng, theo dõi lô hàng"
+    "header": {
+      "searchPlaceholder": "Tìm kiếm...",
+      "notifications": "Thông báo",
+      "viewAllNotifications": "Xem tất cả thông báo",
+      "profile": "Hồ sơ",
+      "logout": "Đăng xuất"
     },
-    "customers": {
-      "title": "Khách hàng",
-      "description": "Quản lý tài khoản khách hàng, hồ sơ và giao tiếp"
+    "users": {
+      "title": "Người dùng",
+      "allUsers": "Tất cả người dùng",
+      "userDetails": "Chi tiết người dùng",
+      "addUser": "Thêm người dùng",
+      "editUser": "Sửa người dùng",
+      "deleteUser": "Xóa người dùng",
+      "searchUsers": "Tìm kiếm người dùng...",
+      "noUsers": "Không tìm thấy người dùng",
+      "noUsersDescription": "Bắt đầu bằng cách tạo người dùng đầu tiên của bạn",
+      "createFirstUser": "Tạo người dùng đầu tiên của bạn",
+      "table": {
+        "name": "Tên",
+        "email": "Email",
+        "role": "Vai trò",
+        "status": "Trạng thái",
+        "createdAt": "Đã tạo",
+        "actions": "Hành động"
+      },
+      "form": {
+        "title": "Biểu mẫu người dùng",
+        "addTitle": "Thêm người dùng mới",
+        "editTitle": "Sửa người dùng",
+        "addDescription": "Điền thông tin để tạo người dùng mới.",
+        "editDescription": "Cập nhật thông tin người dùng dưới đây.",
+        "name": "Tên người dùng",
+        "namePlaceholder": "Nhập tên người dùng",
+        "email": "Email",
+        "emailPlaceholder": "Nhập email người dùng",
+        "role": "Vai trò",
+        "selectRole": "Chọn vai trò",
+        "status": "Trạng thái",
+        "active": "Hoạt động",
+        "inactive": "Không hoạt động",
+        "password": "Mật khẩu",
+        "passwordPlaceholder": "Nhập mật khẩu",
+        "confirmPassword": "Xác nhận mật khẩu",
+        "confirmPasswordPlaceholder": "Xác nhận mật khẩu của bạn",
+        "creating": "Đang tạo...",
+        "updating": "Đang cập nhật...",
+        "create": "Tạo người dùng",
+        "update": "Cập nhật người dùng",
+        "cancel": "Hủy"
+      },
+      "actions": {
+        "edit": "Sửa",
+        "delete": "Xóa"
+      },
+      "messages": {
+        "createSuccess": "Đã tạo người dùng thành công!",
+        "updateSuccess": "Đã cập nhật người dùng thành công!",
+        "deleteSuccess": "Đã xóa người dùng thành công!",
+        "createError": "Không thể tạo người dùng",
+        "updateError": "Không thể cập nhật người dùng",
+        "deleteError": "Không thể xóa người dùng",
+        "loadError": "Không thể tải người dùng",
+        "deleteConfirmTitle": "Xóa người dùng",
+        "deleteConfirmMessage": "Bạn có chắc chắn muốn xóa người dùng này? Hành động này không thể hoàn tác.",
+        "deleteConfirmYes": "Có, xóa",
+        "deleteConfirmNo": "Hủy",
+        "deleting": "Đang xóa...",
+        "unexpectedError": "Đã xảy ra lỗi không mong muốn"
+      },
+      "validation": {
+        "nameRequired": "Tên người dùng là bắt buộc.",
+        "emailRequired": "Email là bắt buộc.",
+        "emailInvalid": "Vui lòng nhập địa chỉ email hợp lệ.",
+        "passwordRequired": "Mật khẩu là bắt buộc.",
+        "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự.",
+        "roleRequired": "Vai trò là bắt buộc."
+      }
     },
-    "analytics": {
-      "title": "Phân tích",
-      "description": "Thông tin chi tiết và báo cáo cho trí tuệ kinh doanh"
+    "roles": {
+      "title": "Vai trò",
+      "allRoles": "Tất cả vai trò",
+      "roleDetails": "Chi tiết vai trò",
+      "addRole": "Thêm vai trò",
+      "editRole": "Sửa vai trò",
+      "deleteRole": "Xóa vai trò",
+      "searchRoles": "Tìm kiếm vai trò...",
+      "noRoles": "Không tìm thấy vai trò",
+      "noRolesDescription": "Bắt đầu bằng cách tạo vai trò đầu tiên của bạn",
+      "createFirstRole": "Tạo vai trò đầu tiên của bạn",
+      "table": {
+        "name": "Tên",
+        "description": "Mô tả",
+        "permissions": "Quyền hạn",
+        "createdAt": "Đã tạo",
+        "actions": "Hành động"
+      },
+      "form": {
+        "title": "Biểu mẫu vai trò",
+        "addTitle": "Thêm vai trò mới",
+        "editTitle": "Sửa vai trò",
+        "addDescription": "Điền thông tin để tạo vai trò mới.",
+        "editDescription": "Cập nhật thông tin vai trò dưới đây.",
+        "name": "Tên vai trò",
+        "namePlaceholder": "Nhập tên vai trò",
+        "description": "Mô tả",
+        "descriptionPlaceholder": "Nhập mô tả vai trò",
+        "permissions": "Quyền hạn",
+        "selectPermissions": "Chọn quyền hạn",
+        "creating": "Đang tạo...",
+        "updating": "Đang cập nhật...",
+        "create": "Tạo vai trò",
+        "update": "Cập nhật vai trò",
+        "cancel": "Hủy"
+      },
+      "actions": {
+        "edit": "Sửa",
+        "delete": "Xóa"
+      },
+      "messages": {
+        "createSuccess": "Đã tạo vai trò thành công!",
+        "updateSuccess": "Đã cập nhật vai trò thành công!",
+        "deleteSuccess": "Đã xóa vai trò thành công!",
+        "createError": "Không thể tạo vai trò",
+        "updateError": "Không thể cập nhật vai trò",
+        "deleteError": "Không thể xóa vai trò",
+        "loadError": "Không thể tải vai trò",
+        "deleteConfirmTitle": "Xóa vai trò",
+        "deleteConfirmMessage": "Bạn có chắc chắn muốn xóa vai trò này? Hành động này không thể hoàn tác.",
+        "deleteConfirmYes": "Có, xóa",
+        "deleteConfirmNo": "Hủy",
+        "deleting": "Đang xóa...",
+        "unexpectedError": "Đã xảy ra lỗi không mong muốn"
+      },
+      "validation": {
+        "nameRequired": "Tên vai trò là bắt buộc.",
+        "descriptionRequired": "Mô tả vai trò là bắt buộc."
+      }
     },
     "settings": {
       "title": "Cài đặt",
-      "description": "Cấu hình cài đặt và tùy chọn cửa hàng của bạn"
-    },
-    "sidebar": {
-      "dashboard": "Bảng điều khiển",
-      "ecommerce": "Thương mại điện tử",
-      "products": "Sản phẩm",
-      "orders": "Đơn hàng",
-      "customers": "Khách hàng",
-      "analytics": "Phân tích",
-      "settings": "Cài đặt",
-      "management": "Quản lý",
-      "reports": "Báo cáo",
-      "quickActions": "Hành động nhanh",
-      "addProduct": "Thêm sản phẩm",
-      "customerSupport": "Hỗ trợ",
-      "overview": "Tổng quan",
-      "categories": "Danh mục",
-      "inventory": "Kho hàng",
-      "reviews": "Đánh giá",
-      "customerList": "Danh sách khách hàng",
-      "support": "Hỗ trợ",
-      "loyalty": "Chương trình khách hàng thân thiết",
-      "marketing": "Tiếp thị",
-      "promotions": "Khuyến mãi",
-      "coupons": "Phiếu giảm giá",
-      "newsletters": "Bản tin",
-      "seo": "SEO",
-      "content": "Nội dung",
-      "pages": "Trang",
-      "blog": "Blog",
-      "media": "Thư viện phương tiện",
-      "appearance": "Giao diện",
-      "themes": "Chủ đề",
-      "menus": "Menu",
-      "widgets": "Tiện ích",
-      "system": "Hệ thống",
-      "backups": "Sao lưu",
+      "general": "Cài đặt chung",
+      "payment": "Cài đặt thanh toán",
+      "shipping": "Cài đặt giao hàng",
+      "tax": "Cài đặt thuế",
+      "currency": "Đơn vị tiền tệ",
+      "language": "Ngôn ngữ",
+      "theme": "Chủ đề",
+      "notifications": "Thông báo",
       "security": "Bảo mật",
+      "backup": "Sao lưu",
       "logs": "Nhật ký",
-      "users": "Người dùng",
-      "roles": "Vai trò",
-      "backup": "Sao lưu"
+      "reports": "Báo cáo",
+      "saveChanges": "Lưu thay đổi",
+      "cancel": "Hủy",
+      "updating": "Đang cập nhật...",
+      "updateSuccess": "Cập nhật thành công!",
+      "updateError": "Không thể cập nhật. Vui lòng thử lại.",
+      "backupSuccess": "Sao lưu thành công!",
+      "backupError": "Không thể sao lưu. Vui lòng thử lại.",
+      "restoreSuccess": "Khôi phục thành công!",
+      "restoreError": "Không thể khôi phục. Vui lòng thử lại.",
+      "deleteSuccess": "Xóa thành công!",
+      "deleteError": "Không thể xóa. Vui lòng thử lại.",
+      "sendTestEmail": "Gửi email thử nghiệm",
+      "testEmailSent": "Email thử nghiệm đã được gửi!",
+      "testEmailError": "Không thể gửi email thử nghiệm. Vui lòng thử lại.",
+      "paymentMethods": {
+        "title": "Phương thức thanh toán",
+        "description": "Quản lý các phương thức thanh toán cho cửa hàng của bạn.",
+        "addMethod": "Thêm phương thức thanh toán",
+        "editMethod": "Sửa phương thức thanh toán",
+        "deleteMethod": "Xóa phương thức thanh toán",
+        "noMethods": "Không tìm thấy phương thức thanh toán nào.",
+        "search": "Tìm kiếm phương thức thanh toán...",
+        "form": {
+          "title": "Biểu mẫu phương thức thanh toán",
+          "addTitle": "Thêm phương thức thanh toán mới",
+          "editTitle": "Sửa phương thức thanh toán",
+          "addDescription": "Điền thông tin để tạo phương thức thanh toán mới.",
+          "editDescription": "Cập nhật thông tin phương thức thanh toán dưới đây.",
+          "name": "Tên phương thức",
+          "namePlaceholder": "Nhập tên phương thức",
+          "description": "Mô tả",
+          "descriptionPlaceholder": "Nhập mô tả phương thức",
+          "active": "Kích hoạt",
+          "inactive": "Không kích hoạt",
+          "settings": "Cài đặt",
+          "save": "Lưu",
+          "cancel": "Hủy"
+        },
+        "messages": {
+          "createSuccess": "Phương thức thanh toán đã được tạo thành công.",
+          "createError": "Lỗi khi tạo phương thức thanh toán.",
+          "updateSuccess": "Phương thức thanh toán đã được cập nhật thành công.",
+          "updateError": "Lỗi khi cập nhật phương thức thanh toán.",
+          "deleteSuccess": "Phương thức thanh toán đã được xóa thành công.",
+          "deleteError": "Lỗi khi xóa phương thức thanh toán."
+        },
+        "validation": {
+          "nameRequired": "Tên phương thức là bắt buộc."
+        }
+      },
+      "shippingMethods": {
+        "title": "Phương thức giao hàng",
+        "description": "Quản lý các phương thức giao hàng cho cửa hàng của bạn.",
+        "addMethod": "Thêm phương thức giao hàng",
+        "editMethod": "Sửa phương thức giao hàng",
+        "deleteMethod": "Xóa phương thức giao hàng",
+        "noMethods": "Không tìm thấy phương thức giao hàng nào.",
+        "search": "Tìm kiếm phương thức giao hàng...",
+        "form": {
+          "title": "Biểu mẫu phương thức giao hàng",
+          "addTitle": "Thêm phương thức giao hàng mới",
+          "editTitle": "Sửa phương thức giao hàng",
+          "addDescription": "Điền thông tin để tạo phương thức giao hàng mới.",
+          "editDescription": "Cập nhật thông tin phương thức giao hàng dưới đây.",
+          "name": "Tên phương thức",
+          "namePlaceholder": "Nhập tên phương thức",
+          "description": "Mô tả",
+          "descriptionPlaceholder": "Nhập mô tả phương thức",
+          "active": "Kích hoạt",
+          "inactive": "Không kích hoạt",
+          "settings": "Cài đặt",
+          "save": "Lưu",
+          "cancel": "Hủy"
+        },
+        "messages": {
+          "createSuccess": "Phương thức giao hàng đã được tạo thành công.",
+          "createError": "Lỗi khi tạo phương thức giao hàng.",
+          "updateSuccess": "Phương thức giao hàng đã được cập nhật thành công.",
+          "updateError": "Lỗi khi cập nhật phương thức giao hàng.",
+          "deleteSuccess": "Phương thức giao hàng đã được xóa thành công.",
+          "deleteError": "Lỗi khi xóa phương thức giao hàng."
+        },
+        "validation": {
+          "nameRequired": "Tên phương thức là bắt buộc."
+        }
+      },
+      "taxSettings": {
+        "title": "Cài đặt thuế",
+        "description": "Quản lý cài đặt thuế cho cửa hàng của bạn.",
+        "country": "Quốc gia",
+        "state": "Tiểu bang",
+        "city": "Thành phố",
+        "zipCode": "Mã bưu điện",
+        "taxRate": "Tỷ lệ thuế",
+        "active": "Kích hoạt",
+        "inactive": "Không kích hoạt",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "messages": {
+          "saveSuccess": "Cài đặt thuế đã được lưu thành công.",
+          "saveError": "Lỗi khi lưu cài đặt thuế."
+        },
+        "validation": {
+          "taxRateRequired": "Tỷ lệ thuế là bắt buộc.",
+          "taxRateMin": "Tỷ lệ thuế phải lớn hơn hoặc bằng 0.",
+          "taxRateMax": "Tỷ lệ thuế không được vượt quá 100."
+        }
+      },
+      "currencySettings": {
+        "title": "Cài đặt đơn vị tiền tệ",
+        "description": "Quản lý cài đặt đơn vị tiền tệ cho cửa hàng của bạn.",
+        "currency": "Đơn vị tiền tệ",
+        "symbol": "Ký hiệu",
+        "position": "Vị trí",
+        "decimalPlaces": "Số chữ số thập phân",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "messages": {
+          "saveSuccess": "Cài đặt đơn vị tiền tệ đã được lưu thành công.",
+          "saveError": "Lỗi khi lưu cài đặt đơn vị tiền tệ."
+        },
+        "validation": {
+          "currencyRequired": "Đơn vị tiền tệ là bắt buộc.",
+          "symbolRequired": "Ký hiệu là bắt buộc.",
+          "positionRequired": "Vị trí là bắt buộc.",
+          "decimalPlacesRequired": "Số chữ số thập phân là bắt buộc.",
+          "decimalPlacesMin": "Số chữ số thập phân phải lớn hơn hoặc bằng 0.",
+          "decimalPlacesMax": "Số chữ số thập phân không được vượt quá 4."
+        }
+      },
+      "languageSettings": {
+        "title": "Cài đặt ngôn ngữ",
+        "description": "Quản lý cài đặt ngôn ngữ cho cửa hàng của bạn.",
+        "language": "Ngôn ngữ",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "messages": {
+          "saveSuccess": "Cài đặt ngôn ngữ đã được lưu thành công.",
+          "saveError": "Lỗi khi lưu cài đặt ngôn ngữ."
+        },
+        "validation": {
+          "languageRequired": "Ngôn ngữ là bắt buộc."
+        }
+      },
+      "themeSettings": {
+        "title": "Cài đặt chủ đề",
+        "description": "Quản lý cài đặt chủ đề cho cửa hàng của bạn.",
+        "theme": "Chủ đề",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "messages": {
+          "saveSuccess": "Cài đặt chủ đề đã được lưu thành công.",
+          "saveError": "Lỗi khi lưu cài đặt chủ đề."
+        },
+        "validation": {
+          "themeRequired": "Chủ đề là bắt buộc."
+        }
+      },
+      "notificationSettings": {
+        "title": "Cài đặt thông báo",
+        "description": "Quản lý cài đặt thông báo cho cửa hàng của bạn.",
+        "emailNotifications": "Thông báo qua email",
+        "smsNotifications": "Thông báo qua SMS",
+        "pushNotifications": "Thông báo đẩy",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "messages": {
+          "saveSuccess": "Cài đặt thông báo đã được lưu thành công.",
+          "saveError": "Lỗi khi lưu cài đặt thông báo."
+        },
+        "validation": {
+          "emailRequired": "Email là bắt buộc.",
+          "phoneRequired": "Số điện thoại là bắt buộc."
+        }
+      },
+      "securitySettings": {
+        "title": "Cài đặt bảo mật",
+        "description": "Quản lý cài đặt bảo mật cho cửa hàng của bạn.",
+        "twoFactorAuthentication": "Xác thực hai yếu tố",
+        "enable": "Bật",
+        "disable": "Tắt",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "messages": {
+          "saveSuccess": "Cài đặt bảo mật đã được lưu thành công.",
+          "saveError": "Lỗi khi lưu cài đặt bảo mật."
+        },
+        "validation": {
+          "passwordRequired": "Mật khẩu là bắt buộc.",
+          "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự."
+        }
+      },
+      "backupSettings": {
+        "title": "Cài đặt sao lưu",
+        "description": "Quản lý cài đặt sao lưu cho cửa hàng của bạn.",
+        "backupFrequency": "Tần suất sao lưu",
+        "backupRetention": "Thời gian giữ lại sao lưu",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "messages": {
+          "saveSuccess": "Cài đặt sao lưu đã được lưu thành công.",
+          "saveError": "Lỗi khi lưu cài đặt sao lưu."
+        },
+        "validation": {
+          "frequencyRequired": "Tần suất là bắt buộc.",
+          "retentionRequired": "Thời gian giữ lại là bắt buộc."
+        }
+      },
+      "logSettings": {
+        "title": "Cài đặt nhật ký",
+        "description": "Quản lý cài đặt nhật ký cho cửa hàng của bạn.",
+        "enable": "Bật",
+        "disable": "Tắt",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "messages": {
+          "saveSuccess": "Cài đặt nhật ký đã được lưu thành công.",
+          "saveError": "Lỗi khi lưu cài đặt nhật ký."
+        }
+      },
+      "reportSettings": {
+        "title": "Cài đặt báo cáo",
+        "description": "Quản lý cài đặt báo cáo cho cửa hàng của bạn.",
+        "reportFrequency": "Tần suất báo cáo",
+        "reportRetention": "Thời gian giữ lại báo cáo",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "messages": {
+          "saveSuccess": "Cài đặt báo cáo đã được lưu thành công.",
+          "saveError": "Lỗi khi lưu cài đặt báo cáo."
+        },
+        "validation": {
+          "frequencyRequired": "Tần suất là bắt buộc.",
+          "retentionRequired": "Thời gian giữ lại là bắt buộc."
+        }
+      }
     }
   },
   "theme": {
@@ -1086,28 +1424,6 @@
     "markedHelpful": "Cảm ơn bạn đã phản hồi",
     "createError": "Không thể gửi đánh giá. Vui lòng thử lại.",
     "updateError": "Không thể cập nhật đánh giá. Vui lòng thử lại.",
-    "deleteError": "Không thể xóa đánh giá. Vui lòng thử lại.",
-    "helpfulError": "Không thể đánh dấu là hữu ích. Vui lòng thử lại.",
-    "mustBuyToReview": "Bạn phải mua sản phẩm này để viết đánh giá",
-    "oneReviewOnly": "Bạn chỉ có thể viết một đánh giá cho mỗi sản phẩm",
-    "alreadyReviewed": "Bạn đã đánh giá sản phẩm này rồi",
-    "stars": "{count} sao",
-    "outOf5": "trên 5",
-    "basedOnReviews": "Dựa trên {count} đánh giá",
-    "noReviews": "Chưa có đánh giá",
-    "beFirstToReview": "Hãy là người đầu tiên đánh giá sản phẩm này",
-    "reviewInOrderOnly": "Bạn chỉ có thể viết đánh giá cho sản phẩm sau khi đơn hàng được giao. Truy cập lịch sử đơn hàng để đánh giá sản phẩm.",
-    "success": {
-      "created": "Đánh giá của bạn đã được gửi thành công",
-      "updated": "Đánh giá của bạn đã được cập nhật thành công",
-      "deleted": "Đánh giá của bạn đã bị xóa"
-    },
-    "error": {
-      "create": "Không thể gửi đánh giá. Vui lòng thử lại.",
-      "update": "Không thể cập nhật đánh giá. Vui lòng thử lại.",
-      "delete": "Không thể xóa đánh giá. Vui lòng thử lại.",
-      "loadPermissions": "Không thể tải quyền đánh giá",
-      "unauthorized": "Bạn không được phép thực hiện hành động này"
-    }
+    "deleteError": "Không thể xóa đánh giá. Vui lòng thử lại."
   }
 }
