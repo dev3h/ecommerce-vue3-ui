@@ -127,9 +127,20 @@ export const adminRoutes: RouteRecordRaw[] = [
     {
         path: '/admin/orders',
         name: 'AdminOrders',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/admin/OrdersView.vue'),
         meta: {
             title: 'Orders Management',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
+        path: '/admin/orders/:id',
+        name: 'AdminOrderDetail',
+        component: () => import('@/views/admin/OrderDetailView.vue'),
+        meta: {
+            title: 'Order Details',
             requiresAuth: true,
             requiresAdmin: true,
             layout: 'admin',
