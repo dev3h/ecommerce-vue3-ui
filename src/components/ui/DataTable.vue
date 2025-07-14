@@ -6,7 +6,7 @@
         </div>
 
         <!-- Global Filter Slot -->
-        <div v-if="showGlobalFilter" class="flex items-center">
+        <div v-if="showGlobalFilter" class="flex items-center justify-between">
             <slot name="filter" :globalFilter="globalFilter" :setGlobalFilter="setGlobalFilter">
                 <Input
                     :placeholder="filterPlaceholder"

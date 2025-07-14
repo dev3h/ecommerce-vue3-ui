@@ -31,6 +31,13 @@
             :style="tooltipStyle"
         >
             {{ label }}
+            <span
+                v-if="badgeCount > 0"
+                class="ml-2 inline-flex items-center justify-center w-5 h-5 text-xs font-medium rounded-full"
+                :class="badgeClasses"
+            >
+                {{ badgeCount > 99 ? '99+' : badgeCount }}
+            </span>
         </div>
     </div>
 </template>
