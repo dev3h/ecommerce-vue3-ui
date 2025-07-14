@@ -122,8 +122,6 @@
                         to="/admin/orders"
                         icon="ShoppingCart"
                         :label="t('admin.sidebar.orders')"
-                        :badge="pendingOrdersCount"
-                        variant="destructive"
                         :active="currentRoute.startsWith('/admin/orders')"
                         :isCollapsed="props.isCollapsed"
                     />
