@@ -351,6 +351,7 @@
     "emailInvalid": "Vui lòng nhập địa chỉ email hợp lệ",
     "passwordRequired": "Mật khẩu là bắt buộc",
     "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự",
+    "passwordMismatch": "Mật khẩu mới không khớp",
     "invalidEmail": "Vui lòng nhập địa chỉ email hợp lệ",
     "invalidPhone": "Vui lòng nhập số điện thoại hợp lệ",
     "invalidCard": "Vui lòng nhập số thẻ hợp lệ",
@@ -502,6 +503,27 @@
     }
   },
   "admin": {
+    "profilePage": {
+      "title": "Hồ sơ",
+      "firstName": "Họ",
+      "firstNamePlaceholder": "Nhập họ của bạn",
+      "lastName": "Tên",
+      "lastNamePlaceholder": "Nhập tên của bạn",
+      "email": "Email",
+      "emailPlaceholder": "Nhập email của bạn",
+      "phone": "Số điện thoại",
+      "phonePlaceholder": "Nhập số điện thoại của bạn",
+      "save": "Lưu",
+      "saving": "Đang lưu...",
+      "updateSuccess": "Cập nhật hồ sơ thành công!",
+      "updateError": "Cập nhật hồ sơ thất bại. Vui lòng thử lại.",
+      "firstNameRequired": "Vui lòng nhập họ",
+      "lastNameRequired": "Vui lòng nhập tên",
+      "emailRequired": "Vui lòng nhập email",
+      "emailInvalid": "Vui lòng nhập địa chỉ email hợp lệ",
+      "formInvalid": "Vui lòng điền đúng và đầy đủ các trường bắt buộc.",
+      "security": "Bảo mật"
+    },
     "sidebar": {
       "dashboard": "Bảng điều khiển",
       "products": "Sản phẩm",
