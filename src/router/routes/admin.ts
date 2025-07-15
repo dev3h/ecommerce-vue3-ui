@@ -24,17 +24,6 @@ export const adminRoutes: RouteRecordRaw[] = [
         },
     },
     {
-        path: '/admin/change-password',
-        name: 'AdminChangePassword',
-        component: () => import('@/views/admin/AdminChangePasswordView.vue'),
-        meta: {
-            title: 'Admin Change Password',
-            requiresAuth: true,
-            requiresAdmin: true,
-            layout: 'auth', // Use auth layout (no header/footer)
-        },
-    },
-    {
         path: '/admin',
         name: 'Admin',
         redirect: (to) => {
@@ -177,6 +166,28 @@ export const adminRoutes: RouteRecordRaw[] = [
             requiresAuth: true,
             requiresAdmin: true,
             layout: 'admin',
+        },
+    },
+    {
+        path: '/admin/profile',
+        name: 'AdminProfile',
+        component: () => import('@/views/admin/profile/Index.vue'),
+        meta: {
+            title: 'Admin Profile',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
+        path: '/admin/change-password',
+        name: 'AdminSecurity',
+        component: () => import('@/views/admin/profile/Index.vue'),
+        meta: {
+            title: 'Admin Change Password',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin', // Use auth layout (no header/footer)
         },
     },
 ]
