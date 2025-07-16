@@ -138,9 +138,20 @@ export const adminRoutes: RouteRecordRaw[] = [
     {
         path: '/admin/customers',
         name: 'AdminCustomers',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/admin/CustomerManagementView.vue'),
         meta: {
             title: 'Customers Management',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
+        path: '/admin/customers/:id',
+        name: 'AdminCustomerDetail',
+        component: () => import('@/views/admin/CustomerDetailView.vue'),
+        meta: {
+            title: 'Customer Detail',
             requiresAuth: true,
             requiresAdmin: true,
             layout: 'admin',

@@ -351,7 +351,7 @@
     "emailInvalid": "Please enter a valid email address",
     "passwordRequired": "Password is required",
     "passwordMinLength": "Password must be at least 6 characters",
-    "passwordMismatch":"New passwords do not match",
+    "passwordMismatch": "New passwords do not match",
     "invalidEmail": "Please enter a valid email address",
     "invalidPhone": "Please enter a valid phone number",
     "invalidCard": "Please enter a valid card number",
@@ -1219,8 +1219,26 @@
       "description": "View and manage customer orders, track shipments"
     },
     "customers": {
-      "title": "Customers",
-      "description": "Manage customer accounts, profiles, and communication"
+      "title": "Customer Management",
+      "searchPlaceholder": "Search by name, email, or phone",
+      "refresh": "Refresh",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive",
+      "actions": "Actions",
+      "view": "View",
+      "noCustomers": "No customers found",
+      "statistics": "Statistics",
+      "totalOrders": "Total Orders",
+      "totalSpent": "Total Spent",
+      "monthlyOrders": "Orders per Month",
+      "monthlySpent": "Spent per Month",
+      "orderSuccessRate": "Order Success Rate",
+      "success": "Success",
+      "failed": "Failed"
     },
     "analytics": {
       "title": "Analytics",
