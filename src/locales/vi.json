@@ -503,6 +503,28 @@
     }
   },
   "admin": {
+    "customers": {
+      "title": "Quản lý khách hàng",
+      "searchPlaceholder": "Tìm kiếm theo tên, email hoặc số điện thoại",
+      "refresh": "Làm mới",
+      "name": "Tên",
+      "email": "Email",
+      "phone": "Số điện thoại",
+      "status": "Trạng thái",
+      "active": "Hoạt động",
+      "inactive": "Không hoạt động",
+      "actions": "Thao tác",
+      "view": "Xem",
+      "noCustomers": "Không tìm thấy khách hàng nào",
+      "statistics": "Thống kê",
+      "totalOrders": "Tổng số đơn hàng",
+      "totalSpent": "Tổng chi tiêu",
+      "monthlyOrders": "Đơn hàng theo tháng",
+      "monthlySpent": "Chi tiêu theo tháng",
+      "orderSuccessRate": "Tỉ lệ đơn thành công",
+      "success": "Thành công",
+      "failed": "Thất bại"
+    },
     "profilePage": {
       "title": "Hồ sơ",
       "firstName": "Họ",

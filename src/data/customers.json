@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "name": "Nguyen Van A",
+    "email": "a@example.com",
+    "phone": "0901234567",
+    "active": true
+  },
+  {
+    "id": 2,
+    "name": "Tran Thi B",
+    "email": "b@example.com",
+    "phone": "0912345678",
+    "active": false
+  },
+  { "id": 3, "name": "Le Van C", "email": "c@example.com", "phone": "0987654321", "active": true },
+  {
+    "id": 4,
+    "name": "Pham Thi D",
+    "email": "d@example.com",
+    "phone": "0932123456",
+    "active": true
+  },
+  {
+    "id": 5,
+    "name": "Hoang Van E",
+    "email": "e@example.com",
+    "phone": "0976543210",
+    "active": false
+  }
+]
