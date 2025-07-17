@@ -1,7 +1,20 @@
 import { createI18n } from 'vue-i18n'
-import en from './en.json'
-import vi from './vi.json'
-
+import EN from './en.json'
+import VI from './vi.json'
+const en = {
+    ...EN,
+    admin: {
+        ...EN.admin,
+        coupons: await import('./en/admin/coupon.json').then(m => m.default),
+    },
+}
+const vi = {
+    ...VI,
+    admin: {
+        ...VI.admin,
+        coupons: await import('./vi/admin/coupon.json').then(m => m.default),
+    },
+}
 // Supported locales
 export const SUPPORTED_LOCALES = ['en', 'vi'] as const
 export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number]

@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "code": "WELCOME10",
+    "description": "10% off for new users",
+    "discount": 10,
+    "type": "percent",
+    "active": true
+  },
+  {
+    "id": 2,
+    "code": "FREESHIP",
+    "description": "Free shipping on orders over $50",
+    "discount": 0,
+    "type": "freeship",
+    "active": true
+  }
+]

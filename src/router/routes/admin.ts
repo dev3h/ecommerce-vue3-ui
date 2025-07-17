@@ -2,6 +2,17 @@ import type { RouteRecordRaw } from 'vue-router'
 
 export const adminRoutes: RouteRecordRaw[] = [
     {
+        path: '/admin/coupons',
+        name: 'AdminCoupons',
+        component: () => import('@/views/admin/CouponsManagementView.vue'),
+        meta: {
+            title: 'Coupons Management',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
         path: '/admin/login',
         name: 'AdminLogin',
         component: () => import('@/views/admin/AdminLoginView.vue'),

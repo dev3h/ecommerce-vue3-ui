@@ -57,6 +57,20 @@
     "menu": "Menu",
     "items": "items"
   },
+  "pagination": {
+    "showing": "Showing",
+    "to": "to",
+    "of": "of",
+    "entries": "entries",
+    "items": "items",
+    "from": "from",
+    "previous": "Previous",
+    "next": "Next",
+    "first": "First",
+    "last": "Last",
+    "page": "Page",
+    "rowsPerPage": "Rows per page"
+  },
   "navigation": {
     "home": "Home",
     "products": "Products",
@@ -1191,7 +1205,6 @@
     "marketing": "Marketing",
     "promotions": "Promotions",
     "brands": "Brands",
-    "coupons": "Coupons",
     "newsletters": "Newsletters",
     "seo": "SEO",
     "content": "Content",
@@ -1270,7 +1283,6 @@
       "loyalty": "Loyalty Program",
       "marketing": "Marketing",
       "promotions": "Promotions",
-      "coupons": "Coupons",
       "newsletters": "Newsletters",
       "seo": "SEO",
       "content": "Content",
@@ -1288,7 +1300,8 @@
       "users": "Users",
       "roles": "Roles",
       "backup": "Backup",
-      "brands": "Brands"
+      "brands": "Brands",
+      "coupons": "Coupons"
     }
   },
   "theme": {
