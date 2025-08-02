@@ -92,6 +92,28 @@ export const adminRoutes: RouteRecordRaw[] = [
         },
     },
     {
+        path: '/admin/coupons',
+        name: 'AdminCoupons',
+        component: () => import('@/views/admin/coupons/CouponsView.vue'),
+        meta: {
+            title: 'Coupons Management',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
+        path: '/admin/coupons/:id',
+        name: 'AdminCouponDetail',
+        component: () => import('@/views/admin/coupons/CouponDetailView.vue'),
+        meta: {
+            title: 'Coupon Details',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
         path: '/admin/categories',
         name: 'AdminCategories',
         component: () => import('@/views/admin/AdminCategoriesView.vue'),

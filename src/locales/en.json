@@ -33,6 +33,7 @@
     "found": "found",
     "yes": "Yes",
     "no": "No",
+    "metadata": "Metadata",
     "orderDetails": "Order Details",
     "orderNumber": "Order Number",
     "orderDate": "Order Date",
@@ -1184,6 +1185,128 @@
         "actions": "Actions"
       }
     },
+    "couponsManagement": {
+      "title": "Coupon Management",
+      "subtitle": "Manage your store coupons",
+      "addCoupon": "Add Coupon",
+      "editCoupon": "Edit Coupon",
+      "deleteCoupon": "Delete Coupon",
+      "searchCoupons": "Search coupons...",
+      "noCoupons": "No coupons found",
+      "noCouponsDescription": "Start by creating your first coupon",
+      "createFirstCoupon": "Create your first coupon",
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "expired": "Expired"
+      },
+      "discountType": {
+        "fixed": "Fixed Amount",
+        "percentage": "Percentage"
+      },
+      "detail": {
+        "basicInfo": "Basic Information",
+        "statistics": "Statistics",
+        "lastUpdated": "Last Updated",
+        "createdAt": "Created At",
+        "usageCount": "Usage Count",
+        "remainingUses": "Remaining Uses"
+      },
+      "filters": {
+        "allStatus": "All Status",
+        "allTypes": "All Discount Types"
+      },
+      "bulk": {
+        "selected": "selected",
+        "activate": "Activate",
+        "deactivate": "Deactivate",
+        "delete": "Delete",
+        "activateSuccess": "Coupons activated successfully",
+        "deactivateSuccess": "Coupons deactivated successfully",
+        "deleteSuccess": "Coupons deleted successfully",
+        "activateError": "Failed to activate coupons",
+        "deactivateError": "Failed to deactivate coupons",
+        "deleteError": "Failed to delete coupons",
+        "deleteConfirm": "Are you sure you want to delete the selected coupons? This action cannot be undone."
+      },
+      "form": {
+        "addTitle": "Add New Coupon",
+        "editTitle": "Edit Coupon",
+        "addDescription": "Fill in the details to create a new coupon.",
+        "editDescription": "Update the coupon information below.",
+        "basicInfo": "Basic Information",
+        "discountSettings": "Discount Settings",
+        "validityPeriod": "Validity Period",
+        "name": "Coupon Name",
+        "namePlaceholder": "Enter coupon name (e.g., SUMMER2025)",
+        "description": "Description",
+        "descriptionPlaceholder": "Enter coupon description",
+        "hasLimit": "Limit usage count",
+        "usageLimit": "Maximum usage count",
+        "usageLimitPlaceholder": "Enter maximum usage count",
+        "discountType": "Discount Type",
+        "selectDiscountType": "Select discount type",
+        "discountValue": "Discount Value",
+        "discountValuePlaceholder": "Enter discount value",
+        "fixedDiscountHint": "e.g., 50000 (discount 50,000 VND)",
+        "percentageDiscountHint": "e.g., 20 (discount 20%)",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "status": "Status",
+        "selectStatus": "Select status",
+        "creating": "Creating...",
+        "updating": "Updating...",
+        "create": "Create Coupon",
+        "update": "Update Coupon"
+      },
+      "messages": {
+        "createSuccess": "Coupon created successfully",
+        "updateSuccess": "Coupon updated successfully",
+        "deleteSuccess": "Coupon deleted successfully",
+        "createError": "Failed to create coupon",
+        "updateError": "Failed to update coupon",
+        "deleteError": "Failed to delete coupon",
+        "loadError": "Failed to load coupons",
+        "validationError": "Please fix validation errors before submitting",
+        "deleteConfirmTitle": "Delete Coupon",
+        "deleteConfirmMessage": "Are you sure you want to delete this coupon? This action cannot be undone.",
+        "deleteConfirmYes": "Yes, delete",
+        "deleteConfirmNo": "Cancel",
+        "couponNotFound": "Coupon not found",
+        "nameExists": "Coupon name already exists"
+      },
+      "validation": {
+        "nameRequired": "Coupon name is required",
+        "nameLength": "Coupon name must be 3-50 characters",
+        "nameFormat": "Coupon name can only contain letters, numbers, and hyphens",
+        "descriptionRequired": "Description is required",
+        "descriptionLength": "Description must be 10-500 characters",
+        "usageLimitRequired": "Maximum usage count is required when limit is enabled",
+        "usageLimitMin": "Maximum usage count must be greater than 0",
+        "discountValueRequired": "Discount value is required",
+        "discountValueMin": "Discount value must be greater than 0",
+        "percentageMax": "Percentage value cannot exceed 100",
+        "startDateRequired": "Start date is required",
+        "endDateRequired": "End date is required",
+        "endDateAfterStart": "End date must be after start date",
+        "statusRequired": "Status is required"
+      },
+      "table": {
+        "name": "Coupon Name",
+        "description": "Description",
+        "type": "Type",
+        "value": "Value",
+        "usage": "Usage",
+        "validity": "Validity",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "view": "View Details",
+        "edit": "Edit",
+        "delete": "Delete"
+      }
+    },
     "reviews": "Reviews",
     "customerList": "Customer List",
     "support": "Support",
@@ -1252,6 +1375,9 @@
       "dashboard": "Dashboard",
       "ecommerce": "E-commerce",
       "products": "Products",
+      "categories": "Categories",
+      "brands": "Brands",
+      "coupons": "Coupons",
       "orders": "Orders",
       "customers": "Customers",
       "analytics": "Analytics",
@@ -1262,7 +1388,6 @@
       "addProduct": "Add Product",
       "customerSupport": "Support",
       "overview": "Overview",
-      "categories": "Categories",
       "inventory": "Inventory",
       "reviews": "Reviews",
       "customerList": "Customer List",
@@ -1270,7 +1395,6 @@
       "loyalty": "Loyalty Program",
       "marketing": "Marketing",
       "promotions": "Promotions",
-      "coupons": "Coupons",
       "newsletters": "Newsletters",
       "seo": "SEO",
       "content": "Content",
@@ -1287,8 +1411,7 @@
       "logs": "Logs",
       "users": "Users",
       "roles": "Roles",
-      "backup": "Backup",
-      "brands": "Brands"
+      "backup": "Backup"
     }
   },
   "theme": {
