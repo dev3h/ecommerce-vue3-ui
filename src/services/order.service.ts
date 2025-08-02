@@ -144,7 +144,7 @@ export const orderService = {
     async updateOrderStatus(orderId: string, status: Order['status']): Promise<void> {
         try {
             const stored = localStorage.getItem('orders')
-            let orders: Order[] = stored ? JSON.parse(stored) : []
+            const orders: Order[] = stored ? JSON.parse(stored) : []
 
             const orderIndex = orders.findIndex((order) => order.id === orderId)
             if (orderIndex === -1) {

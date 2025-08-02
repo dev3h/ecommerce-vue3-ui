@@ -119,6 +119,13 @@
                         :isCollapsed="props.isCollapsed"
                     />
                     <AdminSidebarItem
+                        to="/admin/coupons"
+                        icon="Tag"
+                        :label="t('admin.sidebar.coupons')"
+                        :active="currentRoute.startsWith('/admin/coupons')"
+                        :isCollapsed="props.isCollapsed"
+                    />
+                    <AdminSidebarItem
                         to="/admin/orders"
                         icon="ShoppingCart"
                         :label="t('admin.sidebar.orders')"
