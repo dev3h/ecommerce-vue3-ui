@@ -1,0 +1,219 @@
+[
+    {
+        "id": "products.view",
+        "name": "Xem sản phẩm",
+        "description": "Xem danh sách và chi tiết sản phẩm",
+        "module": "products",
+        "action": "view"
+    },
+    {
+        "id": "products.create",
+        "name": "Tạo sản phẩm",
+        "description": "Tạo sản phẩm mới",
+        "module": "products",
+        "action": "create"
+    },
+    {
+        "id": "products.edit",
+        "name": "Sửa sản phẩm",
+        "description": "Chỉnh sửa thông tin sản phẩm",
+        "module": "products",
+        "action": "edit"
+    },
+    {
+        "id": "products.delete",
+        "name": "Xóa sản phẩm",
+        "description": "Xóa sản phẩm khỏi hệ thống",
+        "module": "products",
+        "action": "delete"
+    },
+    {
+        "id": "categories.view",
+        "name": "Xem danh mục",
+        "description": "Xem danh sách và chi tiết danh mục",
+        "module": "categories",
+        "action": "view"
+    },
+    {
+        "id": "categories.create",
+        "name": "Tạo danh mục",
+        "description": "Tạo danh mục mới",
+        "module": "categories",
+        "action": "create"
+    },
+    {
+        "id": "categories.edit",
+        "name": "Sửa danh mục",
+        "description": "Chỉnh sửa thông tin danh mục",
+        "module": "categories",
+        "action": "edit"
+    },
+    {
+        "id": "categories.delete",
+        "name": "Xóa danh mục",
+        "description": "Xóa danh mục khỏi hệ thống",
+        "module": "categories",
+        "action": "delete"
+    },
+    {
+        "id": "orders.view",
+        "name": "Xem đơn hàng",
+        "description": "Xem danh sách và chi tiết đơn hàng",
+        "module": "orders",
+        "action": "view"
+    },
+    {
+        "id": "orders.create",
+        "name": "Tạo đơn hàng",
+        "description": "Tạo đơn hàng mới",
+        "module": "orders",
+        "action": "create"
+    },
+    {
+        "id": "orders.edit",
+        "name": "Sửa đơn hàng",
+        "description": "Chỉnh sửa thông tin đơn hàng",
+        "module": "orders",
+        "action": "edit"
+    },
+    {
+        "id": "orders.delete",
+        "name": "Xóa đơn hàng",
+        "description": "Xóa đơn hàng khỏi hệ thống",
+        "module": "orders",
+        "action": "delete"
+    },
+    {
+        "id": "customers.view",
+        "name": "Xem khách hàng",
+        "description": "Xem danh sách và chi tiết khách hàng",
+        "module": "customers",
+        "action": "view"
+    },
+    {
+        "id": "customers.create",
+        "name": "Tạo khách hàng",
+        "description": "Tạo khách hàng mới",
+        "module": "customers",
+        "action": "create"
+    },
+    {
+        "id": "customers.edit",
+        "name": "Sửa khách hàng",
+        "description": "Chỉnh sửa thông tin khách hàng",
+        "module": "customers",
+        "action": "edit"
+    },
+    {
+        "id": "customers.delete",
+        "name": "Xóa khách hàng",
+        "description": "Xóa khách hàng khỏi hệ thống",
+        "module": "customers",
+        "action": "delete"
+    },
+    {
+        "id": "coupons.view",
+        "name": "Xem mã giảm giá",
+        "description": "Xem danh sách và chi tiết mã giảm giá",
+        "module": "coupons",
+        "action": "view"
+    },
+    {
+        "id": "coupons.create",
+        "name": "Tạo mã giảm giá",
+        "description": "Tạo mã giảm giá mới",
+        "module": "coupons",
+        "action": "create"
+    },
+    {
+        "id": "coupons.edit",
+        "name": "Sửa mã giảm giá",
+        "description": "Chỉnh sửa thông tin mã giảm giá",
+        "module": "coupons",
+        "action": "edit"
+    },
+    {
+        "id": "coupons.delete",
+        "name": "Xóa mã giảm giá",
+        "description": "Xóa mã giảm giá khỏi hệ thống",
+        "module": "coupons",
+        "action": "delete"
+    },
+    {
+        "id": "admins.view",
+        "name": "Xem quản trị viên",
+        "description": "Xem danh sách và chi tiết quản trị viên",
+        "module": "admins",
+        "action": "view"
+    },
+    {
+        "id": "admins.create",
+        "name": "Tạo quản trị viên",
+        "description": "Tạo quản trị viên mới",
+        "module": "admins",
+        "action": "create"
+    },
+    {
+        "id": "admins.edit",
+        "name": "Sửa quản trị viên",
+        "description": "Chỉnh sửa thông tin quản trị viên",
+        "module": "admins",
+        "action": "edit"
+    },
+    {
+        "id": "admins.delete",
+        "name": "Xóa quản trị viên",
+        "description": "Xóa quản trị viên khỏi hệ thống",
+        "module": "admins",
+        "action": "delete"
+    },
+    {
+        "id": "roles.view",
+        "name": "Xem vai trò",
+        "description": "Xem danh sách và chi tiết vai trò",
+        "module": "roles",
+        "action": "view"
+    },
+    {
+        "id": "roles.create",
+        "name": "Tạo vai trò",
+        "description": "Tạo vai trò mới",
+        "module": "roles",
+        "action": "create"
+    },
+    {
+        "id": "roles.edit",
+        "name": "Sửa vai trò",
+        "description": "Chỉnh sửa thông tin vai trò",
+        "module": "roles",
+        "action": "edit"
+    },
+    {
+        "id": "roles.delete",
+        "name": "Xóa vai trò",
+        "description": "Xóa vai trò khỏi hệ thống",
+        "module": "roles",
+        "action": "delete"
+    },
+    {
+        "id": "analytics.view",
+        "name": "Xem báo cáo",
+        "description": "Xem báo cáo và thống kê",
+        "module": "analytics",
+        "action": "view"
+    },
+    {
+        "id": "settings.view",
+        "name": "Xem cài đặt",
+        "description": "Xem cài đặt hệ thống",
+        "module": "settings",
+        "action": "view"
+    },
+    {
+        "id": "settings.edit",
+        "name": "Sửa cài đặt",
+        "description": "Chỉnh sửa cài đặt hệ thống",
+        "module": "settings",
+        "action": "edit"
+    }
+]

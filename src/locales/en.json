@@ -1414,6 +1414,180 @@
         "delete": "Delete"
       }
     },
+    "rolesManagement": {
+      "title": "Roles Management",
+      "subtitle": "Manage user roles and permissions",
+      "addRole": "Add Role",
+      "editRole": "Edit Role",
+      "deleteRole": "Delete Role",
+      "searchRoles": "Search roles...",
+      "noRoles": "No roles found",
+      "noRolesDescription": "Start by creating your first role",
+      "createFirstRole": "Create your first role",
+      "types": {
+        "system": "System",
+        "custom": "Custom"
+      },
+      "detail": {
+        "basicInfo": "Basic Information",
+        "permissions": "Permissions",
+        "noPermissions": "No permissions assigned to this role",
+        "systemRoleWarning": "System Role",
+        "systemRoleDescription": "This is a system role and cannot be deleted. Some permissions may be restricted from modification to ensure system security."
+      },
+      "filters": {
+        "allTypes": "All Types",
+        "system": "System Roles",
+        "custom": "Custom Roles"
+      },
+      "stats": {
+        "total": "Total Roles",
+        "system": "System",
+        "custom": "Custom",
+        "avgPermissions": "Avg Permissions"
+      },
+      "bulk": {
+        "selected": "selected",
+        "delete": "Delete",
+        "systemRoleWarning": "Cannot delete system roles",
+        "deleteSuccess": "Roles deleted successfully",
+        "deleteError": "Failed to delete roles",
+        "deleteConfirm": "Are you sure you want to delete the selected roles? This action cannot be undone."
+      },
+      "form": {
+        "addTitle": "Add New Role",
+        "editTitle": "Edit Role",
+        "addDescription": "Fill in the details to create a new role.",
+        "editDescription": "Update the role information below.",
+        "basicInfo": "Basic Information",
+        "permissionsSection": "Permissions",
+        "name": "Role Name",
+        "namePlaceholder": "Enter role name",
+        "description": "Description",
+        "descriptionPlaceholder": "Enter role description",
+        "selectAllPermissions": "Select All",
+        "clearAllPermissions": "Clear All",
+        "selectModulePermissions": "Select All {module}",
+        "clearModulePermissions": "Clear All {module}",
+        "creating": "Creating...",
+        "updating": "Updating...",
+        "create": "Create Role",
+        "update": "Update Role",
+        "permissionsNote": "Select the permissions that should be granted to users with this role.",
+        "selectedPermissionsCount": "Selected permissions"
+      },
+      "messages": {
+        "createSuccess": "Role created successfully",
+        "updateSuccess": "Role updated successfully",
+        "deleteSuccess": "Role deleted successfully",
+        "createError": "Failed to create role",
+        "updateError": "Failed to update role",
+        "deleteError": "Failed to delete role",
+        "loadError": "Failed to load roles",
+        "validationError": "Please fix validation errors before submitting",
+        "deleteConfirmTitle": "Delete Role",
+        "deleteConfirmMessage": "Are you sure you want to delete the role '{name}'? This action cannot be undone.",
+        "deleteConfirmYes": "Yes, delete",
+        "deleteConfirmNo": "Cancel",
+        "roleNotFound": "Role not found",
+        "nameExists": "Role name already exists",
+        "cannotDeleteSystemRole": "Cannot delete system role",
+        "cannotModifySystemRole": "Cannot modify system role"
+      },
+      "validation": {
+        "nameRequired": "Role name is required",
+        "nameLength": "Role name must be 2-50 characters",
+        "nameUnique": "Role name must be unique",
+        "descriptionRequired": "Description is required",
+        "descriptionLength": "Description must be 10-200 characters",
+        "permissionsRequired": "At least one permission must be selected"
+      },
+      "table": {
+        "name": "Name",
+        "permissions": "Permissions",
+        "permissionsCount": "permissions",
+        "type": "Type",
+        "createdAt": "Created",
+        "updatedAt": "Updated",
+        "actions": "Actions"
+      },
+      "actions": {
+        "view": "View Details",
+        "edit": "Edit",
+        "delete": "Delete"
+      }
+    },
+    "permissions": {
+      "modules": {
+        "products": "Products",
+        "categories": "Categories", 
+        "orders": "Orders",
+        "customers": "Customers",
+        "coupons": "Coupons",
+        "admins": "Admin Management",
+        "roles": "Roles & Permissions",
+        "analytics": "Analytics",
+        "settings": "Settings"
+      },
+      "actions": {
+        "create": "Create",
+        "read": "View",
+        "update": "Edit", 
+        "delete": "Delete",
+        "manage": "Manage"
+      },
+      "products": {
+        "create": "Create Products",
+        "read": "View Products",
+        "update": "Edit Products",
+        "delete": "Delete Products",
+        "manage": "Manage Products"
+      },
+      "categories": {
+        "create": "Create Categories", 
+        "read": "View Categories",
+        "update": "Edit Categories",
+        "delete": "Delete Categories"
+      },
+      "orders": {
+        "create": "Create Orders",
+        "read": "View Orders", 
+        "update": "Edit Orders",
+        "delete": "Delete Orders",
+        "manage": "Manage Orders"
+      },
+      "customers": {
+        "create": "Create Customers",
+        "read": "View Customers",
+        "update": "Edit Customers", 
+        "delete": "Delete Customers"
+      },
+      "coupons": {
+        "create": "Create Coupons",
+        "read": "View Coupons",
+        "update": "Edit Coupons",
+        "delete": "Delete Coupons"
+      },
+      "admins": {
+        "create": "Create Admins",
+        "read": "View Admins",
+        "update": "Edit Admins",
+        "delete": "Delete Admins"
+      },
+      "roles": {
+        "create": "Create Roles",
+        "read": "View Roles", 
+        "update": "Edit Roles",
+        "delete": "Delete Roles"
+      },
+      "analytics": {
+        "read": "View Analytics"
+      },
+      "settings": {
+        "read": "View Settings",
+        "update": "Edit Settings"
+      }
+    },
     "reviews": "Reviews",
     "customerList": "Customer List",
     "support": "Support",

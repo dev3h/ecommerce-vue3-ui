@@ -557,6 +557,7 @@
       "customers": "Khách hàng",
       "reviews": "Đánh giá",
       "admins": "Quản lý Admin",
+      "roles": "Vai trò",
       "settings": "Cài đặt",
       "logout": "Đăng xuất"
     },
@@ -1523,6 +1524,180 @@
         "backToList": "Quay lại danh sách",
         "notFound": "Không tìm thấy admin",
         "invalidId": "ID admin không hợp lệ"
+      }
+    },
+    "rolesManagement": {
+      "title": "Quản lý vai trò",
+      "subtitle": "Quản lý vai trò người dùng và quyền hạn",
+      "addRole": "Thêm vai trò",
+      "editRole": "Chỉnh sửa vai trò",
+      "deleteRole": "Xóa vai trò",
+      "searchRoles": "Tìm kiếm vai trò...",
+      "noRoles": "Không có vai trò nào",
+      "noRolesDescription": "Bắt đầu bằng cách tạo vai trò đầu tiên",
+      "createFirstRole": "Tạo vai trò đầu tiên",
+      "types": {
+        "system": "Hệ thống",
+        "custom": "Tùy chỉnh"
+      },
+      "detail": {
+        "basicInfo": "Thông tin cơ bản",
+        "permissions": "Quyền hạn",
+        "noPermissions": "Không có quyền nào được gán cho vai trò này",
+        "systemRoleWarning": "Vai trò hệ thống",
+        "systemRoleDescription": "Đây là vai trò hệ thống và không thể xóa. Một số quyền có thể bị hạn chế chỉnh sửa để đảm bảo bảo mật hệ thống."
+      },
+      "filters": {
+        "allTypes": "Tất cả loại",
+        "system": "Vai trò hệ thống",
+        "custom": "Vai trò tùy chỉnh"
+      },
+      "stats": {
+        "total": "Tổng vai trò",
+        "system": "Hệ thống",
+        "custom": "Tùy chỉnh",
+        "avgPermissions": "Trung bình quyền"
+      },
+      "bulk": {
+        "selected": "đã chọn",
+        "delete": "Xóa",
+        "systemRoleWarning": "Không thể xóa vai trò hệ thống",
+        "deleteSuccess": "Xóa vai trò thành công",
+        "deleteError": "Không thể xóa vai trò",
+        "deleteConfirm": "Bạn có chắc chắn muốn xóa các vai trò đã chọn? Hành động này không thể hoàn tác."
+      },
+      "form": {
+        "addTitle": "Thêm vai trò mới",
+        "editTitle": "Chỉnh sửa vai trò",
+        "addDescription": "Điền thông tin để tạo vai trò mới.",
+        "editDescription": "Cập nhật thông tin vai trò bên dưới.",
+        "basicInfo": "Thông tin cơ bản",
+        "permissionsSection": "Quyền hạn",
+        "name": "Tên vai trò",
+        "namePlaceholder": "Nhập tên vai trò",
+        "description": "Mô tả",
+        "descriptionPlaceholder": "Nhập mô tả vai trò",
+        "selectAllPermissions": "Chọn tất cả",
+        "clearAllPermissions": "Bỏ chọn tất cả",
+        "selectModulePermissions": "Chọn tất cả {module}",
+        "clearModulePermissions": "Bỏ chọn tất cả {module}",
+        "creating": "Đang tạo...",
+        "updating": "Đang cập nhật...",
+        "create": "Tạo vai trò",
+        "update": "Cập nhật vai trò",
+        "permissionsNote": "Chọn các quyền mà người dùng có vai trò này sẽ được cấp.",
+        "selectedPermissionsCount": "Quyền đã chọn"
+      },
+      "messages": {
+        "createSuccess": "Tạo vai trò thành công",
+        "updateSuccess": "Cập nhật vai trò thành công",
+        "deleteSuccess": "Xóa vai trò thành công",
+        "createError": "Không thể tạo vai trò",
+        "updateError": "Không thể cập nhật vai trò",
+        "deleteError": "Không thể xóa vai trò",
+        "loadError": "Không thể tải danh sách vai trò",
+        "validationError": "Vui lòng sửa lỗi xác thực trước khi gửi",
+        "deleteConfirmTitle": "Xóa vai trò",
+        "deleteConfirmMessage": "Bạn có chắc chắn muốn xóa vai trò '{name}'? Hành động này không thể hoàn tác.",
+        "deleteConfirmYes": "Có, xóa",
+        "deleteConfirmNo": "Hủy",
+        "roleNotFound": "Không tìm thấy vai trò",
+        "nameExists": "Tên vai trò đã tồn tại",
+        "cannotDeleteSystemRole": "Không thể xóa vai trò hệ thống",
+        "cannotModifySystemRole": "Không thể chỉnh sửa vai trò hệ thống"
+      },
+      "validation": {
+        "nameRequired": "Tên vai trò là bắt buộc",
+        "nameLength": "Tên vai trò phải từ 2-50 ký tự",
+        "nameUnique": "Tên vai trò phải là duy nhất",
+        "descriptionRequired": "Mô tả là bắt buộc",
+        "descriptionLength": "Mô tả phải từ 10-200 ký tự",
+        "permissionsRequired": "Phải chọn ít nhất một quyền"
+      },
+      "table": {
+        "name": "Tên",
+        "permissions": "Quyền hạn",
+        "permissionsCount": "quyền",
+        "type": "Loại",
+        "createdAt": "Ngày tạo",
+        "updatedAt": "Ngày cập nhật",
+        "actions": "Thao tác"
+      },
+      "actions": {
+        "view": "Xem chi tiết",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa"
+      }
+    },
+    "permissions": {
+      "modules": {
+        "products": "Sản phẩm",
+        "categories": "Danh mục",
+        "orders": "Đơn hàng",
+        "customers": "Khách hàng",
+        "coupons": "Mã giảm giá",
+        "admins": "Quản lý Admin",
+        "roles": "Vai trò & Quyền hạn",
+        "analytics": "Thống kê",
+        "settings": "Cài đặt"
+      },
+      "actions": {
+        "create": "Tạo",
+        "read": "Xem",
+        "update": "Sửa",
+        "delete": "Xóa",
+        "manage": "Quản lý"
+      },
+      "products": {
+        "create": "Tạo sản phẩm",
+        "read": "Xem sản phẩm",
+        "update": "Sửa sản phẩm",
+        "delete": "Xóa sản phẩm",
+        "manage": "Quản lý sản phẩm"
+      },
+      "categories": {
+        "create": "Tạo danh mục",
+        "read": "Xem danh mục",
+        "update": "Sửa danh mục",
+        "delete": "Xóa danh mục"
+      },
+      "orders": {
+        "create": "Tạo đơn hàng",
+        "read": "Xem đơn hàng",
+        "update": "Sửa đơn hàng",
+        "delete": "Xóa đơn hàng",
+        "manage": "Quản lý đơn hàng"
+      },
+      "customers": {
+        "create": "Tạo khách hàng",
+        "read": "Xem khách hàng",
+        "update": "Sửa khách hàng",
+        "delete": "Xóa khách hàng"
+      },
+      "coupons": {
+        "create": "Tạo mã giảm giá",
+        "read": "Xem mã giảm giá",
+        "update": "Sửa mã giảm giá",
+        "delete": "Xóa mã giảm giá"
+      },
+      "admins": {
+        "create": "Tạo admin",
+        "read": "Xem admin",
+        "update": "Sửa admin",
+        "delete": "Xóa admin"
+      },
+      "roles": {
+        "create": "Tạo vai trò",
+        "read": "Xem vai trò",
+        "update": "Sửa vai trò",
+        "delete": "Xóa vai trò"
+      },
+      "analytics": {
+        "read": "Xem thống kê"
+      },
+      "settings": {
+        "read": "Xem cài đặt",
+        "update": "Sửa cài đặt"
       }
     },
     "settings": {
