@@ -277,10 +277,10 @@
                 </h2>
                 <div class="space-y-1">
                     <AdminSidebarItem
-                        to="/admin/users"
+                        to="/admin/admins"
                         icon="UserCheck"
-                        :label="t('admin.sidebar.users')"
-                        :active="currentRoute.startsWith('/admin/users')"
+                        :label="t('admin.sidebar.admins')"
+                        :active="currentRoute.startsWith('/admin/admins')"
                         :isCollapsed="props.isCollapsed"
                     />
                     <AdminSidebarItem

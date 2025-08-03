@@ -556,6 +556,7 @@
       "orders": "Đơn hàng",
       "customers": "Khách hàng",
       "reviews": "Đánh giá",
+      "admins": "Quản lý Admin",
       "settings": "Cài đặt",
       "logout": "Đăng xuất"
     },
@@ -1410,6 +1411,118 @@
       "validation": {
         "nameRequired": "Tên vai trò là bắt buộc.",
         "descriptionRequired": "Mô tả vai trò là bắt buộc."
+      }
+    },
+    "adminsManagement": {
+      "title": "Quản lý Admin",
+      "subtitle": "Quản lý tài khoản và quyền hạn của quản trị viên",
+      "addAdmin": "Thêm Admin",
+      "editAdmin": "Chỉnh sửa Admin",
+      "deleteAdmin": "Xóa Admin",
+      "noAdmins": "Không có admin nào",
+      "noAdminsDescription": "Bắt đầu bằng cách tạo admin đầu tiên",
+      "createFirstAdmin": "Tạo admin đầu tiên",
+      "table": {
+        "name": "Tên & Email",
+        "role": "Vai trò",
+        "status": "Trạng thái",
+        "lastLogin": "Lần đăng nhập cuối",
+        "actions": "Hành động"
+      },
+      "form": {
+        "title": "Thông tin Admin",
+        "addTitle": "Thêm Admin mới",
+        "editTitle": "Chỉnh sửa Admin",
+        "addDescription": "Điền thông tin để tạo tài khoản admin mới",
+        "editDescription": "Cập nhật thông tin admin",
+        "name": "Họ và tên",
+        "namePlaceholder": "Nhập họ và tên",
+        "email": "Email",
+        "emailPlaceholder": "Nhập địa chỉ email",
+        "role": "Vai trò",
+        "selectRole": "Chọn vai trò",
+        "status": "Trạng thái",
+        "password": "Mật khẩu",
+        "passwordPlaceholder": "Nhập mật khẩu (tối thiểu 8 ký tự)",
+        "confirmPassword": "Xác nhận mật khẩu",
+        "confirmPasswordPlaceholder": "Nhập lại mật khẩu",
+        "creating": "Đang tạo...",
+        "updating": "Đang cập nhật...",
+        "create": "Tạo Admin",
+        "update": "Cập nhật Admin"
+      },
+      "status": {
+        "active": "Hoạt động",
+        "banned": "Đã cấm",
+        "temporarily_locked": "Tạm khóa"
+      },
+      "roles": {
+        "super_admin": "Quản trị cấp cao",
+        "manager": "Quản lý",
+        "staff": "Nhân viên"
+      },
+      "filters": {
+        "allStatus": "Tất cả trạng thái",
+        "allRoles": "Tất cả vai trò"
+      },
+      "actions": {
+        "view": "Xem chi tiết",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa"
+      },
+      "bulk": {
+        "selected": "đã chọn",
+        "activate": "Kích hoạt",
+        "ban": "Cấm",
+        "lock": "Khóa tạm thời",
+        "delete": "Xóa",
+        "activateSuccess": "Đã kích hoạt tài khoản thành công",
+        "banSuccess": "Đã cấm tài khoản thành công",
+        "lockSuccess": "Đã khóa tài khoản thành công",
+        "deleteSuccess": "Đã xóa tài khoản thành công",
+        "activateError": "Lỗi khi kích hoạt tài khoản",
+        "banError": "Lỗi khi cấm tài khoản",
+        "lockError": "Lỗi khi khóa tài khoản",
+        "deleteError": "Lỗi khi xóa tài khoản",
+        "deleteConfirm": "Bạn có chắc chắn muốn xóa các admin đã chọn?"
+      },
+      "messages": {
+        "createSuccess": "Đã tạo admin thành công!",
+        "updateSuccess": "Đã cập nhật admin thành công!",
+        "deleteSuccess": "Đã xóa admin thành công!",
+        "createError": "Lỗi khi tạo admin",
+        "updateError": "Lỗi khi cập nhật admin", 
+        "deleteError": "Lỗi khi xóa admin",
+        "loadError": "Lỗi khi tải danh sách admin",
+        "deleteConfirmTitle": "Xác nhận xóa",
+        "deleteConfirmMessage": "Bạn có chắc chắn muốn xóa admin này? Hành động này không thể hoàn tác.",
+        "deleteConfirmYes": "Xóa",
+        "deleteConfirmNo": "Hủy"
+      },
+      "validation": {
+        "nameRequired": "Vui lòng nhập họ và tên",
+        "nameMinLength": "Họ và tên phải có ít nhất 2 ký tự",
+        "emailRequired": "Vui lòng nhập email",
+        "emailInvalid": "Vui lòng nhập địa chỉ email hợp lệ",
+        "emailExists": "Email này đã được sử dụng",
+        "roleRequired": "Vui lòng chọn vai trò",
+        "statusRequired": "Vui lòng chọn trạng thái",
+        "passwordRequired": "Vui lòng nhập mật khẩu",
+        "passwordMinLength": "Mật khẩu phải có ít nhất 8 ký tự",
+        "confirmPasswordRequired": "Vui lòng xác nhận mật khẩu",
+        "passwordMismatch": "Mật khẩu xác nhận không khớp"
+      },
+      "detail": {
+        "basicInfo": "Thông tin cơ bản",
+        "activityInfo": "Thông tin hoạt động",
+        "permissions": "Quyền hạn",
+        "lastLogin": "Lần đăng nhập cuối",
+        "neverLoggedIn": "Chưa đăng nhập lần nào",
+        "createdAt": "Ngày tạo",
+        "updatedAt": "Ngày cập nhật",
+        "backToList": "Quay lại danh sách",
+        "notFound": "Không tìm thấy admin",
+        "invalidId": "ID admin không hợp lệ"
       }
     },
     "settings": {

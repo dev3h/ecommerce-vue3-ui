@@ -49,7 +49,7 @@
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
                     <Button @click="goHome" size="lg" class="min-w-[140px]">
                         <HomeIcon class="w-4 h-4 mr-2" />
-                        {{ t('errors.goHome') }}
+                        {{ isAdminContext ? t('admin.sidebar.dashboard') : t('errors.goHome') }}
                     </Button>
 
                     <Button @click="goBack" variant="outline" size="lg" class="min-w-[140px]">
@@ -93,31 +93,50 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import { Button } from '@/components/ui/button'
 import { SearchIcon, HomeIcon, ArrowLeftIcon } from 'lucide-vue-next'
 
 const { t } = useAppI18n()
 const router = useRouter()
+const route = useRoute()
 
-// Search suggestions for common pages
-const searchSuggestions = computed(() => [
-    { label: t('navigation.home'), path: '/' },
-    { label: t('navigation.products'), path: '/products' },
-    { label: t('navigation.account'), path: '/account' },
-    { label: t('navigation.cart'), path: '/cart' },
-])
+// Check if we're in admin context
+const isAdminContext = computed(() => route.path.startsWith('/admin'))
+
+// Search suggestions based on context
+const searchSuggestions = computed(() => {
+    if (isAdminContext.value) {
+        return [
+            { label: t('admin.sidebar.dashboard'), path: '/admin' },
+            { label: t('admin.sidebar.products'), path: '/admin/products' },
+            { label: t('admin.sidebar.orders'), path: '/admin/orders' },
+            { label: t('admin.sidebar.customers'), path: '/admin/customers' },
+        ]
+    }
+    
+    return [
+        { label: t('navigation.home'), path: '/' },
+        { label: t('navigation.products'), path: '/products' },
+        { label: t('navigation.account'), path: '/account' },
+        { label: t('navigation.cart'), path: '/cart' },
+    ]
+})
 
 const goHome = () => {
-    router.push('/')
+    if (isAdminContext.value) {
+        router.push('/admin')
+    } else {
+        router.push('/')
+    }
 }
 
 const goBack = () => {
     if (window.history.length > 1) {
         router.go(-1)
     } else {
-        router.push('/')
+        goHome()
     }
 }
 

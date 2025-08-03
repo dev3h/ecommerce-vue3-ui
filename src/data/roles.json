@@ -1,0 +1,23 @@
+[
+    {
+        "id": "super_admin",
+        "name": "super_admin",
+        "display_name": "Super Administrator",
+        "description": "Full system access with all permissions",
+        "permissions": ["*"]
+    },
+    {
+        "id": "manager",
+        "name": "manager", 
+        "display_name": "Manager",
+        "description": "Manage products, orders, customers and staff",
+        "permissions": ["products.manage", "orders.manage", "customers.manage", "staff.manage", "reports.view"]
+    },
+    {
+        "id": "staff",
+        "name": "staff",
+        "display_name": "Staff",
+        "description": "Basic operations for products and orders",
+        "permissions": ["products.view", "products.edit", "orders.view", "orders.edit", "customers.view"]
+    }
+]
