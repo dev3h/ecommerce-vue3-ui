@@ -26,7 +26,7 @@ export const adminRoutes: RouteRecordRaw[] = [
     {
         path: '/admin',
         name: 'Admin',
-        redirect: (to) => {
+        redirect: () => {
             // This will be handled by the guard, but we set a default redirect
             return '/admin/dashboard'
         },
@@ -180,6 +180,28 @@ export const adminRoutes: RouteRecordRaw[] = [
         },
     },
     {
+        path: '/admin/admins',
+        name: 'AdminUsers',
+        component: () => import('@/views/admin/AdminsView.vue'),
+        meta: {
+            title: 'Admin Management',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
+        path: '/admin/admins/:id',
+        name: 'AdminUserDetail',
+        component: () => import('@/views/admin/AdminDetailView.vue'),
+        meta: {
+            title: 'Admin Detail',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
         path: '/admin/analytics',
         name: 'AdminAnalytics',
         component: () => import('@/views/HomeView.vue'),
@@ -221,6 +243,18 @@ export const adminRoutes: RouteRecordRaw[] = [
             requiresAuth: true,
             requiresAdmin: true,
             layout: 'admin', // Use auth layout (no header/footer)
+        },
+    },
+    // Admin 404 - Catch all admin routes that don't match
+    {
+        path: '/admin/:pathMatch(.*)*',
+        name: 'Admin404',
+        component: () => import('@/views/errors/NotFoundView.vue'),
+        meta: {
+            title: 'Page Not Found',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
         },
     },
 ]
