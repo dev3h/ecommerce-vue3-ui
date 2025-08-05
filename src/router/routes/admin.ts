@@ -245,6 +245,28 @@ export const adminRoutes: RouteRecordRaw[] = [
             layout: 'admin', // Use auth layout (no header/footer)
         },
     },
+    {
+        path: '/admin/roles',
+        name: 'AdminRoles',
+        component: () => import('@/views/admin/RolesView.vue'),
+        meta: {
+            title: 'Roles Management',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
+    {
+        path: '/admin/roles/:id',
+        name: 'AdminRoleDetail',
+        component: () => import('@/views/admin/RoleDetailView.vue'),
+        meta: {
+            title: 'Role Detail',
+            requiresAuth: true,
+            requiresAdmin: true,
+            layout: 'admin',
+        },
+    },
     // Admin 404 - Catch all admin routes that don't match
     {
         path: '/admin/:pathMatch(.*)*',
