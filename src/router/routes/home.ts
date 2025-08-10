@@ -11,4 +11,13 @@ export const homeRoutes: RouteRecordRaw[] = [
             requiresAuth: false,
         },
     },
+    {
+        path: '/reels',
+        name: 'reels',
+        component: () => import('@/views/ReelsView.vue'),
+        meta: {
+            title: 'home.reels.title',
+            requiresAuth: false,
+        },
+    },
 ]

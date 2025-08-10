@@ -54,6 +54,16 @@
                         {{ t('navigation.products') }}
                     </RouterLink>
                     <RouterLink
+                        to="/reels"
+                        class="relative transition-colors hover:text-foreground/80 text-foreground/60 flex items-center gap-1"
+                        :class="{ 'text-foreground': isRouteActive('/reels') }"
+                    >
+                        <span>Reels</span>
+                        <div class="bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs px-2 py-0.5 rounded-full font-bold">
+                            HOT
+                        </div>
+                    </RouterLink>
+                    <RouterLink
                         to="/categories"
                         class="transition-colors hover:text-foreground/80 text-foreground/60"
                         :class="{ 'text-foreground': isRouteActive('/categories') }"

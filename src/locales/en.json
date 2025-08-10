@@ -1817,6 +1817,13 @@
       "emailPlaceholder": "Your email address",
       "subscribe": "Subscribe",
       "deliveryPersonAlt": "Delivery person"
+    },
+    "reels": {
+      "title": "Trending Videos",
+      "viewAll": "View All",
+      "noReels": "No videos available at the moment",
+      "showMore": "Show More",
+      "showLess": "Show Less"
     }
   },
   "order": {

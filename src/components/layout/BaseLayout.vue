@@ -77,10 +77,13 @@
         <!-- Footer -->
         <AppFooter ref="footerRef" />
 
+        <!-- Bottom Navigation (Mobile) -->
+        <BottomNavigation />
+
         <!-- Sidebar Toggle Button (Mobile) -->
         <button
             @click="toggleSidebar"
-            class="fixed bottom-[50px] left-4 z-50 lg:hidden inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg h-12 w-12 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            class="fixed bottom-[120px] left-4 z-50 lg:hidden inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg h-12 w-12 transition-transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
             :class="{
                 'translate-x-64': sidebarOpen,
             }"
@@ -138,6 +141,7 @@ import { generateBreadcrumbs } from '@/router/utils'
 import AppHeader from './AppHeader.vue'
 import AppSidebar from './AppSidebar.vue'
 import AppFooter from './AppFooter.vue'
+import BottomNavigation from './BottomNavigation.vue'
 import { Button } from '@/components/ui/button'
 import { ChevronRight, Filter, ArrowUp, Loader2 } from 'lucide-vue-next'
 

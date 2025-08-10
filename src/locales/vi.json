@@ -2073,6 +2073,13 @@
       "emailPlaceholder": "Địa chỉ email của bạn",
       "subscribe": "Đăng ký",
       "deliveryPersonAlt": "Nhân viên giao hàng"
+    },
+    "reels": {
+      "title": "Video Thịnh Hành",
+      "viewAll": "Xem Tất Cả",
+      "noReels": "Hiện tại chưa có video nào",
+      "showMore": "Xem Thêm",
+      "showLess": "Thu Gọn"
     }
   },
   "order": {
