@@ -8,6 +8,7 @@ import type { Product, Category, PromoSection } from '@/types/home'
 // Components
 import HeroBanner from '@/components/home/HeroBanner.vue'
 import ProductSection from '@/components/home/ProductSection.vue'
+import ReelsSection from '@/components/home/ReelsSection.vue'
 import DealCard from '@/components/home/DealCard.vue'
 import CategoryCard from '@/components/home/CategoryCard.vue'
 import PromoCard from '@/components/home/PromoCard.vue'
@@ -17,7 +18,7 @@ import { Input } from '@/components/ui/input'
 const { t } = useAppI18n()
 
 // Use home data composable
-const { popularProducts, newProducts, dealsOfDay, categories, promoSections, loading, errors } =
+const { popularProducts, newProducts, dealsOfDay, categories, promoSections, loading } =
     useHomeData()
 
 // Use cart composable
@@ -98,6 +99,9 @@ const handlePromoClick = (promo: PromoSection) => {
                 @add-to-cart="handleAddToCart"
                 @tab-change="handleTabChange"
             />
+
+            <!-- Reels Section -->
+            <ReelsSection />
 
             <!-- New Products -->
             <ProductSection
