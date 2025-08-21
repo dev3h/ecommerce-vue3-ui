@@ -462,6 +462,6 @@ const handleRegister = async () => {
 }
 
 const handleSocialLogin = async (provider: 'google' | 'facebook') => {
-    showInfo(t('auth.comingSoon'), t('auth.socialLoginNotImplemented'))
+    showInfo(t('auth.comingSoon'), t('auth.socialLoginNotImplemented') || provider)
 }
 </script>

@@ -115,7 +115,7 @@ const searchSuggestions = computed(() => {
             { label: t('admin.sidebar.customers'), path: '/admin/customers' },
         ]
     }
-    
+
     return [
         { label: t('navigation.home'), path: '/' },
         { label: t('navigation.products'), path: '/products' },

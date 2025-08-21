@@ -128,7 +128,7 @@ import { Button } from '@/components/ui/button'
 
 import Badge from '@/components/ui/badge/Badge.vue'
 import DataTable from '@/components/ui/DataTable.vue'
-import { Package, Clock, CheckCircle, DollarSign, RefreshCw, Eye, User } from 'lucide-vue-next'
+import { Package, Clock, CheckCircle, DollarSign, Eye, User } from 'lucide-vue-next'
 
 const router = useRouter()
 const { t } = useAppI18n()
@@ -137,13 +137,10 @@ const { t } = useAppI18n()
 const {
     orders,
     loading,
-    error,
     stats,
     loadOrders,
     loadStats,
     applyFilters: applyOrderFilters,
-    resetFilters: resetOrderFilters,
-    hasOrders,
     totalOrders,
     pendingCount,
     deliveredCount,
@@ -292,15 +289,6 @@ const columns = [
     }),
 ]
 
-// Debounced search
-let searchTimeout: ReturnType<typeof setTimeout>
-const debouncedSearch = () => {
-    if (searchTimeout) clearTimeout(searchTimeout)
-    searchTimeout = setTimeout(() => {
-        // Search is handled by computed filteredOrders
-    }, 300)
-}
-
 // Methods
 const applyFilters = async (additionalFilters = {}) => {
     await applyOrderFilters({
@@ -308,12 +296,6 @@ const applyFilters = async (additionalFilters = {}) => {
         search: searchQuery.value,
         ...additionalFilters,
     })
-}
-
-const resetFilters = async () => {
-    searchQuery.value = ''
-    statusFilter.value = 'all'
-    await resetOrderFilters()
 }
 
 const viewOrder = (orderId: string) => {

@@ -1520,7 +1520,7 @@
     "permissions": {
       "modules": {
         "products": "Products",
-        "categories": "Categories", 
+        "categories": "Categories",
         "orders": "Orders",
         "customers": "Customers",
         "coupons": "Coupons",
@@ -1532,7 +1532,7 @@
       "actions": {
         "create": "Create",
         "read": "View",
-        "update": "Edit", 
+        "update": "Edit",
         "delete": "Delete",
         "manage": "Manage"
       },
@@ -1544,14 +1544,14 @@
         "manage": "Manage Products"
       },
       "categories": {
-        "create": "Create Categories", 
+        "create": "Create Categories",
         "read": "View Categories",
         "update": "Edit Categories",
         "delete": "Delete Categories"
       },
       "orders": {
         "create": "Create Orders",
-        "read": "View Orders", 
+        "read": "View Orders",
         "update": "Edit Orders",
         "delete": "Delete Orders",
         "manage": "Manage Orders"
@@ -1559,7 +1559,7 @@
       "customers": {
         "create": "Create Customers",
         "read": "View Customers",
-        "update": "Edit Customers", 
+        "update": "Edit Customers",
         "delete": "Delete Customers"
       },
       "coupons": {
@@ -1576,7 +1576,7 @@
       },
       "roles": {
         "create": "Create Roles",
-        "read": "View Roles", 
+        "read": "View Roles",
         "update": "Edit Roles",
         "delete": "Delete Roles"
       },

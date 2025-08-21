@@ -450,18 +450,6 @@ const handleIconChange = () => {
     errors.value.icon = validateIcon(form.value.icon)
 }
 
-const handleOpenChange = (open: boolean) => {
-    // Don't allow closing dialog while submitting
-    if (!open && isSubmitting.value) {
-        return
-    }
-
-    if (!open) {
-        emit('close')
-        emit('update:open', false)
-    }
-}
-
 const handleCancel = () => {
     // Don't allow closing while submitting
     if (isSubmitting.value) {

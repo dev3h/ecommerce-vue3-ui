@@ -48,12 +48,12 @@ const isActive = computed(() => {
 
 const isEmoji = computed(() => {
     // Simple emoji detection - if the icon is not a known Lucide icon name
-    // @ts-ignore
+    // @ts-expect-error Dynamic icon import
     return !LucideIcons[props.icon] && props.icon.length <= 4
 })
 
 const iconComponent = computed(() => {
-    // @ts-ignore - Dynamic icon import
+    // @ts-expect-error - Dynamic icon import
     return LucideIcons[props.icon] || LucideIcons.Circle
 })
 </script>

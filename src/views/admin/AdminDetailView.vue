@@ -2,10 +2,7 @@
     <div class="container mx-auto p-6 space-y-6">
         <!-- Breadcrumb -->
         <div class="flex items-center gap-2 text-sm text-muted-foreground">
-            <router-link 
-                to="/admin/admins" 
-                class="hover:text-foreground"
-            >
+            <router-link to="/admin/admins" class="hover:text-foreground">
                 {{ t('admin.adminsManagement.title') }}
             </router-link>
             <ChevronRight class="h-4 w-4" />
@@ -35,7 +32,9 @@
             <!-- Header -->
             <div class="flex flex-col lg:flex-row gap-4 justify-between">
                 <div class="flex items-center gap-4">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
+                    <div
+                        class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center"
+                    >
                         <component :is="getRoleIcon(admin.role)" class="h-8 w-8 text-primary" />
                     </div>
                     <div>
@@ -52,17 +51,11 @@
                     </div>
                 </div>
                 <div class="flex gap-2">
-                    <Button 
-                        @click="openEditDialog"
-                        :disabled="loading"
-                    >
+                    <Button @click="openEditDialog" :disabled="loading">
                         <Edit class="mr-2 h-4 w-4" />
                         {{ t('admin.adminsManagement.actions.edit') }}
                     </Button>
-                    <Button 
-                        variant="outline" 
-                        @click="router.push('/admin/admins')"
-                    >
+                    <Button variant="outline" @click="router.push('/admin/admins')">
                         {{ t('admin.adminsManagement.detail.backToList') }}
                     </Button>
                 </div>
@@ -129,9 +122,10 @@
                                 {{ t('admin.adminsManagement.detail.lastLogin') }}
                             </Label>
                             <p class="mt-1">
-                                {{ admin.last_login 
-                                    ? formatDate(admin.last_login) 
-                                    : t('admin.adminsManagement.detail.neverLoggedIn') 
+                                {{
+                                    admin.last_login
+                                        ? formatDate(admin.last_login)
+                                        : t('admin.adminsManagement.detail.neverLoggedIn')
                                 }}
                             </p>
                         </div>
@@ -161,8 +155,8 @@
                 </CardHeader>
                 <CardContent>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div 
-                            v-for="permission in rolePermissions" 
+                        <div
+                            v-for="permission in rolePermissions"
                             :key="permission"
                             class="flex items-center gap-2 p-2 rounded-md bg-muted/50"
                         >
@@ -201,15 +195,7 @@ import Badge from '@/components/ui/badge/Badge.vue'
 import AdminFormDialog from '@/components/admin/admins/AdminFormDialog.vue'
 
 // Icons
-import { 
-    User, 
-    Edit, 
-    Clock, 
-    Shield, 
-    ChevronRight, 
-    AlertCircle,
-    Check
-} from 'lucide-vue-next'
+import { User, Edit, Clock, Shield, ChevronRight, AlertCircle, Check } from 'lucide-vue-next'
 
 // Router
 const route = useRoute()
@@ -236,20 +222,16 @@ const rolePermissionsMap = {
         'Manage all orders',
         'Manage all customers',
         'View all reports',
-        'System configuration'
+        'System configuration',
     ],
     manager: [
         'Manage products',
         'Manage categories',
         'Manage orders',
         'View customers',
-        'View reports'
+        'View reports',
     ],
-    staff: [
-        'View products',
-        'Process orders',
-        'View customers'
-    ]
+    staff: ['View products', 'Process orders', 'View customers'],
 }
 
 const rolePermissions = computed(() => {
@@ -264,7 +246,7 @@ const formatDate = (dateString: string) => {
         month: 'long',
         day: 'numeric',
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
     })
 }
 
@@ -303,7 +285,7 @@ const loadAdminData = async () => {
 
     try {
         error.value = null
-        
+
         // If admins are not loaded yet, load them first
         if (admins.value.length === 0) {
             await loadAdmins()

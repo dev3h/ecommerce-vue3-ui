@@ -2,7 +2,9 @@
     <AdminBaseLayout>
         <div v-if="loading" class="flex items-center justify-center h-64">
             <div class="flex items-center gap-2">
-                <div class="h-6 w-6 animate-spin rounded-full border-2 border-current border-t-transparent"></div>
+                <div
+                    class="h-6 w-6 animate-spin rounded-full border-2 border-current border-t-transparent"
+                ></div>
                 <span>{{ t('common.loading') }}</span>
             </div>
         </div>
@@ -39,15 +41,23 @@
                 </CardHeader>
                 <CardContent class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.form.name') }}</Label>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.form.name')
+                        }}</Label>
                         <p class="mt-1">{{ coupon.name }}</p>
                     </div>
                     <div>
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.form.status') }}</Label>
-                        <p class="mt-1">{{ t(`admin.couponsManagement.status.${coupon.status}`) }}</p>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.form.status')
+                        }}</Label>
+                        <p class="mt-1">
+                            {{ t(`admin.couponsManagement.status.${coupon.status}`) }}
+                        </p>
                     </div>
                     <div class="md:col-span-2">
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.form.description') }}</Label>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.form.description')
+                        }}</Label>
                         <p class="mt-1">{{ coupon.description }}</p>
                     </div>
                 </CardContent>
@@ -60,14 +70,23 @@
                 </CardHeader>
                 <CardContent class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.form.discountType') }}</Label>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.form.discountType')
+                        }}</Label>
                         <div class="mt-1 flex items-center gap-2">
-                            <component :is="coupon.discount_type === 'percentage' ? Percent : DollarSign" class="h-4 w-4" />
-                            <span>{{ t(`admin.couponsManagement.discountType.${coupon.discount_type}`) }}</span>
+                            <component
+                                :is="coupon.discount_type === 'percentage' ? Percent : DollarSign"
+                                class="h-4 w-4"
+                            />
+                            <span>{{
+                                t(`admin.couponsManagement.discountType.${coupon.discount_type}`)
+                            }}</span>
                         </div>
                     </div>
                     <div>
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.form.discountValue') }}</Label>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.form.discountValue')
+                        }}</Label>
                         <p class="mt-1 font-medium">{{ formatDiscountValue(coupon) }}</p>
                     </div>
                 </CardContent>
@@ -80,19 +99,27 @@
                 </CardHeader>
                 <CardContent class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.detail.usageCount') }}</Label>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.detail.usageCount')
+                        }}</Label>
                         <div class="mt-1 flex items-center gap-2">
                             <Users class="h-4 w-4 text-muted-foreground" />
                             <span class="font-medium">{{ coupon.usage_count }}</span>
                         </div>
                     </div>
                     <div v-if="coupon.has_limit && coupon.usage_limit">
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.form.usageLimit') }}</Label>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.form.usageLimit')
+                        }}</Label>
                         <p class="mt-1 font-medium">{{ coupon.usage_limit }}</p>
                     </div>
                     <div v-if="coupon.has_limit && coupon.usage_limit">
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.detail.remainingUses') }}</Label>
-                        <p class="mt-1 font-medium">{{ coupon.usage_limit - coupon.usage_count }}</p>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.detail.remainingUses')
+                        }}</Label>
+                        <p class="mt-1 font-medium">
+                            {{ coupon.usage_limit - coupon.usage_count }}
+                        </p>
                     </div>
                 </CardContent>
             </Card>
@@ -104,14 +131,18 @@
                 </CardHeader>
                 <CardContent class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.form.startDate') }}</Label>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.form.startDate')
+                        }}</Label>
                         <div class="mt-1 flex items-center gap-2">
                             <Calendar class="h-4 w-4 text-muted-foreground" />
                             <span>{{ formatDate(coupon.start_date) }}</span>
                         </div>
                     </div>
                     <div>
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.form.endDate') }}</Label>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.form.endDate')
+                        }}</Label>
                         <div class="mt-1 flex items-center gap-2">
                             <Calendar class="h-4 w-4 text-muted-foreground" />
                             <span>{{ formatDate(coupon.end_date) }}</span>
@@ -127,11 +158,15 @@
                 </CardHeader>
                 <CardContent class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.detail.createdAt') }}</Label>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.detail.createdAt')
+                        }}</Label>
                         <p class="mt-1">{{ formatDateTime(coupon.created_at) }}</p>
                     </div>
                     <div>
-                        <Label class="text-sm font-medium">{{ t('admin.couponsManagement.detail.lastUpdated') }}</Label>
+                        <Label class="text-sm font-medium">{{
+                            t('admin.couponsManagement.detail.lastUpdated')
+                        }}</Label>
                         <p class="mt-1">{{ formatDateTime(coupon.updated_at) }}</p>
                     </div>
                 </CardContent>
@@ -140,7 +175,9 @@
 
         <div v-else class="flex items-center justify-center h-64">
             <div class="text-center">
-                <h2 class="text-2xl font-bold">{{ t('admin.couponsManagement.messages.couponNotFound') }}</h2>
+                <h2 class="text-2xl font-bold">
+                    {{ t('admin.couponsManagement.messages.couponNotFound') }}
+                </h2>
                 <Button class="mt-4" @click="router.push('/admin/coupons')">
                     {{ t('common.back') }}
                 </Button>
@@ -164,12 +201,7 @@ import AdminBaseLayout from '@/components/admin/AdminBaseLayout.vue'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import Badge from '@/components/ui/badge/Badge.vue'
-import {
-    Card,
-    CardContent,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 // Icons
 import { Edit, Calendar, Users, Percent, DollarSign } from 'lucide-vue-next'
@@ -229,7 +261,10 @@ onMounted(async () => {
         loading.value = true
         coupon.value = await getCoupon(couponId.value)
     } catch (err) {
-        errorToast(t('common.error'), t('admin.couponsManagement.messages.couponNotFound'))
+        errorToast(
+            t('common.error'),
+            t('admin.couponsManagement.messages.couponNotFound') || err.message,
+        )
         router.push('/admin/coupons')
     } finally {
         loading.value = false

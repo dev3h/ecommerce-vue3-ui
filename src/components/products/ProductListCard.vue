@@ -166,7 +166,7 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const emit = defineEmits<{
+defineEmits<{
     'add-to-cart': [product: ProductListItem]
 }>()
 

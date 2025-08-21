@@ -826,7 +826,7 @@ const checkAndOptimizeStorage = async () => {
 }
 
 const handleStorageError = async (errorMessage: string) => {
-    toast.error(t('admin.productsManagement.messages.storageQuotaExceeded'))
+    toast.error(errorMessage || t('admin.productsManagement.messages.storageQuotaExceeded'))
 
     // Suggest storage optimization
     try {

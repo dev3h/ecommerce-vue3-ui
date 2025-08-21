@@ -23,19 +23,31 @@
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="text-center p-3 bg-primary/5 rounded-lg">
                         <div class="text-2xl font-bold text-primary">{{ totalRoles }}</div>
-                        <div class="text-sm text-muted-foreground">{{ t('admin.rolesManagement.stats.total') }}</div>
+                        <div class="text-sm text-muted-foreground">
+                            {{ t('admin.rolesManagement.stats.total') }}
+                        </div>
                     </div>
                     <div class="text-center p-3 bg-blue-50 rounded-lg">
                         <div class="text-2xl font-bold text-blue-600">{{ systemRoles.length }}</div>
-                        <div class="text-sm text-muted-foreground">{{ t('admin.rolesManagement.stats.system') }}</div>
+                        <div class="text-sm text-muted-foreground">
+                            {{ t('admin.rolesManagement.stats.system') }}
+                        </div>
                     </div>
                     <div class="text-center p-3 bg-green-50 rounded-lg">
-                        <div class="text-2xl font-bold text-green-600">{{ customRoles.length }}</div>
-                        <div class="text-sm text-muted-foreground">{{ t('admin.rolesManagement.stats.custom') }}</div>
+                        <div class="text-2xl font-bold text-green-600">
+                            {{ customRoles.length }}
+                        </div>
+                        <div class="text-sm text-muted-foreground">
+                            {{ t('admin.rolesManagement.stats.custom') }}
+                        </div>
                     </div>
                     <div class="text-center p-3 bg-orange-50 rounded-lg">
-                        <div class="text-2xl font-bold text-orange-600">{{ averagePermissions }}</div>
-                        <div class="text-sm text-muted-foreground">{{ t('admin.rolesManagement.stats.avgPermissions') }}</div>
+                        <div class="text-2xl font-bold text-orange-600">
+                            {{ averagePermissions }}
+                        </div>
+                        <div class="text-sm text-muted-foreground">
+                            {{ t('admin.rolesManagement.stats.avgPermissions') }}
+                        </div>
                     </div>
                 </div>
 
@@ -75,7 +87,10 @@
                 </div>
 
                 <!-- Bulk Actions -->
-                <div v-if="selectedRoles.length > 0" class="flex items-center gap-2 p-2 bg-muted rounded-md">
+                <div
+                    v-if="selectedRoles.length > 0"
+                    class="flex items-center gap-2 p-2 bg-muted rounded-md"
+                >
                     <span class="text-sm text-muted-foreground">
                         {{ selectedRoles.length }} {{ t('admin.rolesManagement.bulk.selected') }}
                     </span>
@@ -174,15 +189,15 @@ import { Plus, Edit, Trash2, Shield, Users, Search, AlertTriangle, Eye } from 'l
 // Composables
 const router = useRouter()
 const { success, error: errorToast } = useToast()
-const { 
-    roles, 
-    loading, 
-    loadRoles, 
-    deleteRole, 
+const {
+    roles,
+    loading,
+    loadRoles,
+    deleteRole,
     bulkDeleteRoles,
     systemRoles,
     customRoles,
-    totalRoles
+    totalRoles,
 } = useRoles()
 const { getPermissionName } = usePermissions()
 const { t } = useAppI18n()
@@ -217,9 +232,10 @@ const filteredRoles = computed(() => {
     // Filter by search query
     if (searchQuery.value) {
         const query = searchQuery.value.toLowerCase()
-        filtered = filtered.filter((role) => 
-            role.name.toLowerCase().includes(query) ||
-            role.description.toLowerCase().includes(query)
+        filtered = filtered.filter(
+            (role) =>
+                role.name.toLowerCase().includes(query) ||
+                role.description.toLowerCase().includes(query),
         )
     }
 
@@ -229,13 +245,15 @@ const filteredRoles = computed(() => {
 // Computed properties
 const deleteConfirmationText = computed(() => {
     return roleToDelete.value
-        ? t('admin.rolesManagement.messages.deleteConfirmMessage', { name: roleToDelete.value.name })
+        ? t('admin.rolesManagement.messages.deleteConfirmMessage', {
+              name: roleToDelete.value.name,
+          })
         : t('common.confirmMessage')
 })
 
 const hasSystemRoleSelected = computed(() => {
-    return selectedRoles.value.some(id => {
-        const role = roles.value.find(r => r.id === id)
+    return selectedRoles.value.some((id) => {
+        const role = roles.value.find((r) => r.id === id)
         return role?.is_system
     })
 })
@@ -253,9 +271,12 @@ const columnHelper = createColumnHelper<Role>()
 const formatPermissions = (permissions: string[]) => {
     if (permissions.length === 0) return 'No permissions'
     if (permissions.length <= 3) {
-        return permissions.map(p => getPermissionName(p)).join(', ')
+        return permissions.map((p) => getPermissionName(p)).join(', ')
     }
-    return `${permissions.slice(0, 2).map(p => getPermissionName(p)).join(', ')} +${permissions.length - 2} more`
+    return `${permissions
+        .slice(0, 2)
+        .map((p) => getPermissionName(p))
+        .join(', ')} +${permissions.length - 2} more`
 }
 
 const getRoleIcon = (role: Role) => {
@@ -283,8 +304,12 @@ const columns = [
                 h(RoleIcon, { class: 'h-4 w-4 text-muted-foreground' }),
                 h('div', { class: 'flex flex-col' }, [
                     h('span', { class: 'font-medium' }, role.name),
-                    h('span', { class: 'text-sm text-muted-foreground truncate max-w-[200px]' }, role.description),
-                ])
+                    h(
+                        'span',
+                        { class: 'text-sm text-muted-foreground truncate max-w-[200px]' },
+                        role.description,
+                    ),
+                ]),
             ])
         },
         size: 250,
@@ -296,11 +321,18 @@ const columns = [
             const role = row.original
             return h('div', { class: 'space-y-1' }, [
                 h('div', { class: 'flex items-center gap-2' }, [
-                    h(Badge, { variant: 'outline' }, () => `${role.permissions.length} ${t('admin.rolesManagement.table.permissionsCount')}`),
+                    h(
+                        Badge,
+                        { variant: 'outline' },
+                        () =>
+                            `${role.permissions.length} ${t('admin.rolesManagement.table.permissionsCount')}`,
+                    ),
                 ]),
-                h('div', { class: 'text-xs text-muted-foreground truncate max-w-[200px]' }, 
-                    formatPermissions(role.permissions)
-                )
+                h(
+                    'div',
+                    { class: 'text-xs text-muted-foreground truncate max-w-[200px]' },
+                    formatPermissions(role.permissions),
+                ),
             ])
         },
         size: 250,
@@ -311,7 +343,7 @@ const columns = [
         cell: ({ row }) => {
             const role = row.original
             const variant = getRoleBadgeVariant(role)
-            const label = role.is_system 
+            const label = role.is_system
                 ? t('admin.rolesManagement.types.system')
                 : t('admin.rolesManagement.types.custom')
             return h(Badge, { variant }, () => label)
@@ -323,7 +355,11 @@ const columns = [
         header: () => t('admin.rolesManagement.table.createdAt'),
         cell: ({ row }) => {
             const role = row.original
-            return h('span', { class: 'text-sm' }, new Date(role.created_at).toLocaleDateString('vi-VN'))
+            return h(
+                'span',
+                { class: 'text-sm' },
+                new Date(role.created_at).toLocaleDateString('vi-VN'),
+            )
         },
         size: 120,
     }),
@@ -365,7 +401,9 @@ const columns = [
                         'aria-label': t('admin.rolesManagement.actions.delete'),
                         onClick: () => openDeleteDialog(role),
                         disabled: role.is_system,
-                        class: role.is_system ? 'opacity-50 cursor-not-allowed' : 'text-destructive hover:text-destructive',
+                        class: role.is_system
+                            ? 'opacity-50 cursor-not-allowed'
+                            : 'text-destructive hover:text-destructive',
                     },
                     {
                         default: () => [h(Trash2, { class: 'h-4 w-4' })],

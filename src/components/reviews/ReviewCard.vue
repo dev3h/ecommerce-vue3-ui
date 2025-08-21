@@ -129,7 +129,7 @@ const props = withDefaults(defineProps<Props>(), {
     canMarkHelpful: true,
 })
 
-const emit = defineEmits<{
+defineEmits<{
     edit: [review: ProductReview]
     'mark-helpful': [reviewId: string]
 }>()

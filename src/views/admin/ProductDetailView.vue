@@ -214,7 +214,9 @@
                             <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
                                 {{ t('admin.productsManagement.form.shortDescription') }}
                             </span>
-                            <p class="text-gray-800 dark:text-gray-200">{{ product.short_description }}</p>
+                            <p class="text-gray-800 dark:text-gray-200">
+                                {{ product.short_description }}
+                            </p>
                         </div>
                         <div>
                             <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -276,9 +278,10 @@
                             >
                                 <td class="py-2">{{ variant.name || '-' }}</td>
                                 <td class="py-2">
-                                    <code class="text-xs bg-gray-100 dark:text-black  px-1 rounded">{{
-                                        variant.sku || '-'
-                                    }}</code>
+                                    <code
+                                        class="text-xs bg-gray-100 dark:text-black px-1 rounded"
+                                        >{{ variant.sku || '-' }}</code
+                                    >
                                 </td>
                                 <td class="py-2">
                                     {{ formatPrice(variant.price, product.currency) }}

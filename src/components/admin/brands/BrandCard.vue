@@ -47,7 +47,6 @@ import { ref } from 'vue'
 import type { Brand } from '@/services/brand.service'
 import { Button } from '@/components/ui/button'
 import { Pencil, Trash2 } from 'lucide-vue-next'
-import { useToast } from '@/composables/useToast'
 import { useAppI18n } from '@/composables/useI18n'
 import ConfirmDialog from '@/components/admin/ConfirmDialog.vue'
 
@@ -56,7 +55,6 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['edit', 'delete'])
-const toast = useToast()
 const { t } = useAppI18n()
 const showDeleteDialog = ref(false)
 const isDeleting = ref(false)

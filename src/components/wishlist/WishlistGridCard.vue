@@ -131,7 +131,7 @@ interface Props {
 
 defineProps<Props>()
 
-const emit = defineEmits<{
+defineEmits<{
     'add-to-cart': [item: WishlistItem]
     'remove-from-wishlist': [item: WishlistItem]
 }>()

@@ -1,172 +1,172 @@
 [
-    {
-        "id": "reel_1",
-        "title": "Unboxing iPhone 15 Pro Max - Màu Titan Tự Nhiên",
-        "description": "Cùng mình unboxing chiếc iPhone 15 Pro Max màu Titan Tự Nhiên mới nhất! Camera 48MP, chip A17 Pro siêu mạnh 🔥 #iPhone15ProMax #Unboxing #Tech",
-        "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-        "thumbnail_url": "https://picsum.photos/400/600?random=1",
-        "duration": 45,
-        "creator": {
-            "id": "creator_1",
-            "name": "TechReviewer",
-            "avatar": "https://picsum.photos/100/100?random=1",
-            "is_verified": true
-        },
-        "product": {
-            "id": "1",
-            "name": "iPhone 15 Pro Max 256GB - Titan Tự Nhiên",
-            "price": 29990000,
-            "original_price": 31990000,
-            "discount_percentage": 6,
-            "image": "https://picsum.photos/200/200?random=1",
-            "rating": 4.8,
-            "sold_count": 1523
-        },
-        "stats": {
-            "views": 125430,
-            "likes": 8967,
-            "comments": 324,
-            "shares": 156
-        },
-        "is_liked": false,
-        "tags": ["iPhone15ProMax", "Unboxing", "Tech", "Apple"],
-        "created_at": "2024-08-06T10:30:00Z",
-        "updated_at": "2024-08-06T10:30:00Z"
+  {
+    "id": "reel_1",
+    "title": "Unboxing iPhone 15 Pro Max - Màu Titan Tự Nhiên",
+    "description": "Cùng mình unboxing chiếc iPhone 15 Pro Max màu Titan Tự Nhiên mới nhất! Camera 48MP, chip A17 Pro siêu mạnh 🔥 #iPhone15ProMax #Unboxing #Tech",
+    "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    "thumbnail_url": "https://picsum.photos/400/600?random=1",
+    "duration": 45,
+    "creator": {
+      "id": "creator_1",
+      "name": "TechReviewer",
+      "avatar": "https://picsum.photos/100/100?random=1",
+      "is_verified": true
     },
-    {
-        "id": "reel_2",
-        "title": "Outfit của tôi hôm nay 💫",
-        "description": "Set đồ vintage siêu xinh! Áo len oversize + chân váy midi = combo hoàn hảo cho mùa thu 🍂 #OOTD #Fashion #Vintage",
-        "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-        "thumbnail_url": "https://picsum.photos/400/600?random=2",
-        "duration": 30,
-        "creator": {
-            "id": "creator_2",
-            "name": "Fashionista",
-            "avatar": "https://picsum.photos/100/100?random=2",
-            "is_verified": true
-        },
-        "product": {
-            "id": "2",
-            "name": "Áo Len Oversize Vintage Hàn Quốc",
-            "price": 299000,
-            "original_price": 399000,
-            "discount_percentage": 25,
-            "image": "https://picsum.photos/200/200?random=2",
-            "rating": 4.6,
-            "sold_count": 2847
-        },
-        "stats": {
-            "views": 89543,
-            "likes": 12453,
-            "comments": 567,
-            "shares": 234
-        },
-        "is_liked": true,
-        "tags": ["OOTD", "Fashion", "Vintage", "Korean"],
-        "created_at": "2024-08-05T15:20:00Z",
-        "updated_at": "2024-08-05T15:20:00Z"
+    "product": {
+      "id": "1",
+      "name": "iPhone 15 Pro Max 256GB - Titan Tự Nhiên",
+      "price": 29990000,
+      "original_price": 31990000,
+      "discount_percentage": 6,
+      "image": "https://picsum.photos/200/200?random=1",
+      "rating": 4.8,
+      "sold_count": 1523
     },
-    {
-        "id": "reel_3",
-        "title": "Skincare routine buổi tối 🌙",
-        "description": "Routine skincare tối của mình với những sản phẩm yêu thích. Da khỏe đẹp mỗi ngày! ✨ #Skincare #Beauty #NightRoutine",
-        "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-        "thumbnail_url": "https://picsum.photos/400/600?random=3",
-        "duration": 60,
-        "creator": {
-            "id": "creator_3",
-            "name": "BeautyGuru",
-            "avatar": "https://picsum.photos/100/100?random=3",
-            "is_verified": false
-        },
-        "product": {
-            "id": "3",
-            "name": "Serum Vitamin C - The Ordinary",
-            "price": 450000,
-            "original_price": 550000,
-            "discount_percentage": 18,
-            "image": "https://picsum.photos/200/200?random=3",
-            "rating": 4.9,
-            "sold_count": 3456
-        },
-        "stats": {
-            "views": 67892,
-            "likes": 5643,
-            "comments": 189,
-            "shares": 98
-        },
-        "is_liked": false,
-        "tags": ["Skincare", "Beauty", "NightRoutine", "TheOrdinary"],
-        "created_at": "2024-08-04T20:45:00Z",
-        "updated_at": "2024-08-04T20:45:00Z"
+    "stats": {
+      "views": 125430,
+      "likes": 8967,
+      "comments": 324,
+      "shares": 156
     },
-    {
-        "id": "reel_4",
-        "title": "Gaming Setup 2024 🎮",
-        "description": "Setup gaming mới của mình! RTX 4090 + AMD Ryzen 9 7950X = Monster PC 💪 #Gaming #PC #Setup",
-        "video_url": "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-        "thumbnail_url": "https://picsum.photos/400/600?random=4",
-        "duration": 90,
-        "creator": {
-            "id": "creator_4",
-            "name": "GamerPro",
-            "avatar": "https://picsum.photos/100/100?random=4",
-            "is_verified": true
-        },
-        "product": {
-            "id": "4",
-            "name": "RTX 4090 Gaming Graphics Card",
-            "price": 45990000,
-            "original_price": 49990000,
-            "discount_percentage": 8,
-            "image": "https://picsum.photos/200/200?random=4",
-            "rating": 4.9,
-            "sold_count": 456
-        },
-        "stats": {
-            "views": 234567,
-            "likes": 18934,
-            "comments": 892,
-            "shares": 445
-        },
-        "is_liked": false,
-        "tags": ["Gaming", "PC", "Setup", "RTX4090"],
-        "created_at": "2024-08-03T14:30:00Z",
-        "updated_at": "2024-08-03T14:30:00Z"
+    "is_liked": false,
+    "tags": ["iPhone15ProMax", "Unboxing", "Tech", "Apple"],
+    "created_at": "2024-08-06T10:30:00Z",
+    "updated_at": "2024-08-06T10:30:00Z"
+  },
+  {
+    "id": "reel_2",
+    "title": "Outfit của tôi hôm nay 💫",
+    "description": "Set đồ vintage siêu xinh! Áo len oversize + chân váy midi = combo hoàn hảo cho mùa thu 🍂 #OOTD #Fashion #Vintage",
+    "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    "thumbnail_url": "https://picsum.photos/400/600?random=2",
+    "duration": 30,
+    "creator": {
+      "id": "creator_2",
+      "name": "Fashionista",
+      "avatar": "https://picsum.photos/100/100?random=2",
+      "is_verified": true
     },
-    {
-        "id": "reel_5",
-        "title": "Cách làm bánh tiramisu 🍰",
-        "description": "Hướng dẫn làm bánh tiramisu chuẩn Ý tại nhà! Ngon như ngoài tiệm ✨ #Cooking #Tiramisu #Recipe",
-        "video_url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-        "thumbnail_url": "https://picsum.photos/400/600?random=5",
-        "duration": 120,
-        "creator": {
-            "id": "creator_5",
-            "name": "ChefMia",
-            "avatar": "https://picsum.photos/100/100?random=5",
-            "is_verified": true
-        },
-        "product": {
-            "id": "5",
-            "name": "Mascarpone Cheese 250g",
-            "price": 89000,
-            "original_price": 99000,
-            "discount_percentage": 10,
-            "image": "https://picsum.photos/200/200?random=5",
-            "rating": 4.7,
-            "sold_count": 1234
-        },
-        "stats": {
-            "views": 156789,
-            "likes": 12567,
-            "comments": 678,
-            "shares": 234
-        },
-        "is_liked": true,
-        "tags": ["Cooking", "Tiramisu", "Recipe", "Italian"],
-        "created_at": "2024-08-02T16:15:00Z",
-        "updated_at": "2024-08-02T16:15:00Z"
-    }
+    "product": {
+      "id": "2",
+      "name": "Áo Len Oversize Vintage Hàn Quốc",
+      "price": 299000,
+      "original_price": 399000,
+      "discount_percentage": 25,
+      "image": "https://picsum.photos/200/200?random=2",
+      "rating": 4.6,
+      "sold_count": 2847
+    },
+    "stats": {
+      "views": 89543,
+      "likes": 12453,
+      "comments": 567,
+      "shares": 234
+    },
+    "is_liked": true,
+    "tags": ["OOTD", "Fashion", "Vintage", "Korean"],
+    "created_at": "2024-08-05T15:20:00Z",
+    "updated_at": "2024-08-05T15:20:00Z"
+  },
+  {
+    "id": "reel_3",
+    "title": "Skincare routine buổi tối 🌙",
+    "description": "Routine skincare tối của mình với những sản phẩm yêu thích. Da khỏe đẹp mỗi ngày! ✨ #Skincare #Beauty #NightRoutine",
+    "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    "thumbnail_url": "https://picsum.photos/400/600?random=3",
+    "duration": 60,
+    "creator": {
+      "id": "creator_3",
+      "name": "BeautyGuru",
+      "avatar": "https://picsum.photos/100/100?random=3",
+      "is_verified": false
+    },
+    "product": {
+      "id": "3",
+      "name": "Serum Vitamin C - The Ordinary",
+      "price": 450000,
+      "original_price": 550000,
+      "discount_percentage": 18,
+      "image": "https://picsum.photos/200/200?random=3",
+      "rating": 4.9,
+      "sold_count": 3456
+    },
+    "stats": {
+      "views": 67892,
+      "likes": 5643,
+      "comments": 189,
+      "shares": 98
+    },
+    "is_liked": false,
+    "tags": ["Skincare", "Beauty", "NightRoutine", "TheOrdinary"],
+    "created_at": "2024-08-04T20:45:00Z",
+    "updated_at": "2024-08-04T20:45:00Z"
+  },
+  {
+    "id": "reel_4",
+    "title": "Gaming Setup 2024 🎮",
+    "description": "Setup gaming mới của mình! RTX 4090 + AMD Ryzen 9 7950X = Monster PC 💪 #Gaming #PC #Setup",
+    "video_url": "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+    "thumbnail_url": "https://picsum.photos/400/600?random=4",
+    "duration": 90,
+    "creator": {
+      "id": "creator_4",
+      "name": "GamerPro",
+      "avatar": "https://picsum.photos/100/100?random=4",
+      "is_verified": true
+    },
+    "product": {
+      "id": "4",
+      "name": "RTX 4090 Gaming Graphics Card",
+      "price": 45990000,
+      "original_price": 49990000,
+      "discount_percentage": 8,
+      "image": "https://picsum.photos/200/200?random=4",
+      "rating": 4.9,
+      "sold_count": 456
+    },
+    "stats": {
+      "views": 234567,
+      "likes": 18934,
+      "comments": 892,
+      "shares": 445
+    },
+    "is_liked": false,
+    "tags": ["Gaming", "PC", "Setup", "RTX4090"],
+    "created_at": "2024-08-03T14:30:00Z",
+    "updated_at": "2024-08-03T14:30:00Z"
+  },
+  {
+    "id": "reel_5",
+    "title": "Cách làm bánh tiramisu 🍰",
+    "description": "Hướng dẫn làm bánh tiramisu chuẩn Ý tại nhà! Ngon như ngoài tiệm ✨ #Cooking #Tiramisu #Recipe",
+    "video_url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+    "thumbnail_url": "https://picsum.photos/400/600?random=5",
+    "duration": 120,
+    "creator": {
+      "id": "creator_5",
+      "name": "ChefMia",
+      "avatar": "https://picsum.photos/100/100?random=5",
+      "is_verified": true
+    },
+    "product": {
+      "id": "5",
+      "name": "Mascarpone Cheese 250g",
+      "price": 89000,
+      "original_price": 99000,
+      "discount_percentage": 10,
+      "image": "https://picsum.photos/200/200?random=5",
+      "rating": 4.7,
+      "sold_count": 1234
+    },
+    "stats": {
+      "views": 156789,
+      "likes": 12567,
+      "comments": 678,
+      "shares": 234
+    },
+    "is_liked": true,
+    "tags": ["Cooking", "Tiramisu", "Recipe", "Italian"],
+    "created_at": "2024-08-02T16:15:00Z",
+    "updated_at": "2024-08-02T16:15:00Z"
+  }
 ]

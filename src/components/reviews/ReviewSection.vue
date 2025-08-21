@@ -22,7 +22,10 @@
         </div>
 
         <!-- User Review Status -->
-        <div v-if="!canUserReview && authStore.isAuthenticated && userReview" class="p-4 bg-muted rounded-lg">
+        <div
+            v-if="!canUserReview && authStore.isAuthenticated && userReview"
+            class="p-4 bg-muted rounded-lg"
+        >
             <div class="space-y-4">
                 <div class="flex items-center gap-2">
                     <CheckCircle class="w-5 h-5 text-green-500" />
@@ -93,8 +96,6 @@ const {
     userReview,
     loading,
     canUserReview,
-    hasUserReviewed,
-    canEditReview,
     totalReviews,
     averageRating,
     markHelpful,
@@ -125,7 +126,7 @@ onMounted(() => {
     initialize()
 
     // Listen for review events to refresh when reviews are added from order page
-    const handleReviewEvent = (data: { productId: string; review: any }) => {
+    const handleReviewEvent = (data: { productId: string; review }) => {
         if (data.productId === props.productId) {
             refresh()
         }

@@ -13,7 +13,9 @@
 
         <div v-if="loading" class="flex items-center justify-center py-12">
             <div class="text-center space-y-2">
-                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+                <div
+                    class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"
+                ></div>
                 <p class="text-muted-foreground">{{ t('common.loading') }}</p>
             </div>
         </div>
@@ -43,7 +45,11 @@
                         </div>
                     </div>
                     <Badge :variant="getRoleBadgeVariant(role)">
-                        {{ role.is_system ? t('admin.rolesManagement.types.system') : t('admin.rolesManagement.types.custom') }}
+                        {{
+                            role.is_system
+                                ? t('admin.rolesManagement.types.system')
+                                : t('admin.rolesManagement.types.custom')
+                        }}
                     </Badge>
                 </div>
 
@@ -52,9 +58,9 @@
                         <Edit class="mr-2 h-4 w-4" />
                         {{ t('admin.rolesManagement.actions.edit') }}
                     </Button>
-                    
-                    <Button 
-                        @click="handleDelete" 
+
+                    <Button
+                        @click="handleDelete"
                         variant="destructive"
                         :disabled="role.is_system"
                         v-if="!role.is_system"
@@ -88,7 +94,11 @@
                             </Label>
                             <div class="flex items-center space-x-2">
                                 <Badge :variant="getRoleBadgeVariant(role)">
-                                    {{ role.is_system ? t('admin.rolesManagement.types.system') : t('admin.rolesManagement.types.custom') }}
+                                    {{
+                                        role.is_system
+                                            ? t('admin.rolesManagement.types.system')
+                                            : t('admin.rolesManagement.types.custom')
+                                    }}
                                 </Badge>
                             </div>
                         </div>
@@ -126,20 +136,24 @@
                             {{ t('admin.rolesManagement.detail.permissions') }}
                         </div>
                         <Badge variant="outline">
-                            {{ role.permissions.length }} {{ t('admin.rolesManagement.table.permissionsCount') }}
+                            {{ role.permissions.length }}
+                            {{ t('admin.rolesManagement.table.permissionsCount') }}
                         </Badge>
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <div v-if="role.permissions.length === 0" class="text-center py-8 text-muted-foreground">
+                    <div
+                        v-if="role.permissions.length === 0"
+                        class="text-center py-8 text-muted-foreground"
+                    >
                         <Shield class="h-12 w-12 mx-auto mb-2 opacity-50" />
                         <p>{{ t('admin.rolesManagement.detail.noPermissions') }}</p>
                     </div>
 
                     <div v-else class="space-y-6">
                         <!-- Permissions by Module -->
-                        <div 
-                            v-for="[module, modulePermissions] in groupedPermissions" 
+                        <div
+                            v-for="[module, modulePermissions] in groupedPermissions"
                             :key="module"
                             class="space-y-3"
                         >
@@ -153,8 +167,8 @@
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                                <div 
-                                    v-for="permission in modulePermissions" 
+                                <div
+                                    v-for="permission in modulePermissions"
                                     :key="permission.id"
                                     class="flex items-center space-x-3 p-3 rounded-lg border bg-card"
                                 >
@@ -233,28 +247,14 @@ import ConfirmDialog from '@/components/ui/ConfirmDialog.vue'
 import RoleFormDialog from '@/components/admin/roles/RoleFormDialog.vue'
 
 // Icons
-import { 
-    Edit, 
-    Trash2, 
-    Shield, 
-    Users, 
-    Info, 
-    AlertCircle, 
-    AlertTriangle
-} from 'lucide-vue-next'
+import { Edit, Trash2, Shield, Users, Info, AlertCircle, AlertTriangle } from 'lucide-vue-next'
 
 // Composables
 const route = useRoute()
 const router = useRouter()
 const { success, error: errorToast } = useToast()
 const { t } = useAppI18n()
-const { 
-    roles,
-    loading, 
-    error,
-    deleteRole, 
-    loadRoles 
-} = useRoles()
+const { roles, loading, error, deleteRole, loadRoles } = useRoles()
 const { permissions } = usePermissions()
 
 // Component state
@@ -272,20 +272,18 @@ const deleteConfirmationText = computed(() => {
 
 const groupedPermissions = computed(() => {
     if (!role.value || !permissions.value) return new Map()
-    
-    const rolePermissions = permissions.value.filter(p => 
-        role.value!.permissions.includes(p.id)
-    )
-    
+
+    const rolePermissions = permissions.value.filter((p) => role.value!.permissions.includes(p.id))
+
     const grouped = new Map<string, Permission[]>()
-    
+
     for (const permission of rolePermissions) {
         if (!grouped.has(permission.module)) {
             grouped.set(permission.module, [])
         }
         grouped.get(permission.module)!.push(permission)
     }
-    
+
     return grouped
 })
 
@@ -304,14 +302,14 @@ const formatDate = (dateString: string) => {
         month: 'long',
         day: 'numeric',
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
     })
 }
 
 // Load role data
 const loadRole = async () => {
     const roleId = route.params.id as string
-    
+
     if (!roleId) {
         router.push('/admin/roles')
         return
@@ -319,14 +317,14 @@ const loadRole = async () => {
 
     try {
         await loadRoles()
-        const foundRole = roles.value.find(r => r.id === roleId)
-        
+        const foundRole = roles.value.find((r) => r.id === roleId)
+
         if (!foundRole) {
             errorToast(t('common.error'), t('admin.rolesManagement.messages.roleNotFound'))
             router.push('/admin/roles')
             return
         }
-        
+
         role.value = foundRole
     } catch (err) {
         console.error('Error loading role:', err)

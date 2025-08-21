@@ -60,44 +60,9 @@ const showTooltip = ref(false)
 const itemElement = ref<HTMLElement>()
 const tooltipPosition = ref({ top: 0, left: 0 })
 
-// Helper computed for badge validation
-const badgeCount = computed(() => {
-    if (!props.badge) return 0
-    return typeof props.badge === 'number' ? props.badge : parseInt(props.badge) || 0
-})
-
 const iconComponent = computed(() => {
-    // @ts-ignore - Dynamic icon import
+    // @ts-expect-error - Dynamic icon import
     return LucideIcons[props.icon] || LucideIcons.Circle
-})
-
-const badgeClasses = computed(() => {
-    const baseClasses = 'font-medium'
-
-    if (props.active) {
-        switch (props.variant) {
-            case 'secondary':
-                return `${baseClasses} bg-secondary-foreground text-secondary`
-            case 'destructive':
-                return `${baseClasses} bg-destructive-foreground text-destructive`
-            case 'accent':
-                return `${baseClasses} bg-accent-foreground text-accent`
-            default:
-                return `${baseClasses} bg-primary-foreground text-primary`
-        }
-    }
-
-    // Badge colors for non-active state
-    switch (props.variant) {
-        case 'secondary':
-            return `${baseClasses} bg-secondary text-secondary-foreground`
-        case 'destructive':
-            return `${baseClasses} bg-destructive text-destructive-foreground`
-        case 'accent':
-            return `${baseClasses} bg-accent text-accent-foreground`
-        default:
-            return `${baseClasses} bg-primary text-primary-foreground`
-    }
 })
 
 // Tooltip positioning

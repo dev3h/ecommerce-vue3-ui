@@ -191,7 +191,6 @@ import { useCategories } from '@/composables/useCategories'
 import { useBrands } from '@/composables/useBrands'
 import { useAppI18n } from '@/composables/useI18n'
 import type { Product } from '@/services/product.service'
-import { productService } from '@/services/product.service'
 import { createColumnHelper } from '@tanstack/vue-table'
 
 // UI Components

@@ -1,5 +1,5 @@
 <template>
-    <div 
+    <div
         ref="playerContainer"
         class="relative w-full h-full bg-black overflow-hidden"
         @click="togglePlay"
@@ -27,22 +27,18 @@
         />
 
         <!-- Loading Overlay -->
-        <div 
-            v-if="isLoading"
-            class="absolute inset-0 flex items-center justify-center bg-black/50"
-        >
-            <div class="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin" />
+        <div v-if="isLoading" class="absolute inset-0 flex items-center justify-center bg-black/50">
+            <div
+                class="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin"
+            />
         </div>
 
         <!-- Error Overlay -->
-        <div 
-            v-if="hasError"
-            class="absolute inset-0 flex items-center justify-center bg-black/50"
-        >
+        <div v-if="hasError" class="absolute inset-0 flex items-center justify-center bg-black/50">
             <div class="text-white text-center">
                 <ExclamationCircleIcon class="w-16 h-16 mx-auto mb-4 text-white/50" />
                 <p class="text-lg">Video không thể phát</p>
-                <button 
+                <button
                     @click="retryVideo"
                     class="mt-2 px-4 py-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors"
                 >
@@ -52,43 +48,41 @@
         </div>
 
         <!-- Play/Pause Overlay -->
-        <div 
+        <div
             v-if="showPlayButton || !isPlaying"
             class="absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-200"
             :class="{ 'opacity-0': isPlaying && !showPlayButton }"
         >
             <div class="bg-black/60 rounded-full p-6 backdrop-blur-sm">
-                <PlayIcon 
-                    v-if="!isPlaying" 
-                    class="w-16 h-16 text-white fill-white" 
-                />
-                <PauseIcon 
-                    v-else 
-                    class="w-16 h-16 text-white fill-white" 
-                />
+                <PlayIcon v-if="!isPlaying" class="w-16 h-16 text-white fill-white" />
+                <PauseIcon v-else class="w-16 h-16 text-white fill-white" />
             </div>
         </div>
 
         <!-- Timeline Progress Bar (YouTube style) -->
         <div class="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
-            <div 
+            <div
                 class="h-full bg-red-500 transition-all duration-100 ease-linear relative"
                 :style="{ width: `${progress}%` }"
             >
                 <!-- Progress dot -->
-                <div class="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-red-500 rounded-full shadow-lg"></div>
+                <div
+                    class="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-red-500 rounded-full shadow-lg"
+                ></div>
             </div>
         </div>
 
         <!-- Time Display và Mute Button -->
         <div class="absolute bottom-16 left-4 flex items-center space-x-3 z-20">
             <!-- Time Display -->
-            <div class="text-white text-sm font-medium bg-black/70 px-2 py-1 rounded-lg backdrop-blur-sm">
+            <div
+                class="text-white text-sm font-medium bg-black/70 px-2 py-1 rounded-lg backdrop-blur-sm"
+            >
                 {{ formatTime(currentTime) }} / {{ formatTime(duration) }}
             </div>
-            
+
             <!-- Mute/Unmute Button -->
-                        <!-- Mute/Unmute Button -->
+            <!-- Mute/Unmute Button -->
             <button
                 @click.stop="toggleMute"
                 class="p-2 bg-black/60 rounded-full text-white hover:bg-black/80 transition-all backdrop-blur-sm"
@@ -104,7 +98,6 @@
 
         <!-- Controls Overlay -->
         <div class="absolute top-4 right-4 flex flex-col space-y-2">
-
             <!-- Shopping Cart (nếu có sản phẩm) -->
             <button
                 v-if="reel.product"
@@ -114,7 +107,9 @@
             >
                 <ShoppingCartIcon class="w-5 h-5" />
                 <!-- Badge số lượng -->
-                <div class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                <div
+                    class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center"
+                >
                     {{ reel.product.sold_count > 999 ? '999+' : reel.product.sold_count }}
                 </div>
             </button>
@@ -123,8 +118,8 @@
         <!-- Creator Info Overlay -->
         <div class="absolute bottom-20 left-4 right-20">
             <div class="flex items-center space-x-3 mb-2">
-                <img 
-                    :src="reel.creator.avatar" 
+                <img
+                    :src="reel.creator.avatar"
                     :alt="reel.creator.name"
                     class="w-10 h-10 rounded-full border-2 border-white"
                 />
@@ -133,7 +128,10 @@
                         <span class="text-white font-semibold text-sm">
                             {{ reel.creator.name }}
                         </span>
-                        <CheckBadgeIcon v-if="reel.creator.is_verified" class="w-4 h-4 text-blue-500" />
+                        <CheckBadgeIcon
+                            v-if="reel.creator.is_verified"
+                            class="w-4 h-4 text-blue-500"
+                        />
                     </div>
                     <div class="text-white/80 text-xs">
                         {{ formatNumber(reel.stats.views) }} lượt xem
@@ -146,9 +144,12 @@
                 <h3 class="font-semibold text-sm mb-1 line-clamp-2">
                     {{ reel.title }}
                 </h3>
-                <p 
+                <p
                     class="text-sm text-white/90 leading-tight"
-                    :class="{ 'line-clamp-2': !showFullDescription, 'max-h-32 overflow-y-auto': showFullDescription }"
+                    :class="{
+                        'line-clamp-2': !showFullDescription,
+                        'max-h-32 overflow-y-auto': showFullDescription,
+                    }"
                 >
                     {{ reel.description }}
                 </p>
@@ -174,19 +175,19 @@
         </div>
 
         <!-- Product Popup Modal -->
-        <div 
-            v-if="showProductPopup && reel.product" 
+        <div
+            v-if="showProductPopup && reel.product"
             class="absolute inset-0 bg-black/50 flex items-end justify-center z-50 backdrop-blur-sm"
             @click="showProductPopup = false"
         >
-            <div 
+            <div
                 class="bg-white rounded-t-2xl p-6 w-full max-w-md mx-4 mb-0 transform transition-all duration-300"
                 @click.stop
             >
                 <!-- Product Info -->
                 <div class="flex items-start space-x-4">
-                    <img 
-                        :src="reel.product.image" 
+                    <img
+                        :src="reel.product.image"
                         :alt="reel.product.name"
                         class="w-20 h-20 rounded-lg object-cover"
                     />
@@ -198,8 +199,13 @@
                             <span class="text-red-500 font-bold text-xl">
                                 {{ formatPrice(reel.product.price) }}₫
                             </span>
-                            <span v-if="reel.product.original_price && reel.product.original_price > reel.product.price" 
-                                  class="text-gray-400 line-through text-sm">
+                            <span
+                                v-if="
+                                    reel.product.original_price &&
+                                    reel.product.original_price > reel.product.price
+                                "
+                                class="text-gray-400 line-through text-sm"
+                            >
                                 {{ formatPrice(reel.product.original_price) }}₫
                             </span>
                         </div>
@@ -216,14 +222,14 @@
 
                 <!-- Actions -->
                 <div class="flex space-x-3 mt-6">
-                    <button 
+                    <button
                         @click="addToCart"
                         class="flex-1 bg-orange-500 text-white py-3 px-4 rounded-lg font-medium hover:bg-orange-600 transition-colors flex items-center justify-center space-x-2"
                     >
                         <ShoppingCartIcon class="w-5 h-5" />
                         <span>Thêm vào giỏ hàng</span>
                     </button>
-                    <button 
+                    <button
                         @click="buyNow"
                         class="flex-1 bg-red-500 text-white py-3 px-4 rounded-lg font-medium hover:bg-red-600 transition-colors"
                     >
@@ -232,7 +238,7 @@
                 </div>
 
                 <!-- Close Button -->
-                <button 
+                <button
                     @click="showProductPopup = false"
                     class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 transition-colors"
                 >
@@ -245,7 +251,7 @@
 
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from 'vue'
-import { 
+import {
     PlayIcon,
     PauseIcon,
     SpeakerWaveIcon,
@@ -254,7 +260,7 @@ import {
     ExclamationCircleIcon,
     XMarkIcon,
     CheckBadgeIcon,
-    StarIcon
+    StarIcon,
 } from '@heroicons/vue/24/outline'
 import type { Reel } from '@/types/reels'
 import { getRandomFallbackVideo } from '@/utils/videoUtils'
@@ -266,7 +272,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    autoPlay: false
+    autoPlay: false,
 })
 
 const emit = defineEmits<{
@@ -355,7 +361,7 @@ const onVideoError = (e: Event) => {
     isLoading.value = false
     hasError.value = true
     console.error('Video error:', e, currentVideoUrl.value)
-    
+
     // Try fallback video
     if (!hasError.value || currentVideoUrl.value === props.reel.video_url) {
         console.log('Trying fallback video...')
@@ -394,13 +400,16 @@ const onPause = () => {
     emit('pause')
 }
 
-watch(() => props.isActive, (active) => {
-    if (active && videoElement.value) {
-        videoElement.value.play()
-    } else if (!active && videoElement.value) {
-        videoElement.value.pause()
-    }
-})
+watch(
+    () => props.isActive,
+    (active) => {
+        if (active && videoElement.value) {
+            videoElement.value.play()
+        } else if (!active && videoElement.value) {
+            videoElement.value.pause()
+        }
+    },
+)
 
 onMounted(() => {
     if (videoElement.value) {
@@ -428,7 +437,7 @@ onUnmounted(() => {
     background: white;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .slider::-moz-range-thumb {
@@ -438,11 +447,11 @@ onUnmounted(() => {
     border-radius: 50%;
     cursor: pointer;
     border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .slider {
-    background: rgba(255,255,255,0.3);
+    background: rgba(255, 255, 255, 0.3);
     outline: none;
 }
 

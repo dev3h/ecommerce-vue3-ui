@@ -150,9 +150,9 @@ interface Props {
     activeTab: string
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 
-const emit = defineEmits<{
+defineEmits<{
     'tab-change': [tab: string]
     'load-more-reviews': []
 }>()

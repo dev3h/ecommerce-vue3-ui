@@ -65,9 +65,13 @@
                 </div>
 
                 <!-- Bulk Actions -->
-                <div v-if="selectedCoupons.length > 0" class="flex items-center gap-2 p-2 bg-muted rounded-md">
+                <div
+                    v-if="selectedCoupons.length > 0"
+                    class="flex items-center gap-2 p-2 bg-muted rounded-md"
+                >
                     <span class="text-sm text-muted-foreground">
-                        {{ selectedCoupons.length }} {{ t('admin.couponsManagement.bulk.selected') }}
+                        {{ selectedCoupons.length }}
+                        {{ t('admin.couponsManagement.bulk.selected') }}
                     </span>
                     <div class="flex gap-1">
                         <Button
@@ -271,8 +275,12 @@ const columns = [
                 h(discountIcon, { class: 'h-4 w-4 text-muted-foreground' }),
                 h('div', { class: 'flex flex-col' }, [
                     h('span', { class: 'font-medium' }, coupon.name),
-                    h('span', { class: 'text-sm text-muted-foreground truncate max-w-[200px]' }, coupon.description),
-                ])
+                    h(
+                        'span',
+                        { class: 'text-sm text-muted-foreground truncate max-w-[200px]' },
+                        coupon.description,
+                    ),
+                ]),
             ])
         },
     }),
@@ -280,7 +288,11 @@ const columns = [
         header: () => t('admin.couponsManagement.table.type'),
         cell: ({ row }) => {
             const type = row.getValue('discount_type') as string
-            return h('span', { class: 'text-sm' }, t(`admin.couponsManagement.discountType.${type}`))
+            return h(
+                'span',
+                { class: 'text-sm' },
+                t(`admin.couponsManagement.discountType.${type}`),
+            )
         },
         size: 120,
     }),
@@ -298,8 +310,8 @@ const columns = [
         header: () => t('admin.couponsManagement.table.usage'),
         cell: ({ row }) => {
             const coupon = row.original
-            const isLimitReached = coupon.has_limit && coupon.usage_limit && 
-                coupon.usage_count >= coupon.usage_limit
+            const isLimitReached =
+                coupon.has_limit && coupon.usage_limit && coupon.usage_count >= coupon.usage_limit
             return h('div', { class: 'flex items-center gap-2' }, [
                 h(
                     'span',
@@ -310,7 +322,7 @@ const columns = [
                     },
                     formatUsage(coupon),
                 ),
-                h(Users, { class: 'h-4 w-4 text-muted-foreground' })
+                h(Users, { class: 'h-4 w-4 text-muted-foreground' }),
             ])
         },
         size: 120,
@@ -322,7 +334,11 @@ const columns = [
             const coupon = row.original
             return h('div', { class: 'flex items-center gap-2' }, [
                 h(Calendar, { class: 'h-4 w-4 text-muted-foreground' }),
-                h('span', { class: 'text-sm' }, formatDateRange(coupon.start_date, coupon.end_date))
+                h(
+                    'span',
+                    { class: 'text-sm' },
+                    formatDateRange(coupon.start_date, coupon.end_date),
+                ),
             ])
         },
         size: 180,

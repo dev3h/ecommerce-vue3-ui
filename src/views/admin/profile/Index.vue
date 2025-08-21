@@ -34,79 +34,51 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+// import { ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
-import { useToast } from '@/composables/useToast'
-import { useAdminAuthStore } from '@/stores/adminAuth'
+// import { useAdminAuthStore } from '@/stores/adminAuth'
 import AdminProfileView from './AdminProfileView.vue'
 import AdminSecurityView from './AdminSecurityView.vue'
 
 const { t } = useAppI18n()
-const { success, error } = useToast()
-const { user, updateProfile } = useAdminAuthStore()
+// const { user } = useAdminAuthStore()
 const route = useRoute()
-const form = ref({
-    firstName: user?.firstName,
-    lastName: user?.lastName,
-    email: user?.email,
-    phone: user?.phone,
-})
-const errors = reactive({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-})
-const loading = ref(false)
+// const form = ref({
+//     firstName: user?.firstName,
+//     lastName: user?.lastName,
+//     email: user?.email,
+//     phone: user?.phone,
+// })
+// const errors = reactive({
+//     firstName: '',
+//     lastName: '',
+//     email: '',
+//     phone: '',
+// })
 
-function validate() {
-    let valid = true
-    errors.firstName = ''
-    errors.lastName = ''
-    errors.email = ''
-    errors.phone = ''
-    if (!form.value.firstName) {
-        errors.firstName = t('admin.profilePage.firstNameRequired')
-        valid = false
-    }
-    if (!form.value.lastName) {
-        errors.lastName = t('admin.profilePage.lastNameRequired')
-        valid = false
-    }
-    if (!form.value.email) {
-        errors.email = t('admin.profilePage.emailRequired')
-        valid = false
-    } else if (!/^\S+@\S+\.\S+$/.test(form.value.email)) {
-        errors.email = t('admin.profilePage.emailInvalid')
-        valid = false
-    }
-    // Optional: validate phone if needed
-    return valid
-}
-
-const onSubmit = async () => {
-    if (!validate()) {
-        error(t('admin.profilePage.formInvalid'))
-        return
-    }
-    loading.value = true
-    try {
-        await new Promise((resolve) => setTimeout(resolve, 1000))
-
-        const data = {
-            firstName: form.value.firstName,
-            lastName: form.value.lastName,
-            email: form.value.email,
-            phone: form.value.phone,
-        }
-        await updateProfile(data)
-
-        success(t('admin.profilePage.updateSuccess'))
-    } catch (e) {
-        error(t('admin.profilePage.updateError'))
-    } finally {
-        loading.value = false
-    }
-}
+// function validate() {
+//     let valid = true
+//     errors.firstName = ''
+//     errors.lastName = ''
+//     errors.email = ''
+//     errors.phone = ''
+//     if (!form.value.firstName) {
+//         errors.firstName = t('admin.profilePage.firstNameRequired')
+//         valid = false
+//     }
+//     if (!form.value.lastName) {
+//         errors.lastName = t('admin.profilePage.lastNameRequired')
+//         valid = false
+//     }
+//     if (!form.value.email) {
+//         errors.email = t('admin.profilePage.emailRequired')
+//         valid = false
+//     } else if (!/^\S+@\S+\.\S+$/.test(form.value.email)) {
+//         errors.email = t('admin.profilePage.emailInvalid')
+//         valid = false
+//     }
+//     // Optional: validate phone if needed
+//     return valid
+// }
 </script>

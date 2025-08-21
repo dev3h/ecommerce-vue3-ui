@@ -86,7 +86,7 @@ interface Props {
 
 defineProps<Props>()
 
-const emit = defineEmits<{
+defineEmits<{
     'add-to-cart': [product: Product]
     'tab-change': [tabKey: string]
 }>()

@@ -9,14 +9,14 @@ class AdminService {
 
     async getAdmins(): Promise<Admin[]> {
         // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 300))
+        await new Promise((resolve) => setTimeout(resolve, 300))
         return [...this.admins.value]
     }
 
     async getAdmin(id: string): Promise<Admin> {
-        await new Promise(resolve => setTimeout(resolve, 200))
-        
-        const admin = this.admins.value.find(a => a.id === id)
+        await new Promise((resolve) => setTimeout(resolve, 200))
+
+        const admin = this.admins.value.find((a) => a.id === id)
         if (!admin) {
             throw new Error('Admin not found')
         }
@@ -24,22 +24,22 @@ class AdminService {
     }
 
     async createAdmin(data: AdminFormData): Promise<Admin> {
-        await new Promise(resolve => setTimeout(resolve, 500))
-        
+        await new Promise((resolve) => setTimeout(resolve, 500))
+
         // Check if email already exists
-        const existingAdmin = this.admins.value.find(a => 
-            a.email.toLowerCase() === data.email.toLowerCase()
+        const existingAdmin = this.admins.value.find(
+            (a) => a.email.toLowerCase() === data.email.toLowerCase(),
         )
         if (existingAdmin) {
             throw new Error('Email already exists')
         }
 
         const newAdmin: Admin = {
-            id: (Math.max(...this.admins.value.map(a => parseInt(a.id))) + 1).toString(),
+            id: (Math.max(...this.admins.value.map((a) => parseInt(a.id))) + 1).toString(),
             ...data,
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
-            last_login: undefined
+            last_login: undefined,
         }
 
         this.admins.value.unshift(newAdmin)
@@ -47,17 +47,17 @@ class AdminService {
     }
 
     async updateAdmin(id: string, data: Partial<AdminFormData>): Promise<Admin> {
-        await new Promise(resolve => setTimeout(resolve, 500))
-        
-        const index = this.admins.value.findIndex(a => a.id === id)
+        await new Promise((resolve) => setTimeout(resolve, 500))
+
+        const index = this.admins.value.findIndex((a) => a.id === id)
         if (index === -1) {
             throw new Error('Admin not found')
         }
 
         // Check if email is being changed and if it conflicts with existing
         if (data.email) {
-            const existingAdmin = this.admins.value.find(a => 
-                a.id !== id && a.email.toLowerCase() === data.email!.toLowerCase()
+            const existingAdmin = this.admins.value.find(
+                (a) => a.id !== id && a.email.toLowerCase() === data.email!.toLowerCase(),
             )
             if (existingAdmin) {
                 throw new Error('Email already exists')
@@ -67,7 +67,7 @@ class AdminService {
         const updatedAdmin: Admin = {
             ...this.admins.value[index],
             ...data,
-            updated_at: new Date().toISOString()
+            updated_at: new Date().toISOString(),
         }
 
         this.admins.value[index] = updatedAdmin
@@ -75,9 +75,9 @@ class AdminService {
     }
 
     async deleteAdmin(id: string): Promise<void> {
-        await new Promise(resolve => setTimeout(resolve, 300))
-        
-        const index = this.admins.value.findIndex(a => a.id === id)
+        await new Promise((resolve) => setTimeout(resolve, 300))
+
+        const index = this.admins.value.findIndex((a) => a.id === id)
         if (index === -1) {
             throw new Error('Admin not found')
         }
@@ -85,7 +85,7 @@ class AdminService {
         // Prevent deleting the last super admin
         const admin = this.admins.value[index]
         if (admin.role === 'super_admin') {
-            const superAdminCount = this.admins.value.filter(a => a.role === 'super_admin').length
+            const superAdminCount = this.admins.value.filter((a) => a.role === 'super_admin').length
             if (superAdminCount <= 1) {
                 throw new Error('Cannot delete the last super administrator')
             }
@@ -94,17 +94,20 @@ class AdminService {
         this.admins.value.splice(index, 1)
     }
 
-    async bulkUpdateStatus(ids: string[], status: 'active' | 'banned' | 'temporarily_locked'): Promise<void> {
-        await new Promise(resolve => setTimeout(resolve, 500))
-        
+    async bulkUpdateStatus(
+        ids: string[],
+        status: 'active' | 'banned' | 'temporarily_locked',
+    ): Promise<void> {
+        await new Promise((resolve) => setTimeout(resolve, 500))
+
         for (const id of ids) {
-            const index = this.admins.value.findIndex(a => a.id === id)
+            const index = this.admins.value.findIndex((a) => a.id === id)
             if (index !== -1) {
                 // Prevent banning/locking all super admins
                 const admin = this.admins.value[index]
                 if (admin.role === 'super_admin' && status !== 'active') {
-                    const activeSuperAdminCount = this.admins.value.filter(a => 
-                        a.role === 'super_admin' && a.status === 'active' && a.id !== id
+                    const activeSuperAdminCount = this.admins.value.filter(
+                        (a) => a.role === 'super_admin' && a.status === 'active' && a.id !== id,
                     ).length
                     if (activeSuperAdminCount === 0) {
                         continue // Skip this admin to prevent locking all super admins
@@ -114,23 +117,23 @@ class AdminService {
                 this.admins.value[index] = {
                     ...this.admins.value[index],
                     status,
-                    updated_at: new Date().toISOString()
+                    updated_at: new Date().toISOString(),
                 }
             }
         }
     }
 
     async validateEmail(email: string, excludeId?: string): Promise<boolean> {
-        await new Promise(resolve => setTimeout(resolve, 200))
-        
-        const existingAdmin = this.admins.value.find(a => 
-            a.id !== excludeId && a.email.toLowerCase() === email.toLowerCase()
+        await new Promise((resolve) => setTimeout(resolve, 200))
+
+        const existingAdmin = this.admins.value.find(
+            (a) => a.id !== excludeId && a.email.toLowerCase() === email.toLowerCase(),
         )
         return !existingAdmin
     }
 
     async getRoles(): Promise<Role[]> {
-        await new Promise(resolve => setTimeout(resolve, 200))
+        await new Promise((resolve) => setTimeout(resolve, 200))
         return [...this.roles.value]
     }
 }
