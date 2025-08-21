@@ -90,7 +90,7 @@ export function useCoupons() {
                     coupons.value[index] = {
                         ...coupons.value[index],
                         status,
-                        updated_at: new Date().toISOString()
+                        updated_at: new Date().toISOString(),
                     }
                 }
             }

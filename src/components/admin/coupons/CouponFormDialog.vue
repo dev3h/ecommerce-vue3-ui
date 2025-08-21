@@ -21,8 +21,10 @@
             <form @submit.prevent="handleSubmit" class="space-y-6">
                 <!-- Basic Information -->
                 <div class="space-y-4">
-                    <h3 class="text-sm font-medium">{{ t('admin.couponsManagement.form.basicInfo') }}</h3>
-                    
+                    <h3 class="text-sm font-medium">
+                        {{ t('admin.couponsManagement.form.basicInfo') }}
+                    </h3>
+
                     <!-- Coupon Name -->
                     <div class="space-y-2">
                         <Label for="name" class="text-sm font-medium">
@@ -53,7 +55,9 @@
                             :class="{ 'border-destructive': errors.description }"
                             @blur="validateField('description')"
                         />
-                        <p v-if="errors.description" class="text-sm text-destructive">{{ errors.description }}</p>
+                        <p v-if="errors.description" class="text-sm text-destructive">
+                            {{ errors.description }}
+                        </p>
                     </div>
 
                     <!-- Usage Limit -->
@@ -64,7 +68,9 @@
                                 v-model:checked="form.has_limit"
                                 @update:checked="handleLimitChange"
                             />
-                            <Label for="has_limit" class="text-sm font-medium">{{ t('admin.couponsManagement.form.hasLimit') }}</Label>
+                            <Label for="has_limit" class="text-sm font-medium">{{
+                                t('admin.couponsManagement.form.hasLimit')
+                            }}</Label>
                         </div>
 
                         <div v-if="form.has_limit" class="space-y-2">
@@ -77,11 +83,15 @@
                                 v-model.number="form.usage_limit"
                                 type="number"
                                 min="1"
-                                :placeholder="t('admin.couponsManagement.form.usageLimitPlaceholder')"
+                                :placeholder="
+                                    t('admin.couponsManagement.form.usageLimitPlaceholder')
+                                "
                                 :class="{ 'border-destructive': errors.usage_limit }"
                                 @blur="validateField('usage_limit')"
                             />
-                            <p v-if="errors.usage_limit" class="text-sm text-destructive">{{ errors.usage_limit }}</p>
+                            <p v-if="errors.usage_limit" class="text-sm text-destructive">
+                                {{ errors.usage_limit }}
+                            </p>
                         </div>
                     </div>
 
@@ -92,38 +102,67 @@
                             <span class="text-destructive">*</span>
                         </Label>
                         <Select v-model="form.status">
-                            <SelectTrigger id="status" :class="{ 'border-destructive': errors.status }">
-                                <SelectValue :placeholder="t('admin.couponsManagement.form.selectStatus')" />
+                            <SelectTrigger
+                                id="status"
+                                :class="{ 'border-destructive': errors.status }"
+                            >
+                                <SelectValue
+                                    :placeholder="t('admin.couponsManagement.form.selectStatus')"
+                                />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="active">{{ t('admin.couponsManagement.status.active') }}</SelectItem>
-                                <SelectItem value="inactive">{{ t('admin.couponsManagement.status.inactive') }}</SelectItem>
+                                <SelectItem value="active">{{
+                                    t('admin.couponsManagement.status.active')
+                                }}</SelectItem>
+                                <SelectItem value="inactive">{{
+                                    t('admin.couponsManagement.status.inactive')
+                                }}</SelectItem>
                             </SelectContent>
                         </Select>
-                        <p v-if="errors.status" class="text-sm text-destructive">{{ errors.status }}</p>
+                        <p v-if="errors.status" class="text-sm text-destructive">
+                            {{ errors.status }}
+                        </p>
                     </div>
                 </div>
 
                 <!-- Discount Settings -->
                 <div class="space-y-4">
-                    <h3 class="text-sm font-medium">{{ t('admin.couponsManagement.form.discountSettings') }}</h3>
-                    
+                    <h3 class="text-sm font-medium">
+                        {{ t('admin.couponsManagement.form.discountSettings') }}
+                    </h3>
+
                     <!-- Discount Type -->
                     <div class="space-y-2">
                         <Label for="discount_type" class="text-sm font-medium">
                             {{ t('admin.couponsManagement.form.discountType') }}
                             <span class="text-destructive">*</span>
                         </Label>
-                        <Select v-model="form.discount_type" @update:model-value="handleDiscountTypeChange">
-                            <SelectTrigger id="discount_type" :class="{ 'border-destructive': errors.discount_type }">
-                                <SelectValue :placeholder="t('admin.couponsManagement.form.selectDiscountType')" />
+                        <Select
+                            v-model="form.discount_type"
+                            @update:model-value="handleDiscountTypeChange"
+                        >
+                            <SelectTrigger
+                                id="discount_type"
+                                :class="{ 'border-destructive': errors.discount_type }"
+                            >
+                                <SelectValue
+                                    :placeholder="
+                                        t('admin.couponsManagement.form.selectDiscountType')
+                                    "
+                                />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="fixed">{{ t('admin.couponsManagement.discountType.fixed') }}</SelectItem>
-                                <SelectItem value="percentage">{{ t('admin.couponsManagement.discountType.percentage') }}</SelectItem>
+                                <SelectItem value="fixed">{{
+                                    t('admin.couponsManagement.discountType.fixed')
+                                }}</SelectItem>
+                                <SelectItem value="percentage">{{
+                                    t('admin.couponsManagement.discountType.percentage')
+                                }}</SelectItem>
                             </SelectContent>
                         </Select>
-                        <p v-if="errors.discount_type" class="text-sm text-destructive">{{ errors.discount_type }}</p>
+                        <p v-if="errors.discount_type" class="text-sm text-destructive">
+                            {{ errors.discount_type }}
+                        </p>
                     </div>
 
                     <!-- Discount Value -->
@@ -140,20 +179,30 @@
                                 :min="form.discount_type === 'percentage' ? 1 : 1000"
                                 :max="form.discount_type === 'percentage' ? 100 : undefined"
                                 :step="form.discount_type === 'percentage' ? 1 : 1000"
-                                :placeholder="t('admin.couponsManagement.form.discountValuePlaceholder')"
-                                :class="{ 'border-destructive': errors.discount_value, 'pr-12': form.discount_type === 'percentage' }"
+                                :placeholder="
+                                    t('admin.couponsManagement.form.discountValuePlaceholder')
+                                "
+                                :class="{
+                                    'border-destructive': errors.discount_value,
+                                    'pr-12': form.discount_type === 'percentage',
+                                }"
                                 @blur="validateField('discount_value')"
                             />
-                            <div v-if="form.discount_type === 'percentage'" 
-                                 class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <div
+                                v-if="form.discount_type === 'percentage'"
+                                class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none"
+                            >
                                 <span class="text-muted-foreground text-sm">%</span>
                             </div>
                         </div>
-                        <p v-if="errors.discount_value" class="text-sm text-destructive">{{ errors.discount_value }}</p>
+                        <p v-if="errors.discount_value" class="text-sm text-destructive">
+                            {{ errors.discount_value }}
+                        </p>
                         <p class="text-xs text-muted-foreground">
-                            {{ form.discount_type === 'fixed' 
-                                ? t('admin.couponsManagement.form.fixedDiscountHint') 
-                                : t('admin.couponsManagement.form.percentageDiscountHint') 
+                            {{
+                                form.discount_type === 'fixed'
+                                    ? t('admin.couponsManagement.form.fixedDiscountHint')
+                                    : t('admin.couponsManagement.form.percentageDiscountHint')
                             }}
                         </p>
                     </div>
@@ -161,8 +210,10 @@
 
                 <!-- Validity Period -->
                 <div class="space-y-4">
-                    <h3 class="text-sm font-medium">{{ t('admin.couponsManagement.form.validityPeriod') }}</h3>
-                    
+                    <h3 class="text-sm font-medium">
+                        {{ t('admin.couponsManagement.form.validityPeriod') }}
+                    </h3>
+
                     <div class="grid grid-cols-2 gap-4">
                         <!-- Start Date -->
                         <div class="space-y-2">
@@ -177,7 +228,9 @@
                                 :class="{ 'border-destructive': errors.start_date }"
                                 @blur="validateField('start_date')"
                             />
-                            <p v-if="errors.start_date" class="text-sm text-destructive">{{ errors.start_date }}</p>
+                            <p v-if="errors.start_date" class="text-sm text-destructive">
+                                {{ errors.start_date }}
+                            </p>
                         </div>
 
                         <!-- End Date -->
@@ -193,7 +246,9 @@
                                 :class="{ 'border-destructive': errors.end_date }"
                                 @blur="validateField('end_date')"
                             />
-                            <p v-if="errors.end_date" class="text-sm text-destructive">{{ errors.end_date }}</p>
+                            <p v-if="errors.end_date" class="text-sm text-destructive">
+                                {{ errors.end_date }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -208,18 +263,24 @@
                     >
                         {{ t('common.cancel') }}
                     </Button>
-                    
-                    <Button
-                        type="submit"
-                        :disabled="loading || !isFormValid"
-                        class="min-w-[100px]"
-                    >
+
+                    <Button type="submit" :disabled="loading || !isFormValid" class="min-w-[100px]">
                         <div v-if="loading" class="flex items-center gap-2">
-                            <div class="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"></div>
-                            {{ coupon ? t('admin.couponsManagement.form.updating') : t('admin.couponsManagement.form.creating') }}
+                            <div
+                                class="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+                            ></div>
+                            {{
+                                coupon
+                                    ? t('admin.couponsManagement.form.updating')
+                                    : t('admin.couponsManagement.form.creating')
+                            }}
                         </div>
                         <span v-else>
-                            {{ coupon ? t('admin.couponsManagement.form.update') : t('admin.couponsManagement.form.create') }}
+                            {{
+                                coupon
+                                    ? t('admin.couponsManagement.form.update')
+                                    : t('admin.couponsManagement.form.create')
+                            }}
                         </span>
                     </Button>
                 </DialogFooter>
@@ -273,7 +334,7 @@ const props = withDefaults(defineProps<Props>(), {
 // Emits
 const emit = defineEmits<{
     'update:open': [value: boolean]
-    'saved': []
+    saved: []
 }>()
 
 // Composables
@@ -285,7 +346,7 @@ const { t } = useAppI18n()
 const loading = ref(false)
 const dialogOpen = computed({
     get: () => props.open,
-    set: (value) => emit('update:open', value)
+    set: (value) => emit('update:open', value),
 })
 
 // Form data
@@ -395,7 +456,7 @@ const validateField = (field: keyof typeof validationRules) => {
             default:
                 fieldValue = form[field] as string | number | undefined
         }
-        
+
         const error = (rule as (value: typeof fieldValue) => string)(fieldValue)
         if (error) {
             errors[field] = error
@@ -406,7 +467,7 @@ const validateField = (field: keyof typeof validationRules) => {
 }
 
 const validateForm = () => {
-    Object.keys(validationRules).forEach(field => {
+    Object.keys(validationRules).forEach((field) => {
         validateField(field as keyof typeof validationRules)
     })
     return Object.keys(errors).length === 0
@@ -414,13 +475,15 @@ const validateForm = () => {
 
 // Computed properties
 const isFormValid = computed(() => {
-    return Object.keys(errors).length === 0 && 
-           form.name && 
-           form.description && 
-           form.discount_value > 0 && 
-           form.start_date && 
-           form.end_date &&
-           form.status
+    return (
+        Object.keys(errors).length === 0 &&
+        form.name &&
+        form.description &&
+        form.discount_value > 0 &&
+        form.start_date &&
+        form.end_date &&
+        form.status
+    )
 })
 
 // Event handlers
@@ -441,14 +504,14 @@ const handleDiscountTypeChange = () => {
 
 const resetForm = () => {
     Object.assign(form, { ...defaultForm })
-    Object.keys(errors).forEach(key => delete errors[key])
-    
+    Object.keys(errors).forEach((key) => delete errors[key])
+
     // Set default dates for new coupon
     if (!props.coupon) {
         const today = new Date()
         const nextMonth = new Date(today)
         nextMonth.setMonth(today.getMonth() + 1)
-        
+
         form.start_date = today.toISOString().split('T')[0]
         form.end_date = nextMonth.toISOString().split('T')[0]
     }
@@ -484,12 +547,16 @@ const handleSubmit = async () => {
             await createCoupon(form)
             success(t('admin.couponsManagement.messages.createSuccess'), '')
         }
-        
+
         emit('saved')
         closeDialog()
     } catch (err) {
-        const message = err instanceof Error ? err.message : 
-            (props.coupon ? t('admin.couponsManagement.messages.updateError') : t('admin.couponsManagement.messages.createError'))
+        const message =
+            err instanceof Error
+                ? err.message
+                : props.coupon
+                  ? t('admin.couponsManagement.messages.updateError')
+                  : t('admin.couponsManagement.messages.createError')
         errorToast(t('common.error'), message)
     } finally {
         loading.value = false
@@ -497,40 +564,49 @@ const handleSubmit = async () => {
 }
 
 // Watch for prop changes
-watch(() => props.open, (newOpen) => {
-    if (newOpen) {
-        if (props.coupon) {
-            // Edit mode - populate form
-            Object.assign(form, {
-                name: props.coupon.name,
-                description: props.coupon.description,
-                has_limit: props.coupon.has_limit,
-                usage_limit: props.coupon.usage_limit,
-                discount_type: props.coupon.discount_type,
-                discount_value: props.coupon.discount_value,
-                start_date: props.coupon.start_date,
-                end_date: props.coupon.end_date,
-                status: props.coupon.status === 'expired' ? 'inactive' : props.coupon.status, // Don't allow editing to expired
-            })
-        } else {
-            // Create mode - reset form
-            resetForm()
+watch(
+    () => props.open,
+    (newOpen) => {
+        if (newOpen) {
+            if (props.coupon) {
+                // Edit mode - populate form
+                Object.assign(form, {
+                    name: props.coupon.name,
+                    description: props.coupon.description,
+                    has_limit: props.coupon.has_limit,
+                    usage_limit: props.coupon.usage_limit,
+                    discount_type: props.coupon.discount_type,
+                    discount_value: props.coupon.discount_value,
+                    start_date: props.coupon.start_date,
+                    end_date: props.coupon.end_date,
+                    status: props.coupon.status === 'expired' ? 'inactive' : props.coupon.status, // Don't allow editing to expired
+                })
+            } else {
+                // Create mode - reset form
+                resetForm()
+            }
+            // Clear errors
+            Object.keys(errors).forEach((key) => delete errors[key])
         }
-        // Clear errors
-        Object.keys(errors).forEach(key => delete errors[key])
-    }
-})
+    },
+)
 
 // Watch for cross-field validation
-watch(() => form.start_date, () => {
-    if (form.end_date) {
-        validateField('end_date')
-    }
-})
+watch(
+    () => form.start_date,
+    () => {
+        if (form.end_date) {
+            validateField('end_date')
+        }
+    },
+)
 
-watch(() => form.end_date, () => {
-    if (form.start_date) {
-        validateField('end_date')
-    }
-})
+watch(
+    () => form.end_date,
+    () => {
+        if (form.start_date) {
+            validateField('end_date')
+        }
+    },
+)
 </script>

@@ -1,80 +1,132 @@
 [
-    {
-        "id": "super-admin",
-        "name": "Super Admin",
-        "description": "Quyền cao nhất, có thể truy cập tất cả chức năng",
-        "permissions": [
-            "products.view", "products.create", "products.edit", "products.delete",
-            "categories.view", "categories.create", "categories.edit", "categories.delete",
-            "orders.view", "orders.create", "orders.edit", "orders.delete",
-            "customers.view", "customers.create", "customers.edit", "customers.delete",
-            "coupons.view", "coupons.create", "coupons.edit", "coupons.delete",
-            "admins.view", "admins.create", "admins.edit", "admins.delete",
-            "roles.view", "roles.create", "roles.edit", "roles.delete",
-            "analytics.view", "settings.view", "settings.edit"
-        ],
-        "is_system": true,
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z"
-    },
-    {
-        "id": "manager",
-        "name": "Manager",
-        "description": "Quản lý sản phẩm, đơn hàng và khách hàng",
-        "permissions": [
-            "products.view", "products.create", "products.edit", "products.delete",
-            "categories.view", "categories.create", "categories.edit", "categories.delete",
-            "orders.view", "orders.create", "orders.edit", "orders.delete",
-            "customers.view", "customers.create", "customers.edit", "customers.delete",
-            "coupons.view", "coupons.create", "coupons.edit", "coupons.delete",
-            "analytics.view"
-        ],
-        "is_system": true,
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z"
-    },
-    {
-        "id": "staff",
-        "name": "Staff",
-        "description": "Nhân viên chỉ có quyền xem và xử lý đơn hàng",
-        "permissions": [
-            "products.view",
-            "categories.view",
-            "orders.view", "orders.edit",
-            "customers.view", "customers.edit",
-            "coupons.view"
-        ],
-        "is_system": true,
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2024-01-01T00:00:00Z"
-    },
-    {
-        "id": "sales",
-        "name": "Sales Representative",
-        "description": "Đại diện bán hàng, quản lý sản phẩm và khách hàng",
-        "permissions": [
-            "products.view", "products.create", "products.edit",
-            "categories.view",
-            "orders.view", "orders.create", "orders.edit",
-            "customers.view", "customers.create", "customers.edit",
-            "coupons.view", "coupons.create", "coupons.edit"
-        ],
-        "is_system": false,
-        "created_at": "2024-02-15T10:30:00Z",
-        "updated_at": "2024-02-15T10:30:00Z"
-    },
-    {
-        "id": "content-manager",
-        "name": "Content Manager",
-        "description": "Quản lý nội dung sản phẩm và danh mục",
-        "permissions": [
-            "products.view", "products.create", "products.edit",
-            "categories.view", "categories.create", "categories.edit",
-            "customers.view",
-            "analytics.view"
-        ],
-        "is_system": false,
-        "created_at": "2024-03-01T14:20:00Z",
-        "updated_at": "2024-03-01T14:20:00Z"
-    }
+  {
+    "id": "super-admin",
+    "name": "Super Admin",
+    "description": "Quyền cao nhất, có thể truy cập tất cả chức năng",
+    "permissions": [
+      "products.view",
+      "products.create",
+      "products.edit",
+      "products.delete",
+      "categories.view",
+      "categories.create",
+      "categories.edit",
+      "categories.delete",
+      "orders.view",
+      "orders.create",
+      "orders.edit",
+      "orders.delete",
+      "customers.view",
+      "customers.create",
+      "customers.edit",
+      "customers.delete",
+      "coupons.view",
+      "coupons.create",
+      "coupons.edit",
+      "coupons.delete",
+      "admins.view",
+      "admins.create",
+      "admins.edit",
+      "admins.delete",
+      "roles.view",
+      "roles.create",
+      "roles.edit",
+      "roles.delete",
+      "analytics.view",
+      "settings.view",
+      "settings.edit"
+    ],
+    "is_system": true,
+    "created_at": "2024-01-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "manager",
+    "name": "Manager",
+    "description": "Quản lý sản phẩm, đơn hàng và khách hàng",
+    "permissions": [
+      "products.view",
+      "products.create",
+      "products.edit",
+      "products.delete",
+      "categories.view",
+      "categories.create",
+      "categories.edit",
+      "categories.delete",
+      "orders.view",
+      "orders.create",
+      "orders.edit",
+      "orders.delete",
+      "customers.view",
+      "customers.create",
+      "customers.edit",
+      "customers.delete",
+      "coupons.view",
+      "coupons.create",
+      "coupons.edit",
+      "coupons.delete",
+      "analytics.view"
+    ],
+    "is_system": true,
+    "created_at": "2024-01-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "staff",
+    "name": "Staff",
+    "description": "Nhân viên chỉ có quyền xem và xử lý đơn hàng",
+    "permissions": [
+      "products.view",
+      "categories.view",
+      "orders.view",
+      "orders.edit",
+      "customers.view",
+      "customers.edit",
+      "coupons.view"
+    ],
+    "is_system": true,
+    "created_at": "2024-01-01T00:00:00Z",
+    "updated_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "sales",
+    "name": "Sales Representative",
+    "description": "Đại diện bán hàng, quản lý sản phẩm và khách hàng",
+    "permissions": [
+      "products.view",
+      "products.create",
+      "products.edit",
+      "categories.view",
+      "orders.view",
+      "orders.create",
+      "orders.edit",
+      "customers.view",
+      "customers.create",
+      "customers.edit",
+      "coupons.view",
+      "coupons.create",
+      "coupons.edit"
+    ],
+    "is_system": false,
+    "created_at": "2024-02-15T10:30:00Z",
+    "updated_at": "2024-02-15T10:30:00Z"
+  },
+  {
+    "id": "content-manager",
+    "name": "Content Manager",
+    "description": "Quản lý nội dung sản phẩm và danh mục",
+    "permissions": [
+      "products.view",
+      "products.create",
+      "products.edit",
+      "categories.view",
+      "categories.create",
+      "categories.edit",
+      "customers.view",
+      "analytics.view"
+    ],
+    "is_system": false,
+    "created_at": "2024-03-01T14:20:00Z",
+    "updated_at": "2024-03-01T14:20:00Z"
+  }
 ]

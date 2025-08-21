@@ -285,11 +285,13 @@ const handleLogin = async () => {
 }
 
 const handleSocialLogin = async (provider: 'google' | 'facebook') => {
-    showInfo(t('auth.comingSoon'), t('auth.socialLoginNotImplemented'))
+    showInfo(t('auth.comingSoon'), t('auth.socialLoginNotImplemented') || provider)
 }
 
 const fillCredentials = (type: 'user') => {
-    form.value.email = 'user@example.com'
-    form.value.password = 'user123'
+    if (type === 'user') {
+        form.value.email = 'user@example.com'
+        form.value.password = 'user123'
+    }
 }
 </script>

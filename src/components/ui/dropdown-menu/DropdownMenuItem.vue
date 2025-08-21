@@ -23,7 +23,7 @@ interface Props {
     destructive?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
     destructive: false,
 })
 

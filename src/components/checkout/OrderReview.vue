@@ -149,7 +149,7 @@ interface Emits {
     'place-order': [options: { agreedToTerms: boolean; subscribeNewsletter: boolean }]
 }
 
-const props = defineProps<Props>()
+defineProps<Props>()
 const emit = defineEmits<Emits>()
 
 const { t } = useAppI18n()

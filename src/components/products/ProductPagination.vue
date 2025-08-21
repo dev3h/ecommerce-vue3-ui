@@ -116,7 +116,7 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const emit = defineEmits<{
+defineEmits<{
     'page-change': [page: number]
     'prev-page': []
     'next-page': []

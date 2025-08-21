@@ -7,26 +7,26 @@ class CouponService {
 
     async getCoupons(): Promise<Coupon[]> {
         // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 300))
-        
+        await new Promise((resolve) => setTimeout(resolve, 300))
+
         // Update status based on dates
         const now = new Date()
-        const updatedCoupons = this.coupons.value.map(coupon => {
+        const updatedCoupons = this.coupons.value.map((coupon) => {
             const endDate = new Date(coupon.end_date)
             if (endDate < now && coupon.status !== 'expired') {
                 return { ...coupon, status: 'expired' as const }
             }
             return coupon
         })
-        
+
         this.coupons.value = updatedCoupons
         return [...this.coupons.value]
     }
 
     async getCoupon(id: string): Promise<Coupon> {
-        await new Promise(resolve => setTimeout(resolve, 200))
-        
-        const coupon = this.coupons.value.find(c => c.id === id)
+        await new Promise((resolve) => setTimeout(resolve, 200))
+
+        const coupon = this.coupons.value.find((c) => c.id === id)
         if (!coupon) {
             throw new Error('Coupon not found')
         }
@@ -34,23 +34,23 @@ class CouponService {
     }
 
     async createCoupon(data: CouponFormData): Promise<Coupon> {
-        await new Promise(resolve => setTimeout(resolve, 500))
-        
+        await new Promise((resolve) => setTimeout(resolve, 500))
+
         // Check if coupon name already exists
-        const existingCoupon = this.coupons.value.find(c => 
-            c.name.toLowerCase() === data.name.toLowerCase()
+        const existingCoupon = this.coupons.value.find(
+            (c) => c.name.toLowerCase() === data.name.toLowerCase(),
         )
         if (existingCoupon) {
             throw new Error('Coupon with this name already exists')
         }
 
         const newCoupon: Coupon = {
-            id: (Math.max(...this.coupons.value.map(c => parseInt(c.id))) + 1).toString(),
+            id: (Math.max(...this.coupons.value.map((c) => parseInt(c.id))) + 1).toString(),
             ...data,
             usage_limit: data.has_limit ? data.usage_limit : undefined,
             usage_count: 0,
             created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
+            updated_at: new Date().toISOString(),
         }
 
         this.coupons.value.unshift(newCoupon)
@@ -58,17 +58,17 @@ class CouponService {
     }
 
     async updateCoupon(id: string, data: Partial<CouponFormData>): Promise<Coupon> {
-        await new Promise(resolve => setTimeout(resolve, 500))
-        
-        const index = this.coupons.value.findIndex(c => c.id === id)
+        await new Promise((resolve) => setTimeout(resolve, 500))
+
+        const index = this.coupons.value.findIndex((c) => c.id === id)
         if (index === -1) {
             throw new Error('Coupon not found')
         }
 
         // Check if name is being changed and if it conflicts with existing
         if (data.name) {
-            const existingCoupon = this.coupons.value.find(c => 
-                c.id !== id && c.name.toLowerCase() === data.name!.toLowerCase()
+            const existingCoupon = this.coupons.value.find(
+                (c) => c.id !== id && c.name.toLowerCase() === data.name!.toLowerCase(),
             )
             if (existingCoupon) {
                 throw new Error('Coupon with this name already exists')
@@ -78,10 +78,13 @@ class CouponService {
         const updatedCoupon: Coupon = {
             ...this.coupons.value[index],
             ...data,
-            usage_limit: data.has_limit !== undefined 
-                ? (data.has_limit ? data.usage_limit : undefined)
-                : this.coupons.value[index].usage_limit,
-            updated_at: new Date().toISOString()
+            usage_limit:
+                data.has_limit !== undefined
+                    ? data.has_limit
+                        ? data.usage_limit
+                        : undefined
+                    : this.coupons.value[index].usage_limit,
+            updated_at: new Date().toISOString(),
         }
 
         this.coupons.value[index] = updatedCoupon
@@ -89,9 +92,9 @@ class CouponService {
     }
 
     async deleteCoupon(id: string): Promise<void> {
-        await new Promise(resolve => setTimeout(resolve, 300))
-        
-        const index = this.coupons.value.findIndex(c => c.id === id)
+        await new Promise((resolve) => setTimeout(resolve, 300))
+
+        const index = this.coupons.value.findIndex((c) => c.id === id)
         if (index === -1) {
             throw new Error('Coupon not found')
         }
@@ -100,25 +103,25 @@ class CouponService {
     }
 
     async bulkUpdateStatus(ids: string[], status: 'active' | 'inactive'): Promise<void> {
-        await new Promise(resolve => setTimeout(resolve, 500))
-        
+        await new Promise((resolve) => setTimeout(resolve, 500))
+
         for (const id of ids) {
-            const index = this.coupons.value.findIndex(c => c.id === id)
+            const index = this.coupons.value.findIndex((c) => c.id === id)
             if (index !== -1) {
                 this.coupons.value[index] = {
                     ...this.coupons.value[index],
                     status,
-                    updated_at: new Date().toISOString()
+                    updated_at: new Date().toISOString(),
                 }
             }
         }
     }
 
     async validateCouponName(name: string, excludeId?: string): Promise<boolean> {
-        await new Promise(resolve => setTimeout(resolve, 200))
-        
-        const existingCoupon = this.coupons.value.find(c => 
-            c.id !== excludeId && c.name.toLowerCase() === name.toLowerCase()
+        await new Promise((resolve) => setTimeout(resolve, 200))
+
+        const existingCoupon = this.coupons.value.find(
+            (c) => c.id !== excludeId && c.name.toLowerCase() === name.toLowerCase(),
         )
         return !existingCoupon
     }

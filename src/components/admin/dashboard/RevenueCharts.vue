@@ -78,8 +78,7 @@ import { useDashboard } from '@/composables/useDashboard'
 import { useAppI18n } from '@/composables/useI18n'
 
 const { t } = useAppI18n()
-const { revenueData, ordersData, yearlyComparisonData, loading, error, loadDashboardData } =
-    useDashboard()
+const { revenueData, ordersData, yearlyComparisonData, loading, loadDashboardData } = useDashboard()
 
 onMounted(async () => {
     await loadDashboardData()

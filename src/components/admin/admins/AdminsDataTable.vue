@@ -46,18 +46,18 @@
                         <Select v-model="roleFilter" @update:model-value="applyFilters">
                             <SelectTrigger class="w-[180px]">
                                 <SelectValue
-                                    :placeholder="loadingRoles ? t('common.loading') : t('admin.adminsManagement.filters.allRoles')"
+                                    :placeholder="
+                                        loadingRoles
+                                            ? t('common.loading')
+                                            : t('admin.adminsManagement.filters.allRoles')
+                                    "
                                 />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="all">{{
                                     t('admin.adminsManagement.filters.allRoles')
                                 }}</SelectItem>
-                                <SelectItem 
-                                    v-for="role in roles" 
-                                    :key="role.id" 
-                                    :value="role.id"
-                                >
+                                <SelectItem v-for="role in roles" :key="role.id" :value="role.id">
                                     {{ t(`admin.adminsManagement.roles.${role.id}`) }}
                                 </SelectItem>
                             </SelectContent>
@@ -66,7 +66,10 @@
                 </div>
 
                 <!-- Bulk Actions -->
-                <div v-if="selectedAdmins.length > 0" class="flex items-center gap-2 p-2 bg-muted rounded-md">
+                <div
+                    v-if="selectedAdmins.length > 0"
+                    class="flex items-center gap-2 p-2 bg-muted rounded-md"
+                >
                     <span class="text-sm text-muted-foreground">
                         {{ selectedAdmins.length }} {{ t('admin.adminsManagement.bulk.selected') }}
                     </span>
@@ -282,7 +285,7 @@ const columns = [
                 h('div', { class: 'flex flex-col' }, [
                     h('span', { class: 'font-medium' }, admin.name),
                     h('span', { class: 'text-sm text-muted-foreground' }, admin.email),
-                ])
+                ]),
             ])
         },
     }),
@@ -490,9 +493,6 @@ const confirmDelete = async () => {
 
 // Load data on mount
 onMounted(async () => {
-    await Promise.all([
-        loadAdmins(),
-        loadRoles()
-    ])
+    await Promise.all([loadAdmins(), loadRoles()])
 })
 </script>

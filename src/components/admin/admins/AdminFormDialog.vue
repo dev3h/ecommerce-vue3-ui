@@ -21,8 +21,10 @@
             <form @submit.prevent="handleSubmit" class="space-y-6">
                 <!-- Basic Information -->
                 <div class="space-y-4">
-                    <h3 class="text-sm font-medium">{{ t('admin.adminsManagement.form.basicInfo') }}</h3>
-                    
+                    <h3 class="text-sm font-medium">
+                        {{ t('admin.adminsManagement.form.basicInfo') }}
+                    </h3>
+
                     <!-- Full Name -->
                     <div class="space-y-2">
                         <Label for="name" class="text-sm font-medium">
@@ -53,7 +55,9 @@
                             :class="{ 'border-destructive': errors.email }"
                             @blur="validateField('email')"
                         />
-                        <p v-if="errors.email" class="text-sm text-destructive">{{ errors.email }}</p>
+                        <p v-if="errors.email" class="text-sm text-destructive">
+                            {{ errors.email }}
+                        </p>
                     </div>
 
                     <!-- Status (only show when editing) -->
@@ -63,23 +67,38 @@
                             <span class="text-destructive">*</span>
                         </Label>
                         <Select v-model="form.status">
-                            <SelectTrigger id="status" :class="{ 'border-destructive': errors.status }">
-                                <SelectValue :placeholder="t('admin.adminsManagement.form.selectStatus')" />
+                            <SelectTrigger
+                                id="status"
+                                :class="{ 'border-destructive': errors.status }"
+                            >
+                                <SelectValue
+                                    :placeholder="t('admin.adminsManagement.form.selectStatus')"
+                                />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="active">{{ t('admin.adminsManagement.status.active') }}</SelectItem>
-                                <SelectItem value="banned">{{ t('admin.adminsManagement.status.banned') }}</SelectItem>
-                                <SelectItem value="temporarily_locked">{{ t('admin.adminsManagement.status.temporarily_locked') }}</SelectItem>
+                                <SelectItem value="active">{{
+                                    t('admin.adminsManagement.status.active')
+                                }}</SelectItem>
+                                <SelectItem value="banned">{{
+                                    t('admin.adminsManagement.status.banned')
+                                }}</SelectItem>
+                                <SelectItem value="temporarily_locked">{{
+                                    t('admin.adminsManagement.status.temporarily_locked')
+                                }}</SelectItem>
                             </SelectContent>
                         </Select>
-                        <p v-if="errors.status" class="text-sm text-destructive">{{ errors.status }}</p>
+                        <p v-if="errors.status" class="text-sm text-destructive">
+                            {{ errors.status }}
+                        </p>
                     </div>
                 </div>
 
                 <!-- Permissions -->
                 <div class="space-y-4">
-                    <h3 class="text-sm font-medium">{{ t('admin.adminsManagement.form.permissions') }}</h3>
-                    
+                    <h3 class="text-sm font-medium">
+                        {{ t('admin.adminsManagement.form.permissions') }}
+                    </h3>
+
                     <!-- Role -->
                     <div class="space-y-2">
                         <Label for="role" class="text-sm font-medium">
@@ -88,27 +107,34 @@
                         </Label>
                         <Select v-model="form.role" :disabled="loadingRoles">
                             <SelectTrigger id="role" :class="{ 'border-destructive': errors.role }">
-                                <SelectValue :placeholder="loadingRoles ? t('common.loading') : t('admin.adminsManagement.form.selectRole')" />
+                                <SelectValue
+                                    :placeholder="
+                                        loadingRoles
+                                            ? t('common.loading')
+                                            : t('admin.adminsManagement.form.selectRole')
+                                    "
+                                />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem 
-                                    v-for="role in roles" 
-                                    :key="role.id" 
-                                    :value="role.id"
-                                >
+                                <SelectItem v-for="role in roles" :key="role.id" :value="role.id">
                                     <div class="flex flex-col">
-                                        <span>{{ t(`admin.adminsManagement.roles.${role.id}`) }}</span>
-                                        <span class="text-xs text-muted-foreground">{{ role.description }}</span>
+                                        <span>{{
+                                            t(`admin.adminsManagement.roles.${role.id}`)
+                                        }}</span>
+                                        <span class="text-xs text-muted-foreground">{{
+                                            role.description
+                                        }}</span>
                                     </div>
                                 </SelectItem>
                             </SelectContent>
                         </Select>
                         <p v-if="errors.role" class="text-sm text-destructive">{{ errors.role }}</p>
-                        
+
                         <!-- Role Description -->
                         <div v-if="selectedRole" class="p-3 bg-muted rounded-md">
                             <p class="text-sm text-muted-foreground">
-                                <strong>{{ selectedRole.display_name }}:</strong> {{ selectedRole.description }}
+                                <strong>{{ selectedRole.display_name }}:</strong>
+                                {{ selectedRole.description }}
                             </p>
                         </div>
                     </div>
@@ -124,18 +150,24 @@
                     >
                         {{ t('common.cancel') }}
                     </Button>
-                    
-                    <Button
-                        type="submit"
-                        :disabled="loading || !isFormValid"
-                        class="min-w-[100px]"
-                    >
+
+                    <Button type="submit" :disabled="loading || !isFormValid" class="min-w-[100px]">
                         <div v-if="loading" class="flex items-center gap-2">
-                            <div class="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"></div>
-                            {{ admin ? t('admin.adminsManagement.form.updating') : t('admin.adminsManagement.form.creating') }}
+                            <div
+                                class="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
+                            ></div>
+                            {{
+                                admin
+                                    ? t('admin.adminsManagement.form.updating')
+                                    : t('admin.adminsManagement.form.creating')
+                            }}
                         </div>
                         <span v-else>
-                            {{ admin ? t('admin.adminsManagement.form.update') : t('admin.adminsManagement.form.create') }}
+                            {{
+                                admin
+                                    ? t('admin.adminsManagement.form.update')
+                                    : t('admin.adminsManagement.form.create')
+                            }}
                         </span>
                     </Button>
                 </DialogFooter>
@@ -187,7 +219,7 @@ const props = withDefaults(defineProps<Props>(), {
 // Emits
 const emit = defineEmits<{
     'update:open': [value: boolean]
-    'saved': []
+    saved: []
 }>()
 
 // Composables
@@ -200,7 +232,7 @@ const { t } = useAppI18n()
 const loading = ref(false)
 const dialogOpen = computed({
     get: () => props.open,
-    set: (value) => emit('update:open', value)
+    set: (value) => emit('update:open', value),
 })
 
 // Form data
@@ -220,7 +252,7 @@ const errors = reactive<Record<string, string>>({})
 const isEdit = computed(() => !!props.admin)
 
 const selectedRole = computed(() => {
-    return roles.value.find(role => role.id === form.role)
+    return roles.value.find((role) => role.id === form.role)
 })
 
 // Validation rules
@@ -273,37 +305,34 @@ const validateField = (field: keyof typeof validationRules) => {
 
 const validateForm = () => {
     // Always validate name, email, role
-    ['name', 'email', 'role'].forEach(field => {
+    ;['name', 'email', 'role'].forEach((field) => {
         validateField(field as keyof typeof validationRules)
     })
-    
+
     // Only validate status when editing
     if (isEdit.value) {
         validateField('status')
     }
-    
+
     return Object.keys(errors).length === 0
 }
 
 // Computed properties
 const isFormValid = computed(() => {
-    const baseValid = Object.keys(errors).length === 0 && 
-           form.name && 
-           form.email && 
-           form.role
-    
+    const baseValid = Object.keys(errors).length === 0 && form.name && form.email && form.role
+
     // For edit mode, also require status
     if (isEdit.value) {
         return baseValid && form.status
     }
-    
+
     // For create mode, status will be set to 'active' by default
     return baseValid
 })
 
 const resetForm = () => {
     Object.assign(form, { ...defaultForm })
-    Object.keys(errors).forEach(key => delete errors[key])
+    Object.keys(errors).forEach((key) => delete errors[key])
 }
 
 const closeDialog = () => {
@@ -338,12 +367,16 @@ const handleSubmit = async () => {
             await createAdmin(createData)
             success(t('admin.adminsManagement.messages.createSuccess'), '')
         }
-        
+
         emit('saved')
         closeDialog()
     } catch (err) {
-        const message = err instanceof Error ? err.message : 
-            (props.admin ? t('admin.adminsManagement.messages.updateError') : t('admin.adminsManagement.messages.createError'))
+        const message =
+            err instanceof Error
+                ? err.message
+                : props.admin
+                  ? t('admin.adminsManagement.messages.updateError')
+                  : t('admin.adminsManagement.messages.createError')
         errorToast(t('common.error'), message)
     } finally {
         loading.value = false
@@ -351,24 +384,27 @@ const handleSubmit = async () => {
 }
 
 // Watch for prop changes
-watch(() => props.open, (newOpen) => {
-    if (newOpen) {
-        if (props.admin) {
-            // Edit mode - populate form
-            Object.assign(form, {
-                name: props.admin.name,
-                email: props.admin.email,
-                status: props.admin.status,
-                role: props.admin.role,
-            })
-        } else {
-            // Create mode - reset form
-            resetForm()
+watch(
+    () => props.open,
+    (newOpen) => {
+        if (newOpen) {
+            if (props.admin) {
+                // Edit mode - populate form
+                Object.assign(form, {
+                    name: props.admin.name,
+                    email: props.admin.email,
+                    status: props.admin.status,
+                    role: props.admin.role,
+                })
+            } else {
+                // Create mode - reset form
+                resetForm()
+            }
+            // Clear errors
+            Object.keys(errors).forEach((key) => delete errors[key])
         }
-        // Clear errors
-        Object.keys(errors).forEach(key => delete errors[key])
-    }
-})
+    },
+)
 
 // Load roles on mount
 onMounted(async () => {

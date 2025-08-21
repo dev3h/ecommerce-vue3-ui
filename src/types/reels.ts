@@ -31,6 +31,10 @@ export interface Reel {
     tags: string[]
     created_at: string
     updated_at: string
+    // Additional properties for video state management
+    hasViewed?: boolean
+    isCompleted?: boolean
+    watchTime?: number // seconds watched
 }
 
 export interface ReelComment {
@@ -56,4 +60,11 @@ export interface ReelFormData {
     tags: string[]
 }
 
-export type ReelCategory = 'trending' | 'fashion' | 'beauty' | 'food' | 'lifestyle' | 'tech' | 'sports'
+export type ReelCategory =
+    | 'trending'
+    | 'fashion'
+    | 'beauty'
+    | 'food'
+    | 'lifestyle'
+    | 'tech'
+    | 'sports'

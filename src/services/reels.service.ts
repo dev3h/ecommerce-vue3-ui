@@ -1,7 +1,7 @@
-import type { Reel, ReelComment, ReelFormData, ReelCategory } from '@/types/reels'
+import type { Reel, ReelComment, ReelCategory } from '@/types/reels'
 import reelsData from '@/data/reels.json'
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 class ReelsService {
     private reels: Reel[] = reelsData as Reel[]
@@ -20,16 +20,15 @@ class ReelsService {
         await delay(500)
         let filteredReels = [...this.reels]
         if (params?.category && params.category !== 'trending') {
-            filteredReels = filteredReels.filter(reel => 
-                reel.tags.includes(params.category!)
-            )
+            filteredReels = filteredReels.filter((reel) => reel.tags.includes(params.category!))
         }
         if (params?.search) {
             const searchLower = params.search.toLowerCase()
-            filteredReels = filteredReels.filter(reel =>
-                reel.title.toLowerCase().includes(searchLower) ||
-                reel.description.toLowerCase().includes(searchLower) ||
-                reel.tags.some(tag => tag.toLowerCase().includes(searchLower))
+            filteredReels = filteredReels.filter(
+                (reel) =>
+                    reel.title.toLowerCase().includes(searchLower) ||
+                    reel.description.toLowerCase().includes(searchLower) ||
+                    reel.tags.some((tag) => tag.toLowerCase().includes(searchLower)),
             )
         }
         const page = params?.page || 1
@@ -40,18 +39,18 @@ class ReelsService {
         return {
             data: paginatedReels,
             total: filteredReels.length,
-            hasMore: endIndex < filteredReels.length
+            hasMore: endIndex < filteredReels.length,
         }
     }
 
     async getReelById(id: string): Promise<Reel | null> {
         await delay(300)
-        return this.reels.find(reel => reel.id === id) || null
+        return this.reels.find((reel) => reel.id === id) || null
     }
 
     async likeReel(id: string): Promise<boolean> {
         await delay(200)
-        const reel = this.reels.find(r => r.id === id)
+        const reel = this.reels.find((r) => r.id === id)
         if (reel) {
             if (reel.is_liked) {
                 reel.stats.likes--
@@ -67,7 +66,7 @@ class ReelsService {
 
     async shareReel(id: string): Promise<void> {
         await delay(200)
-        const reel = this.reels.find(r => r.id === id)
+        const reel = this.reels.find((r) => r.id === id)
         if (reel) {
             reel.stats.shares++
         }
@@ -75,25 +74,29 @@ class ReelsService {
 
     async addView(id: string): Promise<void> {
         await delay(100)
-        const reel = this.reels.find(r => r.id === id)
+        const reel = this.reels.find((r) => r.id === id)
         if (reel) {
             reel.stats.views++
         }
     }
 
-    async getComments(reelId: string, page = 1, limit = 20): Promise<{
+    async getComments(
+        reelId: string,
+        page = 1,
+        limit = 20,
+    ): Promise<{
         data: ReelComment[]
         total: number
         hasMore: boolean
     }> {
         await delay(400)
-        const reelComments = this.comments.filter(c => c.reel_id === reelId)
+        const reelComments = this.comments.filter((c) => c.reel_id === reelId)
         const startIndex = (page - 1) * limit
         const endIndex = startIndex + limit
         return {
             data: reelComments.slice(startIndex, endIndex),
             total: reelComments.length,
-            hasMore: endIndex < reelComments.length
+            hasMore: endIndex < reelComments.length,
         }
     }
 
@@ -105,16 +108,16 @@ class ReelsService {
             user: {
                 id: 'current_user',
                 name: 'Current User',
-                avatar: 'https://picsum.photos/100/100?random=999'
+                avatar: 'https://picsum.photos/100/100?random=999',
             },
             content,
             likes: 0,
             is_liked: false,
             replies_count: 0,
-            created_at: new Date().toISOString()
+            created_at: new Date().toISOString(),
         }
         this.comments.unshift(newComment)
-        const reel = this.reels.find(r => r.id === reelId)
+        const reel = this.reels.find((r) => r.id === reelId)
         if (reel) {
             reel.stats.comments++
         }
@@ -123,11 +126,14 @@ class ReelsService {
 
     async getTrendingTags(): Promise<string[]> {
         await delay(200)
-        const allTags = this.reels.flatMap(reel => reel.tags)
-        const tagCounts = allTags.reduce((acc, tag) => {
-            acc[tag] = (acc[tag] || 0) + 1
-            return acc
-        }, {} as Record<string, number>)
+        const allTags = this.reels.flatMap((reel) => reel.tags)
+        const tagCounts = allTags.reduce(
+            (acc, tag) => {
+                acc[tag] = (acc[tag] || 0) + 1
+                return acc
+            },
+            {} as Record<string, number>,
+        )
         return Object.entries(tagCounts)
             .sort(([, a], [, b]) => b - a)
             .slice(0, 10)

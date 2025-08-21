@@ -28,7 +28,7 @@ export function useReels() {
                 page: currentPage.value,
                 limit: 10,
                 category: currentCategory.value,
-                search: searchQuery.value || undefined
+                search: searchQuery.value || undefined,
             })
             if (reset) {
                 reels.value = response.data
@@ -44,7 +44,7 @@ export function useReels() {
             toast({
                 title: 'Lỗi',
                 description: 'Không thể tải video. Vui lòng thử lại.',
-                variant: 'destructive'
+                variant: 'destructive',
             })
         } finally {
             isLoading.value = false
@@ -72,7 +72,7 @@ export function useReels() {
     const toggleLike = async (id: string) => {
         try {
             const isLiked = await reelsService.likeReel(id)
-            const reel = reels.value.find(r => r.id === id)
+            const reel = reels.value.find((r) => r.id === id)
             if (reel) {
                 reel.is_liked = isLiked
             }
@@ -81,14 +81,16 @@ export function useReels() {
             }
             toast({
                 title: isLiked ? 'Đã thích' : 'Bỏ thích',
-                description: isLiked ? 'Đã thêm vào danh sách yêu thích' : 'Đã xóa khỏi danh sách yêu thích'
+                description: isLiked
+                    ? 'Đã thêm vào danh sách yêu thích'
+                    : 'Đã xóa khỏi danh sách yêu thích',
             })
         } catch (error) {
             console.error('Error toggling like:', error)
             toast({
                 title: 'Lỗi',
                 description: 'Không thể thực hiện. Vui lòng thử lại.',
-                variant: 'destructive'
+                variant: 'destructive',
             })
         }
     }
@@ -96,27 +98,31 @@ export function useReels() {
     const shareReel = async (reel: Reel, platform?: string) => {
         try {
             await reelsService.shareReel(reel.id)
-            const localReel = reels.value.find(r => r.id === reel.id)
+            const localReel = reels.value.find((r) => r.id === reel.id)
             if (localReel) {
                 localReel.stats.shares++
             }
             const shareUrl = `${window.location.origin}/reels/${reel.id}`
             const shareText = `${reel.title} - Xem video này trên cửa hàng của chúng tôi!`
             if (platform === 'facebook') {
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`)
+                window.open(
+                    `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+                )
             } else if (platform === 'twitter') {
-                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`)
+                window.open(
+                    `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
+                )
             } else if (platform === 'copy') {
                 await navigator.clipboard.writeText(shareUrl)
                 toast({
                     title: 'Đã sao chép',
-                    description: 'Link video đã được sao chép vào clipboard'
+                    description: 'Link video đã được sao chép vào clipboard',
                 })
             } else if (navigator.share) {
                 await navigator.share({
                     title: reel.title,
                     text: shareText,
-                    url: shareUrl
+                    url: shareUrl,
                 })
             }
         } catch (error) {
@@ -124,7 +130,7 @@ export function useReels() {
             toast({
                 title: 'Lỗi',
                 description: 'Không thể chia sẻ. Vui lòng thử lại.',
-                variant: 'destructive'
+                variant: 'destructive',
             })
         }
     }
@@ -165,7 +171,7 @@ export function useReels() {
         shareReel,
         addView,
         changeCategory,
-        search
+        search,
     }
 }
 
@@ -200,7 +206,7 @@ export function useReelComments(reelId: string) {
             toast({
                 title: 'Lỗi',
                 description: 'Không thể tải bình luận. Vui lòng thử lại.',
-                variant: 'destructive'
+                variant: 'destructive',
             })
         } finally {
             isLoading.value = false
@@ -214,14 +220,14 @@ export function useReelComments(reelId: string) {
             comments.value.unshift(newComment)
             toast({
                 title: 'Thành công',
-                description: 'Bình luận của bạn đã được thêm'
+                description: 'Bình luận của bạn đã được thêm',
             })
         } catch (error) {
             console.error('Error adding comment:', error)
             toast({
                 title: 'Lỗi',
                 description: 'Không thể thêm bình luận. Vui lòng thử lại.',
-                variant: 'destructive'
+                variant: 'destructive',
             })
         }
     }
@@ -231,6 +237,6 @@ export function useReelComments(reelId: string) {
         isLoadingMore,
         hasMore,
         loadComments,
-        addComment
+        addComment,
     }
 }

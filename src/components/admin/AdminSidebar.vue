@@ -319,7 +319,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import AdminSidebarItem from '@/components/admin/AdminSidebarItem.vue'
 
@@ -335,16 +335,12 @@ const emit = defineEmits<{
 }>()
 
 const route = useRoute()
-const router = useRouter()
 const { t } = useAppI18n()
 
 // Computed
 const currentRoute = computed(() => route.path)
 
 // Mock data - in real app these would come from stores/API
-const productsCount = computed(() => 1247)
-const categoriesCount = computed(() => 23)
-const pendingOrdersCount = computed(() => 15)
 const pendingReviewsCount = computed(() => 8)
 const totalCustomers = computed(() => 3456)
 const openTicketsCount = computed(() => 12)

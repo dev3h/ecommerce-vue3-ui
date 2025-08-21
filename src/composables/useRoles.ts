@@ -79,7 +79,7 @@ export function useRoles() {
     }
 
     const getRoleById = (id: string): Role | null => {
-        return roles.value.find(role => role.id === id) || null
+        return roles.value.find((role) => role.id === id) || null
     }
 
     const bulkDeleteRoles = async (ids: string[]) => {
@@ -106,8 +106,8 @@ export function useRoles() {
     }
 
     // Computed properties
-    const systemRoles = computed(() => roles.value.filter(r => r.is_system))
-    const customRoles = computed(() => roles.value.filter(r => !r.is_system))
+    const systemRoles = computed(() => roles.value.filter((r) => r.is_system))
+    const customRoles = computed(() => roles.value.filter((r) => !r.is_system))
     const totalRoles = computed(() => roles.value.length)
 
     return {
@@ -160,18 +160,18 @@ export function usePermissions() {
 
     // Get permission name by ID
     const getPermissionName = (id: string): string => {
-        const permission = permissions.value.find(p => p.id === id)
+        const permission = permissions.value.find((p) => p.id === id)
         return permission?.name || id
     }
 
     // Get permissions by module
     const getPermissionsByModule = (module: string): Permission[] => {
-        return permissions.value.filter(p => p.module === module)
+        return permissions.value.filter((p) => p.module === module)
     }
 
     // Computed properties
     const permissionModules = computed(() => {
-        const modules = new Set(permissions.value.map(p => p.module))
+        const modules = new Set(permissions.value.map((p) => p.module))
         return Array.from(modules).sort()
     })
 
@@ -201,7 +201,7 @@ export function useRoleStats() {
         total: 0,
         system: 0,
         custom: 0,
-        avgPermissions: 0
+        avgPermissions: 0,
     })
     const loading = ref(false)
     const error = ref<string | null>(null)

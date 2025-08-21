@@ -1,62 +1,62 @@
 [
-    {
-        "id": "1",
-        "name": "Super Administrator",
-        "email": "superadmin@example.com",
-        "status": "active",
-        "role": "super_admin",
-        "created_at": "2024-01-01T00:00:00Z",
-        "updated_at": "2025-01-15T10:30:00Z",
-        "last_login": "2025-08-02T14:20:00Z"
-    },
-    {
-        "id": "2",
-        "name": "John Manager",
-        "email": "john.manager@example.com",
-        "status": "active",
-        "role": "manager",
-        "created_at": "2024-06-15T08:00:00Z",
-        "updated_at": "2025-07-20T16:45:00Z",
-        "last_login": "2025-08-01T09:15:00Z"
-    },
-    {
-        "id": "3",
-        "name": "Jane Staff",
-        "email": "jane.staff@example.com",
-        "status": "active",
-        "role": "staff",
-        "created_at": "2024-09-10T12:00:00Z",
-        "updated_at": "2025-06-30T11:20:00Z",
-        "last_login": "2025-07-28T13:45:00Z"
-    },
-    {
-        "id": "4",
-        "name": "Bob Smith",
-        "email": "bob.smith@example.com",
-        "status": "temporarily_locked",
-        "role": "staff",
-        "created_at": "2024-11-20T14:30:00Z",
-        "updated_at": "2025-07-15T09:10:00Z",
-        "last_login": "2025-07-10T16:30:00Z"
-    },
-    {
-        "id": "5",
-        "name": "Alice Brown",
-        "email": "alice.brown@example.com",
-        "status": "banned",
-        "role": "staff",
-        "created_at": "2024-03-12T10:15:00Z",
-        "updated_at": "2025-05-25T15:20:00Z",
-        "last_login": "2025-05-20T12:10:00Z"
-    },
-    {
-        "id": "6",
-        "name": "Mike Wilson",
-        "email": "mike.wilson@example.com",
-        "status": "active",
-        "role": "manager",
-        "created_at": "2024-08-05T09:45:00Z",
-        "updated_at": "2025-07-30T14:15:00Z",
-        "last_login": "2025-08-02T08:30:00Z"
-    }
+  {
+    "id": "1",
+    "name": "Super Administrator",
+    "email": "superadmin@example.com",
+    "status": "active",
+    "role": "super_admin",
+    "created_at": "2024-01-01T00:00:00Z",
+    "updated_at": "2025-01-15T10:30:00Z",
+    "last_login": "2025-08-02T14:20:00Z"
+  },
+  {
+    "id": "2",
+    "name": "John Manager",
+    "email": "john.manager@example.com",
+    "status": "active",
+    "role": "manager",
+    "created_at": "2024-06-15T08:00:00Z",
+    "updated_at": "2025-07-20T16:45:00Z",
+    "last_login": "2025-08-01T09:15:00Z"
+  },
+  {
+    "id": "3",
+    "name": "Jane Staff",
+    "email": "jane.staff@example.com",
+    "status": "active",
+    "role": "staff",
+    "created_at": "2024-09-10T12:00:00Z",
+    "updated_at": "2025-06-30T11:20:00Z",
+    "last_login": "2025-07-28T13:45:00Z"
+  },
+  {
+    "id": "4",
+    "name": "Bob Smith",
+    "email": "bob.smith@example.com",
+    "status": "temporarily_locked",
+    "role": "staff",
+    "created_at": "2024-11-20T14:30:00Z",
+    "updated_at": "2025-07-15T09:10:00Z",
+    "last_login": "2025-07-10T16:30:00Z"
+  },
+  {
+    "id": "5",
+    "name": "Alice Brown",
+    "email": "alice.brown@example.com",
+    "status": "banned",
+    "role": "staff",
+    "created_at": "2024-03-12T10:15:00Z",
+    "updated_at": "2025-05-25T15:20:00Z",
+    "last_login": "2025-05-20T12:10:00Z"
+  },
+  {
+    "id": "6",
+    "name": "Mike Wilson",
+    "email": "mike.wilson@example.com",
+    "status": "active",
+    "role": "manager",
+    "created_at": "2024-08-05T09:45:00Z",
+    "updated_at": "2025-07-30T14:15:00Z",
+    "last_login": "2025-08-02T08:30:00Z"
+  }
 ]

@@ -1492,7 +1492,7 @@
         "updateSuccess": "Đã cập nhật admin thành công!",
         "deleteSuccess": "Đã xóa admin thành công!",
         "createError": "Lỗi khi tạo admin",
-        "updateError": "Lỗi khi cập nhật admin", 
+        "updateError": "Lỗi khi cập nhật admin",
         "deleteError": "Lỗi khi xóa admin",
         "loadError": "Lỗi khi tải danh sách admin",
         "deleteConfirmTitle": "Xác nhận xóa",

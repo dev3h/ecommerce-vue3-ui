@@ -78,7 +78,10 @@ export function useAdmins() {
         }
     }
 
-    const bulkUpdateStatus = async (ids: string[], status: 'active' | 'banned' | 'temporarily_locked') => {
+    const bulkUpdateStatus = async (
+        ids: string[],
+        status: 'active' | 'banned' | 'temporarily_locked',
+    ) => {
         try {
             loading.value = true
             error.value = null
@@ -90,7 +93,7 @@ export function useAdmins() {
                     admins.value[index] = {
                         ...admins.value[index],
                         status,
-                        updated_at: new Date().toISOString()
+                        updated_at: new Date().toISOString(),
                     }
                 }
             }
@@ -112,7 +115,7 @@ export function useAdmins() {
     }
 
     const getAdminById = (id: string): Admin | null => {
-        return admins.value.find(admin => admin.id === id) || null
+        return admins.value.find((admin) => admin.id === id) || null
     }
 
     return {

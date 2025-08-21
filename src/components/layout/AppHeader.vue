@@ -59,7 +59,9 @@
                         :class="{ 'text-foreground': isRouteActive('/reels') }"
                     >
                         <span>Reels</span>
-                        <div class="bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs px-2 py-0.5 rounded-full font-bold">
+                        <div
+                            class="bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs px-2 py-0.5 rounded-full font-bold"
+                        >
                             HOT
                         </div>
                     </RouterLink>
@@ -307,7 +309,7 @@ const handleLogout = async () => {
 
         // Redirect to home page
         router.push('/')
-    } catch (error: any) {
+    } catch (error) {
         showError(t('common.error'), error.message || t('auth.logoutError'))
     }
 }

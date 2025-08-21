@@ -244,21 +244,7 @@ interface Props {
     maxHeight?: string
 }
 
-interface Category {
-    id: string
-    slug: string
-    name: string
-    icon: string
-    count: number
-}
-
-interface Brand {
-    id: string
-    name: string
-    count: number
-}
-
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
     maxHeight: 'calc(100vh - 3.5rem)',
 })
 

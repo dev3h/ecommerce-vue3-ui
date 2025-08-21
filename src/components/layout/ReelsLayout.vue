@@ -2,19 +2,19 @@
     <div class="reels-layout min-h-screen bg-black overflow-hidden lg:-ml-64">
         <!-- Mobile Status Bar Spacer -->
         <div v-if="isMobile" class="h-safe-top bg-black"></div>
-        
+
         <!-- Desktop Header -->
-        <div v-if="!isMobile && !isFullscreen" class="reels-header bg-background/95 backdrop-blur border-b border-border">
+        <div
+            v-if="!isMobile && !isFullscreen"
+            class="reels-header bg-background/95 backdrop-blur border-b border-border"
+        >
             <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
-                <button
-                    @click="goBack"
-                    class="p-2 hover:bg-muted rounded-full transition-colors"
-                >
+                <button @click="goBack" class="p-2 hover:bg-muted rounded-full transition-colors">
                     <ChevronLeftIcon class="w-6 h-6" />
                 </button>
-                
+
                 <h1 class="text-lg font-semibold">{{ t('home.reels.title') }}</h1>
-                
+
                 <button
                     @click="$emit('toggleFullscreen')"
                     class="p-2 hover:bg-muted rounded-full transition-colors"
@@ -25,7 +25,7 @@
         </div>
 
         <!-- Reels Content -->
-        <main 
+        <main
             class="reels-main"
             :class="{
                 'fixed inset-0 z-50': isFullscreen,
@@ -61,7 +61,7 @@ interface Props {
 
 withDefaults(defineProps<Props>(), {
     isFullscreen: false,
-    showHeader: false
+    showHeader: false,
 })
 
 defineEmits<{

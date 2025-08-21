@@ -9,7 +9,6 @@ import type {
     CreateReviewRequest,
     UpdateReviewRequest,
     ReviewPermissions,
-    OrderProductReviewPermissions,
 } from '@/types/reviews'
 
 export function useReviews(productId: string) {

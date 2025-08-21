@@ -83,7 +83,7 @@ interface Props {
     altText?: string
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
     title: "Don't miss amazing grocery deals",
     subtitle: 'Sign up for the daily newsletter',
     placeholder: 'Your email address',

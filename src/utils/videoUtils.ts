@@ -6,7 +6,7 @@ export const VIDEO_FALLBACKS = [
     'https://storage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
     'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
-    'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4'
+    'https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4',
 ]
 
 export const getWorkingVideoUrl = async (urls: string[]): Promise<string | null> => {
@@ -28,10 +28,10 @@ export const validateVideoUrl = (url: string): Promise<boolean> => {
         const video = document.createElement('video')
         video.src = url
         video.muted = true
-        
+
         video.oncanplay = () => resolve(true)
         video.onerror = () => resolve(false)
-        
+
         // Timeout after 5 seconds
         setTimeout(() => resolve(false), 5000)
     })

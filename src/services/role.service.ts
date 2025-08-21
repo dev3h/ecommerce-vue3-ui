@@ -5,7 +5,7 @@ import rolesData from '@/data/roles.json'
 import permissionsData from '@/data/permissions.json'
 
 // Simulate API delay
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 class RoleService {
     private roles: Role[] = [...rolesData]
@@ -27,21 +27,21 @@ class RoleService {
     async getGroupedPermissions(): Promise<Record<string, Permission[]>> {
         await delay(200)
         const grouped: Record<string, Permission[]> = {}
-        
-        this.permissions.forEach(permission => {
+
+        this.permissions.forEach((permission) => {
             if (!grouped[permission.module]) {
                 grouped[permission.module] = []
             }
             grouped[permission.module].push(permission)
         })
-        
+
         return grouped
     }
 
     // Get role by ID
     async getRole(id: string): Promise<Role> {
         await delay(200)
-        const role = this.roles.find(r => r.id === id)
+        const role = this.roles.find((r) => r.id === id)
         if (!role) {
             throw new Error(`Role with ID ${id} not found`)
         }
@@ -63,7 +63,7 @@ class RoleService {
 
         // Check if role name already exists
         const existingRole = this.roles.find(
-            r => r.name.toLowerCase() === data.name.toLowerCase()
+            (r) => r.name.toLowerCase() === data.name.toLowerCase(),
         )
         if (existingRole) {
             throw new Error('Role name already exists')
@@ -76,7 +76,7 @@ class RoleService {
 
         // Validate permission IDs exist
         const invalidPermissions = data.permissions.filter(
-            permId => !this.permissions.find(p => p.id === permId)
+            (permId) => !this.permissions.find((p) => p.id === permId),
         )
         if (invalidPermissions.length > 0) {
             throw new Error(`Invalid permissions: ${invalidPermissions.join(', ')}`)
@@ -89,7 +89,7 @@ class RoleService {
             permissions: [...data.permissions],
             is_system: false,
             created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
+            updated_at: new Date().toISOString(),
         }
 
         this.roles.unshift(newRole)
@@ -100,7 +100,7 @@ class RoleService {
     async updateRole(id: string, data: Partial<RoleFormData>): Promise<Role> {
         await delay(500)
 
-        const roleIndex = this.roles.findIndex(r => r.id === id)
+        const roleIndex = this.roles.findIndex((r) => r.id === id)
         if (roleIndex === -1) {
             throw new Error(`Role with ID ${id} not found`)
         }
@@ -115,7 +115,7 @@ class RoleService {
         // Validate name uniqueness (if name is being updated)
         if (data.name && data.name !== existingRole.name) {
             const duplicateRole = this.roles.find(
-                r => r.id !== id && r.name.toLowerCase() === data.name.toLowerCase()
+                (r) => r.id !== id && r.name.toLowerCase() === data.name.toLowerCase(),
             )
             if (duplicateRole) {
                 throw new Error('Role name already exists')
@@ -129,7 +129,7 @@ class RoleService {
             }
 
             const invalidPermissions = data.permissions.filter(
-                permId => !this.permissions.find(p => p.id === permId)
+                (permId) => !this.permissions.find((p) => p.id === permId),
             )
             if (invalidPermissions.length > 0) {
                 throw new Error(`Invalid permissions: ${invalidPermissions.join(', ')}`)
@@ -141,7 +141,7 @@ class RoleService {
             ...(data.name && { name: data.name.trim() }),
             ...(data.description && { description: data.description.trim() }),
             ...(data.permissions && { permissions: [...data.permissions] }),
-            updated_at: new Date().toISOString()
+            updated_at: new Date().toISOString(),
         }
 
         this.roles[roleIndex] = updatedRole
@@ -152,7 +152,7 @@ class RoleService {
     async deleteRole(id: string): Promise<void> {
         await delay(400)
 
-        const roleIndex = this.roles.findIndex(r => r.id === id)
+        const roleIndex = this.roles.findIndex((r) => r.id === id)
         if (roleIndex === -1) {
             throw new Error(`Role with ID ${id} not found`)
         }
@@ -174,23 +174,22 @@ class RoleService {
     async bulkDeleteRoles(ids: string[]): Promise<void> {
         await delay(600)
 
-        const systemRoles = this.roles.filter(r => ids.includes(r.id) && r.is_system)
+        const systemRoles = this.roles.filter((r) => ids.includes(r.id) && r.is_system)
         if (systemRoles.length > 0) {
             throw new Error('Cannot delete system roles')
         }
 
-        this.roles = this.roles.filter(r => !ids.includes(r.id))
+        this.roles = this.roles.filter((r) => !ids.includes(r.id))
     }
 
     // Validate role name uniqueness
     async validateRoleName(name: string, excludeId?: string): Promise<boolean> {
         await delay(200)
-        
-        const existingRole = this.roles.find(r => 
-            r.name.toLowerCase() === name.toLowerCase() && 
-            r.id !== excludeId
+
+        const existingRole = this.roles.find(
+            (r) => r.name.toLowerCase() === name.toLowerCase() && r.id !== excludeId,
         )
-        
+
         return !existingRole
     }
 
@@ -204,11 +203,12 @@ class RoleService {
         await delay(300)
 
         const total = this.roles.length
-        const system = this.roles.filter(r => r.is_system).length
+        const system = this.roles.filter((r) => r.is_system).length
         const custom = total - system
-        const avgPermissions = total > 0 
-            ? Math.round(this.roles.reduce((sum, r) => sum + r.permissions.length, 0) / total)
-            : 0
+        const avgPermissions =
+            total > 0
+                ? Math.round(this.roles.reduce((sum, r) => sum + r.permissions.length, 0) / total)
+                : 0
 
         return { total, system, custom, avgPermissions }
     }
