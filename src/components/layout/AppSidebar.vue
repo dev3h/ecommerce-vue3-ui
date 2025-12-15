@@ -122,20 +122,14 @@
                             :id="`brand-${brand.id}`"
                             :model-value="selectedBrands.includes(brand.name)"
                             @update:model-value="
-                                (checked: boolean) => {
-                                    console.log(
-                                        'Checkbox clicked:',
-                                        checked,
-                                        'for brand:',
-                                        brand.name,
-                                    )
-                                    if (checked) {
+                                (value: boolean | 'indeterminate') => {
+                                    if (value === true) {
                                         selectedBrands.push(brand.name)
                                         console.log(
                                             'Added brand, current selectedBrands:',
                                             selectedBrands,
                                         )
-                                    } else {
+                                    } else if (value === false) {
                                         const index = selectedBrands.indexOf(brand.name)
                                         if (index > -1) {
                                             selectedBrands.splice(index, 1)
@@ -145,6 +139,7 @@
                                             )
                                         }
                                     }
+                                    // Ignore 'indeterminate' state for this use case
                                     handleBrandChange()
                                 }
                             "

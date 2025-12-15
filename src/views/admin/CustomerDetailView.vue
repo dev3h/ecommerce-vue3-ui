@@ -93,16 +93,14 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import { Card } from '@/components/ui/card'
 import { BarChart, PieChart } from '@/components/ui/chart'
 import { Button } from '@/components/ui/button'
-// Fake data, replace with real API call
+
 const { t } = useAppI18n()
-const route = useRoute()
 const router = useRouter()
-const userId = route.params.id
 
 function goBack() {
     router.push({ name: 'AdminCustomers' })
@@ -141,5 +139,3 @@ const orderSuccessRate = computed(() => [
     { name: t('admin.customers.failed'), value: stats.value.failedOrders },
 ])
 </script>
-
-<style scoped></style>

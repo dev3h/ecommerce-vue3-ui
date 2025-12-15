@@ -9,7 +9,7 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 class RoleService {
     private roles: Role[] = [...rolesData]
-    private permissions: Permission[] = [...permissionsData]
+    private readonly permissions: Permission[] = [...permissionsData]
 
     // Get all roles
     async getRoles(): Promise<Role[]> {
@@ -115,7 +115,7 @@ class RoleService {
         // Validate name uniqueness (if name is being updated)
         if (data.name && data.name !== existingRole.name) {
             const duplicateRole = this.roles.find(
-                (r) => r.id !== id && r.name.toLowerCase() === data.name.toLowerCase(),
+                (r) => r.id !== id && r.name.toLowerCase() === data.name?.toLowerCase(),
             )
             if (duplicateRole) {
                 throw new Error('Role name already exists')

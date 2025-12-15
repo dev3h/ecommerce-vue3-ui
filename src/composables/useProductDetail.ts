@@ -120,7 +120,7 @@ export function useProductDetail() {
         try {
             loading.value.reviews = true
             const nextPage = reviewsPage.value + 1
-            const data = await productDetailService.getProductReviews(product.value.id, nextPage)
+            const data = await productDetailService.getProductReviews()
 
             reviews.value.push(...data.reviews)
             reviewsPage.value = nextPage

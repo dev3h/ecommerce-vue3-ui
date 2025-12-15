@@ -59,10 +59,7 @@ const prevStep = () => {
     }
 }
 
-const handlePlaceOrder = async (options: {
-    agreedToTerms: boolean
-    subscribeNewsletter: boolean
-}) => {
+const handlePlaceOrder = async () => {
     if (isEmpty.value) {
         router.push('/cart')
         return
