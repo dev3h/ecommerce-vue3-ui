@@ -1,0 +1,50 @@
+#!/bin/bash
+
+echo "🔍 Checking if branch is up to date with develop..."
+
+# Fetch latest changes from origin
+git fetch origin develop
+
+# Get current branch name
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# Get the latest commit hash of origin/develop
+REMOTE_DEVELOP=$(git rev-parse origin/develop)
+
+# Get the merge base between current branch and origin/develop
+MERGE_BASE=$(git merge-base HEAD origin/develop)
+
+# Check if local branch is behind origin/develop
+if [ "$REMOTE_DEVELOP" != "$MERGE_BASE" ]; then
+    echo "⚠️  Branch 'develop' has new commits!"
+    echo "❌ Your branch is not up to date with origin/develop"
+    echo "➡️  Run: git pull --rebase origin develop"
+    exit 1
+fi
+
+echo "✅ Branch is up to date with develop"
+echo ""
+
+echo "🛠 Running lint..."
+npm run lint
+if [ $? -ne 0 ]; then
+    echo "❌ Lint failed! Fix errors before push."
+    exit 1
+fi
+
+echo "✅ Lint passed"
+echo ""
+
+echo "🏗 Running build..."
+npm run build
+if [ $? -ne 0 ]; then
+    echo "❌ Build failed! Fix errors before push."
+    exit 1
+fi
+
+echo "✅ Build passed"
+echo ""
+
+echo "✅ All checks passed. Proceeding with push."
+echo "================================"
+exit 0
