@@ -310,7 +310,7 @@ const handleLogout = async () => {
         // Redirect to home page
         router.push('/')
     } catch (error) {
-        showError(t('common.error'), error.message || t('auth.logoutError'))
+        showError(t('common.error'), (error as any).message || t('auth.logoutError'))
     }
 }
 

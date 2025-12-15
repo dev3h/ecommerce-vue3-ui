@@ -126,7 +126,7 @@ onMounted(() => {
     initialize()
 
     // Listen for review events to refresh when reviews are added from order page
-    const handleReviewEvent = (data: { productId: string; review }) => {
+    const handleReviewEvent = (data: { productId: string; review: unknown }) => {
         if (data.productId === props.productId) {
             refresh()
         }

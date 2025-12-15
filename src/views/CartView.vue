@@ -21,18 +21,14 @@ const debugCartItems = computed(() => {
 // Methods
 const handleQuantityChange = (productId: string, quantity: number) => {
     console.log('CartView: Changing quantity for product', productId, 'to', quantity)
-    if (quantity < 1) {
-        console.log('CartView: Quantity too low, ignoring')
-        return
-    }
+    if (quantity < 1) return;
+
     updateQuantity(productId, quantity)
     console.log('CartView: Updated cart items:', cartItems.value)
-    // Không hiển thị toast cho quantity update
 }
 
 const handleRemoveItem = (productId: string) => {
     removeFromCart(productId)
-    // Không hiển thị toast cho remove item
 }
 
 const handleContinueShopping = () => {
@@ -41,14 +37,6 @@ const handleContinueShopping = () => {
 
 const handleProceedToCheckout = () => {
     router.push('/checkout')
-}
-
-// Format currency
-const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    }).format(amount)
 }
 </script>
 

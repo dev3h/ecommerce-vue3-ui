@@ -157,7 +157,7 @@
                             type="button"
                             variant="ghost"
                             size="sm"
-                            @click="fillCredentials('admin')"
+                            @click="fillCredentials()"
                             class="text-primary hover:bg-primary/10 font-mono text-xs px-3 py-1 h-auto"
                             :disabled="isLoading"
                         >
@@ -301,7 +301,7 @@ const handleLogin = async () => {
     }
 }
 
-const fillCredentials = (type: 'admin') => {
+const fillCredentials = () => {
     form.email = 'admin@nestgrocer.com'
     form.password = 'admin123'
 }

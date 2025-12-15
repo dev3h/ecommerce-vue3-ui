@@ -4,8 +4,13 @@ import adminsData from '@/data/admins.json'
 import rolesData from '@/data/roles.json'
 
 class AdminService {
-    private admins = ref<Admin[]>(adminsData as Admin[])
-    private roles = ref<Role[]>(rolesData as Role[])
+    private readonly admins = ref<Admin[]>(adminsData as Admin[])
+    private readonly roles = ref<Role[]>(
+        (rolesData as any[]).map(role => ({
+            ...role,
+            display_name: role.display_name ?? role.name
+        }))
+    )
 
     async getAdmins(): Promise<Admin[]> {
         // Simulate API delay

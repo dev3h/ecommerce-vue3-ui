@@ -263,7 +263,8 @@ onMounted(async () => {
     } catch (err) {
         errorToast(
             t('common.error'),
-            t('admin.couponsManagement.messages.couponNotFound') || err.message,
+            t('admin.couponsManagement.messages.couponNotFound') ||
+                (typeof err === 'object' && err !== null && 'message' in err ? (err as { message: string }).message : ''),
         )
         router.push('/admin/coupons')
     } finally {

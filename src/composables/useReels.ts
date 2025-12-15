@@ -13,7 +13,7 @@ export function useReels() {
     const currentCategory = ref<ReelCategory>('trending')
     const searchQuery = ref('')
 
-    const { toast } = useToast()
+    const toast = useToast()
 
     const loadReels = async (reset = false) => {
         if (reset) {
@@ -41,11 +41,7 @@ export function useReels() {
             }
         } catch (error) {
             console.error('Error loading reels:', error)
-            toast({
-                title: 'Lỗi',
-                description: 'Không thể tải video. Vui lòng thử lại.',
-                variant: 'destructive',
-            })
+            toast.error('Lỗi', 'Không thể tải video. Vui lòng thử lại.')
         } finally {
             isLoading.value = false
             isLoadingMore.value = false
@@ -79,19 +75,15 @@ export function useReels() {
             if (currentReel.value?.id === id) {
                 currentReel.value.is_liked = isLiked
             }
-            toast({
-                title: isLiked ? 'Đã thích' : 'Bỏ thích',
-                description: isLiked
+            toast.success(
+                isLiked ? 'Đã thích' : 'Bỏ thích',
+                isLiked
                     ? 'Đã thêm vào danh sách yêu thích'
-                    : 'Đã xóa khỏi danh sách yêu thích',
-            })
+                    : 'Đã xóa khỏi danh sách yêu thích'
+            )
         } catch (error) {
             console.error('Error toggling like:', error)
-            toast({
-                title: 'Lỗi',
-                description: 'Không thể thực hiện. Vui lòng thử lại.',
-                variant: 'destructive',
-            })
+            toast.error('Lỗi', 'Không thể thực hiện. Vui lòng thử lại.')
         }
     }
 
@@ -114,10 +106,7 @@ export function useReels() {
                 )
             } else if (platform === 'copy') {
                 await navigator.clipboard.writeText(shareUrl)
-                toast({
-                    title: 'Đã sao chép',
-                    description: 'Link video đã được sao chép vào clipboard',
-                })
+                toast.success('Đã sao chép', 'Link video đã được sao chép vào clipboard')
             } else if (navigator.share) {
                 await navigator.share({
                     title: reel.title,
@@ -127,11 +116,7 @@ export function useReels() {
             }
         } catch (error) {
             console.error('Error sharing reel:', error)
-            toast({
-                title: 'Lỗi',
-                description: 'Không thể chia sẻ. Vui lòng thử lại.',
-                variant: 'destructive',
-            })
+            toast.error('Lỗi', 'Không thể chia sẻ. Vui lòng thử lại.')
         }
     }
 
@@ -181,7 +166,7 @@ export function useReelComments(reelId: string) {
     const isLoadingMore = ref(false)
     const hasMore = ref(true)
     const currentPage = ref(1)
-    const { toast } = useToast()
+    const toast = useToast()
     const loadComments = async (reset = false) => {
         if (reset) {
             currentPage.value = 1
@@ -203,11 +188,7 @@ export function useReelComments(reelId: string) {
             }
         } catch (error) {
             console.error('Error loading comments:', error)
-            toast({
-                title: 'Lỗi',
-                description: 'Không thể tải bình luận. Vui lòng thử lại.',
-                variant: 'destructive',
-            })
+            toast.error('Lỗi', 'Không thể tải bình luận. Vui lòng thử lại.')
         } finally {
             isLoading.value = false
             isLoadingMore.value = false
@@ -218,17 +199,10 @@ export function useReelComments(reelId: string) {
         try {
             const newComment = await reelsService.addComment(reelId, content.trim())
             comments.value.unshift(newComment)
-            toast({
-                title: 'Thành công',
-                description: 'Bình luận của bạn đã được thêm',
-            })
+            toast.success('Thành công', 'Bình luận của bạn đã được thêm')
         } catch (error) {
             console.error('Error adding comment:', error)
-            toast({
-                title: 'Lỗi',
-                description: 'Không thể thêm bình luận. Vui lòng thử lại.',
-                variant: 'destructive',
-            })
+            toast.error('Lỗi', 'Không thể thêm bình luận. Vui lòng thử lại.')
         }
     }
     return {

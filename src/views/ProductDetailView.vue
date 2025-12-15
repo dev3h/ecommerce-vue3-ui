@@ -304,7 +304,6 @@ const { isInWishlist } = useWishlist()
 const {
     // State
     product,
-    reviews,
     relatedProducts,
     loading,
     error,
@@ -312,7 +311,6 @@ const {
     quantity,
     activeTab,
     reviewsTotal,
-    hasMoreReviews,
 
     // Computed
     selectedImage,
@@ -328,7 +326,6 @@ const {
     setActiveTab,
     addToCart,
     addToWishlist,
-    loadMoreReviews,
     initialize,
 } = useProductDetail()
 

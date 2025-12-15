@@ -475,7 +475,7 @@
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { useAppI18n } from '@/composables/useI18n'
 import { useCart } from '@/composables/useCart'
 import { useToast } from '@/composables/useToast'
@@ -504,7 +504,6 @@ interface Props {
 
 const props = defineProps<Props>()
 const { t } = useAppI18n()
-const route = useRoute()
 const router = useRouter()
 const { addToCart } = useCart()
 const { success, error: showError } = useToast()
@@ -613,20 +612,6 @@ const getStepDate = (step: string) => {
             day: 'numeric',
         }) || ''
     )
-}
-
-const getProgressWidth = () => {
-    if (!order.value) return 0
-
-    const statusProgress = {
-        pending: 0,
-        processing: 33,
-        shipped: 66,
-        delivered: 100,
-        cancelled: 0,
-    }
-
-    return statusProgress[order.value.status as keyof typeof statusProgress] || 0
 }
 
 const reorderItems = async () => {

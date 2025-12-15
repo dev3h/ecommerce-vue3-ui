@@ -1,2 +1,2 @@
-export { default as BrandDataTable } from './BrandDataTable.vue'
+export { default as BrandDataTable } from './BrandsDataTable.vue'
 export { default as BrandFormDialog } from './BrandFormDialog.vue'

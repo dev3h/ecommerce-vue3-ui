@@ -208,18 +208,10 @@ import {
     SelectValue,
 } from '@/components/ui/select'
 
-// Icons
 import { Grid3X3, List, AlertCircle, Package } from 'lucide-vue-next'
 
-// Define props for category slug from route
-interface Props {
-    slug?: string
-}
-
-const props = defineProps<Props>()
 const route = useRoute()
 
-// Composables
 const {
     products,
     categories,

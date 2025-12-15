@@ -89,7 +89,7 @@ const showForm = ref(false)
 const editingAddress = ref<Address | null>(null)
 
 // Reactive computed properties from store
-const { addresses, isLoading, error } = storeToRefs(addressStore)
+const { isLoading, error } = storeToRefs(addressStore)
 
 // Methods
 const openAddForm = () => {

@@ -160,7 +160,7 @@ const onSubmit = async () => {
 
         success(t('admin.profilePage.updateSuccess'))
     } catch (e) {
-        error(t('admin.profilePage.updateError') || e.message)
+        error(t('admin.profilePage.updateError') || (e instanceof Error ? e.message : ''))
     } finally {
         loading.value = false
     }

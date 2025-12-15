@@ -1,15 +1,16 @@
-// Event bus for review updates
-class ReviewEventBus {
-    private readonly events: Map<string, Function[]> = new Map()
+type EventCallback = (...args: any[]) => void
 
-    on(event: string, callback: Function) {
+class ReviewEventBus {
+    private readonly events: Map<string, EventCallback[]> = new Map()
+
+    on(event: string, callback: EventCallback) {
         if (!this.events.has(event)) {
             this.events.set(event, [])
         }
         this.events.get(event)!.push(callback)
     }
 
-    off(event: string, callback: Function) {
+    off(event: string, callback: EventCallback) {
         const callbacks = this.events.get(event)
         if (callbacks) {
             const index = callbacks.indexOf(callback)

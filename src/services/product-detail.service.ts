@@ -116,11 +116,7 @@ class ProductDetailService {
             }))
     }
 
-    async getProductReviews(
-        productId: string,
-        page: number = 1,
-        limit: number = 10,
-    ): Promise<{
+    async getProductReviews(): Promise<{
         reviews: ProductReview[]
         total: number
         hasMore: boolean
