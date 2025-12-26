@@ -2048,6 +2048,10 @@
       "buttonText": "Đăng ký",
       "altText": "Mặt hàng thực phẩm"
     },
+    "flashSale": {
+      "title": "FLASH SALE",
+      "viewAll": "Xem Tất Cả"
+    },
     "popularProducts": "Sản phẩm phổ biến",
     "newProducts": "Sản phẩm mới",
     "dealsOfTheDay": "Ưu đãi trong ngày",

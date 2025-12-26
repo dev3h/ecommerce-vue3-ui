@@ -1,112 +1,135 @@
 <template>
-    <section
-        class="relative bg-gradient-to-r from-amber-50 via-orange-50 to-orange-100 dark:from-amber-950/30 dark:via-orange-950/20 dark:to-orange-950/30 rounded-xl p-4 sm:p-6 md:p-8 lg:p-12 mb-6 md:mb-8 overflow-hidden border border-border shadow-sm dark:shadow-none backdrop-blur-sm"
-    >
-        <div class="max-w-full lg:max-w-2xl relative z-10">
-            <h1
-                class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 md:mb-4 leading-tight drop-shadow-sm"
-            >
-                {{ title }}
-            </h1>
-            <p
-                class="text-sm sm:text-base md:text-lg text-muted-foreground mb-4 md:mb-6 font-medium"
-            >
-                {{ subtitle }}
-            </p>
-            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 max-w-full sm:max-w-md">
-                <Input
-                    v-model="email"
-                    type="email"
-                    :placeholder="placeholder"
-                    class="flex-1 bg-background/50 dark:bg-background/80 backdrop-blur-sm"
-                />
-                <Button
-                    @click="handleSubscribe"
-                    :disabled="!isValidEmail"
-                    class="px-4 sm:px-6 whitespace-nowrap bg-primary hover:bg-primary/90 shadow-md"
-                    size="default"
-                >
-                    {{ buttonText }}
-                </Button>
+    <section class="relative mb-6">
+        <!-- Banner Slider -->
+        <div class="relative overflow-hidden rounded-xl">
+            <div class="relative h-64 md:h-80 lg:h-96">
+                <transition name="fade" mode="out-in">
+                    <div
+                        :key="currentSlide"
+                        class="absolute inset-0 bg-gradient-to-r from-[#ee4d2d]/10 to-[#ff6a00]/10 dark:from-[#ee4d2d]/20 dark:to-[#ff6a00]/20"
+                    >
+                        <img
+                            :src="banners[currentSlide]"
+                            :alt="`Banner ${currentSlide + 1}`"
+                            class="w-full h-full object-cover"
+                        />
+                    </div>
+                </transition>
             </div>
-        </div>
 
-        <!-- Hero Image - Hidden on mobile and small tablets -->
-        <div
-            class="absolute right-4 sm:right-6 md:right-8 top-1/2 transform -translate-y-1/2 hidden xl:block z-0"
-        >
-            <div class="relative">
-                <img
-                    :src="heroImage"
-                    :alt="altText"
-                    class="w-64 h-48 lg:w-80 lg:h-60 xl:w-96 xl:h-72 object-cover rounded-xl opacity-90 border border-border shadow-lg dark:shadow-2xl"
-                />
-                <!-- Image overlay for better contrast in dark mode -->
-                <div
-                    class="absolute inset-0 bg-gradient-to-l from-background/20 to-transparent rounded-xl"
-                ></div>
+            <!-- Navigation Arrows -->
+            <button
+                @click="prevSlide"
+                class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-800 p-2 rounded-full shadow-lg transition-all z-10"
+            >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 19l-7-7 7-7"
+                    />
+                </svg>
+            </button>
+            <button
+                @click="nextSlide"
+                class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-800 p-2 rounded-full shadow-lg transition-all z-10"
+            >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                    />
+                </svg>
+            </button>
+
+            <!-- Dots Indicator -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                <button
+                    v-for="(_, index) in banners"
+                    :key="index"
+                    @click="goToSlide(index)"
+                    class="w-2 h-2 rounded-full transition-all"
+                    :class="
+                        currentSlide === index
+                            ? 'bg-[#ee4d2d] w-8'
+                            : 'bg-white/60 hover:bg-white/80'
+                    "
+                ></button>
             </div>
-        </div>
-
-        <!-- Background decoration for mobile -->
-        <div
-            class="absolute -right-8 -top-8 w-32 h-32 bg-primary/10 dark:bg-primary/5 rounded-full opacity-30 xl:hidden blur-sm"
-        ></div>
-        <div
-            class="absolute -right-4 -bottom-4 w-20 h-20 bg-secondary/20 dark:bg-secondary/10 rounded-full opacity-40 xl:hidden blur-sm"
-        ></div>
-        <div
-            class="absolute -left-12 top-1/2 w-24 h-24 bg-accent/15 dark:bg-accent/8 rounded-full opacity-50 xl:hidden blur-sm"
-        ></div>
-
-        <!-- Additional background pattern -->
-        <div class="absolute inset-0 opacity-5 dark:opacity-10">
-            <div class="absolute top-10 left-10 w-2 h-2 bg-primary rounded-full"></div>
-            <div class="absolute top-20 left-32 w-1 h-1 bg-secondary rounded-full"></div>
-            <div class="absolute bottom-20 left-20 w-1.5 h-1.5 bg-accent rounded-full"></div>
-            <div class="absolute top-32 right-32 w-1 h-1 bg-primary rounded-full xl:hidden"></div>
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 interface Props {
-    title?: string
-    subtitle?: string
-    placeholder?: string
-    buttonText?: string
-    heroImage?: string
-    altText?: string
+    banners?: string[]
+    autoPlayInterval?: number
 }
 
-withDefaults(defineProps<Props>(), {
-    title: "Don't miss amazing grocery deals",
-    subtitle: 'Sign up for the daily newsletter',
-    placeholder: 'Your email address',
-    buttonText: 'Subscribe',
-    heroImage: 'https://picsum.photos/400/300',
-    altText: 'Grocery items',
+const props = withDefaults(defineProps<Props>(), {
+    banners: () => [
+        'https://picsum.photos/1200/400?random=1',
+        'https://picsum.photos/1200/400?random=2',
+        'https://picsum.photos/1200/400?random=3',
+        'https://picsum.photos/1200/400?random=4',
+    ],
+    autoPlayInterval: 3000,
 })
 
-const emit = defineEmits<{
-    subscribe: [email: string]
-}>()
+const currentSlide = ref(0)
+let autoPlayTimer: number | null = null
 
-const email = ref('')
+const nextSlide = () => {
+    currentSlide.value = (currentSlide.value + 1) % props.banners.length
+}
 
-const isValidEmail = computed(() => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email.value)
-})
+const prevSlide = () => {
+    currentSlide.value = (currentSlide.value - 1 + props.banners.length) % props.banners.length
+}
 
-const handleSubscribe = () => {
-    if (isValidEmail.value) {
-        emit('subscribe', email.value)
-        email.value = ''
+const goToSlide = (index: number) => {
+    currentSlide.value = index
+    resetAutoPlay()
+}
+
+const startAutoPlay = () => {
+    autoPlayTimer = globalThis.setInterval(nextSlide, props.autoPlayInterval)
+}
+
+const stopAutoPlay = () => {
+    if (autoPlayTimer) {
+        clearInterval(autoPlayTimer)
+        autoPlayTimer = null
     }
 }
+
+const resetAutoPlay = () => {
+    stopAutoPlay()
+    startAutoPlay()
+}
+
+onMounted(() => {
+    startAutoPlay()
+})
+
+onUnmounted(() => {
+    stopAutoPlay()
+})
 </script>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+</style>

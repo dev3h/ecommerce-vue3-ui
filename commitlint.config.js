@@ -12,7 +12,7 @@ export default {
                         isValid,
                         isValid
                             ? undefined
-                            : 'Commit message phải theo format: ECOM <issue ID>: <message>',
+                            : 'Commit message phải theo format: ECOM <Redmine ID>: <message>',
                     ]
                 },
             },

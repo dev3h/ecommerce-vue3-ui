@@ -1,6 +1,6 @@
 <template>
     <div
-        class="bg-card rounded-lg border border-border p-2 sm:p-3 md:p-4 hover:shadow-md transition-shadow group cursor-pointer"
+        class="bg-card rounded-lg border border-border p-2 sm:p-3 md:p-4 hover:shadow-md transition-shadow cursor-pointer"
         @click="goToProduct"
     >
         <div class="relative mb-2 sm:mb-3">
@@ -10,7 +10,17 @@
                 class="w-full h-24 sm:h-28 md:h-32 lg:h-36 object-cover rounded-lg"
             />
             <span
-                v-if="product.badge"
+                v-if="showFlashBadge && product.originalPrice"
+                class="absolute top-1 sm:top-2 right-1 sm:right-2 px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-medium rounded bg-[#ee4d2d] text-white"
+            >
+                -{{
+                    Math.round(
+                        ((product.originalPrice - product.price) / product.originalPrice) * 100,
+                    )
+                }}%
+            </span>
+            <span
+                v-else-if="product.badge"
                 :class="getBadgeClasses(product.tag)"
                 class="absolute top-1 sm:top-2 left-1 sm:left-2 px-1.5 sm:px-2 py-0.5 sm:py-1 text-xs font-medium rounded text-white"
             >
@@ -29,54 +39,55 @@
             <span class="text-xs text-muted-foreground ml-1">({{ product.rating }})</span>
         </div>
 
-        <div class="flex items-center justify-between">
+        <div class="mb-2">
             <PriceDisplay
                 :price="product.price"
                 :original-price="product.originalPrice"
-                class="text-sm sm:text-base"
+                class="text-xs sm:text-sm md:text-base"
             />
-            <div class="flex items-center gap-1">
-                <button
-                    @click.stop="handleToggleWishlist"
+        </div>
+
+        <div class="flex items-center gap-1">
+            <button
+                @click.stop="handleToggleWishlist"
+                :class="[
+                    'flex-1 p-1.5 sm:p-2 rounded transition-all touch-manipulation border flex items-center justify-center gap-1',
+                    isProductInWishlist
+                        ? 'bg-red-50 dark:bg-red-900/20 text-red-500 border-red-200 dark:border-red-800'
+                        : 'bg-background dark:bg-card text-foreground border-border hover:bg-accent active:bg-accent',
+                ]"
+                :aria-label="
+                    isProductInWishlist
+                        ? t('wishlist.removeFromWishlist')
+                        : t('wishlist.addToWishlist')
+                "
+            >
+                <Heart
                     :class="[
-                        'opacity-70 active:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 p-1.5 sm:p-2 rounded-lg transition-all touch-manipulation shadow-sm border',
-                        isProductInWishlist
-                            ? 'bg-red-50 dark:bg-red-900/20 text-red-500 border-red-200 dark:border-red-800'
-                            : 'bg-background dark:bg-card text-foreground border-border hover:bg-accent',
+                        'w-3.5 h-3.5 sm:w-4 sm:h-4 transition-colors',
+                        isProductInWishlist ? 'fill-current' : '',
                     ]"
-                    :aria-label="
-                        isProductInWishlist
-                            ? t('wishlist.removeFromWishlist')
-                            : t('wishlist.addToWishlist')
-                    "
+                />
+            </button>
+            <button
+                @click.stop="handleAddToCart"
+                class="flex-1 bg-primary text-primary-foreground p-1.5 sm:p-2 rounded hover:bg-primary/90 active:bg-primary/80 transition-all touch-manipulation flex items-center justify-center gap-1"
+                :aria-label="t('productDetail.addToCart')"
+            >
+                <svg
+                    class="w-3.5 h-3.5 sm:w-4 sm:h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                 >
-                    <Heart
-                        :class="[
-                            'w-3 h-3 sm:w-4 sm:h-4 transition-colors',
-                            isProductInWishlist ? 'fill-current' : '',
-                        ]"
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"
                     />
-                </button>
-                <button
-                    @click.stop="handleAddToCart"
-                    class="opacity-70 active:opacity-100 sm:opacity-0 sm:group-hover:opacity-100 bg-primary text-primary-foreground p-1.5 sm:p-2 rounded-lg hover:bg-primary/90 active:bg-primary/80 transition-all touch-manipulation shadow-sm"
-                    :aria-label="t('productDetail.addToCart')"
-                >
-                    <svg
-                        class="w-3 h-3 sm:w-4 sm:h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                        />
-                    </svg>
-                </button>
-            </div>
+                </svg>
+            </button>
         </div>
     </div>
 </template>
@@ -92,9 +103,12 @@ import type { Product } from '@/types/home'
 
 interface Props {
     product: Product
+    showFlashBadge?: boolean
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+    showFlashBadge: false,
+})
 
 const emit = defineEmits<{
     'add-to-cart': [product: Product]
