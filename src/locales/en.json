@@ -1792,6 +1792,10 @@
       "buttonText": "Subscribe",
       "altText": "Grocery items"
     },
+    "flashSale": {
+      "title": "FLASH SALE",
+      "viewAll": "View All"
+    },
     "popularProducts": "Popular Products",
     "newProducts": "New Products",
     "dealsOfTheDay": "Deals Of The Day",
